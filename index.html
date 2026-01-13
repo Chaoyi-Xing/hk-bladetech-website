@@ -77,33 +77,65 @@
 
       <div class="outer">
         <section id="main"><style>
-  /* 1. 全局重置 & 字体 */
+  /* =========================================
+     1. 全局基础设置
+     ========================================= */
   #banner, #sidebar, #header-title, #footer { display: none !important; }
   .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
   #header { display: none !important; } 
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f8f9fa; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
 
-  /* 2. 顶部导航栏 (保持不变) */
-  .custom-header { display: flex; align-items: center; padding: 0 40px; background: white; box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 80px; box-sizing: border-box; width: 100%; }
+  /* --- 电脑端 Header --- */
+  .custom-header { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px;
+    justify-content: space-between;
+    padding: 0 30px; 
+    background: white; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    height: 80px; 
+    box-sizing: border-box; 
+    width: 100%; 
+  }
+  
   .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
   .header-logo img { height: 52px; width: auto; display: block; }
   .header-logo-text { font-size: 26px; font-weight: 900; color: #333; text-transform: uppercase; display: flex; align-items: center; }
-  .header-logo-text span { color: #cc0000; font-size: 1.2em; margin-right: 5px; }
-  .header-search { width: 420px; position: relative; margin-left: 60px; margin-right: 0; }
-  .header-search input { width: 100%; padding: 11px 15px 11px 45px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; }
+  
+  .header-search { 
+    flex: 0 1 380px;
+    min-width: 220px;
+    position: relative; 
+    margin: 0; 
+  }
+  .header-search input { width: 100%; padding: 11px 15px 11px 45px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; display: block; box-sizing: border-box; }
   .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
-  .header-search input::placeholder { color: #999; }
   .search-icon-svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #888; pointer-events: none; }
-  .header-nav { display: flex; align-items: center; gap: 28px; flex-shrink: 0; margin-left: auto; }
-  .header-link { color: #333; text-decoration: none; font-weight: 500; font-size: 17px; }
+  
+  .header-nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    flex-shrink: 0; 
+  }
+  .header-link { 
+    color: #333; 
+    text-decoration: none; 
+    font-weight: 500; 
+    font-size: 15px; 
+    display: block; 
+    white-space: nowrap; 
+  }
   .header-link:hover { color: #cc0000; }
-  .header-btn { background: #cc0000; color: white; padding: 12px 28px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.3s; }
+  
+  .header-btn { background: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.3s; white-space: nowrap; }
   .header-btn:hover { background-color: #a00000; }
 
-
-  /* =========================================
-     3. Hero Section (修改：恢复正常底部留白)
-     ========================================= */
+  /* --- 电脑端 Hero Section --- */
   .hero-section {
     background-image: url('/images/hero-bg.png'); 
     background-size: cover;
@@ -115,124 +147,69 @@
     justify-content: center; 
     align-items: center; 
     min-height: 380px; 
-    
-    /* !!! 修改点：上下 padding 恢复平衡，不需要给卡片留位置了 !!! */
     padding: 50px 20px; 
-    
     box-sizing: border-box;
   }
+  .hero-content-wrapper { max-width: 1000px; position: relative; z-index: 2; }
+  .hero-section h1 { font-weight: 700; font-size: 3.5em; margin-bottom: 20px; text-transform: none; line-height: 1.1; color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.6); }
+  .hero-section p { font-size: 1.6em; font-weight: 500; margin-bottom: 30px; color: #fff; line-height: 1.4; max-width: 900px; margin-left: auto; margin-right: auto; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); }
   
-  .hero-content-wrapper {
-    max-width: 1000px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .hero-section h1 { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-weight: 700; 
-    font-size: 3.5em; 
-    margin-bottom: 20px; 
-    text-transform: none; 
-    line-height: 1.1; 
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.6);
-  }
-  
-  .hero-section p { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 1.6em; 
-    font-weight: 500;
-    margin-bottom: 30px; 
-    color: #fff;
-    line-height: 1.4;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5);
-  }
-  
-  .hero-btns { 
-    margin-top: 10px; 
-    display: flex;
-    justify-content: center;
-    gap: 30px; 
-  }
+  .hero-btns { margin-top: 10px; display: flex; justify-content: center; gap: 30px; }
 
+  /* !!! 修改点：按钮尺寸和字体加大 !!! */
   .btn { 
     display: inline-block; 
     text-decoration: none; 
     transition: all 0.3s; 
     background-color: #cc0000; 
     color: white; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    border: none;
+    border: none; 
     border-radius: 6px; 
-    padding: 20px 45px;     
-    font-weight: 700;    
-    font-size: 20px;     
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    
+    /* 内边距加大 */
+    padding: 22px 52px;     
+    font-weight: 700; 
+    
+    /* 字体加大 */
+    font-size: 22px;     
+    
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25); 
   }
   
-  .btn:hover { 
-    background-color: #a00000; 
-    transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35); 
-  }
+  .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
+
+  /* --- 电脑端 Category Section --- */
+  .category-section { max-width: 1200px; margin: 30px auto 60px auto; padding: 0 20px; text-align: center; }
+  .category-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .category-card { flex: 1; min-width: 220px; background: white; padding: 25px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; transition: all 0.3s ease; text-decoration: none; border: 1px solid #eee; }
+  .category-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #ddd; }
+  .category-card img { width: 100%; height: 130px; object-fit: contain; margin-bottom: 20px; } 
+  .category-card h3 { color: #cc0000; margin: 0 0 8px 0; font-size: 1.15em; font-weight: 700; }
+  .view-text { color: #666; font-weight: 600; font-size: 0.85em; margin-bottom: 0; display: block; }
 
   /* =========================================
-     4. Categories Section (核心修改：移动到下方，不重叠)
+     2. 手机端强制适配
      ========================================= */
-  .category-section { 
-    max-width: 1200px; 
+  @media (max-width: 768px) {
+    .custom-header { padding: 0 15px; height: 60px; gap: 0; }
+    .header-logo img { height: 32px; }
+    .header-link { display: none; }
+    .header-search input { display: none; }
+    .header-search { flex: 0 0 auto; width: auto; min-width: auto; margin: 0; position: static; display: flex; align-items: center; }
+    .search-icon-svg { position: relative; left: auto; top: auto; transform: none; width: 24px; height: 24px; stroke: #333; display: block; }
+    .header-nav { margin-left: auto; gap: 15px; }
+    .header-btn { padding: 8px 12px; font-size: 13px; }
+    .hero-section { min-height: auto; padding: 40px 15px; }
+    .hero-section h1 { font-size: 1.8em; }
+    .hero-section p { font-size: 1.1em; margin-bottom: 20px; }
+    .hero-btns { flex-direction: column; width: 100%; gap: 15px; }
     
-    /* !!! 核心修改：改为正数 margin，放在图片下方 !!! */
-    margin: 30px auto 60px auto; 
+    /* 手机端按钮样式保持不变 */
+    .btn { width: 100%; box-sizing: border-box; padding: 15px 0; font-size: 18px; }
     
-    padding: 0 20px; 
-    text-align: center;
-  }
-  
-  .category-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-  .category-card { 
-    flex: 1; 
-    min-width: 220px; 
-    background: white; 
-    padding: 25px 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 阴影稍微调淡一点，适合平铺布局 */
-    border-radius: 10px; 
-    overflow: hidden; 
-    transition: all 0.3s ease; 
-    text-decoration: none; 
-    border: 1px solid #eee; /* 加个淡淡的边框，增强边界感 */
-  }
-  
-  .category-card:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
-    border-color: #ddd;
-  }
-  
-  .category-card img { 
-    width: 100%; 
-    height: 130px; 
-    object-fit: contain; 
-    margin-bottom: 20px;
-  }
-  
-  .category-card h3 { 
-    color: #cc0000; 
-    margin: 0 0 8px 0; 
-    font-size: 1.15em; 
-    font-weight: 700; 
-  }
-  
-  .view-text { 
-    color: #666; 
-    font-weight: 600; 
-    font-size: 0.85em; 
-    margin-bottom: 0; 
-    display: block; 
+    .category-section { margin: 20px auto 40px auto; padding: 0 15px; }
+    .category-grid { flex-direction: column; gap: 15px; }
+    .category-card { width: 100%; box-sizing: border-box; }
   }
 </style>
 
@@ -241,10 +218,12 @@
     <img src="/images/logo.png" alt="HK-BladeTech" onerror="this.style.display='none'; document.getElementById('backup-logo').style.display='flex'">
     <div id="backup-logo" class="header-logo-text" style="display:none;"><span>⚙️</span> HK-BLADETECH</div>
   </a>
+
   <div class="header-search">
     <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
     <input type="text" placeholder="Search Model Number or OEM Part...">
   </div>
+
   <div class="header-nav">
     <a href="/products" class="header-link">Products</a>
     <a href="/industries" class="header-link">Industries</a>
