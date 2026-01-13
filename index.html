@@ -85,7 +85,7 @@
   #header { display: none !important; } 
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
 
-  /* --- 电脑端 Header (高度90px，内容更饱满) --- */
+  /* --- 电脑端 Header (高度90px，大字但不粗) --- */
   .custom-header { 
     display: flex; 
     align-items: center; 
@@ -103,11 +103,11 @@
   }
   
   .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-  .header-logo img { height: 65px; width: auto; display: block; } /* Logo保持大尺寸 */
+  .header-logo img { height: 65px; width: auto; display: block; } 
   
   /* 搜索框 */
   .header-search { 
-    flex: 0 1 420px; /* 宽度给足 */
+    flex: 0 1 420px; 
     min-width: 220px;
     position: relative; 
     margin: 0; 
@@ -132,42 +132,40 @@
   .header-nav { 
     display: flex; 
     align-items: center; 
-    
-    /* !!! 修改点：间距大幅拉大到 40px，填充留白 !!! */
+    /* 保持宽间距，填充留白 */
     gap: 40px; 
-    
     flex-shrink: 0; 
   }
   
-  /* !!! 修改点：菜单文字 19px + 粗体 !!! */
+  /* !!! 修改点：去掉粗体 (500)，但保持大字号 (19px) !!! */
   .header-link { 
     color: #333; 
     text-decoration: none; 
     
-    font-weight: 700; /* 加粗 */
-    font-size: 19px;  /* 加大 */
+    font-weight: 500; /* 这里改回了正常粗细 */
+    font-size: 19px;  /* 字号依然很大 */
     
     display: block; 
     white-space: nowrap; 
-    letter-spacing: 0.3px; /* 稍微加点字间距，更透气 */
+    letter-spacing: 0.3px; 
   }
   .header-link:hover { color: #cc0000; }
   
-  /* !!! 修改点：按钮也同步加大 !!! */
+  /* 按钮样式 */
   .header-btn { 
     background: #cc0000; 
     color: white; 
-    padding: 15px 35px; /* 更宽 */
+    padding: 15px 35px; 
     border-radius: 6px; 
     text-decoration: none; 
-    font-weight: 700; 
-    font-size: 18px; /* 加大 */
+    font-weight: 600; /* 按钮稍微有一点点重，但不是最粗 */
+    font-size: 18px; 
     transition: background 0.3s; 
     white-space: nowrap; 
   }
   .header-btn:hover { background-color: #a00000; }
 
-  /* --- 电脑端 Hero Section (保持之前的豪华版) --- */
+  /* --- 电脑端 Hero Section --- */
   .hero-section {
     background-image: url('/images/hero-bg.png'); 
     background-size: cover;
@@ -201,7 +199,7 @@
   .view-text { color: #666; font-weight: 600; font-size: 0.85em; margin-bottom: 0; display: block; }
 
   /* =========================================
-     2. 手机端强制适配 (平衡版 - 保持不变)
+     2. 手机端强制适配 (平衡版)
      ========================================= */
   @media (max-width: 768px) {
     .custom-header {
