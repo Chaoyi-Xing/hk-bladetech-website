@@ -85,7 +85,7 @@
   #header { display: none !important; } 
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
 
-  /* --- 电脑端 Header --- */
+  /* --- 电脑端 Header (保持完美) --- */
   .custom-header { 
     display: flex; 
     align-items: center; 
@@ -122,20 +122,13 @@
     gap: 20px; 
     flex-shrink: 0; 
   }
-  .header-link { 
-    color: #333; 
-    text-decoration: none; 
-    font-weight: 500; 
-    font-size: 15px; 
-    display: block; 
-    white-space: nowrap; 
-  }
+  .header-link { color: #333; text-decoration: none; font-weight: 500; font-size: 15px; display: block; white-space: nowrap; }
   .header-link:hover { color: #cc0000; }
   
   .header-btn { background: #cc0000; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.3s; white-space: nowrap; }
   .header-btn:hover { background-color: #a00000; }
 
-  /* --- 电脑端 Hero Section --- */
+  /* --- 电脑端 Hero Section (大图置顶 + 巨型按钮) --- */
   .hero-section {
     background-image: url('/images/hero-bg.png'); 
     background-size: cover;
@@ -155,27 +148,7 @@
   .hero-section p { font-size: 1.6em; font-weight: 500; margin-bottom: 30px; color: #fff; line-height: 1.4; max-width: 900px; margin-left: auto; margin-right: auto; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); }
   
   .hero-btns { margin-top: 10px; display: flex; justify-content: center; gap: 30px; }
-
-  /* !!! 修改点：按钮尺寸和字体加大 !!! */
-  .btn { 
-    display: inline-block; 
-    text-decoration: none; 
-    transition: all 0.3s; 
-    background-color: #cc0000; 
-    color: white; 
-    border: none; 
-    border-radius: 6px; 
-    
-    /* 内边距加大 */
-    padding: 22px 52px;     
-    font-weight: 700; 
-    
-    /* 字体加大 */
-    font-size: 22px;     
-    
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25); 
-  }
-  
+  .btn { display: inline-block; text-decoration: none; transition: all 0.3s; background-color: #cc0000; color: white; border: none; border-radius: 6px; padding: 22px 52px; font-weight: 700; font-size: 22px; box-shadow: 0 5px 15px rgba(0,0,0,0.25); }
   .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
 
   /* --- 电脑端 Category Section --- */
@@ -188,25 +161,64 @@
   .view-text { color: #666; font-weight: 600; font-size: 0.85em; margin-bottom: 0; display: block; }
 
   /* =========================================
-     2. 手机端强制适配
+     2. 手机端强制适配 (双层搜索栏)
      ========================================= */
   @media (max-width: 768px) {
-    .custom-header { padding: 0 15px; height: 60px; gap: 0; }
+    .custom-header {
+      padding: 12px 15px; /* 上下留点空间 */
+      height: auto; /* 高度自动，因为我们要放两行 */
+      gap: 15px; /* 元素间距 */
+      flex-wrap: wrap; /* !!! 关键：允许换行 !!! */
+    }
+    
+    /* 1. Logo 排第一 */
+    .header-logo {
+      order: 1;
+    }
     .header-logo img { height: 32px; }
+
+    /* 2. 按钮排第二 (和Logo在同一行) */
+    .header-nav { 
+      order: 2;
+      margin-left: auto; /* 靠右 */
+      gap: 0;
+    }
     .header-link { display: none; }
-    .header-search input { display: none; }
-    .header-search { flex: 0 0 auto; width: auto; min-width: auto; margin: 0; position: static; display: flex; align-items: center; }
-    .search-icon-svg { position: relative; left: auto; top: auto; transform: none; width: 24px; height: 24px; stroke: #333; display: block; }
-    .header-nav { margin-left: auto; gap: 15px; }
     .header-btn { padding: 8px 12px; font-size: 13px; }
+
+    /* 3. 搜索框排第三 (独占第二行) */
+    .header-search { 
+      order: 3;
+      flex: 0 0 100%; /* 强制占满一行 */
+      width: 100%;
+      margin: 0;
+      position: relative;
+    }
+    
+    /* 把输入框显示出来 */
+    .header-search input { 
+      display: block; 
+      width: 100%; 
+      font-size: 14px;
+      padding: 10px 15px 10px 40px; /* 图标留位 */
+    }
+    
+    /* 图标定位回输入框里面 */
+    .search-icon-svg {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      stroke: #888;
+      display: block;
+    }
+    
+    /* Hero区域适配保持不变 */
     .hero-section { min-height: auto; padding: 40px 15px; }
     .hero-section h1 { font-size: 1.8em; }
     .hero-section p { font-size: 1.1em; margin-bottom: 20px; }
     .hero-btns { flex-direction: column; width: 100%; gap: 15px; }
-    
-    /* 手机端按钮样式保持不变 */
     .btn { width: 100%; box-sizing: border-box; padding: 15px 0; font-size: 18px; }
-    
     .category-section { margin: 20px auto 40px auto; padding: 0 15px; }
     .category-grid { flex-direction: column; gap: 15px; }
     .category-card { width: 100%; box-sizing: border-box; }
