@@ -78,7 +78,7 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     1. 全局设置 & 字体
+     1. 全局设置
      ========================================= */
   #banner, #sidebar, #header-title, #footer { display: none !important; }
   .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
@@ -86,17 +86,64 @@
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; color: #333; }
 
   /* =========================================
-     2. 导航栏 (Header) - 豪华大字体版
+     2. 导航栏 (Header) - 桌面端默认 (大屏豪华版)
      ========================================= */
-  .custom-header { display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 90px; box-sizing: border-box; width: 100%; }
+  .custom-header { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    justify-content: space-between; 
+    padding: 0 30px; 
+    background: white; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    height: 90px; 
+    box-sizing: border-box; 
+    width: 100%; 
+  }
+  
+  /* Logo */
   .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
   .header-logo img { height: 65px; width: auto; display: block; } 
-  .header-search { flex: 0 1 420px; min-width: 220px; position: relative; margin: 0; }
-  .header-search input { width: 100%; padding: 13px 15px 13px 48px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; display: block; box-sizing: border-box; }
+  
+  /* 搜索框 (智能弹性版) */
+  .header-search { 
+    /* 核心修改：flex-grow: 1 (自动占满剩余空间), flex-shrink: 1 (空间不够就缩小) */
+    flex: 1 1 auto; 
+    max-width: 450px; /* 最大不超过450px */
+    min-width: 150px; /* 最小允许缩到150px (保证不消失) */
+    position: relative; 
+    margin: 0; 
+  }
+  
+  .header-search input { 
+    width: 100%; 
+    padding: 13px 15px 13px 48px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    font-size: 16px; 
+    outline: none; 
+    color: #333; 
+    background: #fdfdfd; 
+    transition: all 0.3s; 
+    display: block; 
+    box-sizing: border-box; 
+    /* 核心修改：防止输入框撑破容器 */
+    min-width: 0; 
+  }
   .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
   .search-icon-svg { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; stroke: #888; pointer-events: none; }
   
-  .header-nav { display: flex; align-items: center; gap: 40px; flex-shrink: 0; }
+  /* 导航菜单区 */
+  .header-nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 40px; /* 默认大间距 */
+    flex-shrink: 0; /* 防止菜单被挤压 */
+  }
+  
   .header-link { color: #333; text-decoration: none; font-weight: 500; font-size: 19px; display: block; white-space: nowrap; letter-spacing: 0.3px; }
   .header-link:hover { color: #cc0000; }
   
@@ -104,7 +151,31 @@
   .header-btn:hover { background-color: #a00000; }
 
   /* =========================================
-     3. Hero Section
+     !新增! 3. 笔记本电脑适配 (Laptop Mode)
+     (屏幕宽度在 769px 到 1300px 之间生效)
+     ========================================= */
+  @media (min-width: 769px) and (max-width: 1300px) {
+    .custom-header {
+      padding: 0 20px; /* 减小左右边距 */
+      gap: 15px; /* 减小模块间距 */
+    }
+    
+    /* Logo 稍微调小 */
+    .header-logo img { height: 50px; }
+    
+    /* 菜单间距和字体调小 */
+    .header-nav { gap: 20px; }
+    .header-link { font-size: 16px; font-weight: 600; }
+    
+    /* 按钮调小 */
+    .header-btn { padding: 10px 20px; font-size: 16px; }
+    
+    /* 搜索框字号调小，适配紧凑布局 */
+    .header-search input { font-size: 14px; padding: 10px 15px 10px 40px; }
+  }
+
+  /* =========================================
+     4. Hero Section
      ========================================= */
   .hero-section { background-image: url('/images/hero-bg.png'); background-size: cover; background-position: top; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 400px; padding: 60px 20px; box-sizing: border-box; }
   .hero-content-wrapper { max-width: 1100px; position: relative; z-index: 2; }
@@ -115,7 +186,7 @@
   .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
 
   /* =========================================
-     4. Product Categories (改为了3栏布局)
+     5. Product Categories (3栏布局 + 圆刀)
      ========================================= */
   .category-section { max-width: 1200px; margin: 50px auto; padding: 0 20px; text-align: center; }
   .section-title { font-size: 2.2em; font-weight: 800; color: #222; margin-bottom: 10px; }
@@ -131,7 +202,7 @@
   .view-text { color: #cc0000; font-weight: 700; font-size: 1em; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* =========================================
-     5. Why Choose Us
+     6. Why Choose Us
      ========================================= */
   .features-section { background: white; padding: 80px 20px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
   .features-container { max-width: 1200px; margin: 0 auto; }
@@ -142,7 +213,7 @@
   .feature-item p { font-size: 1.05em; line-height: 1.6; color: #555; margin: 0; }
 
   /* =========================================
-     6. Custom Solutions Banner
+     7. Custom Solutions Banner
      ========================================= */
   .custom-banner { background: #1a1a1a; color: white; padding: 60px 20px; text-align: center; }
   .custom-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
@@ -150,30 +221,27 @@
   .custom-text h2 { font-size: 2em; margin: 0 0 10px 0; font-weight: 700; }
   .custom-text p { font-size: 1.1em; color: #ccc; margin: 0; line-height: 1.5; }
   .email-link-text { color: #cc0000; font-weight: 600; text-decoration: none; margin-top: 10px; display: inline-block; font-size: 1.1em; }
-  
   .custom-btn { background: white; color: #cc0000; padding: 18px 40px; font-size: 18px; font-weight: 700; border-radius: 6px; text-decoration: none; white-space: nowrap; transition: all 0.3s; }
   .custom-btn:hover { background: #eee; transform: scale(1.05); }
 
   /* =========================================
-     7. Footer
+     8. Footer
      ========================================= */
   .site-footer { background: #f8f9fa; padding: 70px 20px 30px 20px; border-top: 1px solid #ddd; color: #555; }
   .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; }
-  
   .footer-col { flex: 1; min-width: 200px; }
   .footer-col h4 { color: #333; font-size: 1.2em; font-weight: 700; margin-bottom: 20px; }
   .footer-links-list { list-style: none; padding: 0; margin: 0; }
   .footer-links-list li { margin-bottom: 12px; }
   .footer-links-list a { color: #666; text-decoration: none; font-size: 16px; transition: color 0.2s; }
   .footer-links-list a:hover { color: #cc0000; }
-  
   .footer-contact-info p { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 10px; }
   .footer-email { color: #cc0000; font-weight: 600; text-decoration: none; }
-  
   .footer-bottom { border-top: 1px solid #eee; margin-top: 50px; padding-top: 20px; text-align: center; font-size: 0.9em; color: #999; }
 
   /* =========================================
-     8. 手机适配
+     9. 手机端强制适配 (保持不变)
+     (屏幕宽度小于 768px 时生效)
      ========================================= */
   @media (max-width: 768px) {
     .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
@@ -249,12 +317,12 @@
     </a>
     
     <a href="/products/circular-knives" class="category-card">
-      <img src="/images/cat-3.png" alt="Circular Knives"> <h3>Circular Knives</h3>
+      <img src="/images/cat-3.png" alt="Circular Knives">
+      <h3>Circular Knives</h3>
       <p class="category-desc">Precision-ground circular slitter blades for film, foil, and paper processing. Custom dimensions available.</p>
       <span class="view-text">View Products →</span>
     </a>
-    
-    </div>
+  </div>
 </div>
 
 <div class="features-section">
