@@ -84,10 +84,8 @@
   .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
   #header { display: none !important; } 
   
-  /* 解决 Mac 下拉回弹顶部的颜色问题，设为白 */
   html { background-color: #ffffff; }
 
-  /* Body 设为白，具体的灰底我们由下面的大盒子来控制 */
   body { 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
     background-color: #ffffff; 
@@ -97,7 +95,7 @@
   }
 
   /* =========================================
-     2. 导航栏 (Header)
+     2. 导航栏 (Header) - 默认桌面版样式
      ========================================= */
   .custom-header { 
     display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; 
@@ -115,7 +113,11 @@
   .header-btn { background: #cc0000; color: white; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 18px; transition: background 0.3s; white-space: nowrap; }
   .header-btn:hover { background-color: #a00000; }
 
-  @media (min-width: 769px) and (max-width: 1300px) {
+  /* =========================================
+     3. 笔记本电脑适配 (Laptop Mode)
+     !!! 修改点：范围改为 992px - 1300px，避开横屏手机 !!!
+     ========================================= */
+  @media (min-width: 992px) and (max-width: 1300px) {
     .custom-header { padding: 0 20px; gap: 15px; }
     .header-logo img { height: 50px; }
     .header-nav { gap: 20px; }
@@ -125,7 +127,7 @@
   }
 
   /* =========================================
-     3. Hero Section
+     4. Hero Section
      ========================================= */
   .hero-section { background-image: url('/images/hero-bg.png'); background-size: cover; background-position: top; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 400px; padding: 60px 20px; box-sizing: border-box; }
   .hero-content-wrapper { max-width: 1100px; position: relative; z-index: 2; }
@@ -136,48 +138,22 @@
   .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
 
   /* =========================================
-     4. Unified Grey Section (包含标题和产品)
-     !!! 这就是您要的：一个统一的灰色大盒子 !!!
+     5. Unified Grey Section
      ========================================= */
   .unified-grey-section {
-    background-color: #f8f9fa; /* 唯一的背景色 */
+    background-color: #f8f9fa;
     width: 100%;
-    padding: 60px 20px 80px 20px; /* 上下内边距 */
+    padding: 60px 20px 80px 20px;
     box-sizing: border-box;
   }
-
-  /* 标题样式 */
-  .section-intro {
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto 50px auto; /* 标题和下方卡片的距离 */
-  }
+  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 50px auto; }
   .section-title { font-size: 2.2em; font-weight: 800; color: #222; margin-bottom: 10px; }
   .section-subtitle { font-size: 1.2em; color: #666; margin-bottom: 0; line-height: 1.5; }
 
-  /* 卡片网格 */
-  .category-grid { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap; 
-    gap: 30px; 
-  }
+  .category-grid { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
   
   .category-card { 
-    flex: 1; 
-    min-width: 260px; 
-    background: white; /* 卡片本身是白 */
-    padding: 35px 25px; 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-    border-radius: 12px; 
-    transition: all 0.3s ease; 
-    text-decoration: none; 
-    border: 1px solid #eee; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    flex: 1; min-width: 260px; background: white; padding: 35px 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; 
   }
   .category-card:hover { transform: translateY(-7px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
   .category-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 25px; }
@@ -186,13 +162,9 @@
   .view-text { color: #cc0000; font-weight: 700; font-size: 1em; text-transform: uppercase; letter-spacing: 0.5px; }
 
   /* =========================================
-     5. Why Choose Us (White Background)
+     6. Why Choose Us (White)
      ========================================= */
-  .features-section { 
-    background: white; 
-    padding: 80px 20px; 
-    border-top: 1px solid #eee;
-  }
+  .features-section { background: white; padding: 80px 20px; border-top: 1px solid #eee; }
   .features-container { max-width: 1200px; margin: 0 auto; }
   .features-grid { display: flex; gap: 40px; justify-content: space-between; flex-wrap: wrap; }
   .feature-item { flex: 1; min-width: 250px; text-align: left; padding: 20px; }
@@ -201,7 +173,7 @@
   .feature-item p { font-size: 1.05em; line-height: 1.6; color: #555; margin: 0; }
 
   /* =========================================
-     6. Other Sections
+     7. Other Sections
      ========================================= */
   .custom-banner { background: #1a1a1a; color: white; padding: 60px 20px; text-align: center; }
   .custom-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
@@ -224,16 +196,21 @@
   .footer-email { color: #cc0000; font-weight: 600; text-decoration: none; }
   .footer-bottom { border-top: 1px solid #eee; margin-top: 50px; padding-top: 20px; text-align: center; font-size: 0.9em; color: #999; }
 
-  @media (max-width: 768px) {
+  /* =========================================
+     8. 手机与平板适配 (Mobile & Landscape Phone)
+     !!! 修改点：范围扩大到 991px，涵盖横屏手机 !!!
+     ========================================= */
+  @media (max-width: 991px) {
     .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
     .header-logo { order: 1; } .header-logo img { height: 32px; }
     .header-nav { order: 2; margin-left: auto; gap: 0; }
-    .header-link { display: none; }
+    .header-link { display: none; } /* 隐藏菜单链接 */
     .header-btn { padding: 8px 12px; font-size: 13px; }
     .header-search { order: 3; flex: 0 0 100%; width: 100%; }
     .header-search input { padding: 10px 15px 10px 40px; font-size: 14px; }
     .search-icon-svg { left: 12px; width: 18px; }
 
+    /* 字体调整 */
     .hero-section h1 { font-size: 2.2em; }
     .hero-section p { font-size: 1.2em; }
     .btn { width: 100%; padding: 15px 0; font-size: 18px; }
@@ -244,6 +221,19 @@
     .custom-text { text-align: center; }
     .custom-btn { width: 100%; box-sizing: border-box; }
     .footer-container { flex-direction: column; gap: 30px; }
+  }
+
+  /* =========================================
+     9. 专门针对“横屏高度很矮”的情况
+     防止文字太大遮住屏幕
+     ========================================= */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero-section { min-height: 300px; padding: 30px 20px; }
+    .hero-section h1 { font-size: 1.8em; margin-bottom: 10px; }
+    .hero-section p { font-size: 1em; margin-bottom: 15px; }
+    .hero-btns { gap: 15px; }
+    .btn { padding: 10px 20px; font-size: 16px; }
+    .custom-header { padding: 10px 20px; }
   }
 </style>
 
