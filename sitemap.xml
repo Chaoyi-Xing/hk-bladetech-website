@@ -2,6 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hk-bladetech.com/about/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/quote/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/contact/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/services/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/industries/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/products/index.html</loc>
+    
+    <lastmod>2026-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hk-bladetech.com/2025/12/09/home/</loc>
     
     <lastmod>2025-12-09</lastmod>
