@@ -49,11 +49,8 @@
   /* =========================================
      2. 全局 CSS 设置
      ========================================= */
-  
-  /* ★★★ 关键修复：隐藏 Hexo 默认的组件，但不要隐藏 #header 本身 ★★★ */
   #banner, #sidebar, #header-title, #footer, #header-outer { display: none !important; }
   
-  /* 重置 header 容器，确保它显示，且没有背景图 */
   #header { 
     display: block !important; 
     background: none !important; 
@@ -66,7 +63,6 @@
   
   html { background-color: #ffffff; }
 
-  /* 全站统一使用 Open Sans */
   body { 
     font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
     background-color: #ffffff; 
@@ -81,75 +77,99 @@
   }
 
   /* =========================================
-     3. 导航栏样式 (精致版 80px)
+     3. 导航栏样式 (Header 高度保持 90px 大气感)
      ========================================= */
   .custom-header { 
     display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 80px; box-sizing: border-box; width: 100%; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; 
+    height: 90px; 
+    box-sizing: border-box; width: 100%; 
   }
   
-  /* Logo 区域 */
+  /* Logo 保持大尺寸 */
   .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-  .header-logo img { height: 55px; width: auto; display: block; } 
+  .header-logo img { height: 65px; width: auto; display: block; } 
   
-  /* 搜索框区域 */
-  .header-search { flex: 1 1 auto; max-width: 400px; min-width: 150px; position: relative; margin: 0; }
-  .header-search input { width: 100%; padding: 10px 15px 10px 42px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; display: block; box-sizing: border-box; min-width: 0; font-family: 'Open Sans', sans-serif; }
+  /* ★★★ 搜索框区域：改回精致小巧版 ★★★ */
+  .header-search { flex: 1 1 auto; max-width: 400px; /* 宽度也稍微收敛一点 */ min-width: 150px; position: relative; margin: 0; }
+  .header-search input { 
+    width: 100%; 
+    padding: 10px 15px 10px 42px; /* ★★★ padding 改小 */
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 14px; /* ★★★ 字号改小 */
+    outline: none; 
+    color: #333; 
+    background: #fdfdfd; 
+    transition: all 0.3s; 
+    display: block; 
+    box-sizing: border-box; 
+    min-width: 0; 
+    font-family: 'Open Sans', sans-serif; 
+  }
   .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
-  .search-icon-svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #888; pointer-events: none; }
+  .search-icon-svg { 
+    position: absolute; 
+    left: 14px; /* ★★★ 图标位置微调 */
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 18px; /* ★★★ 图标改小 */
+    height: 18px; 
+    stroke: #888; 
+    pointer-events: none; 
+  }
   
-  /* 导航链接区域 */
-  .header-nav { display: flex; align-items: center; gap: 30px; flex-shrink: 0; }
+  /* 导航链接保持大尺寸 */
+  .header-nav { display: flex; align-items: center; gap: 40px; flex-shrink: 0; }
   
   .header-link { 
     color: #333; 
     text-decoration: none; 
-    font-weight: 600; 
-    font-size: 16px; 
+    font-weight: 700; 
+    font-size: 18px; 
     display: block; 
     white-space: nowrap; 
-    letter-spacing: -0.1px; 
+    letter-spacing: -0.2px; 
   }
   .header-link:hover { color: #cc0000; }
   
   .header-btn { 
     background: #cc0000; 
     color: white; 
-    padding: 10px 25px; 
-    border-radius: 4px; 
+    padding: 14px 35px; 
+    border-radius: 6px; 
     text-decoration: none; 
     font-weight: 700; 
-    font-size: 14px; 
+    font-size: 16px; 
     transition: background 0.3s; 
     white-space: nowrap; 
     letter-spacing: 0.5px; 
   }
   .header-btn:hover { background-color: #a00000; }
 
-  /* 笔记本电脑适配 */
+  /* 适配 */
   @media (min-width: 992px) and (max-width: 1300px) {
     .custom-header { padding: 0 20px; gap: 15px; }
-    .header-logo img { height: 45px; }
-    .header-nav { gap: 15px; }
-    .header-link { font-size: 15px; }
-    .header-btn { padding: 8px 15px; font-size: 13px; }
+    .header-logo img { height: 50px; }
+    .header-nav { gap: 20px; }
+    .header-link { font-size: 16px; }
+    .header-btn { padding: 10px 20px; font-size: 15px; }
   }
-  /* 平板/手机适配 */
   @media (max-width: 991px) {
-    .custom-header { padding: 10px 20px; height: auto; gap: 10px; flex-wrap: wrap; }
+    .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
     .header-logo { order: 1; } .header-logo img { height: 32px; }
     .header-nav { order: 2; margin-left: auto; gap: 0; }
     .header-link { display: none; } 
-    .header-btn { padding: 6px 10px; font-size: 12px; }
+    .header-btn { padding: 8px 12px; font-size: 13px; }
     .header-search { order: 3; flex: 0 0 100%; width: 100%; }
-    .search-icon-svg { left: 10px; width: 16px; }
+    .search-icon-svg { left: 12px; width: 18px; }
   }
 </style>
 
 <div class="custom-header">
   <a href="/" class="header-logo">
     <img src="/images/logo.png" alt="HK BladeTech" onerror="this.style.display='none'; document.getElementById('backup-logo').style.display='flex'">
-    <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:800; font-size:24px; color:#111; letter-spacing:-1px;"><span>⚙️</span> HK BLADETECH</div>
+    <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:800; font-size:26px; color:#111; letter-spacing:-1px;"><span>⚙️</span> HK BLADETECH</div>
   </a>
   <div class="header-search">
     <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -191,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/quote/index.html" data-id="cuidCWnn2ZgQ2DyzazNi_AyP3" data-title="quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/quote/index.html" data-id="cuidxst-PiIsbx0_peYL-9-wS" data-title="quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
