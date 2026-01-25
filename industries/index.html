@@ -43,85 +43,113 @@
     <div id="wrap">
       <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   /* =========================================
      2. 全局 CSS 设置
      ========================================= */
   
-  /* 强制隐藏 Hexo 默认元素 */
-  #banner, #sidebar, #header-title, #footer { display: none !important; }
+  /* ★★★ 关键修复：隐藏 Hexo 默认的组件，但不要隐藏 #header 本身 ★★★ */
+  #banner, #sidebar, #header-title, #footer, #header-outer { display: none !important; }
+  
+  /* 重置 header 容器，确保它显示，且没有背景图 */
+  #header { 
+    display: block !important; 
+    background: none !important; 
+    height: auto !important; 
+    padding: 0 !important;
+    position: relative !important;
+  }
+
   .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
-  #header { display: none !important; } 
   
   html { background-color: #ffffff; }
 
-  /* ★★★ 核心修改：全站字体升级 ★★★ */
+  /* 全站统一使用 Open Sans */
   body { 
-    font-family: 'Roboto', "Helvetica Neue", Arial, sans-serif !important; 
+    font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
     background-color: #ffffff; 
     margin: 0; 
     padding: 0; 
     color: #333; 
-    -webkit-font-smoothing: antialiased; /* 让字体更清晰 */
+    -webkit-font-smoothing: antialiased;
   }
   
-  /* 确保标题也用 Roboto */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
   }
 
   /* =========================================
-     3. 导航栏样式 (保持不变)
+     3. 导航栏样式 (精致版 80px)
      ========================================= */
   .custom-header { 
     display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 90px; box-sizing: border-box; width: 100%; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 80px; box-sizing: border-box; width: 100%; 
   }
+  
+  /* Logo 区域 */
   .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-  .header-logo img { height: 65px; width: auto; display: block; } 
-  .header-search { flex: 1 1 auto; max-width: 450px; min-width: 150px; position: relative; margin: 0; }
-  .header-search input { width: 100%; padding: 13px 15px 13px 48px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; display: block; box-sizing: border-box; min-width: 0; font-family: 'Roboto', sans-serif; }
+  .header-logo img { height: 55px; width: auto; display: block; } 
+  
+  /* 搜索框区域 */
+  .header-search { flex: 1 1 auto; max-width: 400px; min-width: 150px; position: relative; margin: 0; }
+  .header-search input { width: 100%; padding: 10px 15px 10px 42px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; display: block; box-sizing: border-box; min-width: 0; font-family: 'Open Sans', sans-serif; }
   .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
-  .search-icon-svg { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; stroke: #888; pointer-events: none; }
-  .header-nav { display: flex; align-items: center; gap: 40px; flex-shrink: 0; }
-  .header-link { color: #333; text-decoration: none; font-weight: 500; font-size: 19px; display: block; white-space: nowrap; letter-spacing: 0.3px; }
+  .search-icon-svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #888; pointer-events: none; }
+  
+  /* 导航链接区域 */
+  .header-nav { display: flex; align-items: center; gap: 30px; flex-shrink: 0; }
+  
+  .header-link { 
+    color: #333; 
+    text-decoration: none; 
+    font-weight: 600; 
+    font-size: 16px; 
+    display: block; 
+    white-space: nowrap; 
+    letter-spacing: -0.1px; 
+  }
   .header-link:hover { color: #cc0000; }
-  .header-btn { background: #cc0000; color: white; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 18px; transition: background 0.3s; white-space: nowrap; letter-spacing: 0.5px; }
+  
+  .header-btn { 
+    background: #cc0000; 
+    color: white; 
+    padding: 10px 25px; 
+    border-radius: 4px; 
+    text-decoration: none; 
+    font-weight: 700; 
+    font-size: 14px; 
+    transition: background 0.3s; 
+    white-space: nowrap; 
+    letter-spacing: 0.5px; 
+  }
   .header-btn:hover { background-color: #a00000; }
 
   /* 笔记本电脑适配 */
   @media (min-width: 992px) and (max-width: 1300px) {
     .custom-header { padding: 0 20px; gap: 15px; }
-    .header-logo img { height: 50px; }
-    .header-nav { gap: 20px; }
-    .header-link { font-size: 16px; font-weight: 600; }
-    .header-btn { padding: 10px 20px; font-size: 16px; }
-    .header-search input { font-size: 14px; padding: 10px 15px 10px 40px; }
+    .header-logo img { height: 45px; }
+    .header-nav { gap: 15px; }
+    .header-link { font-size: 15px; }
+    .header-btn { padding: 8px 15px; font-size: 13px; }
   }
-
-  /* 手机/平板适配 */
+  /* 平板/手机适配 */
   @media (max-width: 991px) {
-    .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
+    .custom-header { padding: 10px 20px; height: auto; gap: 10px; flex-wrap: wrap; }
     .header-logo { order: 1; } .header-logo img { height: 32px; }
     .header-nav { order: 2; margin-left: auto; gap: 0; }
     .header-link { display: none; } 
-    .header-btn { padding: 8px 12px; font-size: 13px; }
+    .header-btn { padding: 6px 10px; font-size: 12px; }
     .header-search { order: 3; flex: 0 0 100%; width: 100%; }
-    .header-search input { padding: 10px 15px 10px 40px; font-size: 14px; }
-    .search-icon-svg { left: 12px; width: 18px; }
-  }
-  
-  @media (max-height: 500px) and (orientation: landscape) {
-    .custom-header { padding: 10px 20px; }
+    .search-icon-svg { left: 10px; width: 16px; }
   }
 </style>
 
 <div class="custom-header">
   <a href="/" class="header-logo">
     <img src="/images/logo.png" alt="HK BladeTech" onerror="this.style.display='none'; document.getElementById('backup-logo').style.display='flex'">
-    <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:900; font-size:24px; color:#111;"><span>⚙️</span> HK BLADETECH</div>
+    <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:800; font-size:24px; color:#111; letter-spacing:-1px;"><span>⚙️</span> HK BLADETECH</div>
   </a>
   <div class="header-search">
     <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -163,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidhKD7y2ysGEj5no8vktHaH" data-title="industries" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidKyTOSVvRul9oqk_BObLW2" data-title="industries" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -216,56 +244,215 @@
         
       </div>
       <style>
-  /* Footer 样式 */
-  .site-footer { background: #fcfcfc; padding: 70px 20px 30px 20px; border-top: 1px solid #eee; color: #555; }
-  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; }
-  .footer-col { flex: 1; min-width: 200px; }
-  .footer-col h4 { color: #333; font-size: 1.2em; font-weight: 700; margin-bottom: 20px; }
-  .footer-links-list { list-style: none; padding: 0; margin: 0; }
-  .footer-links-list li { margin-bottom: 12px; }
-  .footer-links-list a { color: #666; text-decoration: none; font-size: 16px; transition: color 0.2s; }
-  .footer-links-list a:hover { color: #cc0000; }
-  .footer-contact-info p { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 10px; }
-  .footer-email { color: #cc0000; font-weight: 600; text-decoration: none; }
-  .footer-bottom { border-top: 1px solid #eee; margin-top: 50px; padding-top: 20px; text-align: center; font-size: 0.9em; color: #999; }
+  /* =========================================
+     Footer 容器
+     ========================================= */
+  .custom-footer {
+    background-color: #f6f6f6;
+    padding: 80px 0 60px;
+    /* 继承全局 Open Sans */
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+    border-top: 1px solid #e5e5e5;
+  }
   
-  /* Footer 手机适配 */
+  .footer-inner {
+    max-width: 1280px; /* 再次加宽，容纳大字号 */
+    margin: 0 auto;
+    padding: 0 40px;
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: left;
+  }
+
+  /* =========================================
+     标题样式 (超大号)
+     ========================================= */
+  .footer-title {
+    font-size: 24px; /* ★★★ 加大到 24px */
+    font-weight: 800; /* Extra Bold */
+    color: #222;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  /* =========================================
+     链接列表 (超大号)
+     ========================================= */
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-list li {
+    margin-bottom: 14px; /* 间距加大 */
+  }
+  
+  .footer-list a {
+    text-decoration: none;
+    color: #666;
+    font-size: 17px; /* ★★★ 加大到 17px */
+    line-height: 1.5;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  
+  .footer-list a:hover {
+    color: #cc0000;
+    transform: translateX(4px);
+  }
+
+  /* =========================================
+     Contact 列 (图标适配大字号)
+     ========================================= */
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    gap: 15px;
+  }
+
+  /* 灰色圆角方块 */
+  .contact-icon-box {
+    width: 38px; /* 稍微大一点适配文字 */
+    height: 38px;
+    background-color: #999;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: -2px;
+    transition: background-color 0.3s;
+  }
+
+  .contact-row:hover .contact-icon-box {
+    background-color: #cc0000;
+  }
+  
+  .contact-icon-box svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+  }
+
+  .contact-text {
+    font-size: 17px; /* ★★★ 加大到 17px */
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  .contact-text a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-text a:hover {
+    color: #cc0000;
+  }
+
+  /* =========================================
+     底部版权条
+     ========================================= */
+  .footer-bottom-bar {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 80px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* 响应式适配 */
   @media (max-width: 991px) {
-    .footer-container { flex-direction: column; gap: 30px; }
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+  }
+  @media (max-width: 576px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-col">
-      <h4>About HK BladeTech</h4>
-      <p style="font-size: 0.95em; line-height: 1.6;">Your trusted partner for high-performance industrial machine knives. Based in Hong Kong, serving the global recycling industry with precision and speed.</p>
-    </div>
+<footer class="custom-footer">
+  <div class="footer-inner">
     
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul class="footer-links-list">
-        <li><a href="/products">All Products</a></li>
-        <li><a href="/industries">Industries Served</a></li>
-        <li><a href="/services">Sharpening Services</a></li>
-        <li><a href="/contact">Request a Quote</a></li>
+    <div>
+      <h3 class="footer-title">Company</h3>
+      <ul class="footer-list">
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/about">Our Factory</a></li>
+        <li><a href="/contact">Quality Control</a></li>
+        <li><a href="/contact">Careers</a></li>
       </ul>
     </div>
 
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="footer-contact-info">
-        <p><span>📧</span> <a href="mailto:info@hk-bladetech.com" class="footer-email">info@hk-bladetech.com</a></p>
-        <p><span>📍</span> Hong Kong, SAR</p>
-        <p><span>🕒</span> Mon - Sat: 9:00 AM - 6:00 PM</p>
+    <div>
+      <h3 class="footer-title">Products</h3>
+      <ul class="footer-list">
+        <li><a href="/products/?cat=granulator">Granulator Blades</a></li>
+        <li><a href="/products/?cat=shredder">Shredder Blocks</a></li>
+        <li><a href="/products/?cat=circular">Circular Knives</a></li>
+        <li><a href="/products">All Products</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-title">Support</h3>
+      <ul class="footer-list">
+        <li><a href="/contact">Request a Quote</a></li>
+        <li><a href="/services">Sharpening Service</a></li>
+        <li><a href="/contact">Shipping Policy</a></li>
+        <li><a href="/contact">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="footer-title">Contact Us</h3>
+      
+      <div class="contact-row">
+        <div class="contact-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="contact-text">
+          Unit 1202, 12/F, Mirror Tower<br>
+          Tsim Sha Tsui, Hong Kong
+        </div>
       </div>
+
+      <div class="contact-row">
+        <div class="contact-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="contact-text">
+          <a href="mailto:info@hk-bladetech.com">info@hk-bladetech.com</a>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 1.23 0 2.44.2 3.57.57.35.12.75.03 1.02-.24l-2.2-2.2z"/></svg>
+        </div>
+        <div class="contact-text">
+          <a href="tel:+85212345678">+852 1234 5678</a>
+        </div>
+      </div>
+
     </div>
   </div>
-  
-  <div class="footer-bottom">
-    <p class="copyright">© 2026 HK BladeTech. All Rights Reserved. | Industrial Machine Knives Manufacturer</p>
-  </div>
 </footer>
+
+<div class="footer-bottom-bar">
+  © 2026 HK BladeTech. All Rights Reserved. | Industrial Machine Knives Manufacturer
+</div>
     </div>
     <nav id="mobile-nav">
   
