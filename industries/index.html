@@ -211,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidvQWQ1N06-L0PJzd6Dv39P" data-title="industries" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidBh08bALop0nU5zfUVpANh" data-title="industries" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -268,11 +268,11 @@
      Footer 容器
      ========================================= */
   .custom-footer {
-    background-color: #f6f6f6;
+    background-color: #f8f9fa; 
     padding: 80px 0 60px;
     font-family: 'Open Sans', sans-serif;
-    color: #555;
-    border-top: 1px solid #e5e5e5;
+    color: #333; 
+    border-top: 1px solid #ddd;
   }
   
   .footer-inner {
@@ -280,22 +280,33 @@
     margin: 0 auto;
     padding: 0 40px;
     
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4列等分 */
-    gap: 40px;
+    /* ★★★ 核心修改：从 Grid 改为 Flexbox ★★★ */
+    display: flex;
+    /* 让最左边的靠左，最右边的靠右，中间的自动平均分配间距 */
+    justify-content: space-between; 
+    align-items: flex-start; /* 顶部对齐 */
+    flex-wrap: wrap; /* 允许小屏幕换行 */
+    gap: 40px; /* 设置最小间距保护 */
     text-align: left;
+  }
+
+  /* ★★★ 新增：给每列一个弹性约束，防止太宽或太窄 ★★★ */
+  .footer-col {
+    flex: 0 1 auto; /* 宽度由内容决定，不强制撑满 */
+    min-width: 160px; /* 防止太窄 */
+    max-width: 300px; /* 防止某一行太长挤压别人 */
   }
 
   /* =========================================
      标题样式
      ========================================= */
   .footer-title {
-    font-size: 24px;
+    font-size: 22px; 
     font-weight: 800;
-    color: #222;
+    color: #000; 
     margin-bottom: 25px;
     letter-spacing: -0.5px;
-    line-height: 1.2; /* 行高适中，分两行也不会挤 */
+    line-height: 1.2;
   }
 
   /* =========================================
@@ -308,13 +319,14 @@
   }
   
   .footer-list li {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   
   .footer-list a {
     text-decoration: none;
-    color: #666;
-    font-size: 17px;
+    color: #444; 
+    font-size: 16px;
+    font-weight: 500; 
     line-height: 1.5;
     transition: all 0.2s;
     display: inline-block;
@@ -338,7 +350,7 @@
   .contact-icon-box {
     width: 38px;
     height: 38px;
-    background-color: #999;
+    background-color: #777; 
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -353,19 +365,20 @@
   }
   
   .contact-icon-box svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     fill: white;
   }
 
   .contact-text {
-    font-size: 17px;
-    line-height: 1.5;
-    color: #666;
+    font-size: 16px;
+    line-height: 1.6; 
+    color: #333; 
+    font-weight: 500;
   }
   
   .contact-text a {
-    color: #666;
+    color: #333; 
     text-decoration: none;
     transition: color 0.2s;
   }
@@ -377,8 +390,8 @@
      底部版权条
      ========================================= */
   .footer-bottom-bar {
-    background-color: #333;
-    color: #ccc;
+    background-color: #222; 
+    color: #ddd; 
     text-align: center;
     padding: 25px 0;
     margin-top: 80px;
@@ -389,13 +402,19 @@
   /* 响应式适配 */
   @media (max-width: 991px) {
     .footer-inner {
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      /* 平板上这行代码虽然不是Grid了，但 Flex 换行后需要控制 */
+      justify-content: flex-start; /* 平板上可能不需要两端对齐，左对齐更整齐 */
+      gap: 60px; /* 间距大一点 */
+    }
+    .footer-col {
+      width: 45%; /* 强制变成两列一行 */
+      max-width: none;
+      margin-bottom: 20px;
     }
   }
   @media (max-width: 576px) {
-    .footer-inner {
-      grid-template-columns: 1fr;
+    .footer-col {
+      width: 100%; /* 手机上一行一个 */
     }
   }
 </style>
@@ -403,7 +422,7 @@
 <footer class="custom-footer">
   <div class="footer-inner">
     
-    <div>
+    <div class="footer-col">
       <h3 class="footer-title">About HK<br>BladeTech</h3>
       <ul class="footer-list">
         <li><a href="/about">About Us</a></li>
@@ -413,7 +432,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="footer-col">
       <h3 class="footer-title">Customer Service</h3>
       <ul class="footer-list">
         <li><a href="/contact">Request a Quote</a></li>
@@ -423,7 +442,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="footer-col">
       <h3 class="footer-title">Policies</h3>
       <ul class="footer-list">
         <li><a href="/terms">Terms and Conditions</a></li>
@@ -433,7 +452,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="footer-col">
       <h3 class="footer-title">Contact Us</h3>
       
       <div class="contact-row">
