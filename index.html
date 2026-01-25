@@ -187,13 +187,29 @@
   /* =========================================
      4. Hero Section
      ========================================= */
-  .hero-section { background-image: url('/images/hero-bg.png'); background-size: cover; background-position: top; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 480px; padding: 60px 20px; box-sizing: border-box; }
+  .hero-section { 
+    background-image: url('/images/hero-bg.png'); 
+    background-size: cover; 
+    background-position: top; /* 如果觉得背景图还是看不到重点，可以改成 center */
+    color: white; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    /* ★★★ 修改 1：高度适度加高，让背景图舒展 (380 -> 440) */
+    min-height: 440px; 
+    /* ★★★ 修改 2：底部 padding 减少，为了让下一部分紧贴上来 */
+    padding: 50px 20px 30px 20px; 
+    box-sizing: border-box; 
+  }
   .hero-content-wrapper { max-width: 1200px; position: relative; z-index: 2; }
   
   .hero-section h1 { 
-    font-weight: 800; 
-    font-size: 3.8em; 
-    margin-bottom: 25px; 
+    font-weight: 700; 
+    /* ★★★ 修改 3：字号加大 (3.0 -> 3.6)，找回气势 */
+    font-size: 3.6em; 
+    margin-bottom: 20px; 
     text-transform: none; 
     line-height: 1.15; 
     color: #fff; 
@@ -201,9 +217,10 @@
   }
   
   .hero-section p { 
-    font-size: 1.6em; 
+    /* ★★★ 修改 4：副标题适度加大 (1.3 -> 1.5) */
+    font-size: 1.5em; 
     font-weight: 600; 
-    margin-bottom: 40px; 
+    margin-bottom: 35px; 
     color: #fff; 
     line-height: 1.5; 
     max-width: 1000px; 
@@ -212,11 +229,8 @@
     text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); 
   }
   
-  .hero-btns { margin-top: 10px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+  .hero-btns { margin-top: 5px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
   
-  /* ★★★ 核心修改：定义两种强力按钮样式 ★★★ */
-  
-  /* 样式1：红底白字 (用于强调“询价/定制”) */
   .btn-primary { 
     display: inline-block; text-decoration: none; transition: all 0.3s; 
     background-color: #cc0000; color: white; border: 2px solid #cc0000; 
@@ -228,7 +242,6 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
   }
 
-  /* 样式2：白底红字 (用于强调“现货库存”，不再是透明的了！) */
   .btn-white { 
     display: inline-block; text-decoration: none; transition: all 0.3s; 
     background-color: #ffffff; color: #cc0000; border: 2px solid #ffffff; 
@@ -246,12 +259,15 @@
   .unified-grey-section { 
     background-color: #f4f4f4; 
     width: 100%; 
-    padding: 90px 20px; 
+    /* ★★★ 修改 5：顶部 padding 大幅减少 (80 -> 40)，把标题吸上来！ */
+    padding: 40px 20px 80px 20px; 
     box-sizing: border-box; 
   }
   
-  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 60px auto; }
-  .section-title { font-size: 2.4em; font-weight: 800; color: #111; margin-bottom: 15px; letter-spacing: -0.5px; }
+  /* ★★★ 修改 6：标题下方的间距也稍微收一点 (60 -> 40) */
+  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 40px auto; }
+  
+  .section-title { font-size: 2.4em; font-weight: 800; color: #111; margin-bottom: 10px; letter-spacing: -0.5px; }
   .section-subtitle { font-size: 1.3em; color: #333; margin-bottom: 0; line-height: 1.5; font-weight: 500; max-width: 800px; margin: 0 auto; }
 
   .category-grid { 
@@ -325,8 +341,6 @@
   
   .banner-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
   
-  /* 底部按钮复用上面的 .btn-primary 样式即可，保持一致性 */
-  
   .secondary-btn { background: transparent; border: 2px solid #666; color: #ccc; padding: 18px 40px; font-size: 18px; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
   .secondary-btn:hover { border-color: white; color: white; transform: translateY(-3px); }
 
@@ -338,6 +352,9 @@
     .banner-actions { flex-direction: column; }
     .hero-section h1 { font-size: 2.4em; }
     .btn-primary, .btn-white { width: 100%; padding: 15px 0; box-sizing: border-box; }
+    
+    /* 移动端 padding 保持适中 */
+    .unified-grey-section { padding-top: 50px; }
   }
 </style>
 
@@ -349,7 +366,6 @@
     
     <div class="hero-btns">
       <a href="/contact" class="btn-primary">Request Fast Quote</a>
-      
       <a href="/products/?cat=all" class="btn-white">View In-Stock Items</a>
     </div>
   </div>
@@ -427,7 +443,6 @@
       
       <div class="banner-actions">
         <a href="/contact" class="btn-primary">Request Fast Quote</a>
-        
         <a href="mailto:info@hk-bladetech.com" class="secondary-btn">Email Us Directly</a>
       </div>
     </div>
