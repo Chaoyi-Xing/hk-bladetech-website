@@ -18,8 +18,8 @@
 <meta property="og:image" content="https://www.hk-bladetech.com/images/product3.jpg">
 <meta property="og:image" content="https://www.hk-bladetech.com/images/product4.jpg">
 <meta property="og:image" content="https://www.hk-bladetech.com/images/product6.jpg">
-<meta property="article:published_time" content="2026-01-25T06:37:48.538Z">
-<meta property="article:modified_time" content="2026-01-25T06:37:48.538Z">
+<meta property="article:published_time" content="2026-01-25T06:58:32.092Z">
+<meta property="article:modified_time" content="2026-01-25T06:58:32.092Z">
 <meta property="article:author" content="HK BladeTech Team">
 <meta property="article:tag" content="Granulator blades, Shredder blades, Industrial knives, D2 steel">
 <meta name="twitter:card" content="summary">
@@ -127,7 +127,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/products/index.html" class="article-date">
-  <time class="dt-published" datetime="2026-01-25T06:37:48.538Z" itemprop="datePublished">2026-01-25</time>
+  <time class="dt-published" datetime="2026-01-25T06:58:32.092Z" itemprop="datePublished">2026-01-25</time>
 </a>
     
   </div>
@@ -270,45 +270,38 @@ var currentBrand = 'all';
 // 2. 选择分类的函数
 function filterCat(c, element) {
   currentCat = c;
-  updateActiveState('cat-filters', element); // 只更新分类栏的高亮
-  applyFilters(); // 执行筛选
+  updateActiveState('cat-filters', element);
+  applyFilters();
 }
 
 // 3. 选择品牌的函数
 function filterBrand(b, element) {
   currentBrand = b;
-  updateActiveState('brand-filters', element); // 只更新品牌栏的高亮
-  applyFilters(); // 执行筛选
+  updateActiveState('brand-filters', element);
+  applyFilters();
 }
 
-// 4. 核心筛选逻辑：必须同时满足两个条件
+// 4. 核心筛选逻辑
 function applyFilters() {
   var cards = document.getElementsByClassName("product-card");
-  
   for (var i = 0; i < cards.length; i++) {
     var card = cards[i];
     var cardCat = card.getAttribute("data-cat");
     var cardBrand = card.getAttribute("data-brand");
-
-    // 逻辑判断：
-    // (如果当前选的是All 或者 卡片包含当前分类) 并且 (如果当前选的是All 或者 卡片包含当前品牌)
     var matchCat = (currentCat == 'all' || cardCat.indexOf(currentCat) > -1);
     var matchBrand = (currentBrand == 'all' || cardBrand.indexOf(currentBrand) > -1);
-
     if (matchCat && matchBrand) {
-      remCls(card, "hidden"); // 显示
+      remCls(card, "hidden");
     } else {
-      addCls(card, "hidden"); // 隐藏
+      addCls(card, "hidden");
     }
   }
-  
-  // 更新顶部文字状态
   var statusText = "Showing: " + (currentCat == 'all' ? 'All Products' : capitalize(currentCat)) + " / " + (currentBrand == 'all' ? 'All Brands' : capitalize(currentBrand));
   document.getElementById('filter-status').innerText = statusText;
 }
 
-// 辅助：更新高亮状态 (传入父容器ID，只清除该容器内的active)
 function updateActiveState(containerId, activeElement) {
+  if(!activeElement) return;
   var container = document.getElementById(containerId);
   var links = container.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -316,21 +309,33 @@ function updateActiveState(containerId, activeElement) {
   }
   activeElement.classList.add('active');
 }
-
-// 辅助：首字母大写
-function capitalize(s) {
-  if (typeof s !== 'string') return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-// 辅助：添加/删除 Class
+function capitalize(s) { if (typeof s !== 'string') return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
 function addCls(e,n){var a=e.className.split(" "),b=n.split(" ");for(var i=0;i<b.length;i++)if(a.indexOf(b[i])==-1)e.className+=" "+b[i]}
 function remCls(e,n){var a=e.className.split(" "),b=n.split(" ");for(var i=0;i<b.length;i++)while(a.indexOf(b[i])>-1)a.splice(a.indexOf(b[i]),1);e.className=a.join(" ")}
+
+// ★★★ 核心新增代码：页面加载时检查 URL ★★★
+window.addEventListener('load', function() {
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('cat');
+  
+  // 如果 URL 里有 cat 参数（比如 ?cat=granulator）
+  if (catParam) {
+    // 找到侧边栏里对应的那个按钮，模拟点击它
+    const links = document.querySelectorAll('#cat-filters a');
+    for(let link of links) {
+      // 检查 onclick 属性里是否包含这个类别名
+      if(link.getAttribute('onclick').includes(`'${catParam}'`)) {
+        filterCat(catParam, link); // 直接调用筛选函数
+        break; 
+      }
+    }
+  }
+});
 </script>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/products/index.html" data-id="cuid5zEN6adyFu5WoOz4lmlbd" data-title="Products" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/products/index.html" data-id="cuidM126VwMjMM7PHTdHdETQH" data-title="Products" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
