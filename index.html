@@ -39,74 +39,20 @@
 <body>
   <div id="container">
     <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">HK BladeTech</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Premium Industrial Blades &amp; Knives</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/products">Products</a>
-        
-          <a class="main-nav-link" href="/industries">Industries</a>
-        
-          <a class="main-nav-link" href="/services">Services</a>
-        
-          <a class="main-nav-link" href="/about">About Us</a>
-        
-          <a class="main-nav-link" href="/contact">Contact</a>
-        
-          <a class="main-nav-link" href="/quote">Request Fast Quote</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.hk-bladetech.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><style>
-  /* =========================================
-     1. 全局设置
-     ========================================= */
+      <style>
+  /* 全局重置与隐藏默认元素 */
   #banner, #sidebar, #header-title, #footer { display: none !important; }
   .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
   #header { display: none !important; } 
   
   html { background-color: #ffffff; }
-
   body { 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
     background-color: #ffffff; 
-    margin: 0; 
-    padding: 0; 
-    color: #333; 
+    margin: 0; padding: 0; color: #333; 
   }
 
-  /* =========================================
-     2. 导航栏 (Header) - 默认桌面版样式
-     ========================================= */
+  /* 导航栏样式 */
   .custom-header { 
     display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; 
     box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; height: 90px; box-sizing: border-box; width: 100%; 
@@ -123,10 +69,7 @@
   .header-btn { background: #cc0000; color: white; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 18px; transition: background 0.3s; white-space: nowrap; }
   .header-btn:hover { background-color: #a00000; }
 
-  /* =========================================
-     3. 笔记本电脑适配 (Laptop Mode)
-     !!! 修改点：范围改为 992px - 1300px，避开横屏手机 !!!
-     ========================================= */
+  /* 导航栏适配：笔记本 */
   @media (min-width: 992px) and (max-width: 1300px) {
     .custom-header { padding: 0 20px; gap: 15px; }
     .header-logo img { height: 50px; }
@@ -136,80 +79,7 @@
     .header-search input { font-size: 14px; padding: 10px 15px 10px 40px; }
   }
 
-  /* =========================================
-     4. Hero Section
-     ========================================= */
-  .hero-section { background-image: url('/images/hero-bg.png'); background-size: cover; background-position: top; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 400px; padding: 60px 20px; box-sizing: border-box; }
-  .hero-content-wrapper { max-width: 1100px; position: relative; z-index: 2; }
-  .hero-section h1 { font-weight: 700; font-size: 4.2em; margin-bottom: 25px; text-transform: none; line-height: 1.1; color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.6); }
-  .hero-section p { font-size: 1.8em; font-weight: 500; margin-bottom: 35px; color: #fff; line-height: 1.4; max-width: 1000px; margin-left: auto; margin-right: auto; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); }
-  .hero-btns { margin-top: 10px; display: flex; justify-content: center; gap: 30px; }
-  .btn { display: inline-block; text-decoration: none; transition: all 0.3s; background-color: #cc0000; color: white; border: none; border-radius: 6px; padding: 22px 52px; font-weight: 700; font-size: 22px; box-shadow: 0 5px 15px rgba(0,0,0,0.25); }
-  .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
-
-  /* =========================================
-     5. Unified Grey Section
-     ========================================= */
-  .unified-grey-section {
-    background-color: #f8f9fa;
-    width: 100%;
-    padding: 60px 20px 80px 20px;
-    box-sizing: border-box;
-  }
-  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 50px auto; }
-  .section-title { font-size: 2.2em; font-weight: 800; color: #222; margin-bottom: 10px; }
-  .section-subtitle { font-size: 1.2em; color: #666; margin-bottom: 0; line-height: 1.5; }
-
-  .category-grid { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
-  
-  .category-card { 
-    flex: 1; min-width: 260px; background: white; padding: 35px 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; 
-  }
-  .category-card:hover { transform: translateY(-7px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
-  .category-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 25px; }
-  .category-card h3 { color: #222; margin: 0 0 10px 0; font-size: 1.5em; font-weight: 700; }
-  .category-desc { color: #666; font-size: 0.95em; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; text-align: center; }
-  .view-text { color: #cc0000; font-weight: 700; font-size: 1em; text-transform: uppercase; letter-spacing: 0.5px; }
-
-  /* =========================================
-     6. Why Choose Us (White)
-     ========================================= */
-  .features-section { background: white; padding: 80px 20px; border-top: 1px solid #eee; }
-  .features-container { max-width: 1200px; margin: 0 auto; }
-  .features-grid { display: flex; gap: 40px; justify-content: space-between; flex-wrap: wrap; }
-  .feature-item { flex: 1; min-width: 250px; text-align: left; padding: 20px; }
-  .feature-icon { font-size: 40px; color: #cc0000; margin-bottom: 20px; display: block; }
-  .feature-item h3 { font-size: 1.4em; font-weight: 700; margin-bottom: 15px; color: #222; }
-  .feature-item p { font-size: 1.05em; line-height: 1.6; color: #555; margin: 0; }
-
-  /* =========================================
-     7. Other Sections
-     ========================================= */
-  .custom-banner { background: #1a1a1a; color: white; padding: 60px 20px; text-align: center; }
-  .custom-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-  .custom-text { text-align: left; flex: 1; min-width: 300px; }
-  .custom-text h2 { font-size: 2em; margin: 0 0 10px 0; font-weight: 700; }
-  .custom-text p { font-size: 1.1em; color: #ccc; margin: 0; line-height: 1.5; }
-  .email-link-text { color: #cc0000; font-weight: 600; text-decoration: none; margin-top: 10px; display: inline-block; font-size: 1.1em; }
-  .custom-btn { background: white; color: #cc0000; padding: 18px 40px; font-size: 18px; font-weight: 700; border-radius: 6px; text-decoration: none; white-space: nowrap; transition: all 0.3s; }
-  .custom-btn:hover { background: #eee; transform: scale(1.05); }
-
-  .site-footer { background: #fcfcfc; padding: 70px 20px 30px 20px; border-top: 1px solid #eee; color: #555; }
-  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; }
-  .footer-col { flex: 1; min-width: 200px; }
-  .footer-col h4 { color: #333; font-size: 1.2em; font-weight: 700; margin-bottom: 20px; }
-  .footer-links-list { list-style: none; padding: 0; margin: 0; }
-  .footer-links-list li { margin-bottom: 12px; }
-  .footer-links-list a { color: #666; text-decoration: none; font-size: 16px; transition: color 0.2s; }
-  .footer-links-list a:hover { color: #cc0000; }
-  .footer-contact-info p { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 10px; }
-  .footer-email { color: #cc0000; font-weight: 600; text-decoration: none; }
-  .footer-bottom { border-top: 1px solid #eee; margin-top: 50px; padding-top: 20px; text-align: center; font-size: 0.9em; color: #999; }
-
-  /* =========================================
-     8. 手机与平板适配 (Mobile & Landscape Phone)
-     !!! 修改点：范围扩大到 991px，涵盖横屏手机 !!!
-     ========================================= */
+  /* 导航栏适配：手机/平板 */
   @media (max-width: 991px) {
     .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
     .header-logo { order: 1; } .header-logo img { height: 32px; }
@@ -219,30 +89,10 @@
     .header-search { order: 3; flex: 0 0 100%; width: 100%; }
     .header-search input { padding: 10px 15px 10px 40px; font-size: 14px; }
     .search-icon-svg { left: 12px; width: 18px; }
-
-    /* 字体调整 */
-    .hero-section h1 { font-size: 2.2em; }
-    .hero-section p { font-size: 1.2em; }
-    .btn { width: 100%; padding: 15px 0; font-size: 18px; }
-    
-    .category-grid { flex-direction: column; }
-    .features-grid { flex-direction: column; gap: 30px; }
-    .custom-content { flex-direction: column; text-align: center; gap: 20px; }
-    .custom-text { text-align: center; }
-    .custom-btn { width: 100%; box-sizing: border-box; }
-    .footer-container { flex-direction: column; gap: 30px; }
   }
-
-  /* =========================================
-     9. 专门针对“横屏高度很矮”的情况
-     防止文字太大遮住屏幕
-     ========================================= */
+  
+  /* 横屏矮屏幕适配 */
   @media (max-height: 500px) and (orientation: landscape) {
-    .hero-section { min-height: 300px; padding: 30px 20px; }
-    .hero-section h1 { font-size: 1.8em; margin-bottom: 10px; }
-    .hero-section p { font-size: 1em; margin-bottom: 15px; }
-    .hero-btns { gap: 15px; }
-    .btn { padding: 10px 20px; font-size: 16px; }
     .custom-header { padding: 10px 20px; }
   }
 </style>
@@ -265,6 +115,69 @@
     <a href="/contact" class="header-btn">Request Fast Quote</a>
   </div>
 </div>
+      <div class="outer">
+        <section id="main"><style>
+  /* 4. Hero Section */
+  .hero-section { background-image: url('/images/hero-bg.png'); background-size: cover; background-position: top; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 400px; padding: 60px 20px; box-sizing: border-box; }
+  .hero-content-wrapper { max-width: 1100px; position: relative; z-index: 2; }
+  .hero-section h1 { font-weight: 700; font-size: 4.2em; margin-bottom: 25px; text-transform: none; line-height: 1.1; color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.6); }
+  .hero-section p { font-size: 1.8em; font-weight: 500; margin-bottom: 35px; color: #fff; line-height: 1.4; max-width: 1000px; margin-left: auto; margin-right: auto; text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); }
+  .hero-btns { margin-top: 10px; display: flex; justify-content: center; gap: 30px; }
+  .btn { display: inline-block; text-decoration: none; transition: all 0.3s; background-color: #cc0000; color: white; border: none; border-radius: 6px; padding: 22px 52px; font-weight: 700; font-size: 22px; box-shadow: 0 5px 15px rgba(0,0,0,0.25); }
+  .btn:hover { background-color: #a00000; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
+
+  /* 5. Unified Grey Section */
+  .unified-grey-section { background-color: #f8f9fa; width: 100%; padding: 60px 20px 80px 20px; box-sizing: border-box; }
+  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 50px auto; }
+  .section-title { font-size: 2.2em; font-weight: 800; color: #222; margin-bottom: 10px; }
+  .section-subtitle { font-size: 1.2em; color: #666; margin-bottom: 0; line-height: 1.5; }
+
+  .category-grid { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+  .category-card { flex: 1; min-width: 260px; background: white; padding: 35px 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-radius: 12px; transition: all 0.3s ease; text-decoration: none; border: 1px solid #eee; display: flex; flex-direction: column; align-items: center; }
+  .category-card:hover { transform: translateY(-7px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
+  .category-card img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 25px; }
+  .category-card h3 { color: #222; margin: 0 0 10px 0; font-size: 1.5em; font-weight: 700; }
+  .category-desc { color: #666; font-size: 0.95em; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; text-align: center; }
+  .view-text { color: #cc0000; font-weight: 700; font-size: 1em; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* 6. Why Choose Us (White) */
+  .features-section { background: white; padding: 80px 20px; border-top: 1px solid #eee; }
+  .features-container { max-width: 1200px; margin: 0 auto; }
+  .features-grid { display: flex; gap: 40px; justify-content: space-between; flex-wrap: wrap; }
+  .feature-item { flex: 1; min-width: 250px; text-align: left; padding: 20px; }
+  .feature-icon { font-size: 40px; color: #cc0000; margin-bottom: 20px; display: block; }
+  .feature-item h3 { font-size: 1.4em; font-weight: 700; margin-bottom: 15px; color: #222; }
+  .feature-item p { font-size: 1.05em; line-height: 1.6; color: #555; margin: 0; }
+
+  /* 7. Other Sections */
+  .custom-banner { background: #1a1a1a; color: white; padding: 60px 20px; text-align: center; }
+  .custom-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+  .custom-text { text-align: left; flex: 1; min-width: 300px; }
+  .custom-text h2 { font-size: 2em; margin: 0 0 10px 0; font-weight: 700; }
+  .custom-text p { font-size: 1.1em; color: #ccc; margin: 0; line-height: 1.5; }
+  .email-link-text { color: #cc0000; font-weight: 600; text-decoration: none; margin-top: 10px; display: inline-block; font-size: 1.1em; }
+  .custom-btn { background: white; color: #cc0000; padding: 18px 40px; font-size: 18px; font-weight: 700; border-radius: 6px; text-decoration: none; white-space: nowrap; transition: all 0.3s; }
+  .custom-btn:hover { background: #eee; transform: scale(1.05); }
+
+  /* 首页独有适配 */
+  @media (max-width: 991px) {
+    .hero-section h1 { font-size: 2.2em; }
+    .hero-section p { font-size: 1.2em; }
+    .btn { width: 100%; padding: 15px 0; font-size: 18px; }
+    .category-grid { flex-direction: column; }
+    .features-grid { flex-direction: column; gap: 30px; }
+    .custom-content { flex-direction: column; text-align: center; gap: 20px; }
+    .custom-text { text-align: center; }
+    .custom-btn { width: 100%; box-sizing: border-box; }
+  }
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero-section { min-height: 300px; padding: 30px 20px; }
+    .hero-section h1 { font-size: 1.8em; margin-bottom: 10px; }
+    .hero-section p { font-size: 1em; margin-bottom: 15px; }
+    .hero-btns { gap: 15px; }
+    .btn { padding: 10px 20px; font-size: 16px; }
+  }
+</style>
 
 <div class="hero-section">
   <div class="hero-content-wrapper">
@@ -278,7 +191,6 @@
 </div>
 
 <div class="unified-grey-section">
-  
   <div class="section-intro">
     <h2 class="section-title">Core Product Categories</h2>
     <p class="section-subtitle">Precision-engineered replacement blades for all major recycling machinery brands.</p>
@@ -291,14 +203,12 @@
       <p class="category-desc">High-wear resistance blades for crushing plastic, rubber, and copper. Available in D2 and Tungsten Carbide.</p>
       <span class="view-text">View Products →</span>
     </a>
-    
     <a href="/products/shredders" class="category-card">
       <img src="/images/cat-2.png" alt="Shredder Blades">
       <h3>Shredders</h3>
       <p class="category-desc">Heavy-duty blocks and cutters for single & double shaft shredders. Optimized for impact resistance.</p>
       <span class="view-text">View Products →</span>
     </a>
-    
     <a href="/products/circular-knives" class="category-card">
       <img src="/images/cat-3.png" alt="Circular Knives">
       <h3>Circular Knives</h3>
@@ -342,39 +252,7 @@
     </div>
     <a href="/contact" class="custom-btn">Get A Custom Quote</a>
   </div>
-</div>
-
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-col">
-      <h4>About HK BladeTech</h4>
-      <p style="font-size: 0.95em; line-height: 1.6;">Your trusted partner for high-performance industrial machine knives. Based in Hong Kong, serving the global recycling industry with precision and speed.</p>
-    </div>
-    
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul class="footer-links-list">
-        <li><a href="/products">All Products</a></li>
-        <li><a href="/industries">Industries Served</a></li>
-        <li><a href="/services">Sharpening Services</a></li>
-        <li><a href="/contact">Request a Quote</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="footer-contact-info">
-        <p><span>📧</span> <a href="mailto:info@hk-bladetech.com" class="footer-email">info@hk-bladetech.com</a></p>
-        <p><span>📍</span> Hong Kong, SAR</p>
-        <p><span>🕒</span> Mon - Sat: 9:00 AM - 6:00 PM</p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="footer-bottom">
-    <p class="copyright">© 2026 HK BladeTech. All Rights Reserved. | Industrial Machine Knives Manufacturer</p>
-  </div>
-</footer></section>
+</div></section>
         
           <aside id="sidebar">
   
@@ -414,17 +292,57 @@
 </aside>
         
       </div>
-      <footer id="footer">
+      <style>
+  /* Footer 样式 */
+  .site-footer { background: #fcfcfc; padding: 70px 20px 30px 20px; border-top: 1px solid #eee; color: #555; }
+  .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; text-align: left; }
+  .footer-col { flex: 1; min-width: 200px; }
+  .footer-col h4 { color: #333; font-size: 1.2em; font-weight: 700; margin-bottom: 20px; }
+  .footer-links-list { list-style: none; padding: 0; margin: 0; }
+  .footer-links-list li { margin-bottom: 12px; }
+  .footer-links-list a { color: #666; text-decoration: none; font-size: 16px; transition: color 0.2s; }
+  .footer-links-list a:hover { color: #cc0000; }
+  .footer-contact-info p { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .footer-email { color: #cc0000; font-weight: 600; text-decoration: none; }
+  .footer-bottom { border-top: 1px solid #eee; margin-top: 50px; padding-top: 20px; text-align: center; font-size: 0.9em; color: #999; }
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 HK BladeTech Team<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+  /* Footer 手机适配 */
+  @media (max-width: 991px) {
+    .footer-container { flex-direction: column; gap: 30px; }
+  }
+</style>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4>About HK BladeTech</h4>
+      <p style="font-size: 0.95em; line-height: 1.6;">Your trusted partner for high-performance industrial machine knives. Based in Hong Kong, serving the global recycling industry with precision and speed.</p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links-list">
+        <li><a href="/products">All Products</a></li>
+        <li><a href="/industries">Industries Served</a></li>
+        <li><a href="/services">Sharpening Services</a></li>
+        <li><a href="/contact">Request a Quote</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="footer-contact-info">
+        <p><span>📧</span> <a href="mailto:info@hk-bladetech.com" class="footer-email">info@hk-bladetech.com</a></p>
+        <p><span>📍</span> Hong Kong, SAR</p>
+        <p><span>🕒</span> Mon - Sat: 9:00 AM - 6:00 PM</p>
+      </div>
     </div>
   </div>
+  
+  <div class="footer-bottom">
+    <p class="copyright">© 2026 HK BladeTech. All Rights Reserved. | Industrial Machine Knives Manufacturer</p>
+  </div>
 </footer>
-
     </div>
     <nav id="mobile-nav">
   
