@@ -289,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidxr_24hUZMaZz0nlVZ7275" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidSuV_m0aSKzymLsk_Kjchk" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -357,22 +357,18 @@
     max-width: 1250px;
     margin: 0 auto;
     padding: 0 40px;
-    
-    /* ★★★ 核心修改：从 Grid 改为 Flexbox ★★★ */
     display: flex;
-    /* 让最左边的靠左，最右边的靠右，中间的自动平均分配间距 */
     justify-content: space-between; 
-    align-items: flex-start; /* 顶部对齐 */
-    flex-wrap: wrap; /* 允许小屏幕换行 */
-    gap: 40px; /* 设置最小间距保护 */
+    align-items: flex-start; 
+    flex-wrap: wrap; 
+    gap: 40px; 
     text-align: left;
   }
 
-  /* ★★★ 新增：给每列一个弹性约束，防止太宽或太窄 ★★★ */
   .footer-col {
-    flex: 0 1 auto; /* 宽度由内容决定，不强制撑满 */
-    min-width: 160px; /* 防止太窄 */
-    max-width: 300px; /* 防止某一行太长挤压别人 */
+    flex: 0 1 auto; 
+    min-width: 160px; 
+    max-width: 300px; 
   }
 
   /* =========================================
@@ -480,19 +476,18 @@
   /* 响应式适配 */
   @media (max-width: 991px) {
     .footer-inner {
-      /* 平板上这行代码虽然不是Grid了，但 Flex 换行后需要控制 */
-      justify-content: flex-start; /* 平板上可能不需要两端对齐，左对齐更整齐 */
-      gap: 60px; /* 间距大一点 */
+      justify-content: flex-start; 
+      gap: 60px; 
     }
     .footer-col {
-      width: 45%; /* 强制变成两列一行 */
+      width: 45%; 
       max-width: none;
       margin-bottom: 20px;
     }
   }
   @media (max-width: 576px) {
     .footer-col {
-      width: 100%; /* 手机上一行一个 */
+      width: 100%; 
     }
   }
 </style>
@@ -504,19 +499,19 @@
       <h3 class="footer-title">About HK<br>BladeTech</h3>
       <ul class="footer-list">
         <li><a href="/about">About Us</a></li>
-        <li><a href="/capabilities">Capabilities</a></li>
-        <li><a href="/factory">Our Factory</a></li>
-        <li><a href="/careers">Careers</a></li>
+        <li><a href="/about#factory">Our Factory</a></li>
+        <li><a href="/about#qc">Quality Control</a></li>
+        <li><a href="/contact">Contact Us</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h3 class="footer-title">Customer Service</h3>
+      <h3 class="footer-title">Capabilities & Services</h3>
       <ul class="footer-list">
-        <li><a href="/contact">Request a Quote</a></li>
-        <li><a href="/services">Sharpening Services</a></li>
+        <li><a href="/services#custom">Custom Manufacturing</a></li>
+        <li><a href="/materials">Material Consultation</a></li>
         <li><a href="/industries">Industries Served</a></li>
-        <li><a href="/blog">BladeTech Blog</a></li>
+        <li><a href="/services#oem">OEM Services</a></li>
       </ul>
     </div>
 
