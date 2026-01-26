@@ -190,16 +190,14 @@
   .hero-section { 
     background-image: url('/images/hero-bg.png'); 
     background-size: cover; 
-    background-position: top; /* 如果觉得背景图还是看不到重点，可以改成 center */
+    background-position: top; 
     color: white; 
     text-align: center; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    /* ★★★ 修改 1：高度适度加高，让背景图舒展 (380 -> 440) */
     min-height: 440px; 
-    /* ★★★ 修改 2：底部 padding 减少，为了让下一部分紧贴上来 */
     padding: 50px 20px 30px 20px; 
     box-sizing: border-box; 
   }
@@ -207,7 +205,6 @@
   
   .hero-section h1 { 
     font-weight: 700; 
-    /* ★★★ 修改 3：字号加大 (3.0 -> 3.6)，找回气势 */
     font-size: 3.6em; 
     margin-bottom: 20px; 
     text-transform: none; 
@@ -217,7 +214,6 @@
   }
   
   .hero-section p { 
-    /* ★★★ 修改 4：副标题适度加大 (1.3 -> 1.5) */
     font-size: 1.5em; 
     font-weight: 600; 
     margin-bottom: 35px; 
@@ -254,33 +250,32 @@
   }
 
   /* =========================================
-     5. Core Product Categories
+     5. Core Product Categories (Modified for 2x2 Grid)
      ========================================= */
   .unified-grey-section { 
     background-color: #f4f4f4; 
     width: 100%; 
-    /* ★★★ 修改 5：顶部 padding 大幅减少 (80 -> 40)，把标题吸上来！ */
     padding: 40px 20px 80px 20px; 
     box-sizing: border-box; 
   }
   
-  /* ★★★ 修改 6：标题下方的间距也稍微收一点 (60 -> 40) */
   .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 40px auto; }
   
   .section-title { font-size: 2.4em; font-weight: 800; color: #111; margin-bottom: 10px; letter-spacing: -0.5px; }
   .section-subtitle { font-size: 1.3em; color: #333; margin-bottom: 0; line-height: 1.5; font-weight: 500; max-width: 800px; margin: 0 auto; }
 
   .category-grid { 
-    max-width: 1300px; 
+    max-width: 1100px; /* ★★★ 修改：为了2列显示更紧凑，宽度稍微收窄 */
     margin: 0 auto; 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 30px; 
+    /* ★★★ 修改：改为 2 列 */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px; /* 间距稍微加大 */
   }
   
   .category-card { 
     background: white; 
-    padding: 40px 25px; 
+    padding: 40px 30px; /* padding 稍微加大 */
     box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
     border-radius: 6px; 
     transition: all 0.4s ease; 
@@ -295,12 +290,20 @@
   
   .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
   
-  .img-wrapper { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
-  .category-card img { max-width: 90%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
-  .category-card:hover img { transform: scale(1.1); }
+  /* ★★★ 修改：图片容器高度加大，为了放大图片 */
+  .img-wrapper { 
+    width: 100%; 
+    height: 260px; /* 从 180 改为 260，让图片更大气 */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 25px; 
+  }
+  .category-card img { max-width: 95%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
+  .category-card:hover img { transform: scale(1.08); }
 
   .category-card h3 { color: #000; margin: 0 0 15px 0; font-size: 1.8em; font-weight: 800; text-align: center; }
-  .category-desc { color: #333; font-size: 16px; font-weight: 500; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; text-align: center; }
+  .category-desc { color: #333; font-size: 16px; font-weight: 500; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; text-align: center; max-width: 90%; }
   
   .view-btn { 
     color: #cc0000; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; padding: 12px 30px; border: 2px solid #cc0000; border-radius: 4px; transition: all 0.3s; background: transparent; 
@@ -345,7 +348,8 @@
   .secondary-btn:hover { border-color: white; color: white; transform: translateY(-3px); }
 
   /* 适配 */
-  @media (max-width: 991px) {
+  @media (max-width: 768px) {
+    /* 平板竖屏及手机改为单列 */
     .category-grid { grid-template-columns: 1fr; }
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
@@ -353,7 +357,6 @@
     .hero-section h1 { font-size: 2.4em; }
     .btn-primary, .btn-white { width: 100%; padding: 15px 0; box-sizing: border-box; }
     
-    /* 移动端 padding 保持适中 */
     .unified-grey-section { padding-top: 50px; }
   }
 </style>
@@ -378,6 +381,7 @@
   </div>
 
   <div class="category-grid">
+    
     <a href="/products/?cat=granulator" class="category-card">
       <div class="img-wrapper"><img src="/images/cat-1.png" alt="Granulator Blades"></div>
       <h3>Granulator Blades</h3>
@@ -386,18 +390,26 @@
     </a>
     
     <a href="/products/?cat=shredder" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blades"></div>
+      <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blocks"></div>
       <h3>Shredder Blocks</h3>
       <p class="category-desc">Heavy-duty blocks for single & double shaft shredders. Optimized for impact resistance.</p>
       <span class="view-btn">View Details</span>
     </a>
     
     <a href="/products/?cat=circular" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-3.png" alt="Circular Knives"></div>
-      <h3>Circular Knives</h3>
-      <p class="category-desc">Precision slitter blades for film and foil. Custom dimensions and bevels available.</p>
+      <div class="img-wrapper"><img src="/images/cat-3.png" alt="Circular Slitter Knives"></div>
+      <h3>Circular Slitter Knives</h3>
+      <p class="category-desc">Precision slitter blades for film, foil, and paper. Custom dimensions and bevels available.</p>
       <span class="view-btn">View Details</span>
     </a>
+
+    <a href="/products/?cat=corrugated" class="category-card">
+      <div class="img-wrapper"><img src="/images/cat-4.png" alt="Corrugated Slotting Knives"></div>
+      <h3>Corrugated Slotting Knives</h3>
+      <p class="category-desc">High-precision serrated sector knives and slotters for corrugated board production.</p>
+      <span class="view-btn">View Details</span>
+    </a>
+
   </div>
 </div>
 
