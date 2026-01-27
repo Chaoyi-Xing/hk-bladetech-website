@@ -6,18 +6,23 @@
   
   <title>Industries Served | HK BladeTech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="body { background-color: #f8f9fa; font-family: &#39;Open Sans&#39;, sans-serif; color: #333; }   .article-inner header, .article-meta { display: none !important; }   .article-inner { background: transpare">
+  <meta name="description" content="&#x2F;* 1. 全局设置 *&#x2F; body { background-color: #ffffff; color: #333; font-family: &#39;Open Sans&#39;, sans-serif; } &#x2F;* 2. 主容器 *&#x2F; .ind-wrapper { max-width: 1250px; margin: 40px auto 80px; padding: 0 20px; display: f">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Industries Served">
 <meta property="og:url" content="https://www.hk-bladetech.com/industries/index.html">
 <meta property="og:site_name" content="HK BladeTech">
-<meta property="og:description" content="body { background-color: #f8f9fa; font-family: &#39;Open Sans&#39;, sans-serif; color: #333; }   .article-inner header, .article-meta { display: none !important; }   .article-inner { background: transpare">
+<meta property="og:description" content="&#x2F;* 1. 全局设置 *&#x2F; body { background-color: #ffffff; color: #333; font-family: &#39;Open Sans&#39;, sans-serif; } &#x2F;* 2. 主容器 *&#x2F; .ind-wrapper { max-width: 1250px; margin: 40px auto 80px; padding: 0 20px; display: f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-01-25T11:45:21.780Z">
-<meta property="article:modified_time" content="2026-01-25T11:45:21.780Z">
+<meta property="og:image" content="https://www.hk-bladetech.com/images/ind-plastic.jpg">
+<meta property="og:image" content="https://www.hk-bladetech.com/images/ind-shredder.jpg">
+<meta property="og:image" content="https://www.hk-bladetech.com/images/ind-film.jpg">
+<meta property="og:image" content="https://www.hk-bladetech.com/images/ind-corrugated.jpg">
+<meta property="article:published_time" content="2026-01-27T14:10:57.900Z">
+<meta property="article:modified_time" content="2026-01-27T14:10:57.900Z">
 <meta property="article:author" content="HK BladeTech Team">
 <meta property="article:tag" content="Granulator blades, Shredder blades, Industrial knives, D2 steel">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hk-bladetech.com/images/ind-plastic.jpg">
   
     <link rel="alternate" href="/atom.xml" title="HK BladeTech" type="application/atom+xml">
   
@@ -188,7 +193,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/industries/index.html" class="article-date">
-  <time class="dt-published" datetime="2026-01-25T11:45:21.780Z" itemprop="datePublished">2026-01-25</time>
+  <time class="dt-published" datetime="2026-01-27T14:10:57.900Z" itemprop="datePublished">2026-01-27</time>
 </a>
     
   </div>
@@ -207,84 +212,222 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  body { background-color: #f8f9fa; font-family: 'Open Sans', sans-serif; color: #333; }
-  .article-inner header, .article-meta { display: none !important; }
-  .article-inner { background: transparent !important; box-shadow: none !important; padding: 0 !important; }
+        <style>
+/* 1. 全局设置 */
+body { background-color: #ffffff; color: #333; font-family: 'Open Sans', sans-serif; }
+/* 2. 主容器 */
+.ind-wrapper {
+max-width: 1250px;
+margin: 40px auto 80px;
+padding: 0 20px;
+display: flex;
+flex-direction: column;
+gap: 80px;
+}
+/* 3. 极简标题区 (左对齐，紧贴内容) */
+.page-header {
+text-align: left;
+margin-bottom: -40px; /* 关键：用负边距拉近距离 */
+padding-bottom: 20px;
+border-bottom: 1px solid #eee;
+}
+.page-header h1 {
+font-size: 2.6em;
+font-weight: 800;
+color: #111;
+margin: 0 0 10px 0;
+text-transform: uppercase;
+letter-spacing: -0.5px;
+line-height: 1.1;
+}
+.page-header p {
+font-size: 1.1em;
+color: #666;
+max-width: 800px;
+margin: 0;
+line-height: 1.5;
+}
+/* 4. 行业板块行 (Z字形布局) */
+.ind-row {
+display: flex;
+align-items: stretch;
+gap: 0;
+background: white;
+border: 1px solid #e1e1e1;
+border-radius: 4px;
+overflow: hidden;
+}
+/* 图片区域 */
+.ind-img-col {
+width: 45%;
+position: relative;
+background-color: #f0f0f0;
+min-height: 400px;
+}
+.ind-img-col img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+/* 文字区域 */
+.ind-text-col {
+width: 55%;
+padding: 50px;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.ind-text-col h2 {
+font-size: 2em;
+font-weight: 800;
+color: #000;
+margin-bottom: 15px;
+text-transform: uppercase;
+letter-spacing: -0.5px;
+}
+.ind-text-col p {
+font-size: 15px;
+line-height: 1.7;
+color: #444;
+margin-bottom: 25px;
+}
+/* 兼容品牌列表 */
+.brand-list-title {
+font-size: 12px;
+font-weight: 700;
+color: #999;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin-bottom: 10px;
+display: block;
+}
+.brand-list {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-bottom: 30px;
+}
+.brand-item {
+font-size: 12px;
+color: #555;
+background: #f5f5f5;
+padding: 5px 10px;
+border-radius: 3px;
+font-weight: 600;
+border: 1px solid #ddd;
+}
+/* 红色按钮 (强制白色字) */
+.ind-btn, .ind-btn:visited {
+align-self: flex-start;
+display: inline-block;
+background-color: #cc0000 !important;
+color: #ffffff !important;
+padding: 12px 30px;
+font-weight: 700;
+text-decoration: none !important;
+border-radius: 4px;
+text-transform: uppercase;
+font-size: 14px;
+transition: background 0.3s;
+}
+.ind-btn:hover { background-color: #a00000 !important; }
+/* 偶数行反转 */
+.ind-row.reverse { flex-direction: row-reverse; }
+/* 响应式 */
+@media (max-width: 991px) {
+.ind-row, .ind-row.reverse { flex-direction: column; }
+.ind-img-col, .ind-text-col { width: 100%; }
+.ind-img-col { height: 250px; min-height: auto; }
+.ind-text-col { padding: 30px 20px; }
+.page-header { margin-bottom: 20px; }
+}
+.article-inner header, .article-meta { display: none!important; }
+</style>
 
-<p>  .page-hero {<br>    background-color: #111; color: white; padding: 60px 20px; text-align: center; margin-bottom: 60px;<br>  }<br>  .page-hero h1 { font-size: 38px; font-weight: 800; margin-bottom: 10px; }</p>
-<p>  .ind-container { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }</p>
-<p>  .ind-card {<br>    background: white; display: flex; flex-direction: column;<br>    border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08);<br>  }<br>  .ind-img { height: 240px; background-color: #ddd; display: flex; align-items: center; justify-content: center; color: #888; font-size: 20px; }<br>  &#x2F;* 你可以换成真实的行业图片，比如 images&#x2F;plastic-industry.jpg *&#x2F;</p>
-<p>  .ind-content { padding: 35px; flex: 1; border-bottom: 4px solid #cc0000; }<br>  .ind-title { font-size: 26px; font-weight: 800; margin-bottom: 15px; color: #111; }<br>  .ind-desc { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 25px; }</p>
-<p>  .rec-products { background: #f9f9f9; padding: 15px; border-radius: 4px; }<br>  .rec-label { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; display: block; margin-bottom: 5px; }<br>  .tag { display: inline-block; background: white; border: 1px solid #ddd; padding: 5px 10px; font-size: 13px; font-weight: 600; color: #333; border-radius: 4px; margin-right: 5px; }</p>
-<p>  @media(max-width:768px) { .ind-container { grid-template-columns: 1fr; } }<br></style></p>
-<div class="page-hero">
-  <h1>Industries We Serve</h1>
-  <p>Providing cutting-edge solutions for recycling and converting sectors.</p>
+<div class="ind-wrapper">
+
+<div class="page-header">
+<h1>Industries Served</h1>
+<p>Engineered cutting solutions tailored for your industry's toughest challenges.</p>
 </div>
 
-<div class="ind-container">
+<div class="ind-row">
+<div class="ind-img-col">
+<img src="/images/ind-plastic.jpg" alt="Plastic Recycling Granulation" onerror="this.style.background='#ddd'">
+</div>
+<div class="ind-text-col">
+<h2>Plastic Recycling</h2>
+<p>The recycling industry demands blades that can withstand extreme contamination. From PET bottles to heavy lumps, our Granulator Blades are engineered to process abrasive materials without chipping. We utilize cryogenic heat treatment to maximize wear resistance.</p>
+<span class="brand-list-title">Compatible With:</span>
+<div class="brand-list">
+<span class="brand-item">Cumberland®</span>
+<span class="brand-item">Herbold®</span>
+<span class="brand-item">Rapid®</span>
+<span class="brand-item">Zerma®</span>
+</div>
+<a href="/products/?cat=granulator" class="ind-btn">See Granulator Blades</a>
+</div>
+</div>
 
-  <div class="ind-card">
-    <div class="ind-img" style="background-image:url('/images/ind-plastic.jpg'); background-size:cover;">[Image: Plastic Recycling]</div>
-    <div class="ind-content">
-      <h2 class="ind-title">Plastic Recycling</h2>
-      <p class="ind-desc">Our blades are engineered to withstand the high-impact and abrasive nature of processing plastic waste. From PET bottles to rigid PVC pipes, we ensure consistent granule quality and reduced dust.</p>
-      <div class="rec-products">
-        <span class="rec-label">Recommended Blades:</span>
-        <span class="tag">Granulator Knives</span>
-        <span class="tag">Shredder Blocks</span>
-        <span class="tag">Pelletizer Knives</span>
-      </div>
-    </div>
-  </div>
+<div class="ind-row reverse">
+<div class="ind-img-col">
+<img src="/images/ind-shredder.jpg" alt="Industrial Shredding" onerror="this.style.background='#ddd'">
+</div>
+<div class="ind-text-col">
+<h2>Industrial Shredding</h2>
+<p>Processing tires, pipes, and e-waste requires toughness over hardness. Our Shredder Blocks are engineered to absorb shock impact without catastrophic failure. We offer custom metallurgy solutions to handle the most aggressive waste streams.</p>
+<span class="brand-list-title">Compatible With:</span>
+<div class="brand-list">
+<span class="brand-item">Vecoplan®</span>
+<span class="brand-item">Weima®</span>
+<span class="brand-item">Untha®</span>
+<span class="brand-item">SSI®</span>
+</div>
+<a href="/products/?cat=shredder" class="ind-btn">See Shredder Blocks</a>
+</div>
+</div>
 
-  <div class="ind-card">
-    <div class="ind-img" style="background-image:url('/images/ind-tire.jpg'); background-size:cover;">[Image: Tire Recycling]</div>
-    <div class="ind-content">
-      <h2 class="ind-title">Rubber & Tire Recycling</h2>
-      <p class="ind-desc">Processing scrap tires requires extreme toughness. Our shredder blocks are manufactured from heavy-duty alloy steels to cut through rubber and steel wire reinforcement without chipping.</p>
-      <div class="rec-products">
-        <span class="rec-label">Recommended Blades:</span>
-        <span class="tag">Shredder Blocks</span>
-        <span class="tag">Heavy Duty Cutters</span>
-      </div>
-    </div>
-  </div>
+<div class="ind-row">
+<div class="ind-img-col">
+<img src="/images/ind-film.jpg" alt="Film Foil Converting" onerror="this.style.background='#ddd'">
+</div>
+<div class="ind-text-col">
+<h2>Film & Foil Converting</h2>
+<p>Slitting sensitive materials requires perfection. Our Circular Slitter Knives feature mirror-polished finishes (Ra < 0.2) to reduce friction and prevent adhesive buildup. Strict concentricity eliminates vibration during high-speed slitting.</p>
+<span class="brand-list-title">Compatible With:</span>
+<div class="brand-list">
+<span class="brand-item">Tidland®</span>
+<span class="brand-item">Mario Cotta®</span>
+<span class="brand-item">Kampf®</span>
+</div>
+<a href="/products/?cat=circular" class="ind-btn">See Slitter Knives</a>
+</div>
+</div>
 
-  <div class="ind-card">
-    <div class="ind-img" style="background-image:url('/images/ind-film.jpg'); background-size:cover;">[Image: Flexible Packaging]</div>
-    <div class="ind-content">
-      <h2 class="ind-title">Flexible Packaging & Film</h2>
-      <p class="ind-desc">For converting film, foil, and paper, edge retention is key. Our circular slitter knives are precision ground to micron-level tolerances to ensure clean, dust-free slit edges.</p>
-      <div class="rec-products">
-        <span class="rec-label">Recommended Blades:</span>
-        <span class="tag">Circular Slitters</span>
-        <span class="tag">Bottom Knives</span>
-        <span class="tag">Top Knives</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="ind-card">
-    <div class="ind-img" style="background-image:url('/images/ind-ewaste.jpg'); background-size:cover;">[Image: E-Waste]</div>
-    <div class="ind-content">
-      <h2 class="ind-title">E-Waste Destruction</h2>
-      <p class="ind-desc">Recovering precious metals from electronics requires aggressive cutting. Our blades handle mixed materials including circuit boards (PCB), hard drives, and copper cables efficiently.</p>
-      <div class="rec-products">
-        <span class="rec-label">Recommended Blades:</span>
-        <span class="tag">Shredder Blocks</span>
-        <span class="tag">Copper Granulator Blades</span>
-      </div>
-    </div>
-  </div>
+<div class="ind-row reverse">
+<div class="ind-img-col">
+<img src="/images/ind-corrugated.jpg" alt="Corrugated Packaging" onerror="this.style.background='#ddd'">
+</div>
+<div class="ind-text-col">
+<h2>Corrugated Packaging</h2>
+<p>Speed and precision define packaging. Our slotting knives are ground to ultra-tight tolerances to ensure clean cuts at high speeds, preventing "flute crushing" and excessive dust. Perfect for modern Flexo Folder Gluers.</p>
+<span class="brand-list-title">Compatible With:</span>
+<div class="brand-list">
+<span class="brand-item">BHS®</span>
+<span class="brand-item">Fosber®</span>
+<span class="brand-item">Mitsubishi®</span>
+</div>
+<a href="/products/?cat=corrugated" class="ind-btn">See Slotting Knives</a>
+</div>
+</div>
 
 </div>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidWx-LfGBc1vvMqN3TAjufi" data-title="Industries Served" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/industries/index.html" data-id="cuidIcGCNLDp61quCSPvgV0vh" data-title="Industries Served" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
