@@ -41,149 +41,183 @@
 <body>
   <div id="container">
     <div id="wrap">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <style>
+  #banner, #sidebar, #header-title, #footer, #header-outer { display: none !important; }
+  #header { display: block !important; background: none !important; height: auto !important; padding: 0 !important; position: relative !important; }
+  .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
+  html { background-color: #ffffff; }
+  body { font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; background-color: #ffffff; margin: 0; padding: 0; color: #333; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', sans-serif !important; }
+</style>
 
 <style>
-  /* =========================================
-     2. 全局 CSS 设置
-     ========================================= */
-  #banner, #sidebar, #header-title, #footer, #header-outer { display: none !important; }
-  
-  #header { 
-    display: block !important; 
-    background: none !important; 
-    height: auto !important; 
-    padding: 0 !important;
-    position: relative !important;
-  }
-
-  .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
-  
-  html { background-color: #ffffff; }
-
-  body { 
-    font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; 
-    background-color: #ffffff; 
-    margin: 0; 
-    padding: 0; 
-    color: #333; 
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans', sans-serif !important;
-  }
-
-  /* =========================================
-     3. 导航栏样式 (大气版 90px + 精致搜索框)
-     ========================================= */
+  /* === 基础布局 === */
   .custom-header { 
-    display: flex; align-items: center; gap: 20px; justify-content: space-between; padding: 0 30px; background: white; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; 
+    display: flex; align-items: center; justify-content: space-between; 
+    padding: 0 30px; background: white; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06); 
+    position: sticky; top: 0; z-index: 1000; 
     height: 90px; 
     box-sizing: border-box; width: 100%; 
+    flex-wrap: wrap; /* 允许折行，关键 */
   }
   
-  /* Logo 区域 */
-  .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  /* Logo */
+  .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; z-index: 1002; }
   .header-logo img { height: 65px; width: auto; display: block; } 
   
-  /* 搜索框区域 (保持精致小巧) */
-  .header-search { flex: 1 1 auto; max-width: 400px; min-width: 150px; position: relative; margin: 0; }
+  /* 搜索框 */
+  .header-search { flex: 1 1 auto; max-width: 400px; min-width: 150px; position: relative; margin: 0 20px; }
   .header-search input { 
-    width: 100%; 
-    padding: 10px 15px 10px 42px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    font-size: 14px; 
-    outline: none; 
-    color: #333; 
-    background: #fdfdfd; 
-    transition: all 0.3s; 
-    display: block; 
-    box-sizing: border-box; 
-    min-width: 0; 
-    font-family: 'Open Sans', sans-serif; 
+    width: 100%; padding: 10px 15px 10px 42px; border: 1px solid #ccc; border-radius: 4px; 
+    font-size: 14px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; 
+    display: block; box-sizing: border-box; min-width: 0; font-family: 'Open Sans', sans-serif; 
   }
   .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
-  .search-icon-svg { 
-    position: absolute; 
-    left: 14px; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    width: 18px; 
-    height: 18px; 
-    stroke: #888; 
-    pointer-events: none; 
-  }
+  .search-icon-svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #888; pointer-events: none; }
   
-  /* 导航链接区域 */
-  .header-nav { display: flex; align-items: center; gap: 40px; flex-shrink: 0; }
+  /* 导航区域 (PC端) */
+  .header-nav { display: flex; align-items: center; gap: 30px; }
   
   .header-link { 
-    color: #333; 
-    text-decoration: none; 
-    font-weight: 700; 
-    font-size: 18px; 
-    display: block; 
-    white-space: nowrap; 
-    letter-spacing: -0.2px; 
+    color: #333; text-decoration: none; font-weight: 700; font-size: 16px; 
+    display: block; white-space: nowrap; letter-spacing: -0.2px; transition: color 0.3s;
   }
   .header-link:hover { color: #cc0000; }
   
-  /* 红色行动按钮 */
+  /* 红色按钮 */
   .header-btn { 
-    background: #cc0000; 
-    color: white; 
-    padding: 14px 35px; 
-    border-radius: 6px; 
-    text-decoration: none; 
-    font-weight: 700; 
-    font-size: 16px; 
-    transition: background 0.3s; 
-    white-space: nowrap; 
-    letter-spacing: 0.5px; 
+    background: #cc0000; color: white; padding: 12px 25px; border-radius: 6px; 
+    text-decoration: none; font-weight: 700; font-size: 15px; transition: background 0.3s; 
+    white-space: nowrap; letter-spacing: 0.5px; 
   }
   .header-btn:hover { background-color: #a00000; }
 
-  /* 适配 */
+  /* 汉堡菜单按钮 (默认隐藏) */
+  .mobile-toggle { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1002; }
+  .mobile-toggle span { width: 100%; height: 3px; background-color: #333; border-radius: 3px; transition: all 0.3s; }
+
+  /* === 响应式适配 === */
+  
+  /* 平板尺寸微调 */
   @media (min-width: 992px) and (max-width: 1300px) {
-    .custom-header { padding: 0 20px; gap: 15px; }
+    .custom-header { padding: 0 20px; }
     .header-logo img { height: 50px; }
-    .header-nav { gap: 20px; }
-    .header-link { font-size: 16px; }
-    .header-btn { padding: 10px 20px; font-size: 15px; }
+    .header-nav { gap: 15px; }
+    .header-link { font-size: 15px; }
+    .header-btn { padding: 10px 20px; font-size: 14px; }
   }
+
+  /* 手机端核心适配 (Max Width 991px) */
   @media (max-width: 991px) {
-    .custom-header { padding: 15px 30px; height: auto; gap: 15px; flex-wrap: wrap; }
-    .header-logo { order: 1; } .header-logo img { height: 32px; }
-    .header-nav { order: 2; margin-left: auto; gap: 0; }
-    .header-link { display: none; } 
-    .header-btn { padding: 8px 12px; font-size: 13px; }
-    .header-search { order: 3; flex: 0 0 100%; width: 100%; }
-    .search-icon-svg { left: 12px; width: 18px; }
+    .custom-header { 
+      padding: 10px 20px; 
+      height: auto; /* 高度自动 */
+      gap: 10px;
+    }
+
+    /* 1. Logo */
+    .header-logo { order: 1; } 
+    .header-logo img { height: 40px; }
+
+    /* 2. 汉堡按钮显示 */
+    .mobile-toggle { display: flex; order: 2; }
+
+    /* 3. 搜索框换行并占满宽度 */
+    .header-search { 
+      order: 3; 
+      width: 100%; 
+      max-width: none; 
+      margin: 5px 0 10px 0; 
+      flex-basis: 100%; 
+    }
+
+    /* 4. 导航菜单 (下拉抽屉样式) */
+    .header-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      order: 4;
+      padding: 0;
+    }
+
+    /* 菜单展开状态 */
+    .header-nav.active {
+      max-height: 500px; /* 足够展示所有内容的高度 */
+      border-top: 1px solid #f0f0f0;
+    }
+
+    /* 手机端链接样式 */
+    .header-link {
+      width: 100%;
+      padding: 15px 25px;
+      border-bottom: 1px solid #f9f9f9;
+      box-sizing: border-box;
+      display: block; /* 恢复显示 */
+    }
+
+    /* 手机端按钮样式 */
+    .header-btn {
+      margin: 20px 25px;
+      display: inline-block;
+      width: auto;
+      text-align: center;
+    }
   }
 </style>
 
 <div class="custom-header">
+  
   <a href="/" class="header-logo">
     <img src="/images/logo.png" alt="HK BladeTech" onerror="this.style.display='none'; document.getElementById('backup-logo').style.display='flex'">
     <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:800; font-size:26px; color:#111; letter-spacing:-1px;"><span>⚙️</span> HK BLADETECH</div>
   </a>
+
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <div class="header-search">
     <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    <input type="text" placeholder="Search Model Number or OEM Part...">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" style="margin:0">
+        <input type="search" name="q" placeholder="Search Model Number or OEM Part...">
+        <input type="hidden" name="sitesearch" value="hk-bladetech.com">
+    </form>
   </div>
-  <div class="header-nav">
+
+  <div class="header-nav" id="header-nav">
     <a href="/products/?cat=all" class="header-link">Products</a>
     <a href="/industries" class="header-link">Industries</a>
-    <a href="/services" class="header-link">Capabilities</a>
+    <a href="/capabilities" class="header-link">Capabilities</a>
     <a href="/about" class="header-link">About Us</a>
     <a href="/contact" class="header-btn">Request Fast Quote</a>
   </div>
+
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggleBtn = document.getElementById('mobile-toggle');
+    var navMenu = document.getElementById('header-nav');
+
+    if(toggleBtn && navMenu) {
+      toggleBtn.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+      });
+    }
+  });
+</script>
       <div class="outer">
         <section id="main"><article id="post-home" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -224,7 +258,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#x65;&#120;&#x40;&#104;&#x6b;&#45;&#x62;&#108;&#x61;&#100;&#101;&#116;&#x65;&#99;&#104;&#x2e;&#x63;&#111;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#108;&#101;&#x78;&#x40;&#104;&#107;&#x2d;&#x62;&#108;&#x61;&#100;&#x65;&#116;&#101;&#x63;&#104;&#x2e;&#99;&#x6f;&#109;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -235,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidmcO5KJrl1GTlaKebXn4Hh" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidd8BjV2h4Z4kR7yBrvMV3E" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
