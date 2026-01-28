@@ -250,7 +250,7 @@
   }
 
   /* =========================================
-     5. Core Product Categories (Modified for 2x2 Grid)
+     5. Core Product Categories
      ========================================= */
   .unified-grey-section { 
     background-color: #f4f4f4; 
@@ -329,8 +329,20 @@
   .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
   .process-item p { font-size: 16px; line-height: 1.6; color: #555; }
   
-  .guide-link { color: #cc0000; font-weight: 700; text-decoration: none; border-bottom: 2px solid #cc0000; transition: all 0.2s; }
-  .guide-link:hover { color: #a00000; border-color: #a00000; }
+  /* ★★★ 核心修改：修复了悬停放大效果 ★★★ */
+  .guide-link { 
+    display: inline-block; /* 必须加 display: inline-block 才能让 transform 生效 */
+    color: #cc0000; 
+    font-weight: 700; 
+    text-decoration: none; 
+    border-bottom: 2px solid #cc0000; 
+    transition: transform 0.2s ease, color 0.2s; 
+  }
+  .guide-link:hover { 
+    color: #a00000; 
+    border-color: #a00000; 
+    transform: scale(1.05); /* 悬停放大 1.05 倍 */
+  }
 
   /* =========================================
      7. Bottom Banner
