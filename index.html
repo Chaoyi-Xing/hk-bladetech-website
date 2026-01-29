@@ -283,7 +283,7 @@
   }
 
   /* =========================================
-     5. Core Product Categories
+     5. Core Product Categories (Modified for 2x2 Grid)
      ========================================= */
   .unified-grey-section { 
     background-color: #f4f4f4; 
@@ -362,19 +362,19 @@
   .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
   .process-item p { font-size: 16px; line-height: 1.6; color: #555; }
   
-  /* ★★★ 核心修改：修复了悬停放大效果 ★★★ */
+  /* 链接样式：支持悬停放大 */
   .guide-link { 
-    display: inline-block; /* 必须加 display: inline-block 才能让 transform 生效 */
+    display: inline-block; 
     color: #cc0000; 
     font-weight: 700; 
     text-decoration: none; 
     border-bottom: 2px solid #cc0000; 
-    transition: transform 0.2s ease, color 0.2s; 
+    transition: all 0.2s; 
   }
   .guide-link:hover { 
     color: #a00000; 
     border-color: #a00000; 
-    transform: scale(1.05); /* 悬停放大 1.05 倍 */
+    transform: scale(1.05); 
   }
 
   /* =========================================
@@ -468,7 +468,7 @@
       </div>
       <h3>1. Measure & Sketch</h3>
       <p>Send us a technical drawing, a simple hand sketch with dimensions, or mail us a sample blade.</p>
-      <p><a href="/guide" class="guide-link">View Measuring Guide →</a></p>
+      <p><a href="/capabilities/measuring-guide/" class="guide-link">View Measuring Guide →</a></p>
     </div>
     
     <div class="process-item">
@@ -477,7 +477,7 @@
       </div>
       <h3>2. Quote & Confirm</h3>
       <p>Our engineers will review your specs and provide a detailed quote and material recommendation within 24 hours.</p>
-      <p><a href="/materials" class="guide-link">Compare Blade Materials →</a></p>
+      <p><a href="/capabilities/blade-materials/" class="guide-link">Compare Blade Materials →</a></p>
     </div>
     
     <div class="process-item">
