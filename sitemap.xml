@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hk-bladetech.com/capabilities/blade-materials/index.html</loc>
+    
+    <lastmod>2026-01-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/capabilities/index.html</loc>
+    
+    <lastmod>2026-01-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hk-bladetech.com/policies/shipping.html</loc>
     
     <lastmod>2026-01-29</lastmod>
@@ -47,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/capabilities/index.html</loc>
+    <loc>https://www.hk-bladetech.com/capabilities/measuring-guide/index.html</loc>
     
     <lastmod>2026-01-28</lastmod>
     
