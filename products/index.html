@@ -222,21 +222,28 @@
 
 <style>
 /* =========================================
-   ★ 强制覆盖主题背景 (保持纯白) ★
+   ★ 修复版：只变白，不破坏导航栏布局 ★
    ========================================= */
 html, body {
   background-color: #ffffff !important;
   background: #ffffff !important;
 }
-#container, #wrap, .outer, #main, .inner {
+
+/* 针对最外层容器：只去阴影和改背景，【千万不要】清空 margin/padding */
+#wrap, .outer {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* 针对内容区域：可以清空间距，让我们的设计接管 */
+#main, .inner {
     background-color: transparent !important;
-    background: none !important;
     box-shadow: none !important;
     border: none !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
 }
 
 /* =========================================
@@ -253,8 +260,8 @@ body {
 /* 顶部间隔容器 */
 .page-intro-container {
   width: 100%;
-  max-width: 1280px; /* ★ 恢复最大宽度，防止太散 */
-  margin: 60px auto 30px; /* ★ 60px 顶部间距，既有呼吸感又不会太空 */
+  max-width: 1280px; 
+  margin: 60px auto 30px; /* 电脑端顶部间距 */
   padding: 0 20px;
   box-sizing: border-box;
   background-color: #ffffff !important;
@@ -263,11 +270,11 @@ body {
 /* 主容器 */
 .catalog-container {
   width: 100%; 
-  max-width: 1280px; /* ★ 恢复最大宽度，控制产品卡片长度 */
-  margin: 0 auto 80px; /* 居中显示 */
+  max-width: 1280px; 
+  margin: 0 auto 80px; 
   
   display: flex;
-  gap: 40px; /* ★ 调整回 40px，让竖线和产品距离适中，不显得疏离 */
+  gap: 40px; 
   padding: 0 20px;
   min-height: 600px;
   align-items: flex-start;
@@ -282,9 +289,8 @@ body {
   width: 240px;
   flex-shrink: 0;
   background: #fff;
-  /* ★ 恢复明显的竖线，增加工业结构感 ★ */
   border-right: 1px solid #e0e0e0; 
-  padding: 0 20px 0 0; /* 右边距减少，让线靠近文字一点 */
+  padding: 0 20px 0 0; 
   position: -webkit-sticky;
   position: sticky;
   top: 40px;
@@ -302,7 +308,7 @@ body {
   letter-spacing: 0.5px;
   margin-bottom: 15px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #111; /* 黑粗线强调 */
+  border-bottom: 2px solid #111; 
 }
 
 .category-nav { 
@@ -315,7 +321,7 @@ body {
   margin-bottom: 2px;
 }
 
-/* ★ 红色左边框交互 (你喜欢的样式) ★ */
+/* 红色左边框交互 */
 .category-nav a {
   display: block; 
   color: #555; 
@@ -326,7 +332,7 @@ body {
   cursor: pointer;
   line-height: 1.4; 
   padding: 10px 15px; 
-  border-left: 3px solid transparent; /* 预留边框位置 */
+  border-left: 3px solid transparent; 
 }
 
 .category-nav a:hover { 
@@ -339,7 +345,7 @@ body {
   color: #cc0000; 
   font-weight: 700; 
   background-color: #fff0f0; 
-  border-left: 3px solid #cc0000; /* 选中变红 */
+  border-left: 3px solid #cc0000; 
 }
 
 /* =========================================
@@ -432,17 +438,17 @@ body {
 /* =========================================
    Product Card Styles
    ========================================= */
-.product-grid { display: grid; gap: 0; /* List模式靠边框分隔 */ } 
+.product-grid { display: grid; gap: 0; } 
 
 .product-card {
   background: white;
   border: 1px solid #e5e5e5;
-  padding: 25px 30px; /* 调整内边距 */
+  padding: 25px 30px; 
   transition: all 0.2s ease; 
   box-sizing: border-box;
   text-decoration: none;
   position: relative;
-  margin-bottom: -1px; /* 边框重叠 */
+  margin-bottom: -1px; 
 }
 .product-card:hover {
   background-color: #fcfcfc;
@@ -515,9 +521,23 @@ body {
    Mobile
    ========================================= */
 @media(max-width: 991px) {
-  .page-intro-container { margin-top: 40px; }
+  /* 修复手机端“太挤”的问题：
+     1. 增加顶部 margin
+     2. 让侧边栏和主内容区分开
+  */
+  .page-intro-container { margin-top: 20px; } 
   .catalog-container { flex-direction: column; gap: 30px; padding: 0 15px; margin-bottom: 40px;}
-  .catalog-sidebar { width: 100%; position: static; border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; padding-right: 0; }
+  
+  /* 手机端侧边栏优化 */
+  .catalog-sidebar { 
+    width: 100%; 
+    position: static; 
+    border-right: none; 
+    border-bottom: 1px solid #eee; /* 改为底部黑线分隔 */
+    padding-bottom: 20px; 
+    padding-right: 0; 
+  }
+  
   .control-bar { flex-direction: column; gap: 15px; align-items: flex-start; }
   .control-right { width: 100%; justify-content: space-between; }
   
