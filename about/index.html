@@ -41,181 +41,212 @@
   <div id="container">
     <div id="wrap">
       <style>
-  #banner, #sidebar, #header-title, #footer, #header-outer { display: none !important; }
-  #header { display: block !important; background: none !important; height: auto !important; padding: 0 !important; position: relative !important; }
-  .outer, #main, #content { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: 100% !important; }
-  html { background-color: #ffffff; }
-  body { font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; background-color: #ffffff; margin: 0; padding: 0; color: #333; -webkit-font-smoothing: antialiased; }
-  h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', sans-serif !important; }
-</style>
-
-<style>
-  /* === 基础布局 === */
-  .custom-header { 
-    display: flex; align-items: center; justify-content: space-between; 
-    padding: 0 30px; background: white; 
-    box-shadow: 0 3px 10px rgba(0,0,0,0.06); 
-    position: sticky; top: 0; z-index: 1000; 
-    height: 90px; 
-    box-sizing: border-box; width: 100%; 
-    flex-wrap: wrap; /* 允许折行，关键 */
-  }
+  /* =========================================
+     1. 核弹级重置 (保持不动)
+     ========================================= */
+  #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, 
+  #banner, #header-title, #footer, #header-outer, .archive-year-wrap { display: none !important; }
+  html, body { width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; background-color: #ffffff !important; }
+  .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   
+  .home-wrapper, .custom-header {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+    color: #333; line-height: 1.6; width: 100%; box-sizing: border-box;
+  }
+  a { text-decoration: none; }
+
+  /* =========================================
+     2. Header Styles - 终极紧凑全白版
+     ========================================= */
+  .custom-header {
+    width: 100%; position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    background: #fff;
+  }
+
+  /* --- Top Bar (白色 - 大幅缩减高度) --- */
+  .header-top { 
+    background-color: #ffffff; 
+    /* 【核心修改】从 30px 减少到 15px，大幅减少留白 */
+    padding: 15px 0; 
+  }
+
+  .header-top-container {
+    width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 20px;
+    display: grid; grid-template-columns: 1fr auto 1fr; 
+    align-items: center; gap: 30px; 
+  }
+
   /* Logo */
-  .header-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; z-index: 1002; }
-  .header-logo img { height: 65px; width: auto; display: block; } 
-  
-  /* 搜索框 */
-  .header-search { flex: 1 1 auto; max-width: 400px; min-width: 150px; position: relative; margin: 0 20px; }
-  .header-search input { 
-    width: 100%; padding: 10px 15px 10px 42px; border: 1px solid #ccc; border-radius: 4px; 
-    font-size: 14px; outline: none; color: #333; background: #fdfdfd; transition: all 0.3s; 
-    display: block; box-sizing: border-box; min-width: 0; font-family: 'Open Sans', sans-serif; 
-  }
-  .header-search input:focus { border-color: #cc0000; background: #fff; box-shadow: 0 0 0 3px rgba(204,0,0,0.08); }
-  .search-icon-svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: #888; pointer-events: none; }
-  
-  /* 导航区域 (PC端) */
-  .header-nav { display: flex; align-items: center; gap: 30px; }
-  
-  .header-link { 
-    color: #333; text-decoration: none; font-weight: 700; font-size: 16px; 
-    display: block; white-space: nowrap; letter-spacing: -0.2px; transition: color 0.3s;
-  }
-  .header-link:hover { color: #cc0000; }
-  
-  /* 红色按钮 */
-  .header-btn { 
-    background: #cc0000; color: white; padding: 12px 25px; border-radius: 6px; 
-    text-decoration: none; font-weight: 700; font-size: 15px; transition: background 0.3s; 
-    white-space: nowrap; letter-spacing: 0.5px; 
-  }
-  .header-btn:hover { background-color: #a00000; }
+  .header-logo { display: flex; align-items: center; justify-self: end; }
+  .header-logo img { height: 60px; width: auto; }
 
-  /* 汉堡菜单按钮 (默认隐藏) */
-  .mobile-toggle { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1002; }
-  .mobile-toggle span { width: 100%; height: 3px; background-color: #333; border-radius: 3px; transition: all 0.3s; }
-
-  /* === 响应式适配 === */
-  
-  /* 平板尺寸微调 */
-  @media (min-width: 992px) and (max-width: 1300px) {
-    .custom-header { padding: 0 20px; }
-    .header-logo img { height: 50px; }
-    .header-nav { gap: 15px; }
-    .header-link { font-size: 15px; }
-    .header-btn { padding: 10px 20px; font-size: 14px; }
+  /* Search */
+  .header-search-wrapper { width: 420px; position: relative; }
+  .header-search-input {
+    width: 100%; box-sizing: border-box;
+    padding: 13px 20px 13px 45px;
+    background-color: #f4f4f4; 
+    border: 1px solid #eaeaea; 
+    border-radius: 50px;
+    font-size: 15px; color: #333; outline: none;
+    transition: all 0.3s;
   }
+  .header-search-input:focus { background-color: #fff; border-color: #cc0000; box-shadow: 0 2px 8px rgba(204,0,0,0.08); }
+  .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: #888; pointer-events: none; }
 
-  /* 手机端核心适配 (Max Width 991px) */
+  /* Contact Info */
+  .header-contact-info { display: flex; align-items: center; gap: 15px; text-align: left; justify-self: start; }
+  .contact-icon svg { width: 44px; height: 44px; color: #cc0000 !important; stroke-width: 1.5; fill: none; }
+  .contact-text { display: flex; flex-direction: column; justify-content: center; }
+
+  /* 邮箱 */
+  .email-link { 
+    display: block; color: #cc0000 !important; 
+    font-size: 19px; font-weight: 800; 
+    text-decoration: underline !important; text-decoration-color: #cc0000 !important; 
+    line-height: 1.2; margin-bottom: 3px;
+  }
+  .email-link:hover { color: #a00000 !important; }
+
+  /* 电话 */
+  .whatsapp-link { 
+    display: flex; align-items: center; gap: 5px; 
+    color: #111 !important; font-size: 19px; font-weight: 800; text-decoration: none; line-height: 1.2;
+  }
+  .whatsapp-link:hover { color: #25D366 !important; }
+
+
+  /* --- Nav Bar (全白 + 紧凑) --- */
+  .header-bottom { 
+    background-color: #ffffff; 
+    /* 【修改】高度从 50px 微调至 46px，更精致 */
+    height: 46px; 
+    display: flex; align-items: center; justify-content: center;
+    border-top: 1px solid #f0f0f0; 
+  }
+  .nav-menu { display: flex; align-items: center; gap: 55px; height: 100%; }
+  
+  .nav-item { 
+    color: #222222; 
+    font-size: 17px; 
+    font-weight: 600; 
+    text-decoration: none; 
+    height: 100%; display: flex; align-items: center; 
+    padding: 0 5px; 
+    letter-spacing: 0.3px; 
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-item:hover { color: #cc0000; }
+
+  /* Dropdown */
+  .dropdown { position: relative; height: 100%; }
+  .dropdown-trigger { display: flex; align-items: center; gap: 6px; cursor: pointer; color: #222222; height: 100%; font-weight: 600; font-size: 17px; padding: 0 5px; }
+  .dropdown-trigger::after { content: ''; border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: border-color 0.2s; }
+  
+  .dropdown:hover .dropdown-trigger { color: #cc0000; }
+  .dropdown:hover .dropdown-trigger::after { border-color: #cc0000; }
+
+  .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 3px solid #cc0000; padding: 10px 0; z-index: 1001; border-radius: 0 0 4px 4px; }
+  .dropdown:hover .dropdown-content { display: block; }
+  .dropdown-content a { color: #444; padding: 12px 25px; display: block; font-size: 15px; border-bottom: 1px solid #f9f9f9; text-decoration: none; font-weight: 500; transition: all 0.2s; }
+  .dropdown-content a:hover { background-color: #fff5f5; color: #cc0000; padding-left: 30px; }
+
+  .mobile-toggle { display: none; background: none; border: none; color: #333; cursor: pointer; }
+
+  /* =========================================
+     3. Mobile Responsive
+     ========================================= */
+  @media (max-width: 1200px) {
+     .header-top-container { gap: 20px; }
+     .header-search-wrapper { width: 350px; }
+  }
   @media (max-width: 991px) {
-    .custom-header { 
-      padding: 10px 20px; 
-      height: auto; /* 高度自动 */
-      gap: 10px;
-    }
-
-    /* 1. Logo */
-    .header-logo { order: 1; } 
-    .header-logo img { height: 40px; }
-
-    /* 2. 汉堡按钮显示 */
-    .mobile-toggle { display: flex; order: 2; }
-
-    /* 3. 搜索框换行并占满宽度 */
-    .header-search { 
-      order: 3; 
-      width: 100%; 
-      max-width: none; 
-      margin: 5px 0 10px 0; 
-      flex-basis: 100%; 
-    }
-
-    /* 4. 导航菜单 (下拉抽屉样式) */
-    .header-nav {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: white;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      order: 4;
-      padding: 0;
-    }
-
-    /* 菜单展开状态 */
-    .header-nav.active {
-      max-height: 500px; /* 足够展示所有内容的高度 */
-      border-top: 1px solid #f0f0f0;
-    }
-
-    /* 手机端链接样式 */
-    .header-link {
-      width: 100%;
-      padding: 15px 25px;
-      border-bottom: 1px solid #f9f9f9;
-      box-sizing: border-box;
-      display: block; /* 恢复显示 */
-    }
-
-    /* 手机端按钮样式 */
-    .header-btn {
-      margin: 20px 25px;
-      display: inline-block;
-      width: auto;
-      text-align: center;
-    }
+    .header-top { padding: 15px 0; }
+    .header-top-container { display: flex; justify-content: space-between; gap: 10px; padding: 10px 15px; }
+    .header-logo { justify-self: auto; } .header-logo img { height: 40px; }
+    .header-search-wrapper, .header-contact-info, .header-bottom { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-menu.mobile-active { display: flex; position: absolute; top: 70px; left: 0; width: 100%; background: white; flex-direction: column; height: auto; gap: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-top: 1px solid #eee; align-items: flex-start; padding-bottom: 20px; z-index: 2000; }
+    .nav-item, .dropdown-trigger { color: #333; width: 100%; padding: 15px 20px; height: auto; border-bottom: 1px solid #f5f5f5; justify-content: space-between; font-weight: 600; opacity: 1; }
+    .nav-item:hover { background: none; color: #cc0000; }
+    .dropdown-trigger::after { border-color: #333; }
+    .dropdown { width: 100%; height: auto; }
+    .dropdown:hover .dropdown-content { display: none; }
+    .dropdown-content { position: static; transform: none; box-shadow: none; border-top: none; padding: 0; width: 100%; display: none; background: #f9f9f9; }
+    .dropdown.open .dropdown-content { display: block; }
+    .dropdown-content a { padding-left: 40px; }
+    .mobile-search-item { display: block; width: 100%; padding: 15px 20px; box-sizing: border-box; }
+    .mobile-search-item input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
   }
 </style>
 
 <div class="custom-header">
-  
-  <a href="/" class="header-logo">
-    <img src="/images/logo.png" alt="HK BladeTech" onerror="this.style.display='none'; document.getElementById('backup-logo').style.display='flex'">
-    <div id="backup-logo" class="header-logo-text" style="display:none; font-weight:800; font-size:26px; color:#111; letter-spacing:-1px;"><span>⚙️</span> HK BLADETECH</div>
-  </a>
-
-  <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <div class="header-search">
-    <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    
-    <form onsubmit="event.preventDefault();" style="margin:0">
-        <input type="text" name="q" placeholder="Search Model Number or OEM Part...">
-    </form>
+  <div class="header-top">
+    <div class="header-top-container">
+      <a href="/" class="header-logo"><img src="/images/logo.png" alt="HK BladeTech"></a>
+      <div class="header-search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <form onsubmit="event.preventDefault();" style="margin:0">
+          <input type="text" class="header-search-input" placeholder="Search by product name or number...">
+        </form>
+      </div>
+      <div class="header-contact-info">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        </div>
+        <div class="contact-text">
+          <a href="mailto:info@hk-bladetech.com" class="email-link">info@hk-bladetech.com</a>
+          <a href="https://wa.me/85259319285" class="whatsapp-link" target="_blank">+852 5931 9285</a>
+        </div>
+      </div>
+      <button class="mobile-toggle" id="mobile-toggle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+    </div>
   </div>
 
-  <div class="header-nav" id="header-nav">
-    <a href="/products/?cat=all" class="header-link">Products</a>
-    <a href="/industries" class="header-link">Industries</a>
-    <a href="/capabilities" class="header-link">Capabilities</a>
-    <a href="/about" class="header-link">About Us</a>
-    <a href="/contact" class="header-btn">Request Fast Quote</a>
+  <div class="header-bottom">
+    <nav class="nav-menu" id="nav-menu">
+      <div class="mobile-search-item" style="display:none;"><form onsubmit="event.preventDefault();" style="margin:0"><input type="text" placeholder="Search..."></form></div>
+      <a href="/" class="nav-item">Home</a>
+      <div class="dropdown" id="mobile-dropdown-container">
+        <div class="dropdown-trigger" id="mobile-dropdown-trigger">Product Catalog</div>
+        <div class="dropdown-content">
+          <a href="/products/?cat=all">All Products</a>
+          <a href="/products/?cat=granulator">Granulator Blades</a>
+          <a href="/products/?cat=shredder">Shredder Blocks</a>
+          <a href="/products/?cat=circular">Circular Slitter Knives</a>
+          <a href="/products/?cat=corrugated">Corrugated Knives</a>
+        </div>
+      </div>
+      <a href="/contact" class="nav-item">Contact</a>
+      <a href="/#faq-section" class="nav-item" onclick="smoothScrollToFaq(event)">FAQs</a>
+    </nav>
   </div>
-
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var toggleBtn = document.getElementById('mobile-toggle');
-    var navMenu = document.getElementById('header-nav');
-
-    if(toggleBtn && navMenu) {
-      toggleBtn.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-      });
-    }
+  document.getElementById('mobile-toggle').addEventListener('click', function() {
+    var menu = document.getElementById('nav-menu');
+    menu.classList.toggle('mobile-active');
+    var mobileSearch = document.querySelector('.mobile-search-item');
+    if(mobileSearch) mobileSearch.style.display = menu.classList.contains('mobile-active') ? 'block' : 'none';
   });
+  document.getElementById('mobile-dropdown-trigger').addEventListener('click', function(e) {
+    if (window.innerWidth <= 991) { document.getElementById('mobile-dropdown-container').classList.toggle('open'); }
+  });
+  function smoothScrollToFaq(e) {
+    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') return;
+    e.preventDefault();
+    const faqSection = document.getElementById('faq-section');
+    if (faqSection) {
+      document.getElementById('nav-menu').classList.remove('mobile-active');
+      const headerOffset = 130; 
+      const elementPosition = faqSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
+  }
 </script>
       <div class="outer">
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -322,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidoVbedz_14J7KrPpwwUJZH" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidWM9hsSfANQ5DPGAZgBgzq" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
