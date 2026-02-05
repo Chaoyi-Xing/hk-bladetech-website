@@ -218,291 +218,403 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     4. Hero Section
+     1. Global Reset & Fonts
+     ========================================= */
+  .home-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+  }
+  
+  a { text-decoration: none; }
+  
+  /* =========================================
+     【修改】2. Hero Section (40vh + 精致化文字/按钮)
      ========================================= */
   .hero-section { 
-    background-image: url('/images/hero-bg.png'); 
-    background-size: cover; 
-    background-position: top; 
-    color: white; 
-    text-align: center; 
+    position: relative;
+    
+    /* 1. 高度降至 40vh */
+    height: 40vh; 
+    min-height: 400px; 
+    
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     align-items: center; 
-    min-height: 440px; 
-    padding: 50px 20px 30px 20px; 
-    box-sizing: border-box; 
+    padding: 20px; 
+    
+    text-align: center; 
+    color: white; 
+    overflow: hidden;
+    background-color: #1a1a1a; 
+    
+    background-image: url('/images/hero-bg.png'); 
+    background-size: cover; 
+    background-position: center top;
+    background-repeat: no-repeat;
+    
+    box-sizing: border-box;
   }
-  .hero-content-wrapper { max-width: 1200px; position: relative; z-index: 2; }
+
+  .hero-bg-media {
+    position: absolute;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+    opacity: 0.6; 
+  }
   
+  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1200px; }
+  
+  /* 【修改】字体缩小适配 40vh (3.2em) */
   .hero-section h1 { 
-    font-weight: 700; 
-    font-size: 3.6em; 
-    margin-bottom: 20px; 
-    text-transform: none; 
-    line-height: 1.15; 
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.6); 
+    font-weight: 800; 
+    font-size: 3.2em; /* 稍微缩小，精致感 */
+    margin-bottom: 15px; 
+    line-height: 1.1; 
+    text-shadow: 0 2px 5px rgba(0,0,0,1), 0 5px 15px rgba(0,0,0,0.7);
   }
   
+  /* 【修改】副标题缩小 (1.4em) */
   .hero-section p { 
-    font-size: 1.5em; 
+    font-size: 1.4em; 
     font-weight: 600; 
-    margin-bottom: 35px; 
-    color: #fff; 
-    line-height: 1.5; 
-    max-width: 1000px; 
+    margin-bottom: 30px; 
+    color: #ffffff; 
+    text-shadow: 0 1px 3px rgba(0,0,0,1), 0 3px 10px rgba(0,0,0,0.7);
+    max-width: 900px; 
     margin-left: auto; 
-    margin-right: auto; 
-    text-shadow: 0 0 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); 
+    margin-right: auto;
   }
   
-  .hero-btns { margin-top: 5px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+  .hero-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
   
+  /* 【修改】按钮缩小至中号尺寸 */
   .btn-primary { 
-    display: inline-block; text-decoration: none; transition: all 0.3s; 
-    background-color: #cc0000; color: white; border: 2px solid #cc0000; 
-    border-radius: 6px; padding: 18px 40px; font-weight: 800; font-size: 19px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+    display: inline-block; background-color: #cc0000; color: white; border: 2px solid #cc0000; 
+    border-radius: 6px; 
+    padding: 14px 36px; /* 缩小内边距 */
+    font-weight: 800; 
+    font-size: 17px; /* 缩小字号 */
+    transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
   }
-  .btn-primary:hover { 
-    background-color: #a00000; border-color: #a00000; transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
-  }
+  .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-3px); }
 
   .btn-white { 
-    display: inline-block; text-decoration: none; transition: all 0.3s; 
-    background-color: #ffffff; color: #cc0000; border: 2px solid #ffffff; 
-    border-radius: 6px; padding: 18px 40px; font-weight: 800; font-size: 19px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+    display: inline-block; background-color: #ffffff; color: #cc0000; border: 2px solid #ffffff; 
+    border-radius: 6px; 
+    padding: 14px 36px; /* 缩小内边距 */
+    font-weight: 800; 
+    font-size: 17px; /* 缩小字号 */
+    transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
   }
-  .btn-white:hover { 
-    background-color: #f0f0f0; border-color: #f0f0f0; color: #cc0000; 
-    transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
-  }
+  .btn-white:hover { background-color: #f0f0f0; border-color: #f0f0f0; color: #cc0000; transform: translateY(-3px); }
 
   /* =========================================
-     5. Core Product Categories (Modified for 2x2 Grid)
+     3. Product Categories
      ========================================= */
-  .unified-grey-section { 
-    background-color: #f4f4f4; 
+  .unified-section { 
+    background-color: #ffffff; 
     width: 100%; 
-    padding: 40px 20px 80px 20px; 
+    padding: 60px 20px 60px 20px; 
     box-sizing: border-box; 
   }
   
-  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 40px auto; }
+  .section-intro { text-align: center; max-width: 1000px; margin: 0 auto 25px auto; }
   
-  .section-title { font-size: 2.4em; font-weight: 800; color: #111; margin-bottom: 10px; letter-spacing: -0.5px; }
-  .section-subtitle { font-size: 1.3em; color: #333; margin-bottom: 0; line-height: 1.5; font-weight: 500; max-width: 800px; margin: 0 auto; }
+  .section-title { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 2.8em; 
+    font-weight: 800; 
+    color: #111; 
+    margin-bottom: 10px; 
+    letter-spacing: -0.5px;
+  }
+  
+  .section-subtitle { font-size: 1.3em; color: #333; margin-bottom: 0; font-weight: 500; display: none; }
 
   .category-grid { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 40px; 
+    max-width: 1350px; margin: 0 auto; 
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; 
   }
   
   .category-card { 
-    background: white; 
-    padding: 40px 30px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-    border-radius: 6px; 
-    transition: all 0.4s ease; 
-    text-decoration: none; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    position: relative;
-    overflow: hidden; 
-    border-top: 5px solid #cc0000; 
+    background: white; padding: 30px 20px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
+    border: 1px solid #f0f0f0; border-radius: 6px; 
+    transition: all 0.4s ease; text-decoration: none; 
+    display: flex; flex-direction: column; align-items: center; 
+    position: relative; overflow: hidden; border-top: 4px solid #cc0000; 
   }
   
   .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
   
   .img-wrapper { 
-    width: 100%; 
-    height: 260px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 25px; 
+    width: 100%; height: 180px; 
+    display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
   }
-  .category-card img { max-width: 95%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
+  .category-card img { max-width: 90%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
   .category-card:hover img { transform: scale(1.08); }
 
-  .category-card h3 { color: #000; margin: 0 0 15px 0; font-size: 1.8em; font-weight: 800; text-align: center; }
-  .category-desc { color: #333; font-size: 16px; font-weight: 500; line-height: 1.6; margin-bottom: 30px; flex-grow: 1; text-align: center; max-width: 90%; }
+  .category-card h3 { 
+    color: #000; margin: 0 0 10px 0; font-size: 1.5em; 
+    font-weight: 800; text-align: center; line-height: 1.2;
+  }
+  .category-desc { 
+    color: #666; font-size: 15px; font-weight: 500; line-height: 1.5; 
+    margin-bottom: 25px; flex-grow: 1; text-align: center; 
+  }
   
   .view-btn { 
-    color: #cc0000; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; padding: 12px 30px; border: 2px solid #cc0000; border-radius: 4px; transition: all 0.3s; background: transparent; 
+    background-color: #ffffff; color: #cc0000; border: 2px solid #cc0000; 
+    font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; 
+    padding: 12px 25px; border-radius: 4px; transition: all 0.3s; 
   }
+  .view-btn:hover { background-color: #cc0000; color: #ffffff; }
   .category-card:hover .view-btn { background-color: #cc0000; color: white; }
 
-  /* =========================================
-     6. Customization Process
-     ========================================= */
-  .process-section { background: white; padding: 100px 20px; border-top: 1px solid #eee; }
-  .process-grid { display: flex; gap: 50px; justify-content: space-between; max-width: 1200px; margin: 50px auto 0; position: relative; }
+  .browse-all-container { text-align: center; margin-top: 50px; }
   
-  .process-grid::before {
-    content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; background: #eee; z-index: 0;
+  .btn-view-stock {
+    display: inline-block; background-color: #ffffff; color: #cc0000; border: 2px solid #cc0000; 
+    padding: 18px 48px; font-size: 20px; font-weight: 800; text-decoration: none; 
+    border-radius: 6px; box-shadow: 0 5px 15px rgba(204, 0, 0, 0.1); 
+    transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
   }
+  .btn-view-stock:hover { background-color: #cc0000; color: #ffffff; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(204, 0, 0, 0.2); }
+
+  /* =========================================
+     4. Process Section
+     ========================================= */
+  .process-section { background: #ffffff; padding: 40px 20px 80px 20px; border-top: none; }
+  .process-grid { display: flex; gap: 50px; justify-content: space-between; max-width: 1200px; margin: 40px auto 0; position: relative; }
+  .process-grid::before { content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; background: #f0f0f0; z-index: 0; }
 
   .process-item { flex: 1; text-align: center; position: relative; z-index: 1; }
-  
   .process-icon-circle {
     width: 80px; height: 80px; background: #fff; border: 3px solid #cc0000; border-radius: 50%; 
     display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;
     font-size: 32px; color: #cc0000; box-shadow: 0 5px 15px rgba(204,0,0,0.1);
   }
-  
   .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
   .process-item p { font-size: 16px; line-height: 1.6; color: #555; }
-  
-  /* 链接样式：支持悬停放大 */
-  .guide-link { 
-    display: inline-block; 
-    color: #cc0000; 
-    font-weight: 700; 
-    text-decoration: none; 
-    border-bottom: 2px solid #cc0000; 
-    transition: all 0.2s; 
-  }
-  .guide-link:hover { 
-    color: #a00000; 
-    border-color: #a00000; 
-    transform: scale(1.05); 
-  }
+  .guide-link { display: inline-block; color: #cc0000; font-weight: 700; text-decoration: none; border-bottom: 2px solid #cc0000; transition: all 0.2s; }
+  .guide-link:hover { color: #a00000; border-color: #a00000; transform: scale(1.05); }
 
   /* =========================================
-     7. Bottom Banner
+     5. Bottom Banner
      ========================================= */
   .custom-banner { background: #1a1a1a; color: white; padding: 80px 20px; text-align: center; }
   .custom-content { max-width: 900px; margin: 0 auto; }
   .custom-text h2 { font-size: 2.6em; margin: 0 0 20px 0; font-weight: 800; }
   .custom-text p { font-size: 1.3em; color: #ccc; margin: 0 0 40px 0; line-height: 1.5; font-weight: 400; }
-  
   .banner-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-  
   .secondary-btn { background: transparent; border: 2px solid #666; color: #ccc; padding: 18px 40px; font-size: 18px; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
   .secondary-btn:hover { border-color: white; color: white; transform: translateY(-3px); }
 
-  /* 适配 */
+  /* =========================================
+     6. FAQ Section
+     ========================================= */
+  .faq-section { max-width: 1000px; margin: 80px auto; padding: 0 20px; background: #fff; }
+  .faq-header { text-align: center; margin-bottom: 50px; }
+  .faq-header h2 { font-size: 2.8em; font-weight: 800; color: #111; margin-bottom: 15px; }
+  .faq-header p { font-size: 1.25em; line-height: 1.6; color: #555; }
+  
+  .faq-item { background-color: #f8f8f8; margin-bottom: 15px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+  .faq-question {
+    width: 100%; text-align: left; background: none; border: none; padding: 25px 30px; 
+    font-size: 1.8em; font-weight: 800; color: #333; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.3s ease; font-family: inherit;
+  }
+  .faq-question:hover { background-color: #e8e8e8; color: #cc0000; }
+  .faq-question::after { content: '+'; font-size: 1.2em; font-weight: 400; color: #cc0000; transition: transform 0.3s ease; margin-left: 15px; }
+  .faq-question.active::after { transform: rotate(45deg); }
+
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #fff; }
+  .faq-answer p { font-size: 1.35em; line-height: 1.8; color: #333; margin: 0; padding: 30px 35px; }
+  
+  /* =========================================
+     7. Mobile Responsiveness
+     ========================================= */
+  @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 768px) {
-    .category-grid { grid-template-columns: 1fr; }
+    .hero-section { height: auto; padding: 100px 20px; }
+    .hero-section h1 { font-size: 2.4em; }
+    .category-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
     .banner-actions { flex-direction: column; }
-    .hero-section h1 { font-size: 2.4em; }
     .btn-primary, .btn-white { width: 100%; padding: 15px 0; box-sizing: border-box; }
-    
-    .unified-grey-section { padding-top: 50px; }
+    .faq-question { font-size: 1.4em; padding: 20px; }
+    .faq-answer p { padding: 20px; font-size: 1.2em; }
   }
 </style>
 
-<div class="hero-section">
-  <div class="hero-content-wrapper">
-    <h1>High-Performance Industrial Blades.<br>Custom Engineered or Ready to Ship.</h1>
-    
-    <p>Whether you need standard replacements or specific custom designs,<br>we deliver precision blades directly from our manufacturing hub.</p>
-    
-    <div class="hero-btns">
-      <a href="/contact" class="btn-primary">Request Fast Quote</a>
-      <a href="/products/?cat=all" class="btn-white">View In-Stock Items</a>
-    </div>
-  </div>
-</div>
+<div class="home-wrapper">
 
-<div class="unified-grey-section">
-  <div class="section-intro">
-    <h2 class="section-title">Core Product Categories</h2>
-    <p class="section-subtitle">Precision-engineered replacement blades for all major recycling machinery brands.</p>
-  </div>
-
-  <div class="category-grid">
+  <div class="hero-section">
+    <video autoplay muted loop playsinline class="hero-bg-media">
+      <source src="/images/hero-video.webm" type="video/webm">
+      <source src="/images/hero-video.mp4" type="video/mp4">
+    </video>
     
-    <a href="/products/?cat=granulator" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-1.png" alt="Granulator Blades"></div>
-      <h3>Granulator Blades</h3>
-      <p class="category-desc">High-wear D2 & Carbide blades. Standard sizes in stock or custom made to your drawings.</p>
-      <span class="view-btn">View Details</span>
-    </a>
-    
-    <a href="/products/?cat=shredder" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blocks"></div>
-      <h3>Shredder Blocks</h3>
-      <p class="category-desc">Heavy-duty blocks for single & double shaft shredders. Optimized for impact resistance.</p>
-      <span class="view-btn">View Details</span>
-    </a>
-    
-    <a href="/products/?cat=circular" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-3.png" alt="Circular Slitter Knives"></div>
-      <h3>Circular Slitter Knives</h3>
-      <p class="category-desc">Precision slitter blades for film, foil, and paper. Custom dimensions and bevels available.</p>
-      <span class="view-btn">View Details</span>
-    </a>
-
-    <a href="/products/?cat=corrugated" class="category-card">
-      <div class="img-wrapper"><img src="/images/cat-4.png" alt="Corrugated Slotting Knives"></div>
-      <h3>Corrugated Slotting Knives</h3>
-      <p class="category-desc">High-precision serrated sector knives and slotters for corrugated board production.</p>
-      <span class="view-btn">View Details</span>
-    </a>
-
-  </div>
-</div>
-
-<div class="process-section">
-  <div class="section-intro">
-    <h2 class="section-title">Custom Manufacturing Made Simple</h2>
-    <p class="section-subtitle">Can't find your part number? No problem. We manufacture to your exact specifications.</p>
-  </div>
-  
-  <div class="process-grid">
-    <div class="process-item">
-      <div class="process-icon-circle">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6"></path><path d="M2 12V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"></path><path d="M12 2v20"></path></svg>
-      </div>
-      <h3>1. Measure & Sketch</h3>
-      <p>Send us a technical drawing, a simple hand sketch with dimensions, or mail us a sample blade.</p>
-      <p><a href="/capabilities/measuring-guide/" class="guide-link">View Measuring Guide →</a></p>
-    </div>
-    
-    <div class="process-item">
-      <div class="process-icon-circle">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-      </div>
-      <h3>2. Quote & Confirm</h3>
-      <p>Our engineers will review your specs and provide a detailed quote and material recommendation within 24 hours.</p>
-      <p><a href="/capabilities/blade-materials/" class="guide-link">Compare Blade Materials →</a></p>
-    </div>
-    
-    <div class="process-item">
-      <div class="process-icon-circle">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-      </div>
-      <h3>3. Produce & Ship</h3>
-      <p>Once confirmed, we start production immediately. We handle quality control and global shipping logistics.</p>
-    </div>
-  </div>
-</div>
-
-<div class="custom-banner">
-  <div class="custom-content">
-    <div class="custom-text">
-      <h2>Ready to Upgrade Your Cutting Performance?</h2>
-      <p>Whether you have a part number or a custom drawing, our team is ready to help.<br>Get factory-direct pricing today.</p>
-      
-      <div class="banner-actions">
+    <div class="hero-content-wrapper">
+      <h1>High-Performance Industrial Blades.<br>Custom Engineered or Ready to Ship.</h1>
+      <p>Whether you need standard replacements or specific custom designs,<br>we deliver precision blades directly from our manufacturing hub.</p>
+      <div class="hero-btns">
         <a href="/contact" class="btn-primary">Request Fast Quote</a>
-        <a href="mailto:info@hk-bladetech.com" class="secondary-btn">Email Us Directly</a>
+        <a href="/products/?cat=all" class="btn-white">View In-Stock Items</a>
       </div>
     </div>
   </div>
-</div></section>
+
+  <div class="unified-section">
+    <div class="section-intro">
+      <h2 class="section-title">Browse Our Catalog of Industrial Knives</h2>
+    </div>
+
+    <div class="category-grid">
+      <a href="/products/?cat=granulator" class="category-card">
+        <div class="img-wrapper"><img src="/images/cat-1.png" alt="Granulator Blades"></div>
+        <h3>Granulator Blades</h3>
+        <p class="category-desc">High-wear D2 & Carbide blades. Standard & custom sizes.</p>
+        <span class="view-btn">View Details</span>
+      </a>
+      
+      <a href="/products/?cat=shredder" class="category-card">
+        <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blocks"></div>
+        <h3>Shredder Blocks</h3>
+        <p class="category-desc">Heavy-duty blocks for single & double shaft shredders.</p>
+        <span class="view-btn">View Details</span>
+      </a>
+      
+      <a href="/products/?cat=circular" class="category-card">
+        <div class="img-wrapper"><img src="/images/cat-3.png" alt="Circular Slitter Knives"></div>
+        <h3>Circular Slitter Knives</h3>
+        <p class="category-desc">Precision slitter blades for film, foil, and paper.</p>
+        <span class="view-btn">View Details</span>
+      </a>
+
+      <a href="/products/?cat=corrugated" class="category-card">
+        <div class="img-wrapper"><img src="/images/cat-4.png" alt="Corrugated Knives"></div>
+        <h3>Corrugated Knives</h3>
+        <p class="category-desc">High-precision serrated knives for board production.</p>
+        <span class="view-btn">View Details</span>
+      </a>
+    </div>
+
+    <div class="browse-all-container">
+      <a href="/products/?cat=all" class="btn-view-stock">View In-Stock Items</a>
+    </div>
+  </div>
+
+  <div class="process-section">
+    <div class="section-intro">
+      <h2 class="section-title">Custom Manufacturing Made Simple</h2>
+      <p class="section-subtitle" style="display: block;">Can't find your part number? No problem. We manufacture to your exact specifications.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-item">
+        <div class="process-icon-circle">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6"></path><path d="M2 12V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"></path><path d="M12 2v20"></path></svg>
+        </div>
+        <h3>1. Measure & Sketch</h3>
+        <p>Send us a technical drawing, a simple hand sketch with dimensions, or mail us a sample blade.</p>
+        <p><a href="/capabilities/measuring-guide/" class="guide-link">View Measuring Guide →</a></p>
+      </div>
+      <div class="process-item">
+        <div class="process-icon-circle">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <h3>2. Quote & Confirm</h3>
+        <p>Our engineers will review your specs and provide a detailed quote and material recommendation within 24 hours.</p>
+        <p><a href="/capabilities/blade-materials/" class="guide-link">Compare Blade Materials →</a></p>
+      </div>
+      <div class="process-item">
+        <div class="process-icon-circle">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <h3>3. Produce & Ship</h3>
+        <p>Once confirmed, we start production immediately. We handle quality control and global shipping logistics.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <div class="faq-header">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        Don't see an answer to your question?<br>
+        Email us at <a href="mailto:info@hk-bladetech.com" style="color:#cc0000;">info@hk-bladetech.com</a>, technical answers directly from our engineering team.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why choose HK-BladeTech over local suppliers?</button>
+      <div class="faq-answer">
+        <p><strong>Factory Direct + Engineering Expertise.</strong> We are engineers specializing in industrial knives. By shipping directly from our manufacturing hub, we cut out the middleman markup. Every blade undergoes strict quality control (hardness & dimensions) before shipping.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How can I place an order or get a quote?</button>
+      <div class="faq-answer">
+        <p>It’s simple. Click the <a href="/contact" style="color:#cc0000; text-decoration: underline;">Request Fast Quote</a> button. For standard blades, tell us the machine model (e.g., Cumberland 1215). For custom blades, send us a photo or sketch to <strong>info@hk-bladetech.com</strong>.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How can I extend the life of my blades?</button>
+      <div class="faq-answer">
+        <p><strong>1. Gap Setting:</strong> Ensure the rotor-stator gap is correct (0.2-0.3mm) to avoid "rubbing."<br><br><strong>2. Material Upgrade:</strong> If cutting abrasive plastic (like glass-filled nylon), standard D2 steel isn't enough. Ask us about Carbide-inlaid blades for 3-5x longer life.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I know when to replace my blades?</button>
+      <div class="faq-answer">
+        <p>Watch for: <strong>Increased Dust/Fines</strong> (dull blades shatter plastic), <strong>Higher Amp Draw</strong> (motor working harder), or <strong>Increased Noise</strong>. We recommend keeping a spare set on the shelf to minimize downtime.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-banner">
+    <div class="custom-content">
+      <div class="custom-text">
+        <h2>Ready to Upgrade Your Cutting Performance?</h2>
+        <p>Whether you have a part number or a custom drawing, our team is ready to help.<br>Get factory-direct pricing today.</p>
+        <div class="banner-actions">
+          <a href="/contact" class="btn-primary">Request Fast Quote</a>
+          <a href="mailto:info@hk-bladetech.com" class="secondary-btn">Email Us Directly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      const answer = button.nextElementSibling;
+      if (button.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.style.maxHeight = 0;
+      }
+    });
+  });
+</script></section>
         
           <aside id="sidebar">
   
