@@ -133,20 +133,22 @@
   .mobile-search-bar { display: none; }
 
   /* =========================================
-     3. 移动端适配 (重点调整区域)
+     3. 移动端适配 (核心修改区域)
      ========================================= */
   @media (max-width: 1200px) { .header-top-container { gap: 20px; } .header-search-wrapper { width: 350px; } }
   
   @media (max-width: 991px) {
-    /* Header 容器 */
+    /* Header 容器：对称的关键 */
     .header-top-container { 
         display: flex; 
         justify-content: space-between; 
         align-items: center;
         gap: 15px; 
-        padding: 10px 20px; 
+        /* ★★★ 核心修改：左右统一 25px Padding ★★★ 
+           这样 Logo 就在左边 25px 处 */
+        padding: 10px 25px; 
         height: 60px; 
-        box-sizing: border-box; /* 确保Padding生效 */
+        box-sizing: border-box; 
     }
     .header-logo img { height: 38px; }
     
@@ -156,13 +158,12 @@
     .mobile-search-bar {
         display: block;
         width: 100%;
-        padding: 10px 20px 15px 20px;
+        padding: 10px 25px 15px 25px; /* 搜索栏左右也对齐 25px */
         background: #fff;
         box-sizing: border-box; 
     }
     .mobile-search-bar form { position: relative; margin: 0; }
     
-    /* 搜索框：全圆角，文字一致 */
     .mobile-search-bar input {
         width: 100%;
         padding: 10px 20px 10px 45px; 
@@ -170,9 +171,16 @@
         border: 1px solid #eaeaea; 
         border-radius: 50px;    
         font-size: 14px;
-        color: #333;
+        color: #333; 
         outline: none;
         box-sizing: border-box;
+    }
+
+    /* 提示文字加深，解决看不清的问题 */
+    .mobile-search-bar input::placeholder {
+        color: #555 !important;  
+        opacity: 1 !important;   
+        font-weight: 400;
     }
     
     .mobile-search-bar .mobile-search-icon {
@@ -182,19 +190,21 @@
         transform: translateY(-50%);
         width: 18px; 
         height: 18px;
-        color: #888; 
+        color: #666; 
     }
 
-    /* 菜单按钮 (强制左移) */
+    /* 菜单按钮：对称的关键 */
     .mobile-toggle { 
         display: flex; 
         align-items: center; 
         justify-content: center;
         color: #111; 
-        padding: 10px; /* 增加点击区域 */
+        padding: 12px; /* 保持大点击区域 */
         
-        /* ★★★ 这里的 margin-right: 20px !important 是强制左移的关键 ★★★ */
-        margin-right: 20px !important; 
+        /* ★★★ 核心修改：负边距抵消 padding ★★★ 
+           解释：Padding是12px，加一个-12px的margin，让图标的视觉边缘正好贴在容器的padding线上
+           结果：图标距离屏幕右边正好也是 25px，和 Logo 完美对称 */
+        margin-right: -12px !important; 
         
         -webkit-tap-highlight-color: transparent;
     }
@@ -214,6 +224,12 @@
       align-items: flex-start; 
       padding-bottom: 20px; 
       z-index: 10000; 
+
+      /* ★★★ 核心修改：横屏(Landscape)适配 ★★★ 
+         限制最大高度为屏幕的 80%，并允许滚动。
+         这样横着手机时，菜单太长可以滑下去，不会被切断 */
+      max-height: 80vh; 
+      overflow-y: auto; 
     }
     
     .nav-menu.mobile-active { display: flex !important; }
