@@ -121,108 +121,135 @@
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
   .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
+  
+  /* ★★★【关键修复】★★★：电脑端默认隐藏手机版按钮 */
+  .mobile-cta-container { display: none; }
+
+  /* 黑色遮罩层 */
+  .mobile-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 99998;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  .mobile-overlay.active { opacity: 1; visibility: visible; }
 
   /* =========================================
-     3. 手机端样式优化 (宽度 <= 768px)
+     3. 手机端样式 ( CEK 风格深色侧滑 )
      ========================================= */
   @media (max-width: 768px) {
-    /* 1. Header 整体吸顶 */
     .custom-header { 
         position: sticky; top: 0; 
-        box-shadow: 0 2px 15px rgba(0,0,0,0.06); /* 更柔和的投影 */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         display: block; 
     }
-    
     .header-top { border-bottom: none; height: auto; }
-    .header-bottom { height: auto; padding: 0; position: static; display: block; background: transparent; }
+    .header-bottom { height: 0; padding: 0; position: static; display: block; background: transparent; overflow: visible; }
     .header-bottom.is-fixed { position: static !important; box-shadow: none !important; animation: none !important; }
 
-    /* 2. Top Container 极简模式：只有 Logo + 按钮 */
+    /* Top Container */
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center; 
-        gap: 15px; padding: 0 20px; /* 减少上下 Padding */
-        height: 54px; /* 固定高度，更紧凑 */
+        gap: 15px; padding: 0 20px; height: 54px; 
         box-sizing: border-box; 
     }
-    .header-logo img { height: 32px; /* Logo 适配 */ }
+    .header-logo img { height: 32px; }
     
-    /* 隐藏不需要的元素 */
     .header-search-wrapper, .header-contact-info, .mobile-search-bar { display: none !important; }
     
+    /* 汉堡按钮 */
     .mobile-toggle { 
         display: flex; align-items: center; justify-content: center; 
         color: #111; padding: 8px; margin-right: -8px !important; 
-        -webkit-tap-highlight-color: transparent; 
+        -webkit-tap-highlight-color: transparent; z-index: 100000;
     }
     .mobile-toggle svg { width: 26px; height: 26px; }
 
-    /* 3. 菜单容器优化 */
+    /* 侧滑菜单 (CEK Style) */
     .nav-menu { 
-      display: none; 
+      display: flex; 
       flex-direction: column; 
-      position: absolute; 
-      top: 100%; left: 0; width: 100%; 
-      background: white; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* 加深阴影，强调浮层感 */
-      border-top: 1px solid #f0f0f0; 
-      align-items: flex-start; padding-bottom: 30px; 
-      z-index: 10000; 
-      max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; height: auto; 
+      position: fixed; 
+      top: 0; right: -100%; 
+      width: 75%; max-width: 320px; 
+      height: 100vh; 
+      background: #1a1a1a; /* 深色背景 */
+      box-shadow: -5px 0 20px rgba(0,0,0,0.3); 
+      padding-top: 80px; 
+      padding-left: 0;
+      z-index: 99999; 
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto; -webkit-overflow-scrolling: touch;
     }
-    .nav-menu.mobile-active { display: flex !important; }
+    .nav-menu.mobile-active { right: 0; }
 
-    /* 4. 菜单项样式重构：去线留白，大字体 */
+    /* 菜单项 */
     .nav-item, .dropdown-trigger-container { 
         width: 100%; box-sizing: border-box; 
         display: flex; justify-content: space-between; align-items: center; 
-        padding: 18px 25px; /* 增加舒适的点击区域 */
-        border-bottom: none; /* 【关键】去掉分割线，更干净 */
+        padding: 15px 30px; 
+        border-bottom: 1px solid #333; 
         height: auto; 
     }
     
-    /* 字体统一 */
+    /* 字体：白色 */
     .nav-item, .dropdown-trigger { 
-        font-size: 18px; /* 加大字体 */
-        color: #222; /* 纯黑偏灰，更有质感 */
-        width: auto; padding: 0; 
-        font-weight: 600; /* 加粗 */
+        font-size: 16px; color: #fff; width: auto; padding: 0; font-weight: 500; letter-spacing: 0.5px;
     }
     
-    /* 激活状态：文字变红 */
-    .nav-item.active, .dropdown-trigger.active { 
-        color: #cc0000; 
-    }
+    /* 激活状态 */
+    .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
     .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
 
     .dropdown-trigger { width: 100%; height: auto; }
     .dropdown { width: 100%; height: auto; display: block; }
     .arrow-desktop { display: none; } 
     
-    /* 箭头：淡化处理 */
+    /* 箭头 */
     .mobile-arrow { 
-        padding: 10px; margin-left: auto; border: none; /* 去掉箭头左边的线 */
+        padding: 10px; margin-left: auto; border: none; 
         height: 100%; display: flex; align-items: center; justify-content: center; 
-        width: 50px; color: #aaa; /* 浅灰色箭头 */
-        display: flex; 
+        width: 40px; color: #666; 
+        transition: transform 0.3s;
     }
+    .dropdown.open .mobile-arrow { transform: rotate(180deg); color: #fff; }
     
-    /* 5. 子菜单：灰色背景，形成层级 */
+    /* 子菜单 */
     .dropdown:hover .dropdown-content { display: none; }
     .dropdown-content { 
-        position: static; transform: none; box-shadow: none; border-top: none; padding: 5px 0; width: 100%; display: none; 
-        background: #f9f9f9; /* 【关键】浅灰色背景，区分层级 */
+        position: static; transform: none; box-shadow: none; border-top: none; padding: 0; width: 100%; display: none; 
+        background: #222; 
         min-width: 100%; border-radius: 0; 
     }
     .dropdown.open .dropdown-content { display: block; } 
     .dropdown-content a { 
-        padding-left: 40px; /* 缩进 */
-        padding-top: 15px; padding-bottom: 15px; 
-        border-bottom: none; /* 去线 */
+        padding-left: 45px; padding-top: 14px; padding-bottom: 14px; 
+        border-bottom: 1px solid #333;
         white-space: normal; text-align: left; 
-        font-weight: 500; color: #555; font-size: 16px;
+        font-weight: 400; color: #aaa; 
+        font-size: 15px;
     }
-    /* 子菜单点击态 */
-    .dropdown-content a:active { background-color: #eee; }
+    .dropdown-content a:hover, .dropdown-content a:active { color: #fff; background: #333; }
+
+    /* ★★★ 金色CTA按钮 (仿 CEK) ★★★ */
+    /* 修复：只在手机端显示 */
+    .mobile-cta-container {
+        display: block !important; /* 强制显示 */
+        padding: 30px;
+        margin-top: auto; 
+    }
+    .mobile-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: #d4af37; /* CEK 金色 */
+        color: #000;
+        font-weight: 700;
+        padding: 15px 0;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
   }
 </style>
 
@@ -254,6 +281,8 @@
   </div>
 
   <div class="header-bottom" id="header-bottom">
+    <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()"></div>
+
     <nav class="nav-menu" id="nav-menu">
       <a href="/" class="nav-item" id="nav-home">Home</a>
 
@@ -283,12 +312,16 @@
 
       <a href="/contact" class="nav-item" id="nav-contact">Contact</a>
       <a href="/#faq-section" class="nav-item" onclick="closeMobileMenu()">FAQs</a>
+
+      <div class="mobile-cta-container">
+          <a href="/contact" class="mobile-cta-btn">Request Quote</a>
+      </div>
     </nav>
   </div>
 </div>
 
 <script>
-  // 1. JS 监听滚动，强制固定菜单栏 (电脑端生效)
+  // 1. JS 监听滚动 (电脑端)
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
@@ -299,25 +332,27 @@
     } else { navBar.classList.remove('is-fixed'); }
   });
 
-  // 2. 汉堡按钮逻辑
+  // 2. 汉堡按钮逻辑 (控制菜单+遮罩)
   document.getElementById('mobile-toggle').addEventListener('click', function() {
     var menu = document.getElementById('nav-menu');
-    menu.classList.toggle('mobile-active');
+    var overlay = document.getElementById('mobile-overlay');
     
-    // 控制箭头显示，虽然现在箭头是永远显示的，但保留逻辑以防万一
+    menu.classList.toggle('mobile-active');
+    overlay.classList.toggle('active');
+    
     var arrows = document.querySelectorAll('.mobile-arrow');
     arrows.forEach(arrow => { 
-        arrow.style.display = menu.classList.contains('mobile-active') ? 'flex' : 'none'; 
+        arrow.style.display = 'flex'; // 强制在手机端显示箭头
     });
   });
 
-  // 3. 手机端点击菜单项后收起
+  // 3. 关闭菜单 (点击遮罩或链接)
   function closeMobileMenu() {
     var menu = document.getElementById('nav-menu');
-    if (menu.classList.contains('mobile-active')) {
-        menu.classList.remove('mobile-active');
-        document.querySelectorAll('.mobile-arrow').forEach(el => el.style.display = 'none');
-    }
+    var overlay = document.getElementById('mobile-overlay');
+    
+    menu.classList.remove('mobile-active');
+    overlay.classList.remove('active');
   }
 
   // 4. 下拉菜单逻辑
@@ -387,7 +422,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#101;&#x78;&#x40;&#104;&#107;&#x2d;&#x62;&#108;&#x61;&#100;&#x65;&#x74;&#x65;&#99;&#x68;&#x2e;&#x63;&#x6f;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#x6c;&#101;&#120;&#x40;&#x68;&#x6b;&#45;&#x62;&#108;&#97;&#100;&#101;&#116;&#x65;&#99;&#104;&#46;&#99;&#111;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -398,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuids8Ou2HzNuJaxZP_8ke7Ak" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidkecxuge-DgxSCWHEP0Q0d" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
