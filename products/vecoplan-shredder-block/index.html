@@ -145,7 +145,8 @@
         justify-content: space-between; 
         align-items: center;
         gap: 15px; 
-        padding: 10px 20px; 
+        /* ★★★ 关键修改：把右边距从 20px 加大到 35px，强制把按钮往里推 ★★★ */
+        padding: 10px 35px 10px 20px; 
         height: 60px; 
     }
     .header-logo img { height: 38px; }
@@ -162,39 +163,39 @@
     }
     .mobile-search-bar form { position: relative; margin: 0; }
     
-    /* ★ 核心修改：完全复刻电脑端样式 */
     .mobile-search-bar input {
         width: 100%;
-        /* 内边距：左边留出45px给图标，右边留20px */
         padding: 10px 20px 10px 45px; 
         background-color: #f4f4f4;
-        border: 1px solid #eaeaea; /* 颜色变淡，和电脑一样 */
-        border-radius: 50px;      /* ★ 圆角改成50px，变成胶囊形状 */
+        border: 1px solid #eaeaea; 
+        border-radius: 50px;      
         font-size: 14px;
         color: #333;
         outline: none;
         box-sizing: border-box;
     }
     
-    /* 搜索图标定位 */
     .mobile-search-bar .mobile-search-icon {
         position: absolute;
-        left: 15px; /* 稍微靠左一点 */
+        left: 15px; 
         top: 50%;
         transform: translateY(-50%);
-        width: 18px; /* 尺寸微调 */
+        width: 18px; 
         height: 18px;
-        color: #888; /* 颜色变淡，和电脑一样 */
+        color: #888; 
     }
 
-    /* 菜单按钮 (保持您满意的样式) */
+    /* 菜单按钮 */
     .mobile-toggle { 
         display: flex; 
         align-items: center; 
         justify-content: center;
         color: #111; 
-        padding: 4px; 
+        /* ★★★ 关键修改：内边距加大到 12px，手指点在周围也能触发 ★★★ */
+        padding: 12px; 
         margin-right: 0; 
+        /* 去掉背景色，防止点击时出现灰色方块，纯净 */
+        -webkit-tap-highlight-color: transparent;
     }
     .mobile-toggle svg { width: 32px; height: 32px; }
 
