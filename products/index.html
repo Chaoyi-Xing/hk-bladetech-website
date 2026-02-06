@@ -64,7 +64,6 @@
   /* =========================================
      2. 布局样式
      ========================================= */
-  /* 【关键修改】提升默认层级到 999999 */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
 
   .header-top { 
@@ -79,13 +78,12 @@
       transition: all 0.3s ease; 
   }
 
-  /* --- 关键：吸顶样式 --- */
+  /* 吸顶样式 */
   .header-bottom.is-fixed {
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100% !important;
-      /* 【关键修改】提升层级到 999999，碾压 FAQ 的 100000 */
       z-index: 999999 !important; 
       box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
       animation: slideDown 0.3s ease forwards;
@@ -113,14 +111,11 @@
   .email-link:hover { color: #a00000 !important; }
   .whatsapp-link { display: flex; align-items: center; gap: 5px; color: #222; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 2px; }
 
-  /* 导航菜单 */
   .nav-menu { display: flex; align-items: center; gap: 45px; height: 100%; }
-  
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
 
-  /* 下拉菜单 */
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
   .dropdown-trigger-container { height: 100%; display: flex; align-items: center; }
   .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
@@ -135,7 +130,8 @@
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
   .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
-  .mobile-search-bar { display: none; }
+  
+  /* --- 删除了 .mobile-search-bar 的所有样式 --- */
 
   /* =========================================
      3. 手机竖屏样式 (宽度 <= 768px)
@@ -149,36 +145,79 @@
     
     .header-top { border-bottom: none; height: auto; }
     .header-bottom { height: auto; padding: 0; position: static; display: block; background: transparent; }
-
-    /* 重置固定样式，防止 JS 干扰手机竖屏 */
     .header-bottom.is-fixed { position: static !important; box-shadow: none !important; animation: none !important; }
 
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 10px 20px; height: 60px; box-sizing: border-box; }
-    .header-logo img { height: 36px; }
+    /* 修改 Top 容器，改为 Logo 左，汉堡右，高度减小 */
+    .header-top-container { 
+        display: flex; justify-content: space-between; align-items: center; 
+        gap: 15px; padding: 10px 20px; height: 50px; /* 高度更紧凑 */
+        box-sizing: border-box; 
+    }
+    .header-logo img { height: 32px; /* Logo 稍微缩小一点适配 */ }
+    
     .header-search-wrapper, .header-contact-info { display: none; }
     
-    .mobile-search-bar { display: block; width: 100%; padding: 10px 20px 15px 20px; background: #fff; box-sizing: border-box; }
-    .mobile-search-bar form { position: relative; margin: 0; }
-    .mobile-search-bar input { width: 100%; padding: 10px 20px 10px 45px; background-color: #f4f4f4; border: 1px solid #eaeaea; border-radius: 50px; font-size: 14px; color: #333; outline: none; box-sizing: border-box; }
-    .mobile-search-bar input::placeholder { color: #555 !important; opacity: 1 !important; font-weight: 400; }
-    .mobile-search-bar .mobile-search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #666; }
+    /* 汉堡按钮 */
+    .mobile-toggle { 
+        display: flex; align-items: center; justify-content: center; 
+        color: #111; padding: 8px; margin-right: -8px !important; 
+        -webkit-tap-highlight-color: transparent; 
+    }
+    .mobile-toggle svg { width: 26px; height: 26px; }
 
-    .mobile-toggle { display: flex; align-items: center; justify-content: center; color: #111; padding: 8px; margin-right: -8px !important; -webkit-tap-highlight-color: transparent; }
-    .mobile-toggle svg { width: 28px; height: 28px; }
-
-    .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 1px solid #eee; align-items: flex-start; padding-bottom: 20px; z-index: 10000; max-height: 80vh; overflow-y: auto; -webkit-overflow-scrolling: touch; height: auto; }
+    /* 优化后的手机菜单样式 */
+    .nav-menu { 
+      display: none; 
+      flex-direction: column; 
+      position: absolute; 
+      top: 100%; left: 0; width: 100%; 
+      background: white; 
+      /* 加强阴影，让它看起来是浮在内容上面的 */
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+      border-top: 1px solid #eee; 
+      align-items: flex-start; padding-bottom: 20px; 
+      z-index: 10000; 
+      max-height: 80vh; overflow-y: auto; -webkit-overflow-scrolling: touch; height: auto; 
+    }
     .nav-menu.mobile-active { display: flex !important; }
 
-    .nav-item, .dropdown-trigger-container { width: 100%; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; border-bottom: 1px solid #f5f5f5; height: auto; }
-    .nav-item, .dropdown-trigger { font-size: 16px; color: #000; width: auto; padding: 0; font-weight: 600; }
+    .nav-item, .dropdown-trigger-container { 
+        width: 100%; box-sizing: border-box; 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 16px 25px; /* 增加点击区域 */
+        border-bottom: 1px solid #f7f7f7; 
+        height: auto; 
+    }
+    
+    /* 字体调整 */
+    .nav-item, .dropdown-trigger { font-size: 16px; color: #333; width: auto; padding: 0; font-weight: 500; }
+    
+    /* 激活状态样式优化：左侧加红条，而不是文字全红，更高级 */
+    .nav-item.active, .dropdown-trigger.active { 
+        color: #cc0000; 
+        background-color: #fffbfb;
+        border-left: 4px solid #cc0000; /* 左侧红条指示器 */
+        padding-left: 21px; /* 补偿边框宽度 */
+    }
+    .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; /* 去掉桌面端的下划线 */ }
+
     .dropdown-trigger { width: 100%; height: auto; }
     .dropdown { width: 100%; height: auto; display: block; }
     .arrow-desktop { display: none; } 
-    .mobile-arrow { padding: 10px; margin-left: auto; border-left: 1px solid #eee; height: 100%; display: flex; align-items: center; justify-content: center; width: 50px; color: #666; display: flex; }
+    .mobile-arrow { padding: 10px; margin-left: auto; border-left: 1px solid #eee; height: 100%; display: flex; align-items: center; justify-content: center; width: 50px; color: #999; display: flex; }
+    
     .dropdown:hover .dropdown-content { display: none; }
-    .dropdown-content { position: static; transform: none; box-shadow: none; border-top: none; padding: 0; width: 100%; display: none; background: #f9f9f9; min-width: 100%; border-radius: 0; }
+    .dropdown-content { 
+        position: static; transform: none; box-shadow: none; border-top: none; padding: 0; width: 100%; display: none; 
+        background: #fcfcfc; /* 子菜单背景稍微灰一点，体现层级 */
+        min-width: 100%; border-radius: 0; 
+    }
     .dropdown.open .dropdown-content { display: block; } 
-    .dropdown-content a { padding-left: 40px; padding-top: 14px; padding-bottom: 14px; border-bottom: 1px solid #eee; white-space: normal; text-align: left; font-weight: 500; color: #444; }
+    .dropdown-content a { 
+        padding-left: 40px; padding-top: 14px; padding-bottom: 14px; 
+        border-bottom: 1px solid #eee; white-space: normal; text-align: left; 
+        font-weight: 400; color: #555; font-size: 15px;
+    }
   }
 </style>
 
@@ -207,14 +246,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
-
-    <div class="mobile-search-bar">
-        <form onsubmit="event.preventDefault();">
-            <svg class="mobile-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" placeholder="Search by product name or number...">
-        </form>
+    
     </div>
-  </div>
 
   <div class="header-bottom" id="header-bottom">
     <nav class="nav-menu" id="nav-menu">
@@ -259,14 +292,12 @@
     
     // 如果是电脑端 (宽度 > 768px)
     if (window.innerWidth > 768) {
-        // 如果滚动的距离超过了 Logo 栏的高度
         if (scrollY > topBar.offsetHeight) {
             navBar.classList.add('is-fixed');
         } else {
             navBar.classList.remove('is-fixed');
         }
     } else {
-        // 手机端移除固定样式，走 CSS 的 sticky
         navBar.classList.remove('is-fixed');
     }
   });
