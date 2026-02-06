@@ -52,6 +52,14 @@
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
+  /* 解决 Google Chrome 移动版在横屏时自动放大文字或比例的问题 */
+  html {
+    -webkit-text-size-adjust: 100%; /* 锁定比例，禁止浏览器私自放大文字 */
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   /* =========================================
      2. Header 样式
      ========================================= */
