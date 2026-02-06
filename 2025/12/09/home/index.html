@@ -121,136 +121,112 @@
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
   .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
-  
-  /* 电脑端隐藏手机询盘按钮 */
-  .mobile-cta-container { display: none; }
+  .mobile-cta-container { display: none !important; }
 
   /* =========================================
-     3. 手机端样式 ( 硬朗工整风格 )
+     3. 手机端样式 ( 直接显示菜单条 - 模仿电脑版 )
      ========================================= */
   @media (max-width: 768px) {
-    /* Header 吸顶 */
+    /* 1. Header 整体吸顶 */
     .custom-header { 
         position: sticky; top: 0; 
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         display: block; 
     }
-    .header-top { border-bottom: none; height: auto; }
-    .header-bottom { height: auto; padding: 0; position: static; display: block; background: transparent; overflow: visible; }
-    .header-bottom.is-fixed { position: static !important; box-shadow: none !important; animation: none !important; }
-
-    /* Top Container */
+    
+    /* 2. Top 部分：Logo 居中或居左 */
+    .header-top { border-bottom: 1px solid #f0f0f0; height: auto; }
     .header-top-container { 
-        display: flex; justify-content: space-between; align-items: center; 
-        gap: 15px; padding: 0 20px; height: 54px; 
+        display: flex; justify-content: center; /* Logo 居中，显得大气 */
+        align-items: center; 
+        padding: 10px 20px; height: 50px; 
         box-sizing: border-box; 
     }
-    .header-logo img { height: 32px; }
+    .header-logo img { height: 30px; }
     
-    .header-search-wrapper, .header-contact-info, .mobile-search-bar { display: none !important; }
-    
-    /* 汉堡按钮 */
-    .mobile-toggle { 
-        display: flex; align-items: center; justify-content: center; 
-        color: #111; padding: 8px; margin-right: -8px !important; 
-        -webkit-tap-highlight-color: transparent; z-index: 100000;
+    /* 隐藏所有多余元素，只留 Logo */
+    .header-search-wrapper, .header-contact-info, .mobile-search-bar, .mobile-toggle { 
+        display: none !important; 
     }
-    .mobile-toggle svg { width: 26px; height: 26px; }
 
-    /* ★★★ 下拉菜单 (工整块状风格) ★★★ */
-    .nav-menu { 
-      display: none; 
-      flex-direction: column; 
-      position: absolute; 
-      top: 100%; left: 0; width: 100%; 
-      background: white; 
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
-      border-top: 2px solid #cc0000; /* 顶部红线装饰，增加工业感 */
-      align-items: flex-start; 
-      z-index: 10000; 
-      max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch; 
-    }
-    .nav-menu.mobile-active { display: flex !important; }
-
-    /* 菜单项 = 按钮感 */
-    .nav-item, .dropdown-trigger-container { 
-        width: 100%; box-sizing: border-box; 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 16px 20px; /* 紧凑一点的内边距 */
-        border-bottom: 1px solid #e5e5e5; /* 明显的分割线，像表格一样工整 */
-        height: auto; 
+    /* 3. 菜单条部分：显示出来！ */
+    .header-bottom { 
+        display: block; /* 强制显示 */
+        height: 46px; /* 稍微矮一点 */
+        width: 100%;
         background: #fff;
+        position: static;
+        overflow: visible; /* 允许下拉菜单溢出 */
+        border-bottom: 1px solid #eee;
+    }
+    .header-bottom.is-fixed { position: static !important; animation: none !important; }
+
+    /* 4. 导航菜单容器：横向滚动 (Horizontal Scroll) */
+    .nav-menu { 
+        display: flex; 
+        flex-direction: row; /* 横排 */
+        width: 100%; height: 100%;
+        overflow-x: auto; /* 关键：允许横向滑动 */
+        white-space: nowrap; /* 禁止换行 */
+        background: transparent; box-shadow: none; border: none; 
+        padding: 0 10px; box-sizing: border-box;
+        align-items: center;
+        gap: 20px; /* 间距 */
+        position: static; /* 复位 */
+        max-height: none;
+        /* 隐藏滚动条 */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .nav-menu::-webkit-scrollbar { display: none; } /* Chrome */
+
+    /* 5. 菜单项样式 */
+    .nav-item, .dropdown-trigger-container { 
+        width: auto; height: 100%; 
+        padding: 0; border: none; 
+        display: flex; align-items: center;
     }
     
-    /* 字体：加粗、更黑，提升力量感 */
     .nav-item, .dropdown-trigger { 
-        font-size: 17px; 
-        color: #111; 
-        width: auto; padding: 0; 
-        font-weight: 700; /* 加粗 */
+        font-size: 14px; /* 字体改小一点以适应手机 */
+        font-weight: 600; color: #333;
     }
     
     /* 激活状态 */
     .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
+    /* 手机端不需要下划线，太乱 */
     .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
 
-    .dropdown-trigger { width: 100%; height: auto; }
-    .dropdown { width: 100%; height: auto; display: block; }
-    .arrow-desktop { display: none; } 
-    
-    /* 箭头 */
-    .mobile-arrow { 
-        padding: 10px; margin-left: auto; border: none; 
-        height: 100%; display: flex; align-items: center; justify-content: center; 
-        width: 40px; color: #888; 
-        transition: transform 0.3s;
+    /* 6. 下拉箭头 */
+    .dropdown { display: flex; align-items: center; height: 100%; }
+    .arrow-desktop { 
+        display: inline-block; /* 显示箭头 */
+        border-color: #666;
+        margin-left: 4px; padding: 2px;
     }
-    /* 展开时箭头旋转 */
-    .dropdown.open .mobile-arrow { transform: rotate(180deg); color: #cc0000; }
-    
-    /* ★★★ 子菜单：深灰色块 (仿CEK对比感) ★★★ */
-    .dropdown:hover .dropdown-content { display: none; }
+    .mobile-arrow { display: none; } /* 隐藏原来的大箭头 */
+
+    /* 7. 下拉菜单处理：在手机横向滑动模式下，下拉菜单定位比较特殊 */
     .dropdown-content { 
-        position: static; transform: none; box-shadow: inset 0 5px 10px rgba(0,0,0,0.05); /* 内阴影 */
-        border-top: none; padding: 0; width: 100%; display: none; 
-        background: #f4f4f4; /* 浅灰底色，与白底区分 */
-        min-width: 100%; border-radius: 0; 
+        position: absolute; 
+        top: 46px; /* 紧贴菜单栏下方 */
+        left: 0; 
+        width: 100vw; /* 满屏宽 */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        border-top: 1px solid #eee; 
+        padding: 0; z-index: 10000;
     }
-    .dropdown.open .dropdown-content { display: block; } 
+    /* 点击显示 */
+    .dropdown.open .dropdown-content { display: block; }
     
     .dropdown-content a { 
-        padding-left: 35px; /* 缩进 */
-        padding-top: 14px; padding-bottom: 14px; 
-        border-bottom: 1px solid #e0e0e0; /* 子菜单也有分割线 */
-        white-space: normal; text-align: left; 
-        font-weight: 500; color: #444; 
-        font-size: 15px;
-        display: block;
+        padding: 15px 20px; 
+        border-bottom: 1px solid #f5f5f5; 
+        font-size: 14px; color: #555;
     }
-    /* 子菜单点击态 */
-    .dropdown-content a:active { background-color: #e8e8e8; }
 
-    /* 手机端询盘按钮 */
-    .mobile-cta-container {
-        display: block !important; 
-        padding: 20px;
-        background: #fff;
-        width: 100%; box-sizing: border-box;
-    }
-    .mobile-cta-btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-        background-color: #cc0000; /* 品牌红 */
-        color: #fff;
-        font-weight: 700;
-        padding: 14px 0;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-size: 15px;
-        letter-spacing: 0.5px;
-        box-shadow: 0 4px 10px rgba(204,0,0,0.2);
-    }
+    /* 隐藏手机版特有的 CTA 按钮，因为空间不够 */
+    .mobile-cta-container { display: none !important; }
   }
 </style>
 
@@ -287,8 +263,9 @@
 
       <div class="dropdown" id="dropdown-products">
         <div class="dropdown-trigger-container">
-            <a href="/products/?cat=all" class="dropdown-trigger" id="link-products">Product Catalog <span class="arrow-desktop"></span></a>
-            <span class="mobile-arrow" onclick="toggleDropdown(this, event)" style="display:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            <a href="/products/?cat=all" class="dropdown-trigger" id="link-products">
+                Product Catalog <span class="arrow-desktop"></span>
+            </a>
         </div>
         <div class="dropdown-content">
           <a href="/products/?cat=granulator">Granulator Blades</a>
@@ -300,8 +277,9 @@
 
       <div class="dropdown" id="dropdown-custom">
         <div class="dropdown-trigger-container">
-            <a href="/capabilities/" class="dropdown-trigger" id="link-custom">Custom Manufacturing <span class="arrow-desktop"></span></a>
-            <span class="mobile-arrow" onclick="toggleDropdown(this, event)" style="display:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            <a href="/capabilities/" class="dropdown-trigger" id="link-custom">
+                Custom Manufacturing <span class="arrow-desktop"></span>
+            </a>
         </div>
         <div class="dropdown-content">
           <a href="/capabilities/measuring-guide/">View Measuring Guide</a>
@@ -310,9 +288,7 @@
       </div>
 
       <a href="/contact" class="nav-item" id="nav-contact">Contact</a>
-      <a href="/#faq-section" class="nav-item" onclick="closeMobileMenu()">FAQs</a>
-
-      <div class="mobile-cta-container">
+      <a href="/#faq-section" class="nav-item">FAQs</a> <div class="mobile-cta-container">
           <a href="/contact" class="mobile-cta-btn">Request Quote</a>
       </div>
     </nav>
@@ -320,42 +296,52 @@
 </div>
 
 <script>
-  // 1. JS 监听滚动 (电脑端)
+  // 1. JS 监听滚动 (电脑端吸顶逻辑)
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
+    
+    // 仅在电脑端执行吸顶逻辑，手机端CSS已固定
     if (window.innerWidth > 768) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
-    } else { navBar.classList.remove('is-fixed'); }
+    } else { 
+        navBar.classList.remove('is-fixed'); 
+    }
   });
 
-  // 2. 汉堡按钮逻辑
+  // 2. 汉堡按钮逻辑 (虽然隐藏了，但保留代码不报错)
   document.getElementById('mobile-toggle').addEventListener('click', function() {
     var menu = document.getElementById('nav-menu');
     menu.classList.toggle('mobile-active');
-    
-    var arrows = document.querySelectorAll('.mobile-arrow');
-    arrows.forEach(arrow => { 
-        arrow.style.display = menu.classList.contains('mobile-active') ? 'flex' : 'none'; 
-    });
   });
 
-  // 3. 关闭菜单
-  function closeMobileMenu() {
-    var menu = document.getElementById('nav-menu');
-    menu.classList.remove('mobile-active');
-  }
+  // 3. 下拉菜单逻辑 (手机端点文字也能触发)
+  // 修改：让整个 trigger 区域都触发 dropdown
+  var triggers = document.querySelectorAll('.dropdown-trigger');
+  triggers.forEach(function(trigger) {
+      trigger.addEventListener('click', function(e) {
+          // 如果是手机端，阻止跳转，展开菜单
+          if (window.innerWidth <= 768) {
+              e.preventDefault(); 
+              e.stopPropagation();
+              var dropdown = this.closest('.dropdown');
+              // 关闭其他打开的
+              document.querySelectorAll('.dropdown').forEach(d => {
+                  if(d !== dropdown) d.classList.remove('open');
+              });
+              dropdown.classList.toggle('open');
+          }
+      });
+  });
 
-  // 4. 下拉菜单逻辑
-  window.toggleDropdown = function(element, e) {
-    e.preventDefault(); e.stopPropagation();
-    var dropdown = element.closest('.dropdown');
-    if(dropdown) {
-        dropdown.classList.toggle('open');
-    }
-  }
+  // 4. 桌面端依然保留 hover 逻辑 (CSS处理)，这里处理点击空白关闭
+  document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      }
+  });
 
   // 5. 页面加载高亮
   document.addEventListener('DOMContentLoaded', function() {
@@ -415,7 +401,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#101;&#x78;&#x40;&#x68;&#107;&#x2d;&#98;&#108;&#97;&#100;&#101;&#116;&#x65;&#x63;&#x68;&#46;&#99;&#x6f;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#108;&#101;&#120;&#x40;&#104;&#107;&#x2d;&#98;&#x6c;&#97;&#x64;&#x65;&#116;&#x65;&#x63;&#x68;&#x2e;&#99;&#111;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -426,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuid30Dy_Fs2SOo419ZHCDTQH" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidklG4kIMG_morX6RRqGtxK" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
