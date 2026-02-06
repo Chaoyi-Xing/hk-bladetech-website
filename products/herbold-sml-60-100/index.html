@@ -40,7 +40,7 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 基础重置 (保持不变)
+     1. 基础重置
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
@@ -134,7 +134,7 @@
   .mobile-search-bar { display: none; }
 
   /* =========================================
-     3. 移动端适配 (重点调整区域)
+     3. 移动端适配 (手机端专属设置)
      ========================================= */
   @media (max-width: 1200px) { .header-top-container { gap: 20px; } .header-search-wrapper { width: 350px; } }
   
@@ -145,7 +145,7 @@
         justify-content: space-between; 
         align-items: center;
         gap: 15px; 
-        /* ★★★ 关键修改：把右边距从 20px 加大到 35px，强制把按钮往里推 ★★★ */
+        /* 保持之前调好的安全距离：右侧35px */
         padding: 10px 35px 10px 20px; 
         height: 60px; 
     }
@@ -168,7 +168,7 @@
         padding: 10px 20px 10px 45px; 
         background-color: #f4f4f4;
         border: 1px solid #eaeaea; 
-        border-radius: 50px;      
+        border-radius: 50px; /* 全圆角 */     
         font-size: 14px;
         color: #333;
         outline: none;
@@ -185,16 +185,14 @@
         color: #888; 
     }
 
-    /* 菜单按钮 */
+    /* 菜单按钮 (大尺寸、好点击) */
     .mobile-toggle { 
         display: flex; 
         align-items: center; 
         justify-content: center;
         color: #111; 
-        /* ★★★ 关键修改：内边距加大到 12px，手指点在周围也能触发 ★★★ */
         padding: 12px; 
         margin-right: 0; 
-        /* 去掉背景色，防止点击时出现灰色方块，纯净 */
         -webkit-tap-highlight-color: transparent;
     }
     .mobile-toggle svg { width: 32px; height: 32px; }
@@ -289,7 +287,7 @@
     <div class="mobile-search-bar">
         <form onsubmit="event.preventDefault();">
             <svg class="mobile-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" placeholder="Search products...">
+            <input type="text" placeholder="Search by product name or number...">
         </form>
     </div>
   </div>
