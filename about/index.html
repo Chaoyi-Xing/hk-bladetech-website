@@ -42,21 +42,29 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局重置 & Safari 修复
+     1. 全局重置 & Safari/平滑滚动 修复
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
   .col-md-3, .col-lg-3 { display: none !important; }
 
-  html { background-color: #ffffff; }
+  html { 
+      background-color: #ffffff; 
+      scroll-behavior: smooth; /* 【修复】开启全局平滑滚动 */
+  }
   
+  /* 【修复】告诉浏览器跳到 FAQ 时要留出空隙，不被 Header 挡住 */
+  #faq-section {
+      scroll-margin-top: 150px; 
+  }
+
   body { 
     width: 100% !important; 
     overflow-x: hidden !important; 
     margin: 0 !important; 
     padding: 0 !important; 
     background-color: #ffffff !important; 
-    /* 关键：适配刘海屏，防止白边 */
+    /* 【修复】适配刘海屏，防止白边 */
     padding-top: env(safe-area-inset-top); 
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
@@ -77,7 +85,7 @@
     z-index: 9999; 
     box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
     background: #fff;
-    /* 关键：让Header背景延伸到状态栏 */
+    /* 【修复】让Header背景延伸到状态栏 */
     margin-top: calc(0px - env(safe-area-inset-top)); 
     padding-top: env(safe-area-inset-top);
   }
@@ -130,9 +138,12 @@
 
   /* =========================================
      3. 移动端与平板竖屏适配 (Max-Width: 1023px)
-     !!! 关键修复：断点改为 1023px，覆盖 iPhone Max !!!
+     !!! 关键修复：断点改为 1023px，完美覆盖手机横屏 !!!
      ========================================= */
   @media (max-width: 1023px) {
+    /* FAQ 移动端偏移量调整 */
+    #faq-section { scroll-margin-top: 80px; }
+
     /* Header 布局重置 */
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center;
@@ -294,12 +305,13 @@
       </div>
 
       <a href="/contact" class="nav-item" id="nav-contact">Contact</a>
-      <a href="/#faq-section" class="nav-item" onclick="smoothScrollToFaq(event)">FAQs</a>
+      <a href="/#faq-section" class="nav-item" onclick="closeMobileMenu()">FAQs</a>
     </nav>
   </div>
 </div>
 
 <script>
+  // 1. 汉堡按钮点击逻辑
   document.getElementById('mobile-toggle').addEventListener('click', function() {
     var menu = document.getElementById('nav-menu');
     menu.classList.toggle('mobile-active');
@@ -310,6 +322,18 @@
     });
   });
 
+  // 2. 手机端点击菜单项后，自动收起菜单 (给FAQs等锚点链接用)
+  function closeMobileMenu() {
+    var menu = document.getElementById('nav-menu');
+    // 如果菜单是打开状态，就关闭它
+    if (menu.classList.contains('mobile-active')) {
+        menu.classList.remove('mobile-active');
+        // 同时也隐藏小箭头
+        document.querySelectorAll('.mobile-arrow').forEach(el => el.style.display = 'none');
+    }
+  }
+
+  // 3. 下拉菜单逻辑
   window.toggleDropdown = function(element, e) {
     e.preventDefault(); e.stopPropagation();
     var dropdown = element.closest('.dropdown');
@@ -318,32 +342,24 @@
     }
   }
 
+  // 4. 页面加载高亮当前页
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
+    // 简单判断逻辑
     if (path === '/' || path === '/index.html') {
-      document.getElementById('nav-home').classList.add('active');
+      const homeLink = document.getElementById('nav-home');
+      if(homeLink) homeLink.classList.add('active');
     } else if (path.includes('/products/')) {
-      document.getElementById('link-products').classList.add('active');
+      const prodLink = document.getElementById('link-products');
+      if(prodLink) prodLink.classList.add('active');
     } else if (path.includes('/capabilities/')) {
-      document.getElementById('link-custom').classList.add('active');
+      const capLink = document.getElementById('link-custom');
+      if(capLink) capLink.classList.add('active');
     } else if (path.includes('/contact')) {
-      document.getElementById('nav-contact').classList.add('active');
+      const contactLink = document.getElementById('nav-contact');
+      if(contactLink) contactLink.classList.add('active');
     }
   });
-
-  function smoothScrollToFaq(e) {
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-      e.preventDefault();
-      const faqSection = document.getElementById('faq-section');
-      if (faqSection) {
-        document.getElementById('nav-menu').classList.remove('mobile-active');
-        const headerOffset = 130; 
-        const elementPosition = faqSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-      }
-    }
-  }
 </script>
       <div class="outer">
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
@@ -450,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidnsZNUSH-xFmETPy3lhTW0" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidKNBumqW7AuXo0uosHXnSC" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
