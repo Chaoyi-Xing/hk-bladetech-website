@@ -42,7 +42,7 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局重置 & Safari/平滑滚动 修复
+     1. 全局重置 & 基础设置
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
@@ -50,13 +50,11 @@
 
   html { 
       background-color: #ffffff; 
-      scroll-behavior: smooth; /* 【修复】开启全局平滑滚动 */
+      scroll-behavior: smooth; 
   }
   
-  /* 【修复】告诉浏览器跳到 FAQ 时要留出空隙，不被 Header 挡住 */
-  #faq-section {
-      scroll-margin-top: 150px; 
-  }
+  /* 锚点定位偏移量 */
+  #faq-section { scroll-margin-top: 80px; }
 
   body { 
     width: 100% !important; 
@@ -64,7 +62,7 @@
     margin: 0 !important; 
     padding: 0 !important; 
     background-color: #ffffff !important; 
-    /* 【修复】适配刘海屏，防止白边 */
+    /* 适配刘海屏安全区域 */
     padding-top: env(safe-area-inset-top); 
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
@@ -76,23 +74,47 @@
   a { text-decoration: none; }
 
   /* =========================================
-     2. 桌面端样式 (Header)
+     2. 电脑版 + 手机横屏样式 (宽度 > 768px)
      ========================================= */
-  .custom-header { 
-    width: 100%; 
-    position: sticky; 
-    top: 0; 
-    z-index: 9999; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-    background: #fff;
-    /* 【修复】让Header背景延伸到状态栏 */
-    margin-top: calc(0px - env(safe-area-inset-top)); 
-    padding-top: env(safe-area-inset-top);
+  @media (min-width: 769px) {
+      /* 使用 display: contents 让 Logo 区域能随页面滚动，而 Menu 区域可以单独吸顶 */
+      .custom-header {
+          display: contents; 
+      }
+
+      /* Logo 区域：正常滚动 */
+      .header-top { 
+          background-color: #ffffff; 
+          padding: 0; 
+          position: relative;
+          z-index: 9999;
+          width: 100%;
+          border-bottom: 1px solid #f9f9f9;
+      }
+
+      /* 菜单区域：吸顶 */
+      .header-bottom { 
+          background-color: #ffffff; 
+          height: 50px; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          border-top: none; 
+          position: sticky; 
+          top: 0; 
+          z-index: 9998; 
+          box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+          width: 100%;
+      }
+
+      /* 手机横屏时的微调：防止左右内容贴边 */
+      .header-top-container, .nav-menu {
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+      }
   }
 
-  .header-top { background-color: #ffffff; padding: 0; }
-  
-  /* 默认桌面端布局 (> 1023px) */
+  /* 通用布局 */
   .header-top-container { width: 100%; max-width: 1150px; margin: 0 auto; padding: 15px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; box-sizing: border-box; }
   
   .header-logo { display: flex; align-items: center; justify-self: end; }
@@ -110,18 +132,39 @@
   .email-link:hover { color: #a00000 !important; }
   .whatsapp-link { display: flex; align-items: center; gap: 5px; color: #222; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 2px; }
 
-  /* 桌面端导航栏 */
-  .header-bottom { background-color: #ffffff; height: 50px; display: flex; align-items: center; justify-content: center; border-top: 1px solid #f0f0f0; }
+  /* 导航菜单 */
   .nav-menu { display: flex; align-items: center; gap: 45px; height: 100%; }
   
-  .nav-item { color: #222; font-size: 17px; font-weight: 500; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
+  .nav-item { 
+      color: #222; 
+      font-size: 17px; 
+      font-weight: 700; /* 加粗字体 */
+      text-decoration: none; 
+      height: 100%; 
+      display: flex; 
+      align-items: center; 
+      padding: 0; 
+      position: relative; 
+      transition: color 0.2s; 
+  }
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
 
-  /* 桌面端下拉菜单 */
+  /* 下拉菜单 */
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
   .dropdown-trigger-container { height: 100%; display: flex; align-items: center; }
-  .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 500; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
+  
+  .dropdown-trigger { 
+      display: flex; align-items: center; gap: 6px; 
+      color: #222; 
+      font-size: 17px; 
+      font-weight: 700; /* 加粗字体 */
+      text-decoration: none; 
+      padding: 0; 
+      cursor: pointer; 
+      position: relative; 
+      height: 100%; 
+  }
   .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
@@ -137,14 +180,31 @@
   .mobile-search-bar { display: none; }
 
   /* =========================================
-     3. 移动端与平板竖屏适配 (Max-Width: 1023px)
-     !!! 关键修复：断点改为 1023px，完美覆盖手机横屏 !!!
+     3. 手机竖屏样式 (宽度 <= 768px)
      ========================================= */
-  @media (max-width: 1023px) {
-    /* FAQ 移动端偏移量调整 */
-    #faq-section { scroll-margin-top: 80px; }
+  @media (max-width: 768px) {
+    /* 移动端整体吸顶 */
+    .custom-header { 
+        position: sticky; 
+        top: 0; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        background: #fff;
+        z-index: 9999;
+        width: 100%;
+        display: block; 
+    }
+    
+    .header-top { border-bottom: none; }
+    
+    /* 移动端菜单条不单独吸顶，因为是汉堡菜单 */
+    .header-bottom {
+        position: static;
+        box-shadow: none;
+        height: auto;
+        display: block;
+        background: transparent;
+    }
 
-    /* Header 布局重置 */
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center;
         gap: 15px; 
@@ -154,10 +214,8 @@
     }
     .header-logo img { height: 36px; }
     
-    /* 隐藏桌面端元素 */
     .header-search-wrapper, .header-contact-info { display: none; }
     
-    /* 显示手机端搜索栏 */
     .mobile-search-bar {
         display: block; width: 100%;
         padding: 10px 20px 15px 20px; 
@@ -175,7 +233,6 @@
         width: 18px; height: 18px; color: #666; 
     }
 
-    /* 显示汉堡按钮 */
     .mobile-toggle { 
         display: flex; align-items: center; justify-content: center;
         color: #111; padding: 8px; 
@@ -184,16 +241,16 @@
     }
     .mobile-toggle svg { width: 28px; height: 28px; }
 
-    /* 隐藏电脑版菜单栏，改为下拉 */
-    .header-bottom { display: block; height: 0; border: none; padding: 0; position: static; }
+    .header-bottom { padding: 0; }
     .nav-menu { 
-      display: none; /* 默认隐藏 */
+      display: none; 
       flex-direction: column; position: absolute; 
       top: 100%; left: 0; width: 100%; background: white; 
       box-shadow: 0 15px 30px rgba(0,0,0,0.15); border-top: 1px solid #eee; 
       align-items: flex-start; padding-bottom: 20px; z-index: 10000; 
       max-height: 80vh; overflow-y: auto; 
       -webkit-overflow-scrolling: touch;
+      height: auto;
     }
     .nav-menu.mobile-active { display: flex !important; }
 
@@ -220,25 +277,6 @@
         border-bottom: 1px solid #eee; white-space: normal; text-align: left;
         font-weight: 500; color: #444; 
     }
-  }
-
-  /* =========================================
-     4. 手机横屏专属优化 (Landscape)
-     !!! 关键修复：< 1024px 且横屏时触发 !!!
-     ========================================= */
-  @media (max-width: 1023px) and (orientation: landscape) {
-      .header-top-container { 
-          height: 44px; /* 极致压缩高度 */
-          padding: 0 20px; 
-      }
-      .header-logo img { height: 24px; } /* 缩小 Logo */
-      .mobile-toggle svg { width: 24px; height: 24px; }
-      
-      /* 【关键】横屏时隐藏外部搜索框，解决白色区域过大 */
-      .mobile-search-bar { display: none !important; }
-      
-      /* 调整菜单弹出位置 */
-      .nav-menu { top: 44px; max-height: calc(100vh - 44px); }
   }
 </style>
 
@@ -401,7 +439,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#108;&#x65;&#120;&#64;&#x68;&#x6b;&#x2d;&#98;&#108;&#x61;&#100;&#x65;&#x74;&#x65;&#99;&#104;&#x2e;&#x63;&#111;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#101;&#120;&#64;&#x68;&#x6b;&#x2d;&#98;&#108;&#97;&#x64;&#101;&#x74;&#101;&#99;&#x68;&#46;&#x63;&#111;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -412,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidDZ1STJvTQELNgOMpA8KmK" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidH0A1nFbYD6_OzIyyjafDX" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
