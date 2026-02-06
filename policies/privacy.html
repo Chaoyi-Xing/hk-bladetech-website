@@ -141,9 +141,7 @@
   @media (max-width: 1200px) { .header-top-container { gap: 20px; } .header-search-wrapper { width: 350px; } }
   
   @media (max-width: 991px) {
-    /* Header 容器
-      ★ 修改：增加了 padding: 10px 20px (左右20px)，防止元素太靠边 
-    */
+    /* Header 容器 */
     .header-top-container { 
         display: flex; 
         justify-content: space-between; 
@@ -156,51 +154,50 @@
     
     .header-search-wrapper, .header-contact-info { display: none; }
     
-    /* 手机端搜索栏
-       ★ 修改：padding: 10px 20px 15px 20px;
-       ★ 解释：左右都有20px的留白，这样输入框不会顶到屏幕尽头
-    */
+    /* 手机端搜索栏 */
     .mobile-search-bar {
         display: block;
         width: 100%;
         padding: 10px 20px 15px 20px;
         background: #fff;
-        box-sizing: border-box; /* 确保宽度计算包含padding */
+        box-sizing: border-box; 
     }
     .mobile-search-bar form { position: relative; margin: 0; }
+    
+    /* ★ 核心修改：完全复刻电脑端样式 */
     .mobile-search-bar input {
         width: 100%;
-        padding: 10px 15px 10px 40px;
+        /* 内边距：左边留出45px给图标，右边留20px */
+        padding: 10px 20px 10px 45px; 
         background-color: #f4f4f4;
-        border: 1px solid #eee;
-        border-radius: 4px;
+        border: 1px solid #eaeaea; /* 颜色变淡，和电脑一样 */
+        border-radius: 50px;      /* ★ 圆角改成50px，变成胶囊形状 */
         font-size: 14px;
         color: #333;
         outline: none;
         box-sizing: border-box;
     }
+    
+    /* 搜索图标定位 */
     .mobile-search-bar .mobile-search-icon {
         position: absolute;
-        left: 12px;
+        left: 15px; /* 稍微靠左一点 */
         top: 50%;
         transform: translateY(-50%);
-        width: 16px;
-        height: 16px;
-        color: #999;
+        width: 18px; /* 尺寸微调 */
+        height: 18px;
+        color: #888; /* 颜色变淡，和电脑一样 */
     }
 
-    /* 菜单按钮
-       ★ 修改：移除了负边距，增加了图标尺寸 
-    */
+    /* 菜单按钮 (保持您满意的样式) */
     .mobile-toggle { 
         display: flex; 
         align-items: center; 
         justify-content: center;
         color: #111; 
         padding: 4px; 
-        margin-right: 0; /* 之前是 -5px，现在恢复为0，解决太靠右的问题 */
+        margin-right: 0; 
     }
-    /* ★ 图标放大到 32px */
     .mobile-toggle svg { width: 32px; height: 32px; }
 
     /* 下拉菜单逻辑 */
@@ -456,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/policies/privacy.html" data-id="cuidhvJECYyVlf2QrCBuFdFhh" data-title="Privacy Policy" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/policies/privacy.html" data-id="cuid5RpkoA9I8tVaZXF9CdKDg" data-title="Privacy Policy" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
