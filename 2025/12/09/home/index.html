@@ -128,119 +128,93 @@
   .mobile-cta-container { display: none !important; }
 
   /* =========================================
-     3. 手机端样式 ( 居中聚拢 + 全称 + 自动换行 )
+     3. 手机端样式 ( 两端对齐 + 铺满屏幕 + 不换行 )
      ========================================= */
   @media (max-width: 768px) {
-    /* 1. 吸顶设置 */
+    /* 1. 吸顶 */
     .custom-header { 
         position: sticky; top: 0; 
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         display: block; 
     }
     
-    /* 2. Top 部分：变厚，容纳 Logo 和 详细联系方式 */
+    /* 2. Top 部分 */
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center; 
-        padding: 10px 15px; /* 适度留白 */
-        min-height: 60px; /* 保证高度 */
+        padding: 10px 15px; min-height: 60px; 
         box-sizing: border-box; 
     }
     .header-logo img { height: 28px; }
     
     .header-search-wrapper, .mobile-toggle { display: none !important; }
 
-    /* 2.1 手机端右侧联系方式 (显示邮箱和电话) */
+    /* 联系方式 */
     .header-contact-info {
-        display: flex !important; 
-        flex-direction: column; 
-        align-items: flex-end; /* 右对齐 */
-        gap: 3px;
+        display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px;
     }
-    .contact-icon { display: none !important; } /* 不显示图标，太占地 */
-    
-    .contact-text .email-link { 
-        font-size: 13px !important; margin-bottom: 0; text-decoration: none !important;
-        line-height: 1.2;
-    }
-    .contact-text .whatsapp-link { 
-        font-size: 13px !important; margin-top: 0; justify-content: flex-end;
-        line-height: 1.2;
-    }
+    .contact-icon { display: none !important; }
+    .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
+    .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
-    /* 3. 菜单条：白色背景，允许溢出 */
+    /* 3. 菜单条 */
     .header-bottom { 
-        display: block; 
-        height: auto; 
-        width: 100%;
-        background: #ffffff; 
-        position: static;
-        padding: 5px 0; /* 上下留点呼吸感 */
-        overflow: visible; /* 必须 visible，否则下拉菜单出不来 */
+        display: block; height: 42px; 
+        width: 100%; background: #ffffff; 
+        position: static; padding: 0; 
+        overflow: visible; 
         border-bottom: 1px solid #eee;
     }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* 4. 导航菜单容器：居中聚拢 */
+    /* ★★★ 关键修改：Justify Space-Between ★★★ */
+    /* 这会让菜单项自动拉开间距，铺满整个屏幕宽度 */
     .nav-menu { 
         display: flex; 
         flex-direction: row; 
-        flex-wrap: wrap; /* 如果屏幕太小，允许换行，不截断 */
-        justify-content: center; /* 【关键】居中对齐，解决"太靠两边"的问题 */
+        flex-wrap: nowrap; /* 强制不换行 */
+        justify-content: space-between; /* 两端对齐，中间平分 */
         align-items: center;
-        width: 100%; height: auto;
+        width: 100%; height: 100%;
         background: transparent; 
-        padding: 0; 
-        gap: 12px; /* 【关键】控制按钮之间的间距，适中即可 */
+        padding: 0 10px; /* 左右留一点安全距离，防止贴边 */
         box-sizing: border-box;
     }
 
-    /* 5. 菜单项样式 */
+    /* 4. 菜单项 */
     .nav-item, .dropdown-trigger-container { 
-        width: auto; height: 32px; /* 按钮高度 */
+        width: auto; height: 100%; 
         padding: 0; border: none; 
         display: flex; align-items: center; justify-content: center;
     }
     
-    /* 字体设置：小而精，为了放下全称 */
+    /* 字体设置 */
     .nav-item, .dropdown-trigger { 
-        font-size: 12px; /* 缩小字号以容纳 "Manufacturing" */
+        font-size: 12px; /* 稍微缩小一点点以容纳 Custom Manufacturing */
         font-weight: 700; 
         color: #333; 
-        white-space: nowrap; /* 单词内部不换行 */
+        white-space: nowrap; /* 强制不换行 */
+        letter-spacing: -0.3px; /* 稍微紧凑一点，防止挤爆 */
     }
     
-    /* 激活状态 */
     .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
     .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
 
-    /* 箭头调整：手机端保留箭头 */
+    /* 箭头 */
     .arrow-desktop { 
         display: inline-block; 
-        margin-left: 2px; padding: 1.5px; /* 缩小箭头 */
-        margin-bottom: 2px; border-width: 0 1.5px 1.5px 0;
+        margin-left: 2px; padding: 1.5px; margin-bottom: 2px; 
     } 
 
-    /* 6. 下拉菜单：全宽弹出 */
+    /* 下拉菜单 */
     .dropdown { position: static; } 
-    
     .dropdown-content { 
-        position: absolute; 
-        top: 100%; left: 0; 
-        width: 100%; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
-        border-top: 1px solid #eee; 
-        padding: 0; z-index: 10000;
-        background: #ffffff; 
+        position: absolute; top: 100%; left: 0; width: 100%; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15); border-top: 1px solid #eee; 
+        padding: 0; z-index: 10000; background: #ffffff; 
     }
     .dropdown.open .dropdown-content { display: block; }
-    
-    .dropdown-content a { 
-        padding: 14px 20px; 
-        border-bottom: 1px solid #f5f5f5; 
-        font-size: 14px; color: #444;
-        background: #fff;
-    }
+    .dropdown-content a { padding: 14px 20px; border-bottom: 1px solid #f5f5f5; font-size: 14px; color: #444; background: #fff; }
     .dropdown-content a:active { background-color: #f9f9f9; }
 
     .mobile-cta-container { display: none !important; }
@@ -305,7 +279,7 @@
 </div>
 
 <script>
-  // 1. JS 监听滚动 (电脑端吸顶)
+  // 1. JS 监听滚动
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
@@ -319,17 +293,15 @@
     }
   });
 
-  // 2. 下拉菜单逻辑 (手机端点击触发)
+  // 2. 下拉菜单逻辑
   var triggers = document.querySelectorAll('.dropdown-trigger');
   triggers.forEach(function(trigger) {
       trigger.addEventListener('click', function(e) {
-          // 手机端：阻止跳转，展开菜单
           if (window.innerWidth <= 768) {
               e.preventDefault(); 
               e.stopPropagation();
               var dropdown = this.closest('.dropdown');
               
-              // 关闭其他打开的
               document.querySelectorAll('.dropdown').forEach(d => {
                   if(d !== dropdown) d.classList.remove('open');
               });
@@ -404,7 +376,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#x6c;&#101;&#x78;&#x40;&#x68;&#107;&#45;&#x62;&#x6c;&#x61;&#x64;&#101;&#116;&#x65;&#99;&#x68;&#x2e;&#99;&#x6f;&#x6d;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#x65;&#x78;&#64;&#104;&#107;&#x2d;&#98;&#x6c;&#x61;&#x64;&#x65;&#116;&#101;&#x63;&#x68;&#46;&#x63;&#111;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -415,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidFRoLuCT4xvJj7TcJqqdst" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidI3yUxvc52SZ-6WPP8O1nP" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
