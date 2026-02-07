@@ -56,7 +56,7 @@
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 768px ) - 经典布局
+     2. 电脑端样式 ( > 768px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -82,30 +82,29 @@
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
+  
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
   .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
   .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
+  
+  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
   .dropdown-content a:last-child { border-bottom: none; }
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
-  /* 隐藏手机端特有元素 */
   .mobile-scroll-container, .mobile-dropdown-panel-container { display: none; }
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( 横向滑动 + 独立下拉层 )
+     3. 手机端样式
      ========================================= */
   @media (max-width: 768px) {
-    /* 1. Header 整体吸顶 */
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    
-    /* 2. Top 部分：Logo + 联系方式 */
     .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
@@ -116,59 +115,51 @@
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
     .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
-    /* 3. 菜单条：包含滑动容器 */
-    .header-bottom { 
-        display: block; height: auto; width: 100%; background: #ffffff; 
-        position: static; padding: 0; border-bottom: 1px solid #eee;
-    }
+    .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* ★★★ 关键：横向滑动容器 ★★★ */
+    /* 横向滑动容器 */
     .mobile-scroll-container {
         display: flex;
-        overflow-x: auto; /* 允许横向滑动 */
-        white-space: nowrap; /* 强制不换行 */
-        -webkit-overflow-scrolling: touch; /* 平滑滚动 */
-        padding: 0 15px; /* 初始间距 */
+        overflow-x: auto; 
+        white-space: nowrap; 
+        -webkit-overflow-scrolling: touch; 
+        padding: 0 15px; 
         height: 44px;
         align-items: center;
-        gap: 25px; /* 按钮之间的间距，可调整 */
-        /* 隐藏滚动条 */
+        gap: 25px;
         scrollbar-width: none; 
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
-    /* 菜单项 */
     .mobile-nav-item {
-        font-size: 14px; /* 字号可以大一点，反正能滑 */
+        font-size: 14px; 
         font-weight: 700;
         color: #333;
-        flex-shrink: 0; /* 防止被挤压 */
+        flex-shrink: 0; 
         display: flex; align-items: center; gap: 4px;
         cursor: pointer;
         height: 100%;
     }
     .mobile-nav-item.active { color: #cc0000; }
     
-    /* 箭头 */
     .mobile-nav-arrow {
         border: solid #666; border-width: 0 1.5px 1.5px 0;
         display: inline-block; padding: 2px; 
         transform: rotate(45deg); margin-bottom: 2px;
         transition: transform 0.2s;
     }
-    /* 激活时箭头旋转 */
     .mobile-nav-item.open .mobile-nav-arrow { transform: rotate(225deg); border-color: #cc0000; }
     .mobile-nav-item.open { color: #cc0000; }
 
-    /* ★★★ 独立显示层：下拉内容 ★★★ */
+    /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #f9f9f9;
+        display: block; width: 100%; background: #fff; /* 纯白背景 */
         border-bottom: 1px solid #eee;
     }
     
     .mobile-dropdown-panel {
-        display: none; /* 默认隐藏 */
+        display: none; 
         width: 100%;
         animation: fadeIn 0.2s ease;
     }
@@ -176,15 +167,19 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
-        border-bottom: 1px solid #eee;
-        font-size: 14px; color: #555;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px; 
+        color: #000; /* 改为纯黑 */
+        font-weight: 600; /* 加粗 */
         background: #fff;
+        text-decoration: none;
     }
     .mobile-dropdown-link:last-child { border-bottom: none; }
-    .mobile-dropdown-link:active { background-color: #f0f0f0; }
+    .mobile-dropdown-link:active { background-color: #f5f5f5; color: #cc0000; }
   }
 </style>
 
@@ -257,13 +252,13 @@
             <a href="/products/?cat=shredder" class="mobile-dropdown-link">Shredder Blocks</a>
             <a href="/products/?cat=circular" class="mobile-dropdown-link">Circular Knives</a>
             <a href="/products/?cat=corrugated" class="mobile-dropdown-link">Corrugated Knives</a>
-            <a href="/products/?cat=all" class="mobile-dropdown-link" style="color:#cc0000; font-weight:700;">View Full Catalog →</a>
+            <a href="/products/?cat=all" class="mobile-dropdown-link" style="color:#cc0000;">View Full Catalog →</a>
         </div>
 
         <div id="panel-custom" class="mobile-dropdown-panel">
             <a href="/capabilities/measuring-guide/" class="mobile-dropdown-link">View Measuring Guide</a>
             <a href="/capabilities/blade-materials/" class="mobile-dropdown-link">Compare Blade Materials</a>
-            <a href="/contact" class="mobile-dropdown-link" style="color:#cc0000; font-weight:700;">Get Custom Quote →</a>
+            <a href="/contact" class="mobile-dropdown-link" style="color:#cc0000;">Get Custom Quote →</a>
         </div>
     </div>
 
@@ -285,25 +280,23 @@
     }
   });
 
-  // 2. ★★★ 手机端下拉逻辑 (核心修复) ★★★
+  // 2. 手机端下拉面板逻辑
   window.toggleMobilePanel = function(panelId, triggerElement) {
-      // 1. 获取所有面板和按钮
       var allPanels = document.querySelectorAll('.mobile-dropdown-panel');
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
       var targetPanel = document.getElementById(panelId);
 
-      // 2. 如果点击的是已经打开的面板，则关闭它
+      // 如果点的是已打开的，就关闭
       if (targetPanel.classList.contains('show')) {
           targetPanel.classList.remove('show');
           triggerElement.classList.remove('open');
           return;
       }
 
-      // 3. 关闭所有其他面板
+      // 否则先关掉别的，再开这个
       allPanels.forEach(p => p.classList.remove('show'));
       allTriggers.forEach(t => t.classList.remove('open'));
 
-      // 4. 打开目标面板
       targetPanel.classList.add('show');
       triggerElement.classList.add('open');
   }
@@ -312,13 +305,14 @@
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
-    // 电脑端高亮
-    if (path === '/' || path === '/index.html') document.getElementById('nav-home-desktop').classList.add('active');
-    if (path.includes('/contact')) document.getElementById('nav-contact-desktop').classList.add('active');
-
-    // 手机端高亮
-    if (path === '/' || path === '/index.html') document.getElementById('nav-home-mobile').classList.add('active');
-    if (path.includes('/contact')) document.getElementById('nav-contact-mobile').classList.add('active');
+    if (path === '/' || path === '/index.html') {
+        document.getElementById('nav-home-desktop').classList.add('active');
+        document.getElementById('nav-home-mobile').classList.add('active');
+    }
+    if (path.includes('/contact')) {
+        document.getElementById('nav-contact-desktop').classList.add('active');
+        document.getElementById('nav-contact-mobile').classList.add('active');
+    }
   });
 </script>
       <div class="outer">
@@ -615,7 +609,7 @@ Tsim Sha Tsui, Hong Kong
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/contact/index.html" data-id="cuid9PjHH3e1aaU5nisoPtSer" data-title="Request Fast Quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/contact/index.html" data-id="cuidclq6aosWtZJ_nk1uXAlgk" data-title="Request Fast Quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
