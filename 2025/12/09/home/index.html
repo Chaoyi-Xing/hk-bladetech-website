@@ -78,7 +78,6 @@
       transition: all 0.3s ease; 
   }
 
-  /* 电脑端吸顶 */
   .header-bottom.is-fixed {
       position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important;
       z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
@@ -110,7 +109,10 @@
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
   .dropdown-trigger-container { height: 100%; display: flex; align-items: center; }
   .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
+  
+  /* 箭头样式：电脑端默认样式 */
   .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
+  
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
   .dropdown-trigger:hover::after, .dropdown-trigger.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
@@ -121,118 +123,95 @@
   .dropdown-content a:last-child { border-bottom: none; }
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
-  /* 默认隐藏手机元素 */
+  /* 默认隐藏的类（用于响应式切换） */
+  .mobile-text { display: none; } 
+  .desktop-text { display: inline; }
   .mobile-toggle, .mobile-call-icon { display: none; }
   .mobile-cta-container { display: none !important; }
 
   /* =========================================
-     3. 手机端样式 ( 直接显示菜单 + 白色背景 + 完整文案 )
+     3. 手机端样式 ( 单行铺满 + 智能文案 + 小箭头 )
      ========================================= */
   @media (max-width: 768px) {
-    /* 1. Header 整体吸顶 */
-    .custom-header { 
-        position: sticky; top: 0; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: block; 
-    }
+    /* 吸顶 */
+    .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     
-    /* 2. Top 部分：Logo 左，联系方式 右 */
+    /* Top 变厚 */
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center; 
-        padding: 12px 15px; /* 增加Padding */
-        height: auto; min-height: 60px; 
-        box-sizing: border-box; 
+        padding: 12px 15px; min-height: 60px; box-sizing: border-box; 
     }
     .header-logo img { height: 28px; }
     
-    /* 隐藏不需要的元素 */
     .header-search-wrapper, .mobile-toggle { display: none !important; }
 
-    /* 2.1 手机端右侧联系方式 */
-    .header-contact-info {
-        display: flex !important; 
-        flex-direction: column; 
-        align-items: flex-end; /* 右对齐 */
-        gap: 2px;
-    }
+    /* 联系方式 */
+    .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
     .contact-icon { display: none !important; }
-    
-    .contact-text .email-link { 
-        font-size: 13px !important; margin-bottom: 0; text-decoration: none !important;
-    }
-    .contact-text .whatsapp-link { 
-        font-size: 13px !important; margin-top: 2px; justify-content: flex-end;
-    }
+    .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; }
+    .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 2px; justify-content: flex-end; }
 
-    /* 3. 菜单条部分：白色背景 */
+    /* 菜单条：单行铺满 */
     .header-bottom { 
-        display: block; 
-        height: auto; 
-        width: 100%;
-        background: #ffffff; 
-        position: static;
-        padding: 0;
-        overflow: visible; /* 允许下拉菜单显示 */
+        display: block; height: 40px; /* 高度稍微压扁一点，更精致 */
+        width: 100%; background: #ffffff; 
+        position: static; padding: 0 10px; /* 两侧留一点点缝隙 */
+        overflow: visible; 
         border-bottom: 1px solid #eee;
     }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* 4. 导航菜单容器 */
+    /* ★★★ 关键：Flex 布局实现均匀分布 ★★★ */
     .nav-menu { 
         display: flex; 
         flex-direction: row; 
-        flex-wrap: wrap; /* 允许换行，防止手机屏幕太小挤爆 */
-        justify-content: center; /* 居中对齐 */
+        flex-wrap: nowrap; /* 严禁换行 */
+        justify-content: space-between; /* 撑满屏幕，中间留白自动调整 */
         align-items: center;
-        width: 100%; height: auto; min-height: 44px;
-        background: transparent; 
-        padding: 5px 0; 
-        box-sizing: border-box;
-        overflow: visible; 
+        width: 100%; height: 100%;
+        background: transparent; padding: 0; box-sizing: border-box;
+        gap: 0; /* 让 space-between 发挥作用 */
     }
 
-    /* 5. 菜单项样式 */
+    /* 菜单项 */
     .nav-item, .dropdown-trigger-container { 
-        width: auto; height: 34px; 
-        padding: 0 6px; border: none; 
+        width: auto; height: 100%; 
+        padding: 0; border: none; 
         display: flex; align-items: center; justify-content: center;
     }
     
+    /* 字体设置 */
     .nav-item, .dropdown-trigger { 
-        font-size: 13px; /* 小字号 */
+        font-size: 13px; /* 完美字号 */
         font-weight: 700; 
         color: #333; 
         white-space: nowrap;
     }
     
-    /* 激活状态 */
     .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
     .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
 
-    /* 6. 去掉箭头 */
-    .arrow-desktop, .mobile-arrow { display: none; } 
+    /* ★★★ 智能文案切换 ★★★ */
+    .desktop-text { display: none; } /* 隐藏长文案 */
+    .mobile-text { display: inline; } /* 显示短文案 (Catalog / Custom) */
 
-    /* 7. 下拉菜单：全宽弹出，白色背景 */
+    /* 箭头调整：手机端保留箭头，但调小一点 */
+    .arrow-desktop { 
+        display: inline-block; 
+        margin-left: 3px; padding: 2px; /* 箭头紧贴文字 */
+        margin-bottom: 3px; /* 微调垂直位置 */
+    } 
+
+    /* 下拉菜单：全宽 */
     .dropdown { position: static; } 
-    
     .dropdown-content { 
-        position: absolute; 
-        top: 100%; left: 0; 
-        width: 100%; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
-        border-top: 1px solid #eee; 
-        padding: 0; z-index: 10000;
-        background: #ffffff; 
+        position: absolute; top: 100%; left: 0; width: 100%; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15); border-top: 1px solid #eee; 
+        padding: 0; z-index: 10000; background: #ffffff; 
     }
     .dropdown.open .dropdown-content { display: block; }
-    
-    .dropdown-content a { 
-        padding: 14px 20px; 
-        border-bottom: 1px solid #f5f5f5; 
-        font-size: 14px; color: #444;
-        background: #fff;
-    }
+    .dropdown-content a { padding: 14px 20px; border-bottom: 1px solid #f5f5f5; font-size: 14px; color: #444; background: #fff; }
     .dropdown-content a:active { background-color: #f9f9f9; }
 
     .mobile-cta-container { display: none !important; }
@@ -267,7 +246,9 @@
       <div class="dropdown" id="dropdown-products">
         <div class="dropdown-trigger-container">
             <a href="/products/?cat=all" class="dropdown-trigger" id="link-products">
-                Product Catalog <span class="arrow-desktop"></span>
+                <span class="desktop-text">Product Catalog</span>
+                <span class="mobile-text">Catalog</span>
+                <span class="arrow-desktop"></span>
             </a>
         </div>
         <div class="dropdown-content">
@@ -281,7 +262,9 @@
       <div class="dropdown" id="dropdown-custom">
         <div class="dropdown-trigger-container">
             <a href="/capabilities/" class="dropdown-trigger" id="link-custom">
-                Custom Manufacturing <span class="arrow-desktop"></span>
+                <span class="desktop-text">Custom Manufacturing</span>
+                <span class="mobile-text">Custom</span>
+                <span class="arrow-desktop"></span>
             </a>
         </div>
         <div class="dropdown-content">
@@ -297,13 +280,13 @@
 </div>
 
 <script>
-  // 1. JS 监听滚动 (电脑端吸顶)
+  // 1. JS 监听滚动
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 仅在电脑端执行吸顶逻辑，手机端CSS已固定
+    // 仅电脑端执行吸顶逻辑
     if (window.innerWidth > 768) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
@@ -312,7 +295,7 @@
     }
   });
 
-  // 2. 下拉菜单逻辑 (手机端点文字触发)
+  // 2. 下拉菜单逻辑 (手机端点击触发)
   var triggers = document.querySelectorAll('.dropdown-trigger');
   triggers.forEach(function(trigger) {
       trigger.addEventListener('click', function(e) {
@@ -397,7 +380,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#108;&#x65;&#120;&#64;&#x68;&#x6b;&#45;&#98;&#x6c;&#97;&#100;&#x65;&#116;&#x65;&#x63;&#x68;&#46;&#99;&#111;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#x6c;&#101;&#x78;&#x40;&#x68;&#107;&#45;&#x62;&#x6c;&#x61;&#x64;&#101;&#116;&#x65;&#99;&#x68;&#x2e;&#99;&#x6f;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -408,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuid0L4-GTS83zIcXlx5yccMc" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidFRoLuCT4xvJj7TcJqqdst" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
