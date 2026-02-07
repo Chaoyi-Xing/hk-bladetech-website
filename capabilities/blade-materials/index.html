@@ -122,12 +122,11 @@
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
   /* 默认隐藏手机元素 */
-  .mobile-toggle, .mobile-text { display: none; }
-  .desktop-text { display: inline; }
+  .mobile-toggle, .mobile-call-icon { display: none; }
   .mobile-cta-container { display: none !important; }
 
   /* =========================================
-     3. 手机端样式 ( 无汉堡、直接显示、联系方式在右 )
+     3. 手机端样式 ( 直接显示菜单 + 白色背景 + 完整文案 )
      ========================================= */
   @media (max-width: 768px) {
     /* 1. Header 整体吸顶 */
@@ -137,50 +136,44 @@
         display: block; 
     }
     
-    /* 2. Top 部分：变厚，容纳 Logo 和 联系方式 */
+    /* 2. Top 部分：Logo 左，联系方式 右 */
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center; 
-        padding: 12px 15px; /* 增加 Padding */
-        height: auto; min-height: 60px; /* 最小高度 60px */
+        padding: 12px 15px; /* 增加Padding */
+        height: auto; min-height: 60px; 
         box-sizing: border-box; 
     }
-    .header-logo img { height: 28px; } /* Logo 适度缩小 */
+    .header-logo img { height: 28px; }
     
     /* 隐藏不需要的元素 */
     .header-search-wrapper, .mobile-toggle { display: none !important; }
 
-    /* 2.1 手机端右侧联系方式 (显示出来！) */
+    /* 2.1 手机端右侧联系方式 */
     .header-contact-info {
-        display: flex !important; /* 强制显示 */
-        flex-direction: column; /* 上下排列 */
+        display: flex !important; 
+        flex-direction: column; 
         align-items: flex-end; /* 右对齐 */
         gap: 2px;
     }
-    /* 隐藏前面的图标，只留文字 */
     .contact-icon { display: none !important; }
     
-    /* 调整文字大小 */
     .contact-text .email-link { 
-        font-size: 13px !important; 
-        margin-bottom: 0;
-        text-decoration: none !important;
+        font-size: 13px !important; margin-bottom: 0; text-decoration: none !important;
     }
     .contact-text .whatsapp-link { 
-        font-size: 13px !important; 
-        margin-top: 2px;
-        justify-content: flex-end;
+        font-size: 13px !important; margin-top: 2px; justify-content: flex-end;
     }
 
-    /* 3. 菜单条部分：白色背景，直接显示 */
+    /* 3. 菜单条部分：白色背景 */
     .header-bottom { 
         display: block; 
         height: auto; 
         width: 100%;
-        background: #ffffff; /* 保持白色 */
+        background: #ffffff; 
         position: static;
         padding: 0;
-        overflow: visible; /* 【关键】允许下拉菜单溢出显示 */
+        overflow: visible; /* 允许下拉菜单显示 */
         border-bottom: 1px solid #eee;
     }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
@@ -189,25 +182,25 @@
     .nav-menu { 
         display: flex; 
         flex-direction: row; 
-        flex-wrap: nowrap; 
-        justify-content: space-between; /* 均匀分布 */
+        flex-wrap: wrap; /* 允许换行，防止手机屏幕太小挤爆 */
+        justify-content: center; /* 居中对齐 */
         align-items: center;
-        width: 100%; height: 44px; 
+        width: 100%; height: auto; min-height: 44px;
         background: transparent; 
-        padding: 0 10px; 
+        padding: 5px 0; 
         box-sizing: border-box;
-        overflow: visible; /* 【关键】 */
+        overflow: visible; 
     }
 
     /* 5. 菜单项样式 */
     .nav-item, .dropdown-trigger-container { 
-        width: auto; height: 100%; 
-        padding: 0 4px; border: none; 
+        width: auto; height: 34px; 
+        padding: 0 6px; border: none; 
         display: flex; align-items: center; justify-content: center;
     }
     
     .nav-item, .dropdown-trigger { 
-        font-size: 13px; /* 小一点以放下5个 */
+        font-size: 13px; /* 小字号 */
         font-weight: 700; 
         color: #333; 
         white-space: nowrap;
@@ -217,27 +210,21 @@
     .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
     .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
 
-    /* 文字切换：手机上显示缩短版 */
-    .desktop-text { display: none; }
-    .mobile-text { display: inline; }
-
     /* 6. 去掉箭头 */
     .arrow-desktop, .mobile-arrow { display: none; } 
 
     /* 7. 下拉菜单：全宽弹出，白色背景 */
-    .dropdown { position: static; } /* 让 dropdown-content 相对于 header-bottom 定位 */
+    .dropdown { position: static; } 
     
     .dropdown-content { 
         position: absolute; 
-        top: 100%; /* 紧贴菜单栏下方 */
-        left: 0; 
-        width: 100%; /* 满屏宽 */
+        top: 100%; left: 0; 
+        width: 100%; 
         box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
         border-top: 1px solid #eee; 
         padding: 0; z-index: 10000;
-        background: #ffffff; /* 纯白背景 */
+        background: #ffffff; 
     }
-    /* 点击显示 */
     .dropdown.open .dropdown-content { display: block; }
     
     .dropdown-content a { 
@@ -248,7 +235,6 @@
     }
     .dropdown-content a:active { background-color: #f9f9f9; }
 
-    /* 手机端底部按钮 (隐藏) */
     .mobile-cta-container { display: none !important; }
   }
 </style>
@@ -281,9 +267,7 @@
       <div class="dropdown" id="dropdown-products">
         <div class="dropdown-trigger-container">
             <a href="/products/?cat=all" class="dropdown-trigger" id="link-products">
-                <span class="desktop-text">Product Catalog</span>
-                <span class="mobile-text">Catalog</span>
-                <span class="arrow-desktop"></span>
+                Product Catalog <span class="arrow-desktop"></span>
             </a>
         </div>
         <div class="dropdown-content">
@@ -297,9 +281,7 @@
       <div class="dropdown" id="dropdown-custom">
         <div class="dropdown-trigger-container">
             <a href="/capabilities/" class="dropdown-trigger" id="link-custom">
-                <span class="desktop-text">Custom Manufacturing</span>
-                <span class="mobile-text">Custom</span>
-                <span class="arrow-desktop"></span>
+                Custom Manufacturing <span class="arrow-desktop"></span>
             </a>
         </div>
         <div class="dropdown-content">
@@ -315,7 +297,7 @@
 </div>
 
 <script>
-  // 1. JS 监听滚动 (电脑端吸顶逻辑)
+  // 1. JS 监听滚动 (电脑端吸顶)
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
@@ -364,13 +346,11 @@
       const homeLink = document.getElementById('nav-home');
       if(homeLink) homeLink.classList.add('active');
     } else if (path.includes('/products/')) {
-      const prodLink = document.getElementById('link-products'); // 注意：因为结构改了，这里的高亮可能只对 link 有效
-      // 简单高亮逻辑，只要包含路径就高亮父级
-      document.querySelectorAll('.dropdown-content a').forEach(link => {
-          if (link.getAttribute('href') === path) {
-              link.closest('.dropdown').querySelector('.dropdown-trigger-container').classList.add('active');
-          }
-      });
+      const prodLink = document.getElementById('link-products');
+      if(prodLink) prodLink.classList.add('active');
+    } else if (path.includes('/capabilities/')) {
+      const capLink = document.getElementById('link-custom');
+      if(capLink) capLink.classList.add('active');
     } else if (path.includes('/contact')) {
       const contactLink = document.getElementById('nav-contact');
       if(contactLink) contactLink.classList.add('active');
