@@ -316,11 +316,42 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
+     0. 【新增】iOS Safari 核心修复补丁
+     (专门解决横屏白边和Header被遮挡问题)
+     ========================================= */
+  html, body {
+    width: 100%;
+    overflow-x: hidden; /* 禁止左右滑动出现白边 */
+    background-color: #1a1a1a; /* 防止Safari回弹看到白底，设为深色 */
+  }
+
+  /* 针对 Hexo 默认 Header 的强制修复 */
+  #header, #banner, .banner, .navbar {
+    position: relative; 
+    z-index: 9999 !important; /* 强制层级最高，防止被 Hero 遮挡 */
+    /* 适配 iPhone 刘海屏 */
+    padding-top: env(safe-area-inset-top); 
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* 针对横屏模式的特殊处理 */
+  @media screen and (orientation: landscape) and (max-width: 900px) {
+    .hero-section {
+        min-height: 100vh; /* 横屏时撑满屏幕，避免下方留白 */
+    }
+    .hero-bg-media {
+        height: 100vh; /* 强制背景图填满 */
+    }
+  }
+
+  /* =========================================
      1. 全局容器 (仅针对主页内容)
      ========================================= */
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333; line-height: 1.6; width: 100%; margin: 0; padding: 0; background-color: #fff;
+    position: relative; z-index: 1; /* 基础层级 */
   }
   a { text-decoration: none; }
   
@@ -332,10 +363,10 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    /* 【修改：后缀改为 .png】 */
     background-image: url('/images/home-hero-factory-bg.png'); 
     background-size: cover; background-position: center top; background-repeat: no-repeat;
     box-sizing: border-box;
+    width: 100%;
   }
   
   /* Hero 背景图片样式 */
@@ -348,7 +379,7 @@
     pointer-events: none;
   }
   
-  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
+  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; padding: 0 15px; }
   
   .hero-tagline {
       display: inline-block; background: #cc0000; color: white; 
