@@ -332,15 +332,22 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    background-image: url('/images/hero-bg.png'); 
+    /* 【修改：后缀改为 .png】 */
+    background-image: url('/images/home-hero-factory-bg.png'); 
     background-size: cover; background-position: center top; background-repeat: no-repeat;
     box-sizing: border-box;
   }
+  
+  /* Hero 背景图片样式 */
   .hero-bg-media {
-    position: absolute; top: 50%; left: 50%; width: auto; height: auto;
-    min-width: 100%; min-height: 100%; z-index: 0;
-    transform: translateX(-50%) translateY(-50%); object-fit: cover; opacity: 0.5; pointer-events: none;
+    position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%); 
+    object-fit: cover; /* 保证图片铺满不拉伸 */
+    opacity: 0.4; /* 降低透明度，让上面的文字看得清 */
+    pointer-events: none;
   }
+  
   .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
   
   .hero-tagline {
@@ -379,17 +386,16 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar (品牌信任栏 - 优化版)
+     3. Trust Bar (品牌信任栏)
      ========================================= */
   .trust-bar { 
-      background: #fafafa; /* 极淡灰背景 */
+      background: #fafafa; 
       padding: 50px 20px; 
       border-bottom: 1px solid #e0e0e0; 
       text-align: center; 
       position: relative;
   }
   
-  /* 【Trust Bar 标题：保持醒目红色】 */
   .trust-label { 
       font-size: 14px; 
       color: #cc0000; 
@@ -401,7 +407,6 @@
       position: relative;
   }
   
-  /* 装饰线：淡红色 */
   .trust-label::before, .trust-label::after {
       content: "";
       display: inline-block;
@@ -411,7 +416,6 @@
       margin: 0 15px;
   }
 
-  /* Logo 容器 */
   .trust-logos { 
       display: flex; 
       justify-content: center; 
@@ -422,11 +426,10 @@
       margin: 0 auto;
   }
   
-  /* 【品牌名词颜色：深灰色 #777】 */
   .brand-name { 
       font-family: "Arial Black", "Helvetica Neue", sans-serif; 
       font-size: 24px; 
-      color: #777777; /* 深灰色，清晰有质感 */
+      color: #777777; 
       letter-spacing: -1px; 
       text-transform: uppercase;
       cursor: default;
@@ -435,7 +438,6 @@
       user-select: none;
   }
 
-  /* 鼠标悬停效果：变黑 */
   .brand-name:hover { 
       color: #111; 
       transform: scale(1.05); 
@@ -448,7 +450,7 @@
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
   .story-video-wrapper { 
       flex: 1; position: relative; border-radius: 8px; overflow: hidden; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #000;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #eee;
   }
   .story-content { flex: 1; }
   .story-subtitle { color: #cc0000; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; margin-bottom: 10px; display: block; }
@@ -481,15 +483,14 @@
     position: relative; overflow: hidden;
   }
 
-  /* 【产品卡片顶部红条】 */
   .category-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px; /* 红条厚度 */
-    background-color: #cc0000; /* 品牌红 */
+    height: 4px; 
+    background-color: #cc0000; 
     z-index: 1;
   }
 
@@ -511,11 +512,19 @@
   .qc-section { padding: 80px 20px; background: #fff; }
   .qc-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   .qc-card { text-align: left; }
+  
   .qc-video-box {
       width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; 
       margin-bottom: 20px; overflow: hidden; position: relative;
       display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888;
   }
+  
+  /* QC 图片样式：确保铺满盒子 */
+  .qc-video-box img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+  }
+  .qc-card:hover .qc-video-box img { transform: scale(1.05); } /* 鼠标悬停轻微放大图片 */
+
   .qc-card h3 { font-size: 1.4em; font-weight: 800; margin-bottom: 10px; color: #111; }
   .qc-card p { font-size: 1.05em; color: #555; line-height: 1.6; }
 
@@ -578,7 +587,6 @@
   }
   .faq-item[open] { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #eee; }
 
-  /* 【FAQ字体变大】 */
   .faq-item summary { 
       font-weight: 800; padding: 20px 25px; 
       font-size: 1.8em; 
@@ -685,10 +693,7 @@
 <div class="home-wrapper">
 
   <div class="hero-section">
-    <video autoplay muted loop playsinline class="hero-bg-media">
-      <source src="/images/hero-video.webm" type="video/webm">
-      <source src="/images/hero-video.mp4" type="video/mp4">
-    </video>
+    <img src="/images/home-hero-factory-bg.png" alt="Industrial Blade Manufacturing Factory" class="hero-bg-media">
     
     <div class="hero-content-wrapper">
       <span class="hero-tagline">Engineered for Cumberland, Vecoplan, Rapid & More</span>
@@ -718,9 +723,7 @@
   <div class="story-section">
       <div class="story-container">
           <div class="story-video-wrapper">
-              <div style="width:100%; height:100%; background: #000; display: flex; align-items: center; justify-content: center; color: #666; font-weight:700;">
-                  [Video Placeholder: Factory Introduction]
-              </div>
+              <img src="/images/factory-workshop-overview.png" alt="HK-BladeTech Factory Production Line" style="width:100%; height:100%; object-fit: cover;">
           </div>
           <div class="story-content">
               <span class="story-subtitle">Who We Are</span>
@@ -788,21 +791,21 @@
       <div class="qc-grid">
           <div class="qc-card">
               <div class="qc-video-box">
-                  <div style="color:#555;">[Video: Hardness Test]</div>
+                  <img src="/images/qc-hardness-testing.png" alt="Hardness Testing Process">
               </div>
               <h3>1. Hardness Testing</h3>
               <p>Every single blade is heat-treated in-house. We verify Rockwell hardness (HRC 58-62 for D2) to guarantee maximum wear resistance without brittleness.</p>
           </div>
           <div class="qc-card">
               <div class="qc-video-box">
-                  <div style="color:#555;">[Video: Dimension Check]</div>
+                  <img src="/images/qc-precision-grinding.png" alt="Precision Grinding Process">
               </div>
               <h3>2. Precision Grinding</h3>
               <p>CNC precision grinding achieves tolerances of +/- 0.02mm. This ensures a perfect fit for your machine, allowing for tighter gap settings and reduced energy consumption.</p>
           </div>
           <div class="qc-card">
               <div class="qc-video-box">
-                  <div style="color:#555;">[Video: Safe Packaging]</div>
+                  <img src="/images/qc-secure-packaging.png" alt="Secure Packaging Process">
               </div>
               <h3>3. Secure Packaging</h3>
               <p>Anti-rust oil coating and vacuum sealing protect every blade. Shipped in reinforced plywood crates to withstand international transit and prevent edge damage.</p>
