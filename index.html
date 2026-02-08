@@ -368,7 +368,7 @@
   }
   .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-2px); }
 
-  /* 【修改点：白底红字按钮】 */
+  /* 【白底红字按钮】 */
   .btn-white { 
     display: inline-flex; align-items: center; justify-content: center;
     background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; 
@@ -379,25 +379,67 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar 
+     3. Trust Bar (品牌信任栏 - 优化版)
      ========================================= */
   .trust-bar { 
-      background: #ffffff; padding: 40px 20px; 
-      border-bottom: 1px solid #eee; text-align: center; 
+      background: #fafafa; /* 极淡灰背景 */
+      padding: 50px 20px; 
+      border-bottom: 1px solid #e0e0e0; 
+      text-align: center; 
+      position: relative;
   }
+  
+  /* 【Trust Bar 标题：保持醒目红色】 */
   .trust-label { 
-      font-size: 13px; color: #cc0000; font-weight: 800; text-transform: uppercase; 
-      margin-bottom: 20px; display: block; letter-spacing: 1.5px; 
+      font-size: 14px; 
+      color: #cc0000; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      margin-bottom: 30px; 
+      display: inline-block; 
+      letter-spacing: 2px; 
+      position: relative;
   }
+  
+  /* 装饰线：淡红色 */
+  .trust-label::before, .trust-label::after {
+      content: "";
+      display: inline-block;
+      width: 30px; height: 2px; 
+      background: #f5cccc; 
+      vertical-align: middle;
+      margin: 0 15px;
+  }
+
+  /* Logo 容器 */
   .trust-logos { 
-      display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: center; 
-      color: #222; 
+      display: flex; 
+      justify-content: center; 
+      gap: 60px; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      max-width: 1200px;
+      margin: 0 auto;
   }
+  
+  /* 【品牌名词颜色：深灰色 #777】 */
   .brand-name { 
-      font-family: 'Arial Black', sans-serif; font-size: 20px; letter-spacing: -0.5px; 
-      opacity: 0.8; transition: opacity 0.3s;
+      font-family: "Arial Black", "Helvetica Neue", sans-serif; 
+      font-size: 24px; 
+      color: #777777; /* 深灰色，清晰有质感 */
+      letter-spacing: -1px; 
+      text-transform: uppercase;
+      cursor: default;
+      transition: all 0.3s ease;
+      position: relative;
+      user-select: none;
   }
-  .brand-name:hover { opacity: 1; color: #cc0000; cursor: default; }
+
+  /* 鼠标悬停效果：变黑 */
+  .brand-name:hover { 
+      color: #111; 
+      transform: scale(1.05); 
+  }
 
   /* =========================================
      4. Story Section
@@ -439,7 +481,7 @@
     position: relative; overflow: hidden;
   }
 
-  /* 【修改点：新增顶部红条】 */
+  /* 【产品卡片顶部红条】 */
   .category-card::before {
     content: '';
     position: absolute;
@@ -536,7 +578,7 @@
   }
   .faq-item[open] { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #eee; }
 
-  /* 【修改点：字体变大，内边距优化】 */
+  /* 【FAQ字体变大】 */
   .faq-item summary { 
       font-weight: 800; padding: 20px 25px; 
       font-size: 1.8em; 
@@ -548,7 +590,6 @@
   .faq-item summary::after { content: '+'; font-size: 1.5em; color: #aaa; font-weight: 400; }
   .faq-item[open] summary::after { transform: rotate(45deg); color: #cc0000; }
 
-  /* 【修改点：字体变大，内边距优化】 */
   .faq-answer { padding: 0 25px 25px 25px; color: #555; line-height: 1.8; margin: 0; }
   .faq-answer p { font-size: 1.35em; margin-bottom: 15px; } 
   .faq-answer ul { padding-left: 20px; margin: 10px 0; }
@@ -624,7 +665,8 @@
   @media (max-width: 768px) {
     .hero-section { height: auto; padding: 100px 20px; }
     .hero-section h1 { font-size: 2.2em; }
-    .trust-logos { gap: 20px; flex-direction: column; }
+    .trust-logos { gap: 30px; flex-direction: column; }
+    .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
     .category-grid, .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
@@ -684,13 +726,21 @@
               <span class="story-subtitle">Who We Are</span>
               <h2 class="story-title">Not Just a Supplier.<br>We Are The Manufacturer.</h2>
               <p class="story-text">
-                  Most online blade sellers are just middlemen. At HK-BladeTech, you are talking directly to the factory. 
-                  We control every step from raw material selection to final heat treatment, ensuring your blades last longer and cut better.
+                  We are a specialized manufacturer of high-performance industrial blades. Whether you require <strong>standard OEM replacements</strong> or <strong>custom-engineered solutions</strong>, we deliver precision tools tailored to your production needs.
+                  <br><br>
+                  By controlling every production step in-house—from raw material selection to final heat treatment—we ensure superior edge retention and durability.
               </p>
+              
               <ul class="story-check-list">
-                  <li class="story-check-item"><span class="check-icon">✓</span> Genuine D2 & Carbide Materials</li>
-                  <li class="story-check-item"><span class="check-icon">✓</span> In-House Heat Treatment</li>
-                  <li class="story-check-item"><span class="check-icon">✓</span> Direct Engineer Support</li>
+                  <li class="story-check-item">
+                      <span class="check-icon">✓</span> Genuine D2 & Carbide Materials
+                  </li>
+                  <li class="story-check-item">
+                      <span class="check-icon">✓</span> In-House Vacuum Heat Treatment
+                  </li>
+                  <li class="story-check-item">
+                      <span class="check-icon">✓</span> Direct Technical & Engineering Support
+                  </li>
               </ul>
           </div>
       </div>
