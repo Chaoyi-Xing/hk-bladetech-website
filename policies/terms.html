@@ -42,7 +42,7 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局设置
+     1. 全局设置 & 防止页面横向晃动
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
@@ -51,18 +51,15 @@
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
   
-  /* 【关键修正】移除 body 上的左右 padding */
-  body { 
-      padding-top: env(safe-area-inset-top); 
-      /* padding-left/right REMOVED */
-  } 
+  /* 【修改】：移除 Body 的 padding，防止刘海处出现白条，改在容器内处理 */
+  body { padding-top: env(safe-area-inset-top); } 
 
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 1100px )
+     2. 电脑端样式 ( > 1024px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -95,6 +92,7 @@
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
   
+  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
@@ -105,14 +103,13 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( <= 1100px )
+     3. 手机端样式 ( 修改断点为 1024px )
      ========================================= */
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     
-    /* 【关键修正】在这里加 padding-left/right，确保 logo 不会被刘海挡住
-       但 Header 的白色背景会自动铺满 */
+    /* 增加安全距离，解决刘海问题 */
     .header-top-container { 
         display: flex; justify-content: space-between; align-items: center; 
         padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
@@ -122,6 +119,7 @@
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
+    /* 联系方式 (右侧) */
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
     .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
@@ -136,13 +134,14 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        /* 【关键修正】内容内缩避让刘海 */
+        /* 增加安全距离 */
         padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
         
+        /* 【修改】：横屏时自动居中，竖屏如果超宽会自动靠左滚动 */
         justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
@@ -169,7 +168,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; 
+        display: block; width: 100%; background: #fff; /* 纯白背景 */
         border-bottom: 1px solid #eee;
     }
     
@@ -186,7 +185,7 @@
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
-        /* 【关键修正】文字内缩 */
+        /* 安全距离 */
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
@@ -290,8 +289,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 【修改】：同步 CSS 断点，改为 1100
-    if (window.innerWidth > 1100) {
+    // 【修改】：同步 CSS 断点，改为 1024
+    if (window.innerWidth > 1024) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -299,18 +298,20 @@
     }
   });
 
-  // 2. 手机端下拉面板逻辑 (保持不变)
+  // 2. 手机端下拉面板逻辑
   window.toggleMobilePanel = function(panelId, triggerElement) {
       var allPanels = document.querySelectorAll('.mobile-dropdown-panel');
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
       var targetPanel = document.getElementById(panelId);
 
+      // 如果点的是已打开的，就关闭
       if (targetPanel.classList.contains('show')) {
           targetPanel.classList.remove('show');
           triggerElement.classList.remove('open');
           return;
       }
 
+      // 否则先关掉别的，再开这个
       allPanels.forEach(p => p.classList.remove('show'));
       allTriggers.forEach(t => t.classList.remove('open'));
 
@@ -318,7 +319,7 @@
       triggerElement.classList.add('open');
   }
 
-  // 3. 高亮逻辑 (保持不变)
+  // 3. 高亮逻辑
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
@@ -415,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/policies/terms.html" data-id="cuidpjw76bdo2tR25gnui3bmD" data-title="Terms and Conditions" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/policies/terms.html" data-id="cuidzUkdw2sDaziBftHiy-bB3" data-title="Terms and Conditions" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
