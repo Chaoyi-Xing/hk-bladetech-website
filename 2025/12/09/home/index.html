@@ -56,7 +56,7 @@
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 1024px )
+     2. 电脑端样式 ( > 768px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -100,9 +100,9 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 移动端/iPad竖屏样式 ( <= 1024px )
+     3. 手机端样式
      ========================================= */
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
@@ -118,7 +118,7 @@
     .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* 横向滑动容器 (默认状态：适应横屏/iPad，内容居中) */
+    /* 横向滑动容器 */
     .mobile-scroll-container {
         display: flex;
         overflow-x: auto; 
@@ -129,9 +129,6 @@
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
-        
-        /* 【重要修改】默认居中（适合手机横屏和iPad竖屏） */
-        justify-content: center; 
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
@@ -157,7 +154,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; 
+        display: block; width: 100%; background: #fff; /* 纯白背景 */
         border-bottom: 1px solid #eee;
     }
     
@@ -170,29 +167,19 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; 
-        font-weight: 600; 
+        color: #000; /* 改为纯黑 */
+        font-weight: 600; /* 加粗 */
         background: #fff;
         text-decoration: none;
-        text-align: left; /* 确保下拉菜单内容靠左，居中会很奇怪 */
     }
     .mobile-dropdown-link:last-child { border-bottom: none; }
     .mobile-dropdown-link:active { background-color: #f5f5f5; color: #cc0000; }
-  }
-
-  /* =========================================
-     4. 手机竖屏特供 ( < 600px )
-     ========================================= */
-  @media (max-width: 600px) {
-      /* 手机竖屏时，因为屏幕窄，居中可能会导致两边显示不全，所以改回左对齐滑动 */
-      .mobile-scroll-container {
-          justify-content: flex-start;
-      }
   }
 </style>
 
@@ -285,8 +272,7 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 只有在屏幕宽度大于 1024px 时才启用吸顶效果
-    if (window.innerWidth > 1024) {
+    if (window.innerWidth > 768) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -320,16 +306,12 @@
     const path = window.location.pathname;
     
     if (path === '/' || path === '/index.html') {
-        const homeDesktop = document.getElementById('nav-home-desktop');
-        const homeMobile = document.getElementById('nav-home-mobile');
-        if(homeDesktop) homeDesktop.classList.add('active');
-        if(homeMobile) homeMobile.classList.add('active');
+        document.getElementById('nav-home-desktop').classList.add('active');
+        document.getElementById('nav-home-mobile').classList.add('active');
     }
     if (path.includes('/contact')) {
-        const contactDesktop = document.getElementById('nav-contact-desktop');
-        const contactMobile = document.getElementById('nav-contact-mobile');
-        if(contactDesktop) contactDesktop.classList.add('active');
-        if(contactMobile) contactMobile.classList.add('active');
+        document.getElementById('nav-contact-desktop').classList.add('active');
+        document.getElementById('nav-contact-mobile').classList.add('active');
     }
   });
 </script>
@@ -373,7 +355,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#108;&#x65;&#120;&#x40;&#104;&#107;&#45;&#98;&#x6c;&#97;&#x64;&#x65;&#116;&#x65;&#99;&#104;&#46;&#99;&#x6f;&#x6d;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#x6c;&#101;&#120;&#64;&#x68;&#107;&#45;&#x62;&#x6c;&#x61;&#100;&#x65;&#116;&#x65;&#99;&#x68;&#46;&#99;&#x6f;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -384,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuid6vMedgVmZodVCF-TvbFvv" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidHAYMQjaMnplYP6xD7ciu7" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
