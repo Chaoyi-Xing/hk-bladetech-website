@@ -355,6 +355,7 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
+    /* 【修改：后缀改为 .png】 */
     background-image: url('/images/home-hero-factory-bg.png'); 
     background-size: cover; background-position: center top; background-repeat: no-repeat;
     box-sizing: border-box;
@@ -365,17 +366,12 @@
     position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
     z-index: 0;
     transform: translateX(-50%) translateY(-50%); 
-    object-fit: cover; 
-    opacity: 0.4; 
+    object-fit: cover; /* 保证图片铺满不拉伸 */
+    opacity: 0.4; /* 降低透明度，让上面的文字看得清 */
     pointer-events: none;
   }
   
-  .hero-content-wrapper { 
-      position: relative; z-index: 2; max-width: 1000px; 
-      /* 增加安全距离，防止文字被刘海遮挡 */
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
-  }
+  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
   
   .hero-tagline {
       display: inline-block; background: #cc0000; color: white; 
@@ -402,6 +398,7 @@
   }
   .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-2px); }
 
+  /* 【白底红字按钮】 */
   .btn-white { 
     display: inline-flex; align-items: center; justify-content: center;
     background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; 
@@ -545,10 +542,11 @@
       display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888;
   }
   
+  /* QC 图片样式：确保铺满盒子 */
   .qc-video-box img {
       width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
   }
-  .qc-card:hover .qc-video-box img { transform: scale(1.05); }
+  .qc-card:hover .qc-video-box img { transform: scale(1.05); } /* 鼠标悬停轻微放大图片 */
 
   .qc-card h3 { font-size: 1.4em; font-weight: 800; margin-bottom: 10px; color: #111; }
   .qc-card p { font-size: 1.05em; color: #555; line-height: 1.6; }
@@ -692,20 +690,16 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     10. Responsive (修改了断点为 1024px)
+     10. Responsive
      ========================================= */
-  @media (max-width: 1024px) {
-    .category-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
     .hero-section { height: auto; padding: 100px 20px; }
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
-    .category-grid { grid-template-columns: 1fr; } /* 手机端单列 */
-    .qc-grid { grid-template-columns: 1fr; } 
+    .category-grid, .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
     
@@ -716,17 +710,12 @@
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
-    
-    /* 修复刘海屏问题：确保内容区有padding，而不是body */
-    .unified-section, .process-section, .qc-section, .story-section, .faq-section, .custom-banner {
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
-    }
   }
 </style>
 
 <div class="home-wrapper">
-    <div class="hero-section">
+
+  <div class="hero-section">
     <img src="/images/home-hero-factory-bg.png" alt="Industrial Blade Manufacturing Factory" class="hero-bg-media">
     
     <div class="hero-content-wrapper">
