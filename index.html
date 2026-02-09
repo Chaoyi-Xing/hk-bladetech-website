@@ -321,8 +321,6 @@
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333; line-height: 1.6; width: 100%; margin: 0; padding: 0; background-color: #fff;
-    /* 防止横屏时出现横向滚动条导致白边 */
-    overflow-x: hidden;
   }
   a { text-decoration: none; }
   
@@ -669,15 +667,10 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     10. Responsive (已优化：手机横屏强制显示电脑版)
+     10. Responsive
      ========================================= */
-  @media (max-width: 1024px) { 
-      .category-grid { grid-template-columns: repeat(2, 1fr); } 
-  }
-  
-  /* 仅当屏幕宽度小于768px 且 处于【竖屏模式】时，才应用手机版样式 */
-  /* 横屏时会自动忽略这段代码，从而显示电脑版布局 */
-  @media (max-width: 768px) and (orientation: portrait) {
+  @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) {
     .hero-section { height: auto; padding: 100px 20px; }
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
@@ -694,18 +687,6 @@
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
-  }
-
-  /* 修复：针对横屏手机的安全区域，防止出现白边 */
-  @media (max-width: 900px) and (orientation: landscape) {
-      .home-wrapper {
-          min-height: 100vh;
-      }
-      .hero-section, .unified-section, .process-section, .custom-banner {
-          /* 适配刘海屏，防止内容被遮挡或两边留白过多 */
-          padding-left: max(20px, env(safe-area-inset-left));
-          padding-right: max(20px, env(safe-area-inset-right));
-      }
   }
 </style>
 
