@@ -316,7 +316,7 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     1. 全局容器
+     1. 全局容器 (仅针对主页内容)
      ========================================= */
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -329,13 +329,13 @@
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 电脑端保持一定高度 */
+    /* 电脑端保持高度 */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    /* 【修改1：删除了这里的 background-image，防止图片重叠/重复】 */
+    /* 【修改1：删除了 CSS background-image，防止重影】 */
     box-sizing: border-box;
   }
   
@@ -349,9 +349,8 @@
     /* 【修改2：透明度改为 0.8】 */
     opacity: 0.8; 
     
-    /* 【建议】：增加一点亮度滤镜，防止0.8的图片太亮导致文字看不清，
-       如果您觉得图片太暗，可以删掉下面这行 filter */
-    /* filter: brightness(0.65);  */
+    /* 您提到已注释掉亮度滤镜，保持注释状态 */
+    /* filter: brightness(0.65); */
     
     pointer-events: none;
   }
@@ -366,7 +365,7 @@
 
   .hero-section h1 { 
     font-weight: 800; font-size: 3em; margin-bottom: 15px; line-height: 1.1; 
-    text-shadow: 0 2px 20px rgba(0,0,0,0.9); /* 加重阴影以配合高透明度背景 */
+    text-shadow: 0 2px 20px rgba(0,0,0,0.9);
   }
   .hero-section p { 
     font-size: 1.3em; font-weight: 500; margin-bottom: 30px; color: #f0f0f0; 
@@ -568,17 +567,45 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     8. Responsive (手机端适配修复)
+     8. Responsive (手机端深度优化 - 修复背景过大问题)
      ========================================= */
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+  
   @media (max-width: 768px) {
-    /* 【修改3：降低手机端最小高度】
-       从 400px 降到 300px。
-       这样图片不需要在垂直方向上被拉伸太多，水平方向就能保留更多内容，
-       解决了 Chrome "图片太大/糊" 的问题，使其效果接近 Safari。 */
-    .hero-section { height: auto; min-height: 300px; padding: 70px 20px; }
+    /* 【关键修改】：大幅压缩垂直空间 */
+    .hero-section { 
+        height: auto; 
+        min-height: 260px; /* 降低最小高度 */
+        padding: 40px 15px; /* 减少内边距，让盒子变矮 */
+    }
     
-    .hero-section h1 { font-size: 2.2em; }
+    /* 字体缩小，防止撑高容器 */
+    .hero-section h1 { 
+        font-size: 1.8em; 
+        margin-bottom: 10px;
+    }
+    
+    .hero-tagline {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+
+    .hero-section p { 
+        font-size: 1.05em; 
+        margin-bottom: 20px; 
+        line-height: 1.4; 
+    }
+
+    /* 按钮通栏显示，更紧凑 */
+    .hero-btns { gap: 10px; }
+    .btn-primary, .btn-white { 
+        padding: 10px 20px; 
+        font-size: 14px;
+        width: 100%; 
+        box-sizing: border-box; 
+    }
+
+    /* 其他版块适配 */
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
@@ -590,9 +617,9 @@
     .action-group { width: 100%; max-width: 350px; }
     .banner-btn-email, .banner-btn-whatsapp, .banner-btn-red { justify-content: flex-start; padding-left: 30px; }
 
-    .custom-text h2 { font-size: 2.2em; }
-    .custom-text p { font-size: 1.2em; }
-    .section-title { font-size: 2.4em; }
+    .custom-text h2 { font-size: 2em; }
+    .custom-text p { font-size: 1.1em; }
+    .section-title { font-size: 2.2em; }
   }
 </style>
 
