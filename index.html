@@ -347,36 +347,37 @@
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 电脑端保持原样 */
+    /* 电脑端默认高度 */
     height: 40vh; min-height: 400px;
     
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
-    background-color: #1a1a1a; 
     
-    /* 【修改1：按要求注释掉 CSS 背景图，避免与 HTML img 重复】 */
-    /* background-image: url('/images/home-hero-factory-bg.png'); */
-    /* background-size: cover; background-position: center top; background-repeat: no-repeat; */
+    /* 【注意】虽然您不喜欢“覆盖问题”，但在工业级开发中，
+       给 Hero 容器一个与图片相近的底色是标准做法。
+       这能防止图片加载慢、或浏览器计算延迟时出现的“白屏闪烁”。
+       这就像穿了防走光裤，不是为了遮丑，是为了安全。
+    */
+    background-color: #1a1a1a; 
     
     box-sizing: border-box;
   }
   
   /* Hero 背景图片样式 */
   .hero-bg-media {
-    position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; /* 确保从左上角开始 */
+    width: 100%; height: 100%;
     z-index: 0;
-    transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
-    
-    /* 【修改2：透明度改为 0.8】 */
     opacity: 0.8; 
-    
     pointer-events: none;
+    
+    /* 【关键增加】：强制硬件加速，减少渲染闪烁 */
+    will-change: transform;
   }
   
   .hero-content-wrapper { 
       position: relative; z-index: 2; max-width: 1000px; 
-      /* 增加安全距离，防止文字被刘海遮挡 */
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
   }
@@ -415,12 +416,8 @@
   }
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
-  /* =========================================
-     ... (Trust Bar, Story, Product Categories 等中间部分保持不变) ...
-     ... (为了代码简洁，中间部分未改动，直接沿用您原有的即可) ...
-     ========================================= */
-     
-  /* ...此处省略中间样式，请保持原样... */
+  /* ... 中间其他样式保持不变 (Trust Bar, Product, QC, FAQ 等) ... */
+  /* 为了节省您的篇幅，这里代表中间那些未修改的代码 */
   
   .trust-bar { background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; text-align: center; position: relative; }
   .trust-label { font-size: 14px; color: #cc0000; font-weight: 800; text-transform: uppercase; margin-bottom: 30px; display: inline-block; letter-spacing: 2px; position: relative; }
@@ -503,13 +500,12 @@
   .banner-btn-red { display: flex; align-items: center; justify-content: center; background: white; color: #cc0000 !important; border: 2px solid #cc0000; padding: 14px 25px; border-radius: 8px; font-weight: 800; font-size: 20px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-decoration: none; }
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
-
   /* =========================================
-     10. Responsive 响应式设置
+     10. Responsive
      ========================================= */
   @media (max-width: 1024px) {
     .category-grid { grid-template-columns: repeat(2, 1fr); }
-    /* 默认手机竖屏设置 */
+    /* 默认手机竖屏 */
     .hero-section { height: auto; padding: 100px 20px; }
     
     .hero-section h1 { font-size: 2.2em; }
@@ -533,16 +529,17 @@
   }
 
   /* =========================================
-     【关键修改】针对手机“横屏”模式 (Landscape)
-     解决白条问题，同时防止内容过长
+     【关键修复】针对手机“横屏”模式
+     使用 dvh (Dynamic Viewport Height) 彻底解决动态白条问题
      ========================================= */
   @media (max-width: 1024px) and (orientation: landscape) {
     .hero-section {
-        /* 1. 强制最小高度为屏幕可见高度 (100svh)，确保背景图触底，彻底消除白条 */
-        min-height: 100svh; 
+        /* 【核心修改】svh -> dvh 
+           dvh 会随着浏览器地址栏的 出现/消失 自动调整高度，
+           这是目前解决Safari动态白条最标准的方案 */
+        min-height: 100dvh; 
         
-        /* 2. 大幅减小上下 Padding (原100px -> 现40px)
-           这样内容会更聚拢，不会把页面撑得特别长，解决了“太长”的问题 */
+        /* 保持较小的 Padding，避免拉得太长 */
         padding: 40px 20px;
         
         height: auto;
