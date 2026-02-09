@@ -316,76 +316,55 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     1. 全局容器
+     1. 全局容器 (仅针对主页内容)
      ========================================= */
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333; line-height: 1.6; width: 100%; margin: 0; padding: 0; background-color: #fff;
-    position: relative; 
-    z-index: 1; 
+    /* 防止横屏时出现横向滚动条导致白边 */
+    overflow-x: hidden;
   }
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (修复版：去除图片变暗)
+     2. Hero Section
      ========================================= */
   .hero-section { 
-    position: relative; 
-    height: 40vh; 
-    min-height: 400px;
+    position: relative; height: 40vh; min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    z-index: 0;
-  }
-
-  /* 针对移动端横屏 */
-  @media (max-width: 900px) and (orientation: landscape) {
-    .hero-section {
-      height: auto; 
-      min-height: 100vh; 
-      padding: 60px 20px; 
-    }
+    /* 【修改：后缀改为 .png】 */
+    background-image: url('/images/home-hero-factory-bg.png'); 
+    background-size: cover; background-position: center top; background-repeat: no-repeat;
+    box-sizing: border-box;
   }
   
   /* Hero 背景图片样式 */
   .hero-bg-media {
-    position: absolute; top: 0; left: 0; 
-    width: 100%; height: 100%;
-    z-index: -1; 
-    object-fit: cover; 
-    object-position: center;
-    /* 【关键修改】改为 1，不透明，显示原图亮度 */
-    opacity: 1; 
+    position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%); 
+    object-fit: cover; /* 保证图片铺满不拉伸 */
+    opacity: 0.4; /* 降低透明度，让上面的文字看得清 */
     pointer-events: none;
   }
   
-  /* 为了防止图片太亮看不清字，给文字容器加一点点阴影增强 */
-  .hero-content-wrapper { 
-    position: relative; 
-    z-index: 2; 
-    max-width: 1000px; 
-    padding: 0 15px; 
-    /* 可选：加一点点文字阴影，保证在亮背景下也能看清 */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-  }
+  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
   
   .hero-tagline {
       display: inline-block; background: #cc0000; color: white; 
       padding: 4px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
       font-size: 13px; margin-bottom: 20px; border-radius: 2px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   }
 
   .hero-section h1 { 
     font-weight: 800; font-size: 3em; margin-bottom: 15px; line-height: 1.1; 
-    /* 增强文字阴影 */
-    text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
   }
   .hero-section p { 
-    font-size: 1.3em; font-weight: 500; margin-bottom: 30px; color: #ffffff; 
-    /* 增强文字阴影 */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto;
+    font-size: 1.3em; font-weight: 500; margin-bottom: 30px; color: #f0f0f0; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8); max-width: 900px; margin-left: auto; margin-right: auto;
   }
   
   .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
@@ -398,6 +377,7 @@
   }
   .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-2px); }
 
+  /* 【白底红字按钮】 */
   .btn-white { 
     display: inline-flex; align-items: center; justify-content: center;
     background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; 
@@ -408,7 +388,7 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar
+     3. Trust Bar (品牌信任栏)
      ========================================= */
   .trust-bar { 
       background: #fafafa; 
@@ -541,10 +521,11 @@
       display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888;
   }
   
+  /* QC 图片样式：确保铺满盒子 */
   .qc-video-box img {
       width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
   }
-  .qc-card:hover .qc-video-box img { transform: scale(1.05); } 
+  .qc-card:hover .qc-video-box img { transform: scale(1.05); } /* 鼠标悬停轻微放大图片 */
 
   .qc-card h3 { font-size: 1.4em; font-weight: 800; margin-bottom: 10px; color: #111; }
   .qc-card p { font-size: 1.05em; color: #555; line-height: 1.6; }
@@ -688,10 +669,15 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     10. Responsive
+     10. Responsive (已优化：手机横屏强制显示电脑版)
      ========================================= */
-  @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) { 
+      .category-grid { grid-template-columns: repeat(2, 1fr); } 
+  }
+  
+  /* 仅当屏幕宽度小于768px 且 处于【竖屏模式】时，才应用手机版样式 */
+  /* 横屏时会自动忽略这段代码，从而显示电脑版布局 */
+  @media (max-width: 768px) and (orientation: portrait) {
     .hero-section { height: auto; padding: 100px 20px; }
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
@@ -708,6 +694,18 @@
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
+  }
+
+  /* 修复：针对横屏手机的安全区域，防止出现白边 */
+  @media (max-width: 900px) and (orientation: landscape) {
+      .home-wrapper {
+          min-height: 100vh;
+      }
+      .hero-section, .unified-section, .process-section, .custom-banner {
+          /* 适配刘海屏，防止内容被遮挡或两边留白过多 */
+          padding-left: max(20px, env(safe-area-inset-left));
+          padding-right: max(20px, env(safe-area-inset-right));
+      }
   }
 </style>
 
