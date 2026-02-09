@@ -329,6 +329,7 @@
      ========================================= */
   .hero-section { 
     position: relative; 
+    /* 默认高度设置 */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -344,11 +345,8 @@
     transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
     
-    /* 【已确认：透明度设置为 0.8】 */
+    /* 透明度设置为 0.8 */
     opacity: 0.8; 
-    
-    /* 【已删除：filter: brightness(0.65);】 */
-    
     pointer-events: none;
   }
   
@@ -564,9 +562,24 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     8. Responsive (手机端适配修复)
+     8. 平板及大屏优化 (1024px以下，包含手机横屏)
      ========================================= */
-  @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1024px) {
+    .category-grid { 
+        /* 在平板和横屏手机上显示2列，避免太稀疏或太拥挤 */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    /* 隐藏横线：防止Compatible文字换行 */
+    .trust-label::before, 
+    .trust-label::after {
+        display: none; 
+    }
+  }
+
+  /* =========================================
+     9. 手机竖屏适配 (768px以下)
+     ========================================= */
   @media (max-width: 768px) {
     .hero-section { height: auto; min-height: 300px; padding: 70px 20px; }
     
@@ -574,7 +587,11 @@
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
-    .category-grid, .qc-grid { grid-template-columns: 1fr; } 
+    
+    /* 竖屏下产品保持单列 */
+    .category-grid { grid-template-columns: 1fr; } 
+    
+    .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
     
@@ -585,11 +602,35 @@
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
+  }
 
-    /* 【新增修改】: 隐藏手机端 Compatible... 两侧的横线 */
-    .trust-label::before, 
-    .trust-label::after {
-        display: none; 
+  /* =========================================
+     10. 手机横屏 "Cinema Mode" (铺满屏幕模式)
+     ========================================= */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        height: 100vh;       /* 强制占满整个屏幕高度 */
+        min-height: auto;    /* 取消最小高度限制 */
+        padding: 40px 20px;  /* 减小内边距 */
+    }
+
+    /* 文字排版紧凑化，适应横屏的短高度 */
+    .hero-tagline { margin-bottom: 10px; font-size: 11px; }
+    .hero-section h1 { font-size: 1.8em; margin-bottom: 10px; } 
+    .hero-section p { 
+        font-size: 1em; 
+        margin-bottom: 15px; 
+        max-width: 80%; 
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* 限制显示行数，防止溢出 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .hero-btns { gap: 10px; }
+    .btn-primary, .btn-white {
+        padding: 8px 20px;
+        font-size: 14px;
     }
   }
 </style>
