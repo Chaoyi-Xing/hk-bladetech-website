@@ -325,11 +325,10 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (电脑端基准 - 保持不动)
+     2. Hero Section (电脑端基准 - 40vh)
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 电脑端保持 40vh */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -501,11 +500,24 @@
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【强制 700px】手机端无论什么浏览器，一律给 700px 高度 */
+    /* 1. 通用设置 (针对 Chrome/安卓等)：
+          保持您满意的 500px 
+    */
     .hero-section { 
-        height: 700px;      /* 强制 700px */
-        min-height: 700px; 
+        height: 500px; 
+        min-height: 500px; 
         padding: 0 20px;
+    }
+
+    /* 2. iOS/Safari 特供设置：
+          单独加高到 700px，抵消 Safari 的视觉误差。
+          @supports (-webkit-touch-callout: none) 是专门检测 iOS 设备的语法。
+    */
+    @supports (-webkit-touch-callout: none) {
+        .hero-section {
+            height: 700px;
+            min-height: 700px;
+        }
     }
     
     .hero-section h1 { 
@@ -527,7 +539,6 @@
         max-width: 100%;
     }
 
-    /* 手机端按钮 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
@@ -541,7 +552,7 @@
         flex: 0 1 auto; 
     }
 
-    /* Compatible 文字 */
+    /* Compatible 文字修复: 14px + 无横线 */
     .trust-label {
         font-size: 14px;  
         letter-spacing: 1px;
