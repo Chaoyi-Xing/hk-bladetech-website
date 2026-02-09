@@ -42,21 +42,15 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局重置
+     1. 全局设置 & 防止页面横向晃动
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
   .col-md-3, .col-lg-3 { display: none !important; }
 
-  html { background-color: #ffffff; scroll-behavior: smooth; }
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-
-  body { 
-    width: 100% !important; overflow-x: hidden !important; margin: 0 !important; padding: 0 !important; 
-    background-color: #ffffff !important; 
-    padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
-  }
-  
+  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
@@ -65,158 +59,127 @@
      2. 电脑端样式 ( > 768px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
-
-  .header-top { 
-      background-color: #ffffff; padding: 0; position: relative; width: 100%;
-      border-bottom: 1px solid #f9f9f9; box-sizing: border-box;
-  }
-
-  .header-bottom { 
-      background-color: #ffffff; height: 50px; width: 100%;
-      display: flex; align-items: center; justify-content: center; 
-      border-top: none; 
-      transition: all 0.3s ease; 
-  }
-
-  .header-bottom.is-fixed {
-      position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important;
-      z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
-      animation: slideDown 0.3s ease forwards;
-  }
+  .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
+  .header-bottom { background-color: #ffffff; height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; border-top: none; transition: all 0.3s ease; }
+  .header-bottom.is-fixed { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important; animation: slideDown 0.3s ease forwards; }
   @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
   .header-top-container { width: 100%; max-width: 1150px; margin: 0 auto; padding: 15px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; box-sizing: border-box; }
   .header-logo { display: flex; align-items: center; justify-self: end; }
   .header-logo img { height: 55px; width: auto; }
-  
   .header-search-wrapper { width: 420px; position: relative; }
   .header-search-input { width: 100%; box-sizing: border-box; padding: 12px 20px 12px 45px; background-color: #f4f4f4; border: 1px solid #eaeaea; border-radius: 50px; font-size: 15px; color: #333; outline: none; transition: all 0.3s; }
   .header-search-input:focus { background-color: #fff; border-color: #cc0000; box-shadow: 0 0 0 3px rgba(204,0,0,0.1); }
   .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 18px; color: #888; pointer-events: none; }
-
   .header-contact-info { display: flex; align-items: center; gap: 12px; justify-self: start; text-align: left; }
   .contact-icon svg { width: 40px; height: 40px; color: #cc0000 !important; stroke-width: 1.5; fill: none; }
   .contact-text { display: flex; flex-direction: column; justify-content: center; }
   .email-link { display: block; color: #cc0000 !important; font-size: 18px; font-weight: 700; text-decoration: underline !important; text-decoration-color: #cc0000 !important; line-height: 1.2; margin-bottom: 2px; }
-  .email-link:hover { color: #a00000 !important; }
   .whatsapp-link { display: flex; align-items: center; gap: 5px; color: #222; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 2px; }
 
-  .nav-menu { display: flex; align-items: center; gap: 45px; height: 100%; }
+  /* 电脑端导航 */
+  .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
-
+  
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
-  .dropdown-trigger-container { height: 100%; display: flex; align-items: center; }
   .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
-  
   .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
-  
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
-  .dropdown-trigger:hover::after, .dropdown-trigger.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
   
+  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
   .dropdown-content a:last-child { border-bottom: none; }
   .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
 
-  /* 默认隐藏手机元素 */
-  .mobile-toggle, .mobile-call-icon { display: none; }
-  .mobile-cta-container { display: none !important; }
+  .mobile-scroll-container, .mobile-dropdown-panel-container { display: none; }
+  .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( 两端对齐 + 全称 + 舒适间距 )
+     3. 手机端样式
      ========================================= */
   @media (max-width: 768px) {
-    /* 1. Header 吸顶 */
-    .custom-header { 
-        position: sticky; top: 0; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: block; 
-    }
-    
-    /* 2. Top 部分 */
+    .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 12px 15px; min-height: 60px; 
-        box-sizing: border-box; 
-    }
+    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
     .header-logo img { height: 28px; }
-    
-    .header-search-wrapper, .mobile-toggle { display: none !important; }
+    .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 2.1 联系方式 (右侧) */
-    .header-contact-info {
-        display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px;
-    }
+    /* 联系方式 (右侧) */
+    .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
     .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
     .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
-    /* 3. 菜单条 */
-    .header-bottom { 
-        display: block; height: 42px; width: 100%; background: #ffffff; 
-        position: static; padding: 0; overflow: visible; 
-        border-bottom: 1px solid #eee;
-    }
+    .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* ★★★ 关键：两端对齐，中间留白 ★★★ */
-    .nav-menu { 
-        display: flex; 
-        flex-direction: row; 
-        flex-wrap: nowrap; /* 不换行 */
-        justify-content: space-between; /* 均匀分布，填满宽度 */
-        align-items: center;
-        width: 100%; height: 100%;
-        background: transparent; 
-        padding: 0 15px; /* 【关键】左右增加到 15px，防止 FAQ 贴边 */
-        box-sizing: border-box;
-    }
-
-    /* 4. 菜单项 */
-    .nav-item, .dropdown-trigger-container { 
-        width: auto; height: 100%; 
-        padding: 0; border: none; 
-        display: flex; align-items: center; justify-content: center;
-    }
-    
-    /* 字体调整：全称显示 */
-    .nav-item, .dropdown-trigger { 
-        font-size: 12px; /* 字体稍微调小一点，保证放得下 */
-        font-weight: 700; 
-        color: #333; 
+    /* 横向滑动容器 */
+    .mobile-scroll-container {
+        display: flex;
+        overflow-x: auto; 
         white-space: nowrap; 
-        letter-spacing: -0.5px; /* 稍微紧凑字间距，防止换行 */
+        -webkit-overflow-scrolling: touch; 
+        padding: 0 15px; 
+        height: 44px;
+        align-items: center;
+        gap: 25px;
+        scrollbar-width: none; 
+    }
+    .mobile-scroll-container::-webkit-scrollbar { display: none; }
+
+    .mobile-nav-item {
+        font-size: 14px; 
+        font-weight: 700;
+        color: #333;
+        flex-shrink: 0; 
+        display: flex; align-items: center; gap: 4px;
+        cursor: pointer;
+        height: 100%;
+    }
+    .mobile-nav-item.active { color: #cc0000; }
+    
+    .mobile-nav-arrow {
+        border: solid #666; border-width: 0 1.5px 1.5px 0;
+        display: inline-block; padding: 2px; 
+        transform: rotate(45deg); margin-bottom: 2px;
+        transition: transform 0.2s;
+    }
+    .mobile-nav-item.open .mobile-nav-arrow { transform: rotate(225deg); border-color: #cc0000; }
+    .mobile-nav-item.open { color: #cc0000; }
+
+    /* 下拉内容面板 */
+    .mobile-dropdown-panel-container {
+        display: block; width: 100%; background: #fff; /* 纯白背景 */
+        border-bottom: 1px solid #eee;
     }
     
-    .nav-item.active, .dropdown-trigger.active { color: #cc0000; }
-    .nav-item:hover::after, .nav-item.active::after, .dropdown-trigger:hover::after, .dropdown-trigger.active::after { display: none; }
-
-    /* 箭头 */
-    .arrow-desktop { 
-        display: inline-block; 
-        margin-left: 2px; padding: 1.5px; margin-bottom: 2px; 
-        border-color: #666;
-    } 
-
-    /* 5. 下拉菜单：全宽弹出 */
-    .dropdown { position: static; } 
-    
-    .dropdown-content { 
-        position: absolute; top: 100%; left: 0; width: 100%; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15); border-top: 1px solid #eee; 
-        padding: 0; z-index: 10000; background: #ffffff; 
+    .mobile-dropdown-panel {
+        display: none; 
+        width: 100%;
+        animation: fadeIn 0.2s ease;
     }
-    .dropdown.open .dropdown-content { display: block; }
+    .mobile-dropdown-panel.show { display: block; }
     
-    .dropdown-content a { padding: 14px 20px; border-bottom: 1px solid #f5f5f5; font-size: 14px; color: #444; background: #fff; }
-    .dropdown-content a:active { background-color: #f9f9f9; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .mobile-cta-container { display: none !important; }
+    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
+    .mobile-dropdown-link {
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px; 
+        color: #000; /* 改为纯黑 */
+        font-weight: 600; /* 加粗 */
+        background: #fff;
+        text-decoration: none;
+    }
+    .mobile-dropdown-link:last-child { border-bottom: none; }
+    .mobile-dropdown-link:active { background-color: #f5f5f5; color: #cc0000; }
   }
 </style>
 
@@ -242,15 +205,12 @@
   </div>
 
   <div class="header-bottom" id="header-bottom">
-    <nav class="nav-menu" id="nav-menu">
-      <a href="/" class="nav-item" id="nav-home">Home</a>
-
-      <div class="dropdown" id="dropdown-products">
-        <div class="dropdown-trigger-container">
-            <a href="/products/?cat=all" class="dropdown-trigger" id="link-products">
-                Product Catalog <span class="arrow-desktop"></span>
-            </a>
-        </div>
+    
+    <nav class="nav-menu-desktop">
+      <a href="/" class="nav-item" id="nav-home-desktop">Home</a>
+      
+      <div class="dropdown">
+        <a href="/products/?cat=all" class="dropdown-trigger">Product Catalog <span class="arrow-desktop"></span></a>
         <div class="dropdown-content">
           <a href="/products/?cat=granulator">Granulator Blades</a>
           <a href="/products/?cat=shredder">Shredder Blocks</a>
@@ -259,32 +219,59 @@
         </div>
       </div>
 
-      <div class="dropdown" id="dropdown-custom">
-        <div class="dropdown-trigger-container">
-            <a href="/capabilities/" class="dropdown-trigger" id="link-custom">
-                Custom Manufacturing <span class="arrow-desktop"></span>
-            </a>
-        </div>
+      <div class="dropdown">
+        <a href="/capabilities/" class="dropdown-trigger">Custom Manufacturing <span class="arrow-desktop"></span></a>
         <div class="dropdown-content">
           <a href="/capabilities/measuring-guide/">View Measuring Guide</a>
           <a href="/capabilities/blade-materials/">Compare Blade Materials</a>
         </div>
       </div>
 
-      <a href="/contact" class="nav-item" id="nav-contact">Contact</a>
-      <a href="/#faq-section" class="nav-item">FAQs</a> 
+      <a href="/contact" class="nav-item" id="nav-contact-desktop">Contact</a>
+      <a href="/#faq-section" class="nav-item">FAQs</a>
     </nav>
+
+    <div class="mobile-scroll-container">
+        <a href="/" class="mobile-nav-item" id="nav-home-mobile">Home</a>
+        
+        <div class="mobile-nav-item" onclick="toggleMobilePanel('panel-products', this)">
+            Product Catalog <span class="mobile-nav-arrow"></span>
+        </div>
+        
+        <div class="mobile-nav-item" onclick="toggleMobilePanel('panel-custom', this)">
+            Custom Manufacturing <span class="mobile-nav-arrow"></span>
+        </div>
+        
+        <a href="/contact" class="mobile-nav-item" id="nav-contact-mobile">Contact</a>
+        <a href="/#faq-section" class="mobile-nav-item">FAQs</a>
+    </div>
+
+    <div class="mobile-dropdown-panel-container">
+        <div id="panel-products" class="mobile-dropdown-panel">
+            <a href="/products/?cat=granulator" class="mobile-dropdown-link">Granulator Blades</a>
+            <a href="/products/?cat=shredder" class="mobile-dropdown-link">Shredder Blocks</a>
+            <a href="/products/?cat=circular" class="mobile-dropdown-link">Circular Knives</a>
+            <a href="/products/?cat=corrugated" class="mobile-dropdown-link">Corrugated Knives</a>
+            <a href="/products/?cat=all" class="mobile-dropdown-link" style="color:#cc0000;">View Full Catalog →</a>
+        </div>
+
+        <div id="panel-custom" class="mobile-dropdown-panel">
+            <a href="/capabilities/measuring-guide/" class="mobile-dropdown-link">View Measuring Guide</a>
+            <a href="/capabilities/blade-materials/" class="mobile-dropdown-link">Compare Blade Materials</a>
+            <a href="/contact" class="mobile-dropdown-link" style="color:#cc0000;">Get Custom Quote →</a>
+        </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-  // 1. JS 监听滚动 (电脑端吸顶)
+  // 1. 电脑端吸顶
   window.addEventListener('scroll', function() {
     var topBar = document.getElementById('header-top');
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 仅在电脑端执行吸顶逻辑，手机端CSS已固定
     if (window.innerWidth > 768) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
@@ -293,48 +280,38 @@
     }
   });
 
-  // 2. 下拉菜单逻辑 (手机端点击触发)
-  var triggers = document.querySelectorAll('.dropdown-trigger');
-  triggers.forEach(function(trigger) {
-      trigger.addEventListener('click', function(e) {
-          // 手机端：阻止跳转，展开菜单
-          if (window.innerWidth <= 768) {
-              e.preventDefault(); 
-              e.stopPropagation();
-              var dropdown = this.closest('.dropdown');
-              
-              // 关闭其他打开的
-              document.querySelectorAll('.dropdown').forEach(d => {
-                  if(d !== dropdown) d.classList.remove('open');
-              });
+  // 2. 手机端下拉面板逻辑
+  window.toggleMobilePanel = function(panelId, triggerElement) {
+      var allPanels = document.querySelectorAll('.mobile-dropdown-panel');
+      var allTriggers = document.querySelectorAll('.mobile-nav-item');
+      var targetPanel = document.getElementById(panelId);
 
-              dropdown.classList.toggle('open');
-          }
-      });
-  });
-
-  // 3. 点击空白关闭
-  document.addEventListener('click', function(e) {
-      if (!e.target.closest('.dropdown')) {
-          document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      // 如果点的是已打开的，就关闭
+      if (targetPanel.classList.contains('show')) {
+          targetPanel.classList.remove('show');
+          triggerElement.classList.remove('open');
+          return;
       }
-  });
 
-  // 4. 页面加载高亮
+      // 否则先关掉别的，再开这个
+      allPanels.forEach(p => p.classList.remove('show'));
+      allTriggers.forEach(t => t.classList.remove('open'));
+
+      targetPanel.classList.add('show');
+      triggerElement.classList.add('open');
+  }
+
+  // 3. 高亮逻辑
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
+    
     if (path === '/' || path === '/index.html') {
-      const homeLink = document.getElementById('nav-home');
-      if(homeLink) homeLink.classList.add('active');
-    } else if (path.includes('/products/')) {
-      const prodLink = document.getElementById('link-products');
-      if(prodLink) prodLink.classList.add('active');
-    } else if (path.includes('/capabilities/')) {
-      const capLink = document.getElementById('link-custom');
-      if(capLink) capLink.classList.add('active');
-    } else if (path.includes('/contact')) {
-      const contactLink = document.getElementById('nav-contact');
-      if(contactLink) contactLink.classList.add('active');
+        document.getElementById('nav-home-desktop').classList.add('active');
+        document.getElementById('nav-home-mobile').classList.add('active');
+    }
+    if (path.includes('/contact')) {
+        document.getElementById('nav-contact-desktop').classList.add('active');
+        document.getElementById('nav-contact-mobile').classList.add('active');
     }
   });
 </script>
