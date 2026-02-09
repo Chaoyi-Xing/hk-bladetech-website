@@ -325,11 +325,10 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (电脑端基准样式 - 保持不动)
+     2. Hero Section (电脑端基准 - 保持不动)
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 【电脑端保持原样】：40vh */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -343,7 +342,6 @@
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
     object-fit: cover; 
-    /* 确保图片以顶部为基准，防止工厂房顶被切掉 */
     object-position: center top; 
     opacity: 0.8; 
     pointer-events: none;
@@ -366,7 +364,7 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto;
   }
   
-  /* 【电脑端按钮】：恢复原来的精致样式 */
+  /* 电脑端按钮 - 保持精致 */
   .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
   
   .btn-primary, .btn-white { 
@@ -374,7 +372,6 @@
     border-radius: 4px; padding: 12px 32px; font-weight: 700; font-size: 16px; 
     transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    /* 电脑端不设固定宽度，保持自适应 */
     width: auto; 
   }
 
@@ -389,7 +386,7 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar
+     3. Trust Bar (电脑端)
      ========================================= */
   .trust-bar { 
       background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; 
@@ -416,7 +413,7 @@
 
   /* =========================================
      4. Story, Product, QC, Process, FAQ, Banner
-     (标准样式 - 电脑端)
+     (中间标准样式)
      ========================================= */
   .story-section { padding: 80px 20px; background: #fff; }
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
@@ -499,17 +496,15 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     8. Responsive (手机端深度适配 - 仅在此处修改！)
+     8. Responsive (手机端深度适配)
      ========================================= */
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【手机端 Hero 修复】 
-       1. 高度设为 auto，但给予 min-height 420px，比之前高，解决 Safari 觉得小的问题 
-       2. 上下内边距 60px，保证内容呼吸感，同时在 Chrome 上撑起足够高度 */
+    /* 【Hero 修复】：min-height 增加到 520px */
     .hero-section { 
         height: auto; 
-        min-height: 420px; 
+        min-height: 520px; /* 进一步增高，解决Safari觉得小的问题 */
         padding: 60px 20px; 
     }
     
@@ -532,10 +527,7 @@
         max-width: 100%;
     }
 
-    /* 【手机端按钮修复】：
-       1. 去掉 width: 100%，改回 width: auto
-       2. 减小内边距，适应手机屏幕
-       3. 它们会自动排成一行（如果屏幕够宽）或两行，但不会是巨大的长条 */
+    /* 手机端按钮 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
@@ -544,27 +536,28 @@
     .btn-primary, .btn-white { 
         width: auto; 
         min-width: unset; 
-        padding: 10px 24px; /* 比电脑端稍微小一点点，精致 */
+        padding: 10px 24px; 
         font-size: 14px;
         flex: 0 1 auto; 
     }
 
-    /* 【手机端 "Compatible" 文字修复】：
-       1. 隐藏左右装饰线（::before/after），节省宝贵的水平空间
-       2. 稍微调小字号和字间距
-       这样在 Chrome 上就能显示在同一行了 */
+    /* 【Compatible 文字修复】
+       1. 恢复到 14px (和电脑一样)
+       2. 保留一点间距 (1px)
+       3. 去掉横线 (display: none)
+    */
     .trust-label {
-        font-size: 11px; 
-        letter-spacing: 0px; /* 收紧间距 */
-        white-space: nowrap; /* 强制不换行 */
+        font-size: 14px;  /* 改回 14px */
+        letter-spacing: 1px; /* 稍微有一点间距 */
+        white-space: normal; /* 允许换行，但因为字大，换行也好看 */
         padding: 0;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
     .trust-label::before, .trust-label::after {
-        display: none; /* 隐藏横线 */
+        display: none; /* 坚决去掉横线 */
     }
 
-    /* 品牌墙保持优化后的网格 */
+    /* 品牌墙两列网格 */
     .trust-logos { 
         flex-direction: row; 
         flex-wrap: wrap; 
