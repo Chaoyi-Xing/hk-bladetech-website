@@ -329,33 +329,27 @@
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 电脑端保持高度 */
+    /* 电脑端默认高度 */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    /* 【修改1：删除了 CSS background-image，防止重影】 */
     box-sizing: border-box;
   }
   
   /* Hero 背景图片样式 */
   .hero-bg-media {
-    position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0;
-    transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; /* 保证铺满 */
-    
-    /* 【修改2：透明度改为 0.8】 */
+    /* 【修改：顶部对齐】手机上裁剪时优先保留图片上半部分 */
+    object-position: center top; 
     opacity: 0.8; 
-    
-    /* 您提到已注释掉亮度滤镜，保持注释状态 */
-    /* filter: brightness(0.65); */
-    
     pointer-events: none;
   }
   
-  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
+  .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; width: 100%; }
   
   .hero-tagline {
       display: inline-block; background: #cc0000; color: white; 
@@ -567,47 +561,62 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     8. Responsive (手机端深度优化 - 修复背景过大问题)
+     8. Responsive (手机端深度适配)
      ========================================= */
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【关键修改】：大幅压缩垂直空间 */
+    /* 1. Hero 区域：高度适中，防止太小或太大 */
     .hero-section { 
         height: auto; 
-        min-height: 260px; /* 降低最小高度 */
-        padding: 40px 15px; /* 减少内边距，让盒子变矮 */
+        min-height: 360px; /* 适中的高度，比260px大，比400px小 */
+        padding: 50px 15px; 
     }
     
-    /* 字体缩小，防止撑高容器 */
+    /* 2. 字体强制改小：解决换行太多的问题 */
     .hero-section h1 { 
-        font-size: 1.8em; 
-        margin-bottom: 10px;
+        font-size: 26px !important; /* 强制像素大小，防止在Chrome上因为em换算变大 */
+        margin-bottom: 12px;
+        line-height: 1.25;
     }
     
+    /* 红色标签也改紧凑 */
     .hero-tagline {
-        margin-bottom: 10px;
-        font-size: 12px;
+        font-size: 11px;
+        padding: 3px 8px;
+        margin-bottom: 15px;
     }
 
     .hero-section p { 
-        font-size: 1.05em; 
-        margin-bottom: 20px; 
-        line-height: 1.4; 
+        font-size: 14px; 
+        margin-bottom: 25px; 
+        line-height: 1.5; 
+        max-width: 90%;
     }
 
-    /* 按钮通栏显示，更紧凑 */
-    .hero-btns { gap: 10px; }
+    /* 按钮通栏 */
+    .hero-btns { gap: 12px; width: 100%; }
     .btn-primary, .btn-white { 
-        padding: 10px 20px; 
-        font-size: 14px;
+        padding: 12px 0; 
+        font-size: 15px;
         width: 100%; 
         box-sizing: border-box; 
     }
 
-    /* 其他版块适配 */
-    .trust-logos { gap: 30px; flex-direction: column; }
-    .brand-name { font-size: 18px; width: 40%; text-align: center; }
+    /* 3. 【修复】Trust Bar 品牌墙：改为两列网格，解决垂直列表太长的问题 */
+    .trust-logos { 
+        flex-direction: row; /* 横向排列 */
+        flex-wrap: wrap;     /* 允许换行 */
+        gap: 15px; 
+        justify-content: center;
+    }
+    .brand-name { 
+        font-size: 15px; 
+        width: 42%; /* 两个约占 90%，留点缝隙，形成两列 */
+        text-align: center; 
+        margin: 5px 0;
+    }
+
     .story-container { flex-direction: column; gap: 40px; }
     .category-grid, .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
