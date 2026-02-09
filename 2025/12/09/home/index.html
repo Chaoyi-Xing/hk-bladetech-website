@@ -56,7 +56,7 @@
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 768px )
+     2. 电脑端样式 ( > 1024px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -100,18 +100,20 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式
+     3. 手机端 & 手机横屏样式 (断点改为 1024px)
      ========================================= */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    .header-search-wrapper, .mobile-toggle, .nav-menu-desktop, .contact-icon { display: none !important; }
+
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
+    
+    /* 容器布局：手机横屏适配 */
     .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
     .header-logo img { height: 28px; }
-    .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 联系方式 (右侧) */
+    /* 联系方式 (右侧) - 强制显示并垂直排列 */
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
-    .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
     .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
@@ -154,7 +156,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; /* 纯白背景 */
+        display: block; width: 100%; background: #fff;
         border-bottom: 1px solid #eee;
     }
     
@@ -167,14 +169,14 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
+    /* 下拉菜单项样式 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000;
+        font-weight: 600;
         background: #fff;
         text-decoration: none;
     }
@@ -272,7 +274,7 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) { // 修改检测宽度为 1024
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -306,12 +308,16 @@
     const path = window.location.pathname;
     
     if (path === '/' || path === '/index.html') {
-        document.getElementById('nav-home-desktop').classList.add('active');
-        document.getElementById('nav-home-mobile').classList.add('active');
+        const desktopHome = document.getElementById('nav-home-desktop');
+        const mobileHome = document.getElementById('nav-home-mobile');
+        if(desktopHome) desktopHome.classList.add('active');
+        if(mobileHome) mobileHome.classList.add('active');
     }
     if (path.includes('/contact')) {
-        document.getElementById('nav-contact-desktop').classList.add('active');
-        document.getElementById('nav-contact-mobile').classList.add('active');
+        const desktopContact = document.getElementById('nav-contact-desktop');
+        const mobileContact = document.getElementById('nav-contact-mobile');
+        if(desktopContact) desktopContact.classList.add('active');
+        if(mobileContact) mobileContact.classList.add('active');
     }
   });
 </script>
@@ -355,7 +361,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#101;&#x78;&#x40;&#x68;&#x6b;&#x2d;&#x62;&#x6c;&#97;&#100;&#101;&#x74;&#x65;&#99;&#x68;&#46;&#x63;&#111;&#109;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#108;&#101;&#x78;&#64;&#104;&#x6b;&#45;&#x62;&#x6c;&#97;&#100;&#101;&#116;&#x65;&#x63;&#x68;&#46;&#99;&#111;&#x6d;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -366,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuid7q6uY7g9C3WyYgtxlwFtQ" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidC4nRnILhMeWHwS2LlmfWi" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
