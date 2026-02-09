@@ -329,6 +329,7 @@
      ========================================= */
   .hero-section { 
     position: relative; 
+    /* 电脑端保持 40vh */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -500,20 +501,11 @@
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 1. Chrome / 安卓 / 通用手机样式 */
+    /* 【强制 800px】手机端无论什么浏览器，一律给 800px 高度 */
     .hero-section { 
-        height: 500px;      /* 保持 Chrome 完美 */
-        min-height: 500px; 
+        height: 800px;      /* 强制 800px */
+        min-height: 800px; 
         padding: 0 20px;
-    }
-
-    /* 2. 【核心大招】专门针对 iOS Safari 加高 */
-    /* -webkit-touch-callout 是 iOS 特有的属性，这里我们用来识别 iPhone */
-    @supports (-webkit-touch-callout: none) {
-        .hero-section {
-            height: 600px; /* Safari 专属高度，比 Chrome 高 100px */
-            min-height: 600px;
-        }
     }
     
     .hero-section h1 { 
@@ -535,6 +527,7 @@
         max-width: 100%;
     }
 
+    /* 手机端按钮 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
@@ -548,7 +541,7 @@
         flex: 0 1 auto; 
     }
 
-    /* Compatible 文字修复: 14px + 无横线 */
+    /* Compatible 文字 */
     .trust-label {
         font-size: 14px;  
         letter-spacing: 1px;
