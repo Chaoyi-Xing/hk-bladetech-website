@@ -50,16 +50,13 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  
-  /* 【修改】：移除 Body 的 padding，防止刘海处出现白条，改在容器内处理 */
-  body { padding-top: env(safe-area-inset-top); } 
-
+  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 1024px )
+     2. 电脑端样式 ( > 1100px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -103,19 +100,12 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( 修改断点为 1024px )
+     3. 手机端样式 ( <= 1100px )
      ========================================= */
-  @media (max-width: 1024px) {
+  @media (max-width: 1100px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    
-    /* 增加安全距离，解决刘海问题 */
-    .header-top-container { 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
-        min-height: 60px; box-sizing: border-box; 
-    }
-    
+    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
@@ -134,14 +124,13 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        /* 增加安全距离 */
-        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
+        padding: 0 15px; 
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
         
-        /* 【修改】：横屏时自动居中，竖屏如果超宽会自动靠左滚动 */
+        /* 手机横屏时居中，竖屏如果超宽靠左 */
         justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
@@ -185,13 +174,10 @@
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
-        /* 安全距离 */
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; 
-        font-weight: 600; 
+        color: #000; /* 改为纯黑 */
+        font-weight: 600; /* 加粗 */
         background: #fff;
         text-decoration: none;
     }
@@ -289,8 +275,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 【修改】：同步 CSS 断点，改为 1024
-    if (window.innerWidth > 1024) {
+    // 【修改】：同步 CSS 断点，改为 1100
+    if (window.innerWidth > 1100) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -373,7 +359,7 @@
 <hr>
 <h3 id="Need-a-Quote-询价"><a href="#Need-a-Quote-询价" class="headerlink" title="Need a Quote? (询价)"></a>Need a Quote? (询价)</h3><p>Stop overpaying for your blades. Get a direct quote from the manufacturing source.</p>
 <ul>
-<li>📧 <strong>Email:</strong> <a href="mailto:&#97;&#x6c;&#101;&#x78;&#64;&#104;&#107;&#45;&#98;&#108;&#97;&#x64;&#101;&#x74;&#x65;&#x63;&#104;&#x2e;&#99;&#x6f;&#x6d;">alex@hk-bladetech.com</a></li>
+<li>📧 <strong>Email:</strong> <a href="mailto:&#x61;&#108;&#x65;&#120;&#x40;&#104;&#x6b;&#45;&#x62;&#x6c;&#x61;&#100;&#x65;&#x74;&#x65;&#x63;&#104;&#x2e;&#99;&#111;&#109;">alex@hk-bladetech.com</a></li>
 <li>📞 <strong>WhatsApp:</strong> +852 1234 5678</li>
 <li>📍 <strong>Location:</strong> Hong Kong</li>
 </ul>
@@ -384,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuid6UZ5AV1pl1-ujraCbM-ml" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/2025/12/09/home/" data-id="cuidfTG1CUrR-HjkhY7QewmzT" data-title="Welcome to HK BladeTech" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
