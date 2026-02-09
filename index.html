@@ -325,10 +325,11 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (电脑端基准 - 保持原样)
+     2. Hero Section (电脑端基准)
      ========================================= */
   .hero-section { 
     position: relative; 
+    /* 电脑端保持 40vh */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -364,7 +365,7 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto;
   }
   
-  /* 电脑端按钮 - 保持精致 */
+  /* 电脑端按钮 */
   .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
   
   .btn-primary, .btn-white { 
@@ -413,7 +414,6 @@
 
   /* =========================================
      4. Story, Product, QC, Process, FAQ, Banner
-     (中间标准样式)
      ========================================= */
   .story-section { padding: 80px 20px; background: #fff; }
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
@@ -501,12 +501,11 @@
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【Hero 修复】：通过增加padding强行撑开高度 */
+    /* 【重点】手机端强制像素高度 (px) */
     .hero-section { 
-        height: auto; 
-        min-height: 520px; /* 最小高度保底 */
-        /* 【关键修改】：上下内边距增加到 100px，确保 Safari 上有足够内容高度来撑开背景 */
-        padding: 100px 20px; 
+        height: 500px;      /* 强制高度 500px，Safari和Chrome都必须听话 */
+        min-height: 500px;  /* 双重保险 */
+        padding: 0 20px;    /* 左右留空，上下用 flex 居中，不再用 padding 撑高 */
     }
     
     .hero-section h1 { 
@@ -528,7 +527,7 @@
         max-width: 100%;
     }
 
-    /* 手机端按钮 */
+    /* 手机端按钮 - 精致版 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
@@ -542,23 +541,18 @@
         flex: 0 1 auto; 
     }
 
-    /* 【Compatible 文字修复】
-       1. 恢复到 14px (和电脑一样)
-       2. 保留一点间距 (1px)
-       3. 去掉横线 (display: none)
-    */
+    /* 【Compatible 文字】无横线 */
     .trust-label {
         font-size: 14px;  
-        letter-spacing: 1px; /* 稍微有一点间距 */
-        white-space: normal; /* 允许换行，但因为字大，换行也好看 */
+        letter-spacing: 1px;
+        white-space: normal;
         padding: 0;
         margin-bottom: 25px;
     }
     .trust-label::before, .trust-label::after {
-        display: none; /* 坚决去掉横线 */
+        display: none;
     }
 
-    /* 品牌墙两列网格 */
     .trust-logos { 
         flex-direction: row; 
         flex-wrap: wrap; 
