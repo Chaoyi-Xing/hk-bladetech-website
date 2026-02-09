@@ -48,13 +48,16 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  
+  /* 【修改】：移除 Body 的 padding，防止刘海处出现白条，改在容器内处理 */
+  body { padding-top: env(safe-area-inset-top); } 
+
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 1100px )
+     2. 电脑端样式 ( > 1024px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -98,12 +101,19 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( <= 1100px )
+     3. 手机端样式 ( 修改断点为 1024px )
      ========================================= */
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
+    
+    /* 增加安全距离，解决刘海问题 */
+    .header-top-container { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
+        min-height: 60px; box-sizing: border-box; 
+    }
+    
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
@@ -122,13 +132,14 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        padding: 0 15px; 
+        /* 增加安全距离 */
+        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
         
-        /* 手机横屏时居中，竖屏如果超宽靠左 */
+        /* 【修改】：横屏时自动居中，竖屏如果超宽会自动靠左滚动 */
         justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
@@ -172,10 +183,13 @@
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
+        /* 安全距离 */
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000; 
+        font-weight: 600; 
         background: #fff;
         text-decoration: none;
     }
@@ -273,8 +287,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 【修改】：同步 CSS 断点，改为 1100
-    if (window.innerWidth > 1100) {
+    // 【修改】：同步 CSS 断点，改为 1024
+    if (window.innerWidth > 1024) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -329,18 +343,20 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (默认电脑端 > 1100px)
+     2. Hero Section
      ========================================= */
   .hero-section { 
     position: relative; 
-    /* 电脑端默认高度 */
+    /* 电脑端保持原样 */
     height: 40vh; min-height: 400px;
     
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
-    
-    /* 黑色底色：防止 Safari 旋转屏幕瞬间出现白底 */
     background-color: #1a1a1a; 
+    
+    /* 【修改1：按要求注释掉 CSS 背景图，避免与 HTML img 重复】 */
+    /* background-image: url('/images/home-hero-factory-bg.png'); */
+    /* background-size: cover; background-position: center top; background-repeat: no-repeat; */
     
     box-sizing: border-box;
   }
@@ -351,13 +367,16 @@
     z-index: 0;
     transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
+    
+    /* 【修改2：透明度改为 0.8】 */
     opacity: 0.8; 
+    
     pointer-events: none;
   }
   
   .hero-content-wrapper { 
       position: relative; z-index: 2; max-width: 1000px; 
-      /* 刘海屏安全距离 */
+      /* 增加安全距离，防止文字被刘海遮挡 */
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
   }
@@ -397,8 +416,12 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar ~ 9. Bottom Banner
+     ... (Trust Bar, Story, Product Categories 等中间部分保持不变) ...
+     ... (为了代码简洁，中间部分未改动，直接沿用您原有的即可) ...
      ========================================= */
+     
+  /* ...此处省略中间样式，请保持原样... */
+  
   .trust-bar { background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; text-align: center; position: relative; }
   .trust-label { font-size: 14px; color: #cc0000; font-weight: 800; text-transform: uppercase; margin-bottom: 30px; display: inline-block; letter-spacing: 2px; position: relative; }
   .trust-label::before, .trust-label::after { content: ""; display: inline-block; width: 30px; height: 2px; background: #f5cccc; vertical-align: middle; margin: 0 15px; }
@@ -483,11 +506,9 @@
 
   /* =========================================
      10. Responsive 响应式设置
-     【修改】：断点设为 1100px (安全值)
      ========================================= */
-  @media (max-width: 1100px) {
+  @media (max-width: 1024px) {
     .category-grid { grid-template-columns: repeat(2, 1fr); }
-    
     /* 默认手机竖屏设置 */
     .hero-section { height: auto; padding: 100px 20px; }
     
@@ -513,27 +534,18 @@
 
   /* =========================================
      【关键修改】针对手机“横屏”模式 (Landscape)
-     范围扩大到 1100px，使用 svh 解决白条
+     解决白条问题，同时防止内容过长
      ========================================= */
-  @media (max-width: 1100px) and (orientation: landscape) {
+  @media (max-width: 1024px) and (orientation: landscape) {
     .hero-section {
-        /* 使用 svh 确保刚好的满屏，消灭Safari白条 */
+        /* 1. 强制最小高度为屏幕可见高度 (100svh)，确保背景图触底，彻底消除白条 */
         min-height: 100svh; 
         
-        /* 减小内边距，防止内容把背景撑得太长 */
+        /* 2. 大幅减小上下 Padding (原100px -> 现40px)
+           这样内容会更聚拢，不会把页面撑得特别长，解决了“太长”的问题 */
         padding: 40px 20px;
         
         height: auto;
-    }
-    
-    /* 确保背景图片对象完全覆盖容器 */
-    .hero-bg-media {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
   }
 </style>
