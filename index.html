@@ -325,10 +325,11 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (电脑端基准 - 保持不动)
+     2. Hero Section (电脑端基准 - 保持原样)
      ========================================= */
   .hero-section { 
     position: relative; 
+    /* 电脑端：保持您满意的 40vh */
     height: 40vh; 
     min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -364,7 +365,7 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto;
   }
   
-  /* 电脑端按钮 - 保持精致 */
+  /* 电脑端按钮 - 精致样式 */
   .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
   
   .btn-primary, .btn-white { 
@@ -372,7 +373,7 @@
     border-radius: 4px; padding: 12px 32px; font-weight: 700; font-size: 16px; 
     transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    width: auto; 
+    width: auto; /* 电脑端自适应宽度 */
   }
 
   .btn-primary { 
@@ -396,6 +397,7 @@
       font-size: 14px; color: #cc0000; font-weight: 800; text-transform: uppercase; 
       margin-bottom: 30px; display: inline-block; letter-spacing: 2px; position: relative;
   }
+  /* 电脑端保留横线 */
   .trust-label::before, .trust-label::after {
       content: ""; display: inline-block; width: 30px; height: 2px; 
       background: #f5cccc; vertical-align: middle; margin: 0 15px;
@@ -412,8 +414,7 @@
   .brand-name:hover { color: #111; transform: scale(1.05); }
 
   /* =========================================
-     4. Story, Product, QC, Process, FAQ, Banner
-     (中间标准样式)
+     4. 中间内容区域 (保持不变)
      ========================================= */
   .story-section { padding: 80px 20px; background: #fff; }
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
@@ -501,10 +502,10 @@
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【Hero 修复】：min-height 增加到 520px */
+    /* 【Hero 修复】：放弃 vh，改用固定 px，解决 Safari 和 Chrome 不一致 */
     .hero-section { 
         height: auto; 
-        min-height: 520px; /* 进一步增高，解决Safari觉得小的问题 */
+        min-height: 520px; /* 【重点】固定高度：保证Safari上有足够高度，Chrome上也不会太高 */
         padding: 60px 20px; 
     }
     
@@ -527,37 +528,37 @@
         max-width: 100%;
     }
 
-    /* 手机端按钮 */
+    /* 【按钮修复】：恢复 auto 宽度，看起来更精致 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
         flex-direction: row; 
     }
     .btn-primary, .btn-white { 
-        width: auto; 
+        width: auto; /* 不再通栏 */
         min-width: unset; 
-        padding: 10px 24px; 
+        padding: 10px 24px; /* 适度减小 padding */
         font-size: 14px;
         flex: 0 1 auto; 
     }
 
     /* 【Compatible 文字修复】
-       1. 恢复到 14px (和电脑一样)
-       2. 保留一点间距 (1px)
-       3. 去掉横线 (display: none)
+       1. 隐藏左右装饰线，释放空间
+       2. 字号 14px 保持清晰
+       3. 正常换行 (white-space: normal)
     */
     .trust-label {
-        font-size: 14px;  /* 改回 14px */
-        letter-spacing: 1px; /* 稍微有一点间距 */
-        white-space: normal; /* 允许换行，但因为字大，换行也好看 */
+        font-size: 14px;  
+        letter-spacing: 0.5px; 
+        white-space: normal; 
         padding: 0;
         margin-bottom: 25px;
+        line-height: 1.4;
     }
     .trust-label::before, .trust-label::after {
-        display: none; /* 坚决去掉横线 */
+        display: none; /* 【重点】隐藏横线 */
     }
 
-    /* 品牌墙两列网格 */
     .trust-logos { 
         flex-direction: row; 
         flex-wrap: wrap; 
