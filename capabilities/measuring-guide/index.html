@@ -50,13 +50,16 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  
+  /* 【修改】：移除 Body 的 padding，防止刘海处出现白条，改在容器内处理 */
+  body { padding-top: env(safe-area-inset-top); } 
+
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 768px )
+     2. 电脑端样式 ( > 1024px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -100,12 +103,19 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式
+     3. 手机端样式 ( 修改断点为 1024px )
      ========================================= */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
+    
+    /* 增加安全距离，解决刘海问题 */
+    .header-top-container { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
+        min-height: 60px; box-sizing: border-box; 
+    }
+    
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
@@ -124,11 +134,15 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        padding: 0 15px; 
+        /* 增加安全距离 */
+        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
+        
+        /* 【修改】：横屏时自动居中，竖屏如果超宽会自动靠左滚动 */
+        justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
@@ -167,14 +181,17 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
+    /* 下拉菜单项样式 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
+        /* 安全距离 */
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000; 
+        font-weight: 600; 
         background: #fff;
         text-decoration: none;
     }
@@ -272,7 +289,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    if (window.innerWidth > 768) {
+    // 【修改】：同步 CSS 断点，改为 1024
+    if (window.innerWidth > 1024) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -664,7 +682,7 @@ background-color: #a00000;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/capabilities/measuring-guide/index.html" data-id="cuidLWOHKoQbJSKWtzQ8rOz-V" data-title="Our Capabilities" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/capabilities/measuring-guide/index.html" data-id="cuidizDO-kLG35lLAfjrrFZm0" data-title="Our Capabilities" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
