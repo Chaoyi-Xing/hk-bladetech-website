@@ -40,7 +40,7 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局设置 & 防止页面横向晃动
+     1. 全局设置
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
@@ -48,13 +48,21 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  
+  /* 【关键修复】只保留顶部安全距离，坚决删掉左右 padding！
+     这样 Header 的白色背景才能横向铺满屏幕 */
+  body { 
+      padding-top: env(safe-area-inset-top); 
+      padding-left: 0 !important;  /* 强制归零 */
+      padding-right: 0 !important; /* 强制归零 */
+  } 
+
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 768px )
+     2. 电脑端样式 ( > 1100px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -87,7 +95,6 @@
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
   
-  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
@@ -98,16 +105,23 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式
+     3. 手机端样式 ( <= 1100px )
      ========================================= */
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
+    
+    /* 【关键修复】Logo和联系方式需要避让刘海，所以在这里加 safe-area padding
+       而不是加在 body 上 */
+    .header-top-container { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
+        min-height: 60px; box-sizing: border-box; 
+    }
+    
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 联系方式 (右侧) */
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
     .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
@@ -122,11 +136,13 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        padding: 0 15px; 
+        /* 【关键修复】菜单内容避让刘海 */
+        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
+        justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
@@ -152,7 +168,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; /* 纯白背景 */
+        display: block; width: 100%; background: #fff; 
         border-bottom: 1px solid #eee;
     }
     
@@ -165,14 +181,17 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
+    /* 下拉菜单项样式 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
+        /* 【关键修复】下拉内容避让刘海 */
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000; 
+        font-weight: 600; 
         background: #fff;
         text-decoration: none;
     }
@@ -270,7 +289,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    if (window.innerWidth > 768) {
+    // 断点保持一致 1100
+    if (window.innerWidth > 1100) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -284,14 +304,12 @@
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
       var targetPanel = document.getElementById(panelId);
 
-      // 如果点的是已打开的，就关闭
       if (targetPanel.classList.contains('show')) {
           targetPanel.classList.remove('show');
           triggerElement.classList.remove('open');
           return;
       }
 
-      // 否则先关掉别的，再开这个
       allPanels.forEach(p => p.classList.remove('show'));
       allTriggers.forEach(t => t.classList.remove('open'));
 
@@ -316,7 +334,7 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     1. 全局容器 (仅针对主页内容)
+     1. 全局容器
      ========================================= */
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -328,28 +346,27 @@
      2. Hero Section
      ========================================= */
   .hero-section { 
-    position: relative; height: 40vh; min-height: 400px;
+    position: relative; 
+    height: 40vh; min-height: 400px; /* 电脑端默认 */
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    background-image: url('/images/home-hero-factory-bg.png'); 
-    background-size: cover; background-position: center top; background-repeat: no-repeat;
     box-sizing: border-box;
   }
   
-  /* Hero 背景图片样式 */
+  /* Hero 背景图片：横向铺满，不留白边 */
   .hero-bg-media {
-    position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 0;
-    transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
-    opacity: 0.4; 
+    opacity: 0.8; 
     pointer-events: none;
   }
   
+  /* 内容容器：避让刘海 */
   .hero-content-wrapper { 
       position: relative; z-index: 2; max-width: 1000px; 
-      /* 增加安全距离，防止文字被刘海遮挡 */
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
   }
@@ -389,72 +406,21 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar (品牌信任栏)
+     3. Trust Bar
      ========================================= */
-  .trust-bar { 
-      background: #fafafa; 
-      padding: 50px 20px; 
-      border-bottom: 1px solid #e0e0e0; 
-      text-align: center; 
-      position: relative;
-  }
-  
-  .trust-label { 
-      font-size: 14px; 
-      color: #cc0000; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      margin-bottom: 30px; 
-      display: inline-block; 
-      letter-spacing: 2px; 
-      position: relative;
-  }
-  
-  .trust-label::before, .trust-label::after {
-      content: "";
-      display: inline-block;
-      width: 30px; height: 2px; 
-      background: #f5cccc; 
-      vertical-align: middle;
-      margin: 0 15px;
-  }
-
-  .trust-logos { 
-      display: flex; 
-      justify-content: center; 
-      gap: 60px; 
-      flex-wrap: wrap; 
-      align-items: center; 
-      max-width: 1200px;
-      margin: 0 auto;
-  }
-  
-  .brand-name { 
-      font-family: "Arial Black", "Helvetica Neue", sans-serif; 
-      font-size: 24px; 
-      color: #777777; 
-      letter-spacing: -1px; 
-      text-transform: uppercase;
-      cursor: default;
-      transition: all 0.3s ease;
-      position: relative;
-      user-select: none;
-  }
-
-  .brand-name:hover { 
-      color: #111; 
-      transform: scale(1.05); 
-  }
+  .trust-bar { background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; text-align: center; position: relative; }
+  .trust-label { font-size: 14px; color: #cc0000; font-weight: 800; text-transform: uppercase; margin-bottom: 30px; display: inline-block; letter-spacing: 2px; position: relative; }
+  .trust-label::before, .trust-label::after { content: ""; display: inline-block; width: 30px; height: 2px; background: #f5cccc; vertical-align: middle; margin: 0 15px; }
+  .trust-logos { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .brand-name { font-family: "Arial Black", "Helvetica Neue", sans-serif; font-size: 24px; color: #777777; letter-spacing: -1px; text-transform: uppercase; cursor: default; transition: all 0.3s ease; position: relative; user-select: none; }
+  .brand-name:hover { color: #111; transform: scale(1.05); }
 
   /* =========================================
      4. Story Section
      ========================================= */
   .story-section { padding: 80px 20px; background: #fff; }
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
-  .story-video-wrapper { 
-      flex: 1; position: relative; border-radius: 8px; overflow: hidden; 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #eee;
-  }
+  .story-video-wrapper { flex: 1; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #eee; }
   .story-content { flex: 1; }
   .story-subtitle { color: #cc0000; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; margin-bottom: 10px; display: block; }
   .story-title { font-size: 2.4em; font-weight: 800; margin: 0 0 20px 0; line-height: 1.2; color: #111; }
@@ -468,45 +434,18 @@
      ========================================= */
   .unified-section { background-color: #f9f9f9; width: 100%; padding: 80px 20px; box-sizing: border-box; } 
   .section-intro { text-align: center; max-width: 900px; margin: 0 auto 50px auto; }
-  
-  .section-title { 
-      font-size: 3em; font-weight: 800; color: #111; 
-      margin-bottom: 15px; letter-spacing: -0.5px; 
-  }
-  .section-subtitle-text {
-      color: #444; font-size: 1.3em; line-height: 1.5; font-weight: 500;
-  }
-
+  .section-title { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 15px; letter-spacing: -0.5px; }
+  .section-subtitle-text { color: #444; font-size: 1.3em; line-height: 1.5; font-weight: 500; }
   .category-grid { max-width: 1350px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-  
-  .category-card { 
-    background: white; padding: 30px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
-    border: 1px solid #eee; border-radius: 6px; transition: all 0.4s ease; 
-    text-decoration: none; display: flex; flex-direction: column; align-items: center; 
-    position: relative; overflow: hidden;
-  }
-
-  .category-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px; 
-    background-color: #cc0000; 
-    z-index: 1;
-  }
-
+  .category-card { background: white; padding: 30px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid #eee; border-radius: 6px; transition: all 0.4s ease; text-decoration: none; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
+  .category-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background-color: #cc0000; z-index: 1; }
   .category-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #cc0000; }
   .img-wrapper { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; margin-top: 10px; }
   .category-card img { max-width: 90%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
   .category-card:hover img { transform: scale(1.05); }
   .category-card h3 { color: #000; margin: 0 0 10px 0; font-size: 1.5em; font-weight: 800; text-align: center; line-height: 1.2; }
   .category-desc { color: #666; font-size: 15px; font-weight: 500; line-height: 1.5; margin-bottom: 25px; flex-grow: 1; text-align: center; }
-  .view-btn { 
-    color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; 
-    border-bottom: 2px solid #f0f0f0; transition: all 0.3s; 
-  }
+  .view-btn { color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #f0f0f0; transition: all 0.3s; }
   .category-card:hover .view-btn { border-bottom-color: #cc0000; }
 
   /* =========================================
@@ -515,64 +454,24 @@
   .qc-section { padding: 80px 20px; background: #fff; }
   .qc-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   .qc-card { text-align: left; }
-  
-  .qc-video-box {
-      width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; 
-      margin-bottom: 20px; overflow: hidden; position: relative;
-      display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888;
-  }
-  
-  .qc-video-box img {
-      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
-  }
+  .qc-video-box { width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; margin-bottom: 20px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888; }
+  .qc-video-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
   .qc-card:hover .qc-video-box img { transform: scale(1.05); }
-
   .qc-card h3 { font-size: 1.4em; font-weight: 800; margin-bottom: 10px; color: #111; }
   .qc-card p { font-size: 1.05em; color: #555; line-height: 1.6; }
 
   /* =========================================
      7. Process Section
      ========================================= */
-  .process-section { 
-      background: #ffffff; padding: 80px 20px; color: #333; 
-  }
+  .process-section { background: #ffffff; padding: 80px 20px; color: #333; }
   .process-grid { display: flex; gap: 30px; justify-content: space-between; max-width: 1200px; margin: 60px auto 0; position: relative; }
-  .process-grid::before { 
-      content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; 
-      background: #eee; z-index: 0; 
-  }
+  .process-grid::before { content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; background: #eee; z-index: 0; }
   .process-item { flex: 1; text-align: center; position: relative; z-index: 1; }
-  
-  .process-icon-circle {
-    width: 80px; height: 80px; background: #fff; border: 3px solid #cc0000; border-radius: 50%; 
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;
-    font-size: 36px; color: #cc0000; box-shadow: 0 5px 15px rgba(204,0,0,0.1);
-  }
+  .process-icon-circle { width: 80px; height: 80px; background: #fff; border: 3px solid #cc0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 36px; color: #cc0000; box-shadow: 0 5px 15px rgba(204,0,0,0.1); }
   .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
-  
-  .process-item p { 
-      font-size: 16px; 
-      line-height: 1.6; 
-      color: #555; 
-      padding: 0 5px; 
-  }
-  
-  .process-link {
-      display: inline-block; 
-      margin-top: 5px; 
-      color: #cc0000; 
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 16px; 
-      border-bottom: 2px solid #cc0000;
-      transition: all 0.3s ease;
-      padding-bottom: 2px;
-  }
-  .process-link:hover { 
-      transform: scale(1.05); 
-      color: #a00000;
-      border-bottom-color: #a00000;
-  }
+  .process-item p { font-size: 16px; line-height: 1.6; color: #555; padding: 0 5px; }
+  .process-link { display: inline-block; margin-top: 5px; color: #cc0000; font-weight: 700; text-decoration: none; font-size: 16px; border-bottom: 2px solid #cc0000; transition: all 0.3s ease; padding-bottom: 2px; }
+  .process-link:hover { transform: scale(1.05); color: #a00000; border-bottom-color: #a00000; }
 
   /* =========================================
      8. FAQ Section
@@ -582,24 +481,13 @@
   .faq-header h2 { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 20px; }
   .faq-subtitle { font-size: 1.3em; line-height: 1.6; color: #555; max-width: 800px; margin: 0 auto; }
   .faq-subtitle a { color: #cc0000; text-decoration: underline; font-weight: 700; }
-
-  .faq-item { 
-      background: #f9f9f9; border: 1px solid #f0f0f0;
-      margin-bottom: 20px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); 
-  }
+  .faq-item { background: #f9f9f9; border: 1px solid #f0f0f0; margin-bottom: 20px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
   .faq-item[open] { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #eee; }
-
-  .faq-item summary { 
-      font-weight: 800; padding: 20px 25px; 
-      font-size: 1.8em; 
-      cursor: pointer; color: #222; 
-      list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s;
-  }
+  .faq-item summary { font-weight: 800; padding: 20px 25px; font-size: 1.8em; cursor: pointer; color: #222; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
   .faq-item summary:hover { color: #cc0000; }
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item summary::after { content: '+'; font-size: 1.5em; color: #aaa; font-weight: 400; }
   .faq-item[open] summary::after { transform: rotate(45deg); color: #cc0000; }
-
   .faq-answer { padding: 0 25px 25px 25px; color: #555; line-height: 1.8; margin: 0; }
   .faq-answer p { font-size: 1.35em; margin-bottom: 15px; } 
   .faq-answer ul { padding-left: 20px; margin: 10px 0; }
@@ -609,95 +497,68 @@
   /* =========================================
      9. Bottom Banner
      ========================================= */
-  .custom-banner { 
-      background: #f7f7f7; color: #333; 
-      padding: 90px 20px; text-align: center; border-top: 1px solid #eee; 
-  } 
-  .custom-text h2 { 
-      font-size: 3em; font-weight: 800; margin-bottom: 20px; color: #111; letter-spacing: -0.5px;
-  }
-  .custom-text p { 
-      color: #555; font-size: 1.3em; line-height: 1.6; font-weight: 400; max-width: 800px; margin: 0 auto 50px auto; 
-  }
-  
-  .banner-actions { 
-      display: flex; justify-content: center; gap: 20px;
-      flex-wrap: wrap; align-items: stretch; 
-  }
-  
-  .action-group { 
-      display: flex; flex-direction: column; align-items: center; 
-      width: auto; min-width: 260px; 
-  }
-
-  .btn-text-wrapper {
-    display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
-    white-space: nowrap; 
-  }
+  .custom-banner { background: #f7f7f7; color: #333; padding: 90px 20px; text-align: center; border-top: 1px solid #eee; } 
+  .custom-text h2 { font-size: 3em; font-weight: 800; margin-bottom: 20px; color: #111; letter-spacing: -0.5px; }
+  .custom-text p { color: #555; font-size: 1.3em; line-height: 1.6; font-weight: 400; max-width: 800px; margin: 0 auto 50px auto; }
+  .banner-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: stretch; }
+  .action-group { display: flex; flex-direction: column; align-items: center; width: auto; min-width: 260px; }
+  .btn-text-wrapper { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; white-space: nowrap; }
   .btn-main-text { font-size: 19px; font-weight: 800; }
   .btn-sub-text { font-size: 14px; font-weight: 500; opacity: 0.95; margin-top: 3px; font-family: monospace; }
-
-  /* 1. EMAIL BUTTON */
-  .banner-btn-email {
-      display: flex; align-items: center; justify-content: center; gap: 18px;
-      background: #cc0000; color: white !important; border: 2px solid #cc0000;
-      padding: 14px 25px; border-radius: 8px; transition: all 0.3s; 
-      width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(204,0,0,0.25);
-      text-decoration: none;
-  }
+  .banner-btn-email { display: flex; align-items: center; justify-content: center; gap: 18px; background: #cc0000; color: white !important; border: 2px solid #cc0000; padding: 14px 25px; border-radius: 8px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(204,0,0,0.25); text-decoration: none; }
   .banner-btn-email:hover { background: #a00000; border-color: #a00000; transform: translateY(-3px); }
   .banner-btn-email .btn-sub-text { color: rgba(255,255,255,1); }
-
-  /* 2. WHATSAPP BUTTON */
-  .banner-btn-whatsapp {
-      display: flex; align-items: center; justify-content: center; gap: 18px;
-      background: #25D366; color: white !important; border: 2px solid #25D366;
-      padding: 14px 25px; border-radius: 8px; transition: all 0.3s; 
-      width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(37,211,102,0.3);
-      text-decoration: none;
-  }
+  .banner-btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 18px; background: #25D366; color: white !important; border: 2px solid #25D366; padding: 14px 25px; border-radius: 8px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(37,211,102,0.3); text-decoration: none; }
   .banner-btn-whatsapp:hover { background: #1ebe57; border-color: #1ebe57; transform: translateY(-3px); }
-
-  /* 3. REQUEST QUOTE BUTTON */
-  .banner-btn-red { 
-      display: flex; align-items: center; justify-content: center;
-      background: white; color: #cc0000 !important; border: 2px solid #cc0000;
-      padding: 14px 25px; border-radius: 8px; font-weight: 800; font-size: 20px; 
-      transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-decoration: none;
-  }
+  .banner-btn-red { display: flex; align-items: center; justify-content: center; background: white; color: #cc0000 !important; border: 2px solid #cc0000; padding: 14px 25px; border-radius: 8px; font-weight: 800; font-size: 20px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-decoration: none; }
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
+
   /* =========================================
-     10. Responsive (修改了断点为 1024px)
+     10. Responsive 响应式设置
      ========================================= */
-  @media (max-width: 1024px) {
+  @media (max-width: 1100px) {
     .category-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  
-  @media (max-width: 1024px) {
+    
     .hero-section { height: auto; padding: 100px 20px; }
+    
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
-    .category-grid { grid-template-columns: 1fr; } /* 手机端单列 */
-    .qc-grid { grid-template-columns: 1fr; } 
+    .category-grid { grid-template-columns: 1fr; }
+    .qc-grid { grid-template-columns: 1fr; }
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
-    
     .banner-actions { flex-direction: column; align-items: center; gap: 15px; }
     .action-group { width: 100%; max-width: 350px; }
     .banner-btn-email, .banner-btn-whatsapp, .banner-btn-red { justify-content: flex-start; padding-left: 30px; }
-
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
     
-    /* 修复刘海屏问题：确保内容区有padding，而不是body */
+    /* 【关键修改】：内容容器加 padding，而不是 body */
     .unified-section, .process-section, .qc-section, .story-section, .faq-section, .custom-banner {
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
+    }
+  }
+
+  /* =========================================
+     【终极修复】手机横屏 (Landscape)
+     ========================================= */
+  @media (max-width: 1100px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100svh; 
+        padding: 40px 20px;
+        height: auto;
+    }
+    
+    /* 强制背景图横向铺满 */
+    .hero-bg-media {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
   }
 </style>
@@ -718,7 +579,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="trust-bar">
       <span class="trust-label">Compatible Replacement Parts For:</span>
       <div class="trust-logos">

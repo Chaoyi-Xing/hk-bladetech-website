@@ -42,7 +42,7 @@
     <div id="wrap">
       <style>
   /* =========================================
-     1. 全局设置 & 防止页面横向晃动
+     1. 全局设置
      ========================================= */
   #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
@@ -50,13 +50,21 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  
+  /* 【关键修复】只保留顶部安全距离，坚决删掉左右 padding！
+     这样 Header 的白色背景才能横向铺满屏幕 */
+  body { 
+      padding-top: env(safe-area-inset-top); 
+      padding-left: 0 !important;  /* 强制归零 */
+      padding-right: 0 !important; /* 强制归零 */
+  } 
+
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 768px )
+     2. 电脑端样式 ( > 1100px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -89,7 +97,6 @@
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
   
-  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
@@ -100,16 +107,23 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式
+     3. 手机端样式 ( <= 1100px )
      ========================================= */
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
+    
+    /* 【关键修复】Logo和联系方式需要避让刘海，所以在这里加 safe-area padding
+       而不是加在 body 上 */
+    .header-top-container { 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
+        min-height: 60px; box-sizing: border-box; 
+    }
+    
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 联系方式 (右侧) */
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
     .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
@@ -124,11 +138,13 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        padding: 0 15px; 
+        /* 【关键修复】菜单内容避让刘海 */
+        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
+        justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
@@ -154,7 +170,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; /* 纯白背景 */
+        display: block; width: 100%; background: #fff; 
         border-bottom: 1px solid #eee;
     }
     
@@ -167,14 +183,17 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
+    /* 下拉菜单项样式 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
+        /* 【关键修复】下拉内容避让刘海 */
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000; 
+        font-weight: 600; 
         background: #fff;
         text-decoration: none;
     }
@@ -272,7 +291,8 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    if (window.innerWidth > 768) {
+    // 断点保持一致 1100
+    if (window.innerWidth > 1100) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -286,14 +306,12 @@
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
       var targetPanel = document.getElementById(panelId);
 
-      // 如果点的是已打开的，就关闭
       if (targetPanel.classList.contains('show')) {
           targetPanel.classList.remove('show');
           triggerElement.classList.remove('open');
           return;
       }
 
-      // 否则先关掉别的，再开这个
       allPanels.forEach(p => p.classList.remove('show'));
       allTriggers.forEach(t => t.classList.remove('open'));
 
@@ -342,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/quote/index.html" data-id="cuidtbWCskE3oT8l0kCdk8NDx" data-title="quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/quote/index.html" data-id="cuiddgezti6oiqFo6FzSPuF5Z" data-title="quote" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
