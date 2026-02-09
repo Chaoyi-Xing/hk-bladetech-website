@@ -48,16 +48,13 @@
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
   #faq-section { scroll-margin-top: 80px; }
-  
-  /* 【修改】：移除 Body 的 padding，防止刘海处出现白条，改在容器内处理 */
-  body { padding-top: env(safe-area-inset-top); } 
-
+  body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
   a { text-decoration: none; }
 
   /* =========================================
-     2. 电脑端样式 ( > 1024px )
+     2. 电脑端样式 ( > 768px )
      ========================================= */
   .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
@@ -101,19 +98,12 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 ( 修改断点为 1024px )
+     3. 手机端样式
      ========================================= */
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    
-    /* 增加安全距离，解决刘海问题 */
-    .header-top-container { 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 10px max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
-        min-height: 60px; box-sizing: border-box; 
-    }
-    
+    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
     .header-logo img { height: 28px; }
     .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
@@ -132,15 +122,11 @@
         overflow-x: auto; 
         white-space: nowrap; 
         -webkit-overflow-scrolling: touch; 
-        /* 增加安全距离 */
-        padding: 0 max(15px, env(safe-area-inset-right)) 0 max(15px, env(safe-area-inset-left));
+        padding: 0 15px; 
         height: 44px;
         align-items: center;
         gap: 25px;
         scrollbar-width: none; 
-        
-        /* 【修改】：横屏时自动居中，竖屏如果超宽会自动靠左滚动 */
-        justify-content: center;
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
@@ -179,17 +165,14 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 下拉菜单项样式 */
+    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
-        /* 安全距离 */
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; 
-        font-weight: 600; 
+        color: #000; /* 改为纯黑 */
+        font-weight: 600; /* 加粗 */
         background: #fff;
         text-decoration: none;
     }
@@ -287,8 +270,7 @@
     var navBar = document.getElementById('header-bottom');
     var scrollY = window.scrollY;
     
-    // 【修改】：同步 CSS 断点，改为 1024
-    if (window.innerWidth > 1024) {
+    if (window.innerWidth > 768) {
         if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
         else { navBar.classList.remove('is-fixed'); }
     } else { 
@@ -334,7 +316,7 @@
       <div class="outer">
         <section id="main"><style>
   /* =========================================
-     1. 全局容器
+     1. 全局容器 (仅针对主页内容)
      ========================================= */
   .home-wrapper {
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -346,18 +328,12 @@
      2. Hero Section
      ========================================= */
   .hero-section { 
-    position: relative; 
-    /* 电脑端保持原样 */
-    height: 40vh; min-height: 400px;
-    
+    position: relative; height: 40vh; min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    
-    /* 【修改1：按要求注释掉 CSS 背景图，避免与 HTML img 重复】 */
-    /* background-image: url('/images/home-hero-factory-bg.png'); */
-    /* background-size: cover; background-position: center top; background-repeat: no-repeat; */
-    
+    background-image: url('/images/home-hero-factory-bg.png'); 
+    background-size: cover; background-position: center top; background-repeat: no-repeat;
     box-sizing: border-box;
   }
   
@@ -367,10 +343,7 @@
     z-index: 0;
     transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
-    
-    /* 【修改2：透明度改为 0.8】 */
-    opacity: 0.8; 
-    
+    opacity: 0.4; 
     pointer-events: none;
   }
   
@@ -416,21 +389,72 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     ... (Trust Bar, Story, Product Categories 等中间部分保持不变) ...
-     ... (为了代码简洁，中间部分未改动，直接沿用您原有的即可) ...
+     3. Trust Bar (品牌信任栏)
      ========================================= */
-     
-  /* ...此处省略中间样式，请保持原样... */
+  .trust-bar { 
+      background: #fafafa; 
+      padding: 50px 20px; 
+      border-bottom: 1px solid #e0e0e0; 
+      text-align: center; 
+      position: relative;
+  }
   
-  .trust-bar { background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; text-align: center; position: relative; }
-  .trust-label { font-size: 14px; color: #cc0000; font-weight: 800; text-transform: uppercase; margin-bottom: 30px; display: inline-block; letter-spacing: 2px; position: relative; }
-  .trust-label::before, .trust-label::after { content: ""; display: inline-block; width: 30px; height: 2px; background: #f5cccc; vertical-align: middle; margin: 0 15px; }
-  .trust-logos { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; align-items: center; max-width: 1200px; margin: 0 auto; }
-  .brand-name { font-family: "Arial Black", "Helvetica Neue", sans-serif; font-size: 24px; color: #777777; letter-spacing: -1px; text-transform: uppercase; cursor: default; transition: all 0.3s ease; position: relative; user-select: none; }
-  .brand-name:hover { color: #111; transform: scale(1.05); }
+  .trust-label { 
+      font-size: 14px; 
+      color: #cc0000; 
+      font-weight: 800; 
+      text-transform: uppercase; 
+      margin-bottom: 30px; 
+      display: inline-block; 
+      letter-spacing: 2px; 
+      position: relative;
+  }
+  
+  .trust-label::before, .trust-label::after {
+      content: "";
+      display: inline-block;
+      width: 30px; height: 2px; 
+      background: #f5cccc; 
+      vertical-align: middle;
+      margin: 0 15px;
+  }
+
+  .trust-logos { 
+      display: flex; 
+      justify-content: center; 
+      gap: 60px; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  
+  .brand-name { 
+      font-family: "Arial Black", "Helvetica Neue", sans-serif; 
+      font-size: 24px; 
+      color: #777777; 
+      letter-spacing: -1px; 
+      text-transform: uppercase;
+      cursor: default;
+      transition: all 0.3s ease;
+      position: relative;
+      user-select: none;
+  }
+
+  .brand-name:hover { 
+      color: #111; 
+      transform: scale(1.05); 
+  }
+
+  /* =========================================
+     4. Story Section
+     ========================================= */
   .story-section { padding: 80px 20px; background: #fff; }
   .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
-  .story-video-wrapper { flex: 1; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #eee; }
+  .story-video-wrapper { 
+      flex: 1; position: relative; border-radius: 8px; overflow: hidden; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15); aspect-ratio: 16/9; background: #eee;
+  }
   .story-content { flex: 1; }
   .story-subtitle { color: #cc0000; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; margin-bottom: 10px; display: block; }
   .story-title { font-size: 2.4em; font-weight: 800; margin: 0 0 20px 0; line-height: 1.2; color: #111; }
@@ -438,114 +462,242 @@
   .story-check-list { list-style: none; padding: 0; margin: 0; }
   .story-check-item { display: flex; align-items: center; gap: 10px; font-weight: 600; color: #333; margin-bottom: 12px; font-size: 16px; }
   .check-icon { color: #cc0000; font-weight: 800; }
+
+  /* =========================================
+     5. Product Categories
+     ========================================= */
   .unified-section { background-color: #f9f9f9; width: 100%; padding: 80px 20px; box-sizing: border-box; } 
   .section-intro { text-align: center; max-width: 900px; margin: 0 auto 50px auto; }
-  .section-title { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 15px; letter-spacing: -0.5px; }
-  .section-subtitle-text { color: #444; font-size: 1.3em; line-height: 1.5; font-weight: 500; }
+  
+  .section-title { 
+      font-size: 3em; font-weight: 800; color: #111; 
+      margin-bottom: 15px; letter-spacing: -0.5px; 
+  }
+  .section-subtitle-text {
+      color: #444; font-size: 1.3em; line-height: 1.5; font-weight: 500;
+  }
+
   .category-grid { max-width: 1350px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-  .category-card { background: white; padding: 30px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid #eee; border-radius: 6px; transition: all 0.4s ease; text-decoration: none; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
-  .category-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background-color: #cc0000; z-index: 1; }
+  
+  .category-card { 
+    background: white; padding: 30px 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
+    border: 1px solid #eee; border-radius: 6px; transition: all 0.4s ease; 
+    text-decoration: none; display: flex; flex-direction: column; align-items: center; 
+    position: relative; overflow: hidden;
+  }
+
+  .category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; 
+    background-color: #cc0000; 
+    z-index: 1;
+  }
+
   .category-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #cc0000; }
   .img-wrapper { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; margin-top: 10px; }
   .category-card img { max-width: 90%; max-height: 100%; object-fit: contain; transition: transform 0.5s ease; }
   .category-card:hover img { transform: scale(1.05); }
   .category-card h3 { color: #000; margin: 0 0 10px 0; font-size: 1.5em; font-weight: 800; text-align: center; line-height: 1.2; }
   .category-desc { color: #666; font-size: 15px; font-weight: 500; line-height: 1.5; margin-bottom: 25px; flex-grow: 1; text-align: center; }
-  .view-btn { color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #f0f0f0; transition: all 0.3s; }
+  .view-btn { 
+    color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; 
+    border-bottom: 2px solid #f0f0f0; transition: all 0.3s; 
+  }
   .category-card:hover .view-btn { border-bottom-color: #cc0000; }
+
+  /* =========================================
+     6. Quality Control
+     ========================================= */
   .qc-section { padding: 80px 20px; background: #fff; }
   .qc-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   .qc-card { text-align: left; }
-  .qc-video-box { width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; margin-bottom: 20px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888; }
-  .qc-video-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  
+  .qc-video-box {
+      width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; 
+      margin-bottom: 20px; overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888;
+  }
+  
+  .qc-video-box img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
+  }
   .qc-card:hover .qc-video-box img { transform: scale(1.05); }
+
   .qc-card h3 { font-size: 1.4em; font-weight: 800; margin-bottom: 10px; color: #111; }
   .qc-card p { font-size: 1.05em; color: #555; line-height: 1.6; }
-  .process-section { background: #ffffff; padding: 80px 20px; color: #333; }
+
+  /* =========================================
+     7. Process Section
+     ========================================= */
+  .process-section { 
+      background: #ffffff; padding: 80px 20px; color: #333; 
+  }
   .process-grid { display: flex; gap: 30px; justify-content: space-between; max-width: 1200px; margin: 60px auto 0; position: relative; }
-  .process-grid::before { content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; background: #eee; z-index: 0; }
+  .process-grid::before { 
+      content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; 
+      background: #eee; z-index: 0; 
+  }
   .process-item { flex: 1; text-align: center; position: relative; z-index: 1; }
-  .process-icon-circle { width: 80px; height: 80px; background: #fff; border: 3px solid #cc0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 36px; color: #cc0000; box-shadow: 0 5px 15px rgba(204,0,0,0.1); }
+  
+  .process-icon-circle {
+    width: 80px; height: 80px; background: #fff; border: 3px solid #cc0000; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;
+    font-size: 36px; color: #cc0000; box-shadow: 0 5px 15px rgba(204,0,0,0.1);
+  }
   .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
-  .process-item p { font-size: 16px; line-height: 1.6; color: #555; padding: 0 5px; }
-  .process-link { display: inline-block; margin-top: 5px; color: #cc0000; font-weight: 700; text-decoration: none; font-size: 16px; border-bottom: 2px solid #cc0000; transition: all 0.3s ease; padding-bottom: 2px; }
-  .process-link:hover { transform: scale(1.05); color: #a00000; border-bottom-color: #a00000; }
+  
+  .process-item p { 
+      font-size: 16px; 
+      line-height: 1.6; 
+      color: #555; 
+      padding: 0 5px; 
+  }
+  
+  .process-link {
+      display: inline-block; 
+      margin-top: 5px; 
+      color: #cc0000; 
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 16px; 
+      border-bottom: 2px solid #cc0000;
+      transition: all 0.3s ease;
+      padding-bottom: 2px;
+  }
+  .process-link:hover { 
+      transform: scale(1.05); 
+      color: #a00000;
+      border-bottom-color: #a00000;
+  }
+
+  /* =========================================
+     8. FAQ Section
+     ========================================= */
   .faq-section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
   .faq-header { margin-bottom: 60px; text-align: center; }
   .faq-header h2 { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 20px; }
   .faq-subtitle { font-size: 1.3em; line-height: 1.6; color: #555; max-width: 800px; margin: 0 auto; }
   .faq-subtitle a { color: #cc0000; text-decoration: underline; font-weight: 700; }
-  .faq-item { background: #f9f9f9; border: 1px solid #f0f0f0; margin-bottom: 20px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
+
+  .faq-item { 
+      background: #f9f9f9; border: 1px solid #f0f0f0;
+      margin-bottom: 20px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); 
+  }
   .faq-item[open] { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #eee; }
-  .faq-item summary { font-weight: 800; padding: 20px 25px; font-size: 1.8em; cursor: pointer; color: #222; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+
+  .faq-item summary { 
+      font-weight: 800; padding: 20px 25px; 
+      font-size: 1.8em; 
+      cursor: pointer; color: #222; 
+      list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s;
+  }
   .faq-item summary:hover { color: #cc0000; }
   .faq-item summary::-webkit-details-marker { display: none; }
   .faq-item summary::after { content: '+'; font-size: 1.5em; color: #aaa; font-weight: 400; }
   .faq-item[open] summary::after { transform: rotate(45deg); color: #cc0000; }
+
   .faq-answer { padding: 0 25px 25px 25px; color: #555; line-height: 1.8; margin: 0; }
   .faq-answer p { font-size: 1.35em; margin-bottom: 15px; } 
   .faq-answer ul { padding-left: 20px; margin: 10px 0; }
   .faq-answer li { font-size: 1.25em; margin-bottom: 10px; } 
   .faq-answer strong { color: #333; }
-  .custom-banner { background: #f7f7f7; color: #333; padding: 90px 20px; text-align: center; border-top: 1px solid #eee; } 
-  .custom-text h2 { font-size: 3em; font-weight: 800; margin-bottom: 20px; color: #111; letter-spacing: -0.5px; }
-  .custom-text p { color: #555; font-size: 1.3em; line-height: 1.6; font-weight: 400; max-width: 800px; margin: 0 auto 50px auto; }
-  .banner-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: stretch; }
-  .action-group { display: flex; flex-direction: column; align-items: center; width: auto; min-width: 260px; }
-  .btn-text-wrapper { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; white-space: nowrap; }
-  .btn-main-text { font-size: 19px; font-weight: 800; }
-  .btn-sub-text { font-size: 14px; font-weight: 500; opacity: 0.95; margin-top: 3px; font-family: monospace; }
-  .banner-btn-email { display: flex; align-items: center; justify-content: center; gap: 18px; background: #cc0000; color: white !important; border: 2px solid #cc0000; padding: 14px 25px; border-radius: 8px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(204,0,0,0.25); text-decoration: none; }
-  .banner-btn-email:hover { background: #a00000; border-color: #a00000; transform: translateY(-3px); }
-  .banner-btn-email .btn-sub-text { color: rgba(255,255,255,1); }
-  .banner-btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 18px; background: #25D366; color: white !important; border: 2px solid #25D366; padding: 14px 25px; border-radius: 8px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(37,211,102,0.3); text-decoration: none; }
-  .banner-btn-whatsapp:hover { background: #1ebe57; border-color: #1ebe57; transform: translateY(-3px); }
-  .banner-btn-red { display: flex; align-items: center; justify-content: center; background: white; color: #cc0000 !important; border: 2px solid #cc0000; padding: 14px 25px; border-radius: 8px; font-weight: 800; font-size: 20px; transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-decoration: none; }
-  .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
-
 
   /* =========================================
-     10. Responsive 响应式设置
+     9. Bottom Banner
+     ========================================= */
+  .custom-banner { 
+      background: #f7f7f7; color: #333; 
+      padding: 90px 20px; text-align: center; border-top: 1px solid #eee; 
+  } 
+  .custom-text h2 { 
+      font-size: 3em; font-weight: 800; margin-bottom: 20px; color: #111; letter-spacing: -0.5px;
+  }
+  .custom-text p { 
+      color: #555; font-size: 1.3em; line-height: 1.6; font-weight: 400; max-width: 800px; margin: 0 auto 50px auto; 
+  }
+  
+  .banner-actions { 
+      display: flex; justify-content: center; gap: 20px;
+      flex-wrap: wrap; align-items: stretch; 
+  }
+  
+  .action-group { 
+      display: flex; flex-direction: column; align-items: center; 
+      width: auto; min-width: 260px; 
+  }
+
+  .btn-text-wrapper {
+    display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2;
+    white-space: nowrap; 
+  }
+  .btn-main-text { font-size: 19px; font-weight: 800; }
+  .btn-sub-text { font-size: 14px; font-weight: 500; opacity: 0.95; margin-top: 3px; font-family: monospace; }
+
+  /* 1. EMAIL BUTTON */
+  .banner-btn-email {
+      display: flex; align-items: center; justify-content: center; gap: 18px;
+      background: #cc0000; color: white !important; border: 2px solid #cc0000;
+      padding: 14px 25px; border-radius: 8px; transition: all 0.3s; 
+      width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(204,0,0,0.25);
+      text-decoration: none;
+  }
+  .banner-btn-email:hover { background: #a00000; border-color: #a00000; transform: translateY(-3px); }
+  .banner-btn-email .btn-sub-text { color: rgba(255,255,255,1); }
+
+  /* 2. WHATSAPP BUTTON */
+  .banner-btn-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 18px;
+      background: #25D366; color: white !important; border: 2px solid #25D366;
+      padding: 14px 25px; border-radius: 8px; transition: all 0.3s; 
+      width: 100%; height: 100%; box-sizing: border-box; box-shadow: 0 8px 20px rgba(37,211,102,0.3);
+      text-decoration: none;
+  }
+  .banner-btn-whatsapp:hover { background: #1ebe57; border-color: #1ebe57; transform: translateY(-3px); }
+
+  /* 3. REQUEST QUOTE BUTTON */
+  .banner-btn-red { 
+      display: flex; align-items: center; justify-content: center;
+      background: white; color: #cc0000 !important; border: 2px solid #cc0000;
+      padding: 14px 25px; border-radius: 8px; font-weight: 800; font-size: 20px; 
+      transition: all 0.3s; width: 100%; height: 100%; box-sizing: border-box;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-decoration: none;
+  }
+  .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
+
+  /* =========================================
+     10. Responsive (修改了断点为 1024px)
      ========================================= */
   @media (max-width: 1024px) {
     .category-grid { grid-template-columns: repeat(2, 1fr); }
-    /* 默认手机竖屏设置 */
+  }
+  
+  @media (max-width: 1024px) {
     .hero-section { height: auto; padding: 100px 20px; }
-    
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
-    .category-grid { grid-template-columns: 1fr; }
-    .qc-grid { grid-template-columns: 1fr; }
+    .category-grid { grid-template-columns: 1fr; } /* 手机端单列 */
+    .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
+    
     .banner-actions { flex-direction: column; align-items: center; gap: 15px; }
     .action-group { width: 100%; max-width: 350px; }
     .banner-btn-email, .banner-btn-whatsapp, .banner-btn-red { justify-content: flex-start; padding-left: 30px; }
+
     .custom-text h2 { font-size: 2.2em; }
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
+    
+    /* 修复刘海屏问题：确保内容区有padding，而不是body */
     .unified-section, .process-section, .qc-section, .story-section, .faq-section, .custom-banner {
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
-    }
-  }
-
-  /* =========================================
-     【关键修改】针对手机“横屏”模式 (Landscape)
-     解决白条问题，同时防止内容过长
-     ========================================= */
-  @media (max-width: 1024px) and (orientation: landscape) {
-    .hero-section {
-        /* 1. 强制最小高度为屏幕可见高度 (100svh)，确保背景图触底，彻底消除白条 */
-        min-height: 100svh; 
-        
-        /* 2. 大幅减小上下 Padding (原100px -> 现40px)
-           这样内容会更聚拢，不会把页面撑得特别长，解决了“太长”的问题 */
-        padding: 40px 20px;
-        
-        height: auto;
     }
   }
 </style>
@@ -566,7 +718,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="trust-bar">
       <span class="trust-label">Compatible Replacement Parts For:</span>
       <div class="trust-logos">
