@@ -325,7 +325,7 @@
   a { text-decoration: none; }
   
   /* =========================================
-     2. Hero Section (电脑端)
+     2. Hero Section (电脑端基准 - 保持不动)
      ========================================= */
   .hero-section { 
     position: relative; 
@@ -364,6 +364,7 @@
     text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto;
   }
   
+  /* 电脑端按钮 */
   .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
   
   .btn-primary, .btn-white { 
@@ -385,7 +386,7 @@
   .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
 
   /* =========================================
-     3. Trust Bar
+     3. Trust Bar (电脑端)
      ========================================= */
   .trust-bar { 
       background: #fafafa; padding: 50px 20px; border-bottom: 1px solid #e0e0e0; 
@@ -499,26 +500,19 @@
   @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
   
   @media (max-width: 768px) {
-    /* 【关键修复】：使用像素锁定法。
-       Chrome 看到 500px 是 500px。
-       Safari 看到 500px 也是 500px。
-       这样就能保证两个浏览器的大小完全一致。
-    */
+    /* 1. Chrome / 安卓 / 通用手机样式 */
     .hero-section { 
-        height: 500px;      /* 基础高度（Chrome等） */
+        height: 500px;      /* 保持 Chrome 完美 */
         min-height: 500px; 
         padding: 0 20px;
     }
 
-    /* 【IOS Safari 特供代码】
-       如果 500px 在 Safari 上还是嫌小，
-       下面这行代码可以只给 Safari 加到 580px。
-       如果您觉得现在 500px 已经够了，可以把下面这行删掉。
-    */
+    /* 2. 【核心大招】专门针对 iOS Safari 加高 */
+    /* -webkit-touch-callout 是 iOS 特有的属性，这里我们用来识别 iPhone */
     @supports (-webkit-touch-callout: none) {
         .hero-section {
-            height: 580px; /* 专门给 Safari 加高一点点，抵消地址栏的影响 */
-            min-height: 580px;
+            height: 600px; /* Safari 专属高度，比 Chrome 高 100px */
+            min-height: 600px;
         }
     }
     
@@ -541,7 +535,6 @@
         max-width: 100%;
     }
 
-    /* 手机端按钮 */
     .hero-btns { 
         gap: 15px; 
         width: 100%; 
@@ -555,7 +548,7 @@
         flex: 0 1 auto; 
     }
 
-    /* Compatible 文字 */
+    /* Compatible 文字修复: 14px + 无横线 */
     .trust-label {
         font-size: 14px;  
         letter-spacing: 1px;
