@@ -346,12 +346,17 @@
      2. Hero Section
      ========================================= */
   .hero-section { 
-    position: relative; height: 40vh; min-height: 400px;
+    position: relative; 
+    /* 电脑端默认高度 */
+    height: 40vh; min-height: 400px;
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
     padding: 20px; text-align: center; color: white; overflow: hidden; 
     background-color: #1a1a1a; 
-    background-image: url('/images/home-hero-factory-bg.png'); 
-    background-size: cover; background-position: center top; background-repeat: no-repeat;
+    
+    /* 【修改1：注释掉CSS背景图，防止重复，只用img标签】 */
+    /* background-image: url('/images/home-hero-factory-bg.png'); */
+    /* background-size: cover; background-position: center top; background-repeat: no-repeat; */
+    
     box-sizing: border-box;
   }
   
@@ -361,7 +366,8 @@
     z-index: 0;
     transform: translateX(-50%) translateY(-50%); 
     object-fit: cover; 
-    opacity: 0.4; 
+    /* 【修改2：透明度改为 0.8】 */
+    opacity: 0.8; 
     pointer-events: none;
   }
   
@@ -687,19 +693,28 @@
   .banner-btn-red:hover { background: #cc0000; color: white !important; transform: translateY(-3px); }
 
   /* =========================================
-     10. Responsive (修改了断点为 1024px)
+     10. Responsive
      ========================================= */
   @media (max-width: 1024px) {
     .category-grid { grid-template-columns: repeat(2, 1fr); }
   }
   
   @media (max-width: 1024px) {
-    .hero-section { height: auto; padding: 100px 20px; }
+    /* 【修改3：Safari横屏高度修复】
+       使用 100svh (Small Viewport Height) 替代 auto，确保填满可见区域，避免下方白条。
+       padding-bottom 设为 0，让图片贴底。
+    */
+    .hero-section { 
+        height: auto; 
+        min-height: 100svh; /* 关键：强制最小高度为当前屏幕可见高度 */
+        padding: 100px 20px; 
+    }
+    
     .hero-section h1 { font-size: 2.2em; }
     .trust-logos { gap: 30px; flex-direction: column; }
     .brand-name { font-size: 18px; width: 40%; text-align: center; }
     .story-container { flex-direction: column; gap: 40px; }
-    .category-grid { grid-template-columns: 1fr; } /* 手机端单列 */
+    .category-grid { grid-template-columns: 1fr; } 
     .qc-grid { grid-template-columns: 1fr; } 
     .process-grid { flex-direction: column; gap: 40px; }
     .process-grid::before { display: none; }
@@ -712,7 +727,6 @@
     .custom-text p { font-size: 1.2em; }
     .section-title { font-size: 2.4em; }
     
-    /* 修复刘海屏问题：确保内容区有padding，而不是body */
     .unified-section, .process-section, .qc-section, .story-section, .faq-section, .custom-banner {
         padding-left: max(20px, env(safe-area-inset-left));
         padding-right: max(20px, env(safe-area-inset-right));
@@ -721,7 +735,8 @@
 </style>
 
 <div class="home-wrapper">
-    <div class="hero-section">
+
+  <div class="hero-section">
     <img src="/images/home-hero-factory-bg.png" alt="Industrial Blade Manufacturing Factory" class="hero-bg-media">
     
     <div class="hero-content-wrapper">
@@ -736,7 +751,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="trust-bar">
       <span class="trust-label">Compatible Replacement Parts For:</span>
       <div class="trust-logos">
