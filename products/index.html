@@ -713,6 +713,7 @@ html, body {
 </div>
 
 <script>
+/* 文案数据库：分类描述 */
 var catDescMap = {
   'granulator': 'High-performance rotor and stator knives for plastic granulation. Manufactured from premium D2 steel for extended wear life and consistent cutting quality.',
   'shredder': 'Heavy-duty shredder blocks and cutters designed for high-impact recycling. Engineered for maximum durability and shock resistance.',
@@ -720,6 +721,7 @@ var catDescMap = {
   'corrugated': 'Sharp, long-lasting corrugated cut-off knives. Carb-tipped and HSS options available for high-speed corrugated board production.'
 };
 
+/* 文案数据库：品牌描述 */
 var brandDescMap = {
   'cumberland': 'Exact-fit replacement blades compatible with Cumberland® granulators. Restoring OEM performance at a fraction of the cost.',
   'herbold': 'Precision-engineered knives compatible with Herbold® machinery. Designed for wet and dry granulation applications.',
@@ -728,6 +730,7 @@ var brandDescMap = {
   'other': 'Custom-manufactured industrial knives tailored to your specific prints and samples. OEM quality for any machine make or model.'
 };
 
+/* 默认描述 */
 var defaultDesc = 'Factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.';
 
 var catMap = {
@@ -748,7 +751,7 @@ var brandMap = {
 
 var currentCat = 'all';
 var currentBrand = 'all';
-var currentSearch = ''; // 存储从 Header 传来的搜索词
+var currentSearch = ''; 
 
 function setView(mode){
   var g = document.getElementById('product-grid');
@@ -768,15 +771,11 @@ function setView(mode){
 
 document.addEventListener('DOMContentLoaded', function(){
   var p = new URLSearchParams(window.location.search);
-  
-  // 1. 读取 Category 参数
   var c = p.get('cat'); 
-  
-  // 2. ★★★ 关键：读取 Search (q) 参数 ★★★
   var q = p.get('q');
   
   if(q) {
-    currentSearch = q.toLowerCase().trim(); // 如果有搜索词，存起来
+    currentSearch = q.toLowerCase().trim();
   }
 
   if(c) {
@@ -785,19 +784,40 @@ document.addEventListener('DOMContentLoaded', function(){
       for(var i=0; i<l.length; i++){
         var onclickAttr = l[i].getAttribute('onclick');
         if(onclickAttr && onclickAttr.indexOf("'" + c + "'") !== -1){
-          filterCat(c, l[i]); // 这会自动触发 applyFilters()，进而应用搜索词
+          // 这里不需要手动调用 filterCat，因为我们只是想高亮和设置变量
+          // 为了避免初始化逻辑冲突，我们手动设置状态
+          currentCat = c;
+          updateActive('cat-filters', l[i]);
           break;
         }
       }
+      applyFilters(); // 初始化筛选
+      updateBreadcrumb(c);
+      updateHeader();
     }, 50);
   } else if (q) {
-    // 如果只有搜索词没有分类，手动触发一次筛选
     applyFilters();
+    updateHeader(); // 如果只有搜索词，更新头部显示
+  } else {
+    // 默认情况
+    applyFilters();
+    updateHeader();
   }
 });
 
 function filterCat(c, e) {
   currentCat = c;
+  
+  // ★★★ 关键修复：点击分类时，清空搜索词 ★★★
+  currentSearch = ''; 
+  
+  // (可选) 清理浏览器地址栏的 ?q=... 参数，这样看起来更干净
+  cleanUrlParams();
+
+  // (可选) 如果 Header 里有搜索框，把它的文字也清空
+  var headerInput = document.querySelector('.header-search-input');
+  if(headerInput) headerInput.value = '';
+
   if(!e) {
     var links = document.querySelectorAll('#cat-filters a');
     for(var i=0; i<links.length; i++) {
@@ -815,12 +835,26 @@ function filterCat(c, e) {
 
 function filterBrand(b, e) {
   currentBrand = b;
+  
+  // ★★★ 关键修复：点击品牌时，也清空搜索词 ★★★
+  currentSearch = '';
+  cleanUrlParams();
+  var headerInput = document.querySelector('.header-search-input');
+  if(headerInput) headerInput.value = '';
+
   updateActive('brand-filters', e);
   applyFilters();
   updateHeader(); 
 }
 
-/* ★★★ 筛选逻辑：融合了 Search 词 ★★★ */
+/* 辅助函数：清理 URL 参数 (不刷新页面) */
+function cleanUrlParams() {
+  if (window.history.pushState) {
+      var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + currentCat;
+      window.history.pushState({path:newUrl},'',newUrl);
+  }
+}
+
 function applyFilters() {
   var cards = document.getElementsByClassName("product-card");
   var hasSearch = currentSearch && currentSearch !== '';
@@ -829,18 +863,14 @@ function applyFilters() {
     var card = cards[i];
     var cc = card.getAttribute("data-cat");
     var cb = card.getAttribute("data-brand");
+    var textContent = card.innerText.toLowerCase();
     
-    // 1. 分类匹配
     var matchCat = (currentCat == 'all' || cc == currentCat);
-    
-    // 2. 品牌匹配
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
     
-    // 3. 搜索匹配 (检查卡片内所有文字)
     var matchSearch = true;
     if(hasSearch) {
-      var text = card.innerText.toLowerCase();
-      matchSearch = (text.indexOf(currentSearch) > -1);
+      matchSearch = (textContent.indexOf(currentSearch) > -1);
     }
     
     if(matchCat && matchBrand && matchSearch) {
@@ -848,12 +878,6 @@ function applyFilters() {
     } else {
       card.classList.add("hidden");
     }
-  }
-  
-  // 如果有搜索词，可以更新标题提示用户 (可选)
-  if(hasSearch) {
-    var titleEl = document.getElementById('dynamic-title');
-    titleEl.innerText = 'Search Results for "' + currentSearch + '"';
   }
 }
 
@@ -867,12 +891,16 @@ function updateBreadcrumb(c) {
 }
 
 function updateHeader() {
-  // 如果正在搜索，就不覆盖标题了，保持 "Search Results for..."
-  if(currentSearch && currentSearch !== '') return;
-
   var t = document.getElementById('dynamic-title');
   var d = document.getElementById('dynamic-desc');
   
+  // ★★★ 修复：如果正在搜索，优先显示搜索状态 ★★★
+  if (currentSearch && currentSearch !== '') {
+    t.innerText = 'Search Results for "' + currentSearch + '"';
+    d.innerText = 'Showing results matching your search criteria.';
+    return; // 搜索时不再覆盖标题
+  }
+
   var bText = brandMap[currentBrand] || '';
   var cText = catMap[currentCat] || '';
   
