@@ -713,7 +713,7 @@ html, body {
 </div>
 
 <script>
-/* 文案数据库：分类描述 */
+/* 文案数据库 */
 var catDescMap = {
   'granulator': 'High-performance rotor and stator knives for plastic granulation. Manufactured from premium D2 steel for extended wear life and consistent cutting quality.',
   'shredder': 'Heavy-duty shredder blocks and cutters designed for high-impact recycling. Engineered for maximum durability and shock resistance.',
@@ -721,7 +721,6 @@ var catDescMap = {
   'corrugated': 'Sharp, long-lasting corrugated cut-off knives. Carb-tipped and HSS options available for high-speed corrugated board production.'
 };
 
-/* 文案数据库：品牌描述 */
 var brandDescMap = {
   'cumberland': 'Exact-fit replacement blades compatible with Cumberland® granulators. Restoring OEM performance at a fraction of the cost.',
   'herbold': 'Precision-engineered knives compatible with Herbold® machinery. Designed for wet and dry granulation applications.',
@@ -730,7 +729,6 @@ var brandDescMap = {
   'other': 'Custom-manufactured industrial knives tailored to your specific prints and samples. OEM quality for any machine make or model.'
 };
 
-/* 默认描述 */
 var defaultDesc = 'Factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.';
 
 var catMap = {
@@ -769,54 +767,52 @@ function setView(mode){
   }
 }
 
+/* ★★★ 核心修复：初始化逻辑重写 ★★★ */
 document.addEventListener('DOMContentLoaded', function(){
   var p = new URLSearchParams(window.location.search);
-  var c = p.get('cat'); 
+  var c = p.get('cat') || 'all'; 
   var q = p.get('q');
   
+  // 1. 设置初始状态 (不调用 filterCat，防止清空搜索)
+  currentCat = c;
+  
+  // 2. 如果有搜索词，设置搜索状态
   if(q) {
     currentSearch = q.toLowerCase().trim();
+    // 让页面上的搜索框也显示这个词
+    var input = document.getElementById('searchInput');
+    if(input) input.value = q; 
   }
 
-  if(c) {
-    setTimeout(function(){
-      var l = document.querySelectorAll('#cat-filters a');
-      for(var i=0; i<l.length; i++){
-        var onclickAttr = l[i].getAttribute('onclick');
-        if(onclickAttr && onclickAttr.indexOf("'" + c + "'") !== -1){
-          // 这里不需要手动调用 filterCat，因为我们只是想高亮和设置变量
-          // 为了避免初始化逻辑冲突，我们手动设置状态
-          currentCat = c;
-          updateActive('cat-filters', l[i]);
-          break;
-        }
+  // 3. 手动高亮左侧菜单 (不触发点击逻辑)
+  setTimeout(function(){
+    var l = document.querySelectorAll('#cat-filters a');
+    for(var i=0; i<l.length; i++){
+      var onclickAttr = l[i].getAttribute('onclick');
+      if(onclickAttr && onclickAttr.indexOf("'" + c + "'") !== -1){
+        updateActive('cat-filters', l[i]);
+        break;
       }
-      applyFilters(); // 初始化筛选
-      updateBreadcrumb(c);
-      updateHeader();
-    }, 50);
-  } else if (q) {
-    applyFilters();
-    updateHeader(); // 如果只有搜索词，更新头部显示
-  } else {
-    // 默认情况
-    applyFilters();
-    updateHeader();
-  }
+    }
+  }, 50);
+
+  // 4. 执行筛选
+  applyFilters();
+  updateBreadcrumb(c);
+  updateHeader();
 });
 
+/* 点击分类：这里才需要“清空搜索” */
 function filterCat(c, e) {
   currentCat = c;
   
-  // ★★★ 关键修复：点击分类时，清空搜索词 ★★★
+  // ★★★ 关键：点击分类时，强制清空搜索 ★★★
   currentSearch = ''; 
+  var input = document.getElementById('searchInput');
+  if(input) input.value = ''; // 清空输入框显示
   
-  // (可选) 清理浏览器地址栏的 ?q=... 参数，这样看起来更干净
+  // 清理 URL 里的 ?q=... 参数，让地址栏变干净
   cleanUrlParams();
-
-  // (可选) 如果 Header 里有搜索框，把它的文字也清空
-  var headerInput = document.querySelector('.header-search-input');
-  if(headerInput) headerInput.value = '';
 
   if(!e) {
     var links = document.querySelectorAll('#cat-filters a');
@@ -833,21 +829,31 @@ function filterCat(c, e) {
   updateHeader(); 
 }
 
+/* 点击品牌：也清空搜索 */
 function filterBrand(b, e) {
   currentBrand = b;
   
-  // ★★★ 关键修复：点击品牌时，也清空搜索词 ★★★
+  // ★★★ 关键：点击品牌时，也强制清空搜索 ★★★
   currentSearch = '';
+  var input = document.getElementById('searchInput');
+  if(input) input.value = '';
+  
   cleanUrlParams();
-  var headerInput = document.querySelector('.header-search-input');
-  if(headerInput) headerInput.value = '';
 
   updateActive('brand-filters', e);
   applyFilters();
   updateHeader(); 
 }
 
-/* 辅助函数：清理 URL 参数 (不刷新页面) */
+/* 列表页面的即时搜索输入 */
+function filterSearch() {
+  var input = document.getElementById('searchInput');
+  currentSearch = input.value.toLowerCase().trim(); 
+  applyFilters(); 
+  updateHeader(); // 搜索时更新标题提示
+}
+
+/* 辅助函数：清理 URL 参数 (保留 cat，去掉 q) */
 function cleanUrlParams() {
   if (window.history.pushState) {
       var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?cat=' + currentCat;
@@ -865,14 +871,20 @@ function applyFilters() {
     var cb = card.getAttribute("data-brand");
     var textContent = card.innerText.toLowerCase();
     
+    // 1. 分类匹配
     var matchCat = (currentCat == 'all' || cc == currentCat);
+    
+    // 2. 品牌匹配
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
     
+    // 3. 搜索匹配
     var matchSearch = true;
     if(hasSearch) {
       matchSearch = (textContent.indexOf(currentSearch) > -1);
     }
     
+    // 注意：如果正在搜索，我们可以放宽分类限制 (可选)，这里暂时保持严格匹配
+    // 如果你想让搜索结果跨分类显示，可以把 matchCat 改为 true
     if(matchCat && matchBrand && matchSearch) {
       card.classList.remove("hidden");
     } else {
@@ -894,11 +906,11 @@ function updateHeader() {
   var t = document.getElementById('dynamic-title');
   var d = document.getElementById('dynamic-desc');
   
-  // ★★★ 修复：如果正在搜索，优先显示搜索状态 ★★★
+  // ★★★ 搜索状态显示 ★★★
   if (currentSearch && currentSearch !== '') {
     t.innerText = 'Search Results for "' + currentSearch + '"';
-    d.innerText = 'Showing results matching your search criteria.';
-    return; // 搜索时不再覆盖标题
+    d.innerText = 'Showing results matching your search query.';
+    return; 
   }
 
   var bText = brandMap[currentBrand] || '';
