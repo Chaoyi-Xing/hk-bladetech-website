@@ -342,34 +342,51 @@
       <div class="outer">
         <section id="main"><style>
 /* =========================================
-   PDP 样式 (精致比例版 - 仅微调 QTY 框)
+   PDP 样式 (完全对齐 List 页版本)
    ========================================= */
 html, body { 
   margin: 0; padding: 0; width: 100%; 
   -webkit-text-size-adjust: 100%; 
   background-color: #ffffff; color: #333; 
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; 
 }
 
 #wrap, .outer, #main, .inner { 
   background-color: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; 
 }
 
-/* 容器：96% 宽度 */
+/* ★★★ 1. 容器宽度与 List 页统一：1280px ★★★ */
 .pdp-wrapper { 
-  width: 96% !important; 
-  max-width: 1400px; 
+  width: 100% !important; 
+  max-width: 1280px; /* 从 1400px 改为 1280px */
   margin: 0 auto 80px; 
+  padding: 0 20px;   /* 增加 Padding 以对齐列表页 */
   box-sizing: border-box; 
 }
 
-/* 面包屑 */
-.page-intro-container { width: 96%; max-width: 1400px; margin: 20px auto 25px; box-sizing: border-box; }
-.breadcrumbs { font-size: 13px; color: #888; display: flex; align-items: center; flex-wrap: wrap; }
-.breadcrumbs a { color: #999; text-decoration: none; transition: color 0.2s; }
+/* ★★★ 2. 面包屑容器位置与 List 页统一 ★★★ */
+.page-intro-container { 
+  width: 100%; 
+  max-width: 1280px; /* 从 1400px 改为 1280px */
+  margin: 15px auto 10px; /* 从 20px 改为 15px，与列表页完全一致 */
+  padding: 0 20px;
+  box-sizing: border-box; 
+}
+
+.breadcrumbs { 
+  font-size: 13px; 
+  color: #666; 
+  display: flex; 
+  align-items: center; 
+  flex-wrap: wrap; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+.breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; }
 .breadcrumbs a:hover { color: #cc0000; }
-.breadcrumbs .separator { margin: 0 8px; color: #ccc; font-size: 13px; }
-.breadcrumbs .current { color: #333; font-weight: 400; }
+.breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; } /* 统一分隔符间距 */
+.breadcrumbs .current { color: #222; font-weight: 700; }
 
 /* =========================================
    布局结构
@@ -442,21 +459,20 @@ html, body {
 /* 操作区 */
 .action-area { margin-top: 5px; }
 
-/* ★★★ 关键修改：数量输入框精致化 ★★★ */
+/* 数量输入框 */
 .qty-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
 .qty-unit-label { font-size: 15px; font-weight: 800; color: #333; text-transform: uppercase; margin-right: 5px; }
 
 .qty-input { 
-  width: 55px; /* 进一步缩小宽度 */
-  padding: 5px 0 5px 8px; /* 调整内边距，让数字靠左一点，给箭头留位 */
-  text-align: left; /* 数字左对齐更显精致 */
+  width: 55px; 
+  padding: 5px 0 5px 8px; 
+  text-align: left; 
   border: 1px solid #ccc; 
   border-radius: 4px; 
   font-weight: 700; 
   font-size: 15px; 
   color: #333;
 }
-/* 强制显示上下箭头并保持比例 */
 .qty-input::-webkit-inner-spin-button, 
 .qty-input::-webkit-outer-spin-button { 
   -webkit-appearance: inner-spin-button !important; 
@@ -521,9 +537,11 @@ html, body {
   <div class="breadcrumbs">
     <a href="/">Home</a> 
     <span class="separator">&raquo;</span>
-    <a href="/products/?cat=all">Product Catalog</a>
-    <span class="separator">&raquo;</span>
-    <a href="/products/?cat=shredder">Shredder Blocks</a>
+    
+    
+      <a href="/products/?cat=shredder">Shredder Blocks</a>
+    
+    
     <span class="separator">&raquo;</span>
     <span class="current">Vecoplan® Compatible Shredder Cutting Block</span>
   </div>
