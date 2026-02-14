@@ -202,7 +202,12 @@
       
       <div class="header-search-wrapper">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <form onsubmit="event.preventDefault();" style="margin:0"><input type="text" class="header-search-input" placeholder="Search by product name or number..."></form>
+        
+        <form action="/products/" method="GET" style="margin:0; width:100%;">
+          <input type="hidden" name="cat" value="all">
+          <input type="text" name="q" class="header-search-input" placeholder="Search by product name or number...">
+        </form>
+        
       </div>
 
       <div class="header-contact-info">
@@ -889,7 +894,7 @@ box-shadow: 0 15px 30px rgba(0,0,0,0.2);
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/capabilities/blade-materials/index.html" data-id="cuidwUk3fJ7T4dxwmzb4oDgPn" data-title="Blade Material Selection Guide" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/capabilities/blade-materials/index.html" data-id="cuidohSPSdwUBpdVkfEyoO6vB" data-title="Blade Material Selection Guide" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
