@@ -79,15 +79,26 @@
 
   /* 电脑端导航 */
   .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
+  
+  /* 普通导航项样式 */
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
+  
+  /* 下拉触发器样式 */
+  .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
+  .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
+  
+  /* ★★★ 关键修复：让下拉菜单的高亮状态也有下划线 ★★★ */
+  /* 普通导航 active */
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
   
-  .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
-  .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
-  .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
+  /* 下拉导航 active */
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
-  .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; transform: rotate(225deg) translate(-2px, -2px); }
+  .dropdown-trigger:hover::after, .dropdown-trigger.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
+
+  .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
+  .dropdown-trigger:hover .arrow-desktop, .dropdown-trigger.active .arrow-desktop { border-color: #cc0000; }
+  .dropdown-trigger:hover .arrow-desktop { transform: rotate(225deg) translate(-2px, -2px); }
   
   /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
@@ -141,6 +152,7 @@
         cursor: pointer;
         height: 100%;
     }
+    /* 手机端 active 状态 */
     .mobile-nav-item.active { color: #cc0000; }
     
     .mobile-nav-arrow {
@@ -154,7 +166,7 @@
 
     /* 下拉内容面板 */
     .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff; /* 纯白背景 */
+        display: block; width: 100%; background: #fff;
         border-bottom: 1px solid #eee;
     }
     
@@ -167,14 +179,13 @@
     
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* 【关键修复】下拉菜单项样式：更黑、更粗 */
     .mobile-dropdown-link {
         display: block;
         padding: 15px 20px;
         border-bottom: 1px solid #f0f0f0;
         font-size: 14px; 
-        color: #000; /* 改为纯黑 */
-        font-weight: 600; /* 加粗 */
+        color: #000;
+        font-weight: 600;
         background: #fff;
         text-decoration: none;
     }
@@ -210,7 +221,7 @@
       <a href="/" class="nav-item" id="nav-home-desktop">Home</a>
       
       <div class="dropdown">
-        <a href="/products/?cat=all" class="dropdown-trigger">Product Catalog <span class="arrow-desktop"></span></a>
+        <a href="/products/?cat=all" class="dropdown-trigger" id="nav-products-desktop">Product Catalog <span class="arrow-desktop"></span></a>
         <div class="dropdown-content">
           <a href="/products/?cat=granulator">Granulator Blades</a>
           <a href="/products/?cat=shredder">Shredder Blocks</a>
@@ -220,7 +231,7 @@
       </div>
 
       <div class="dropdown">
-        <a href="/capabilities/" class="dropdown-trigger">Custom Manufacturing <span class="arrow-desktop"></span></a>
+        <a href="/capabilities/" class="dropdown-trigger" id="nav-custom-desktop">Custom Manufacturing <span class="arrow-desktop"></span></a>
         <div class="dropdown-content">
           <a href="/capabilities/measuring-guide/">View Measuring Guide</a>
           <a href="/capabilities/blade-materials/">Compare Blade Materials</a>
@@ -234,11 +245,11 @@
     <div class="mobile-scroll-container">
         <a href="/" class="mobile-nav-item" id="nav-home-mobile">Home</a>
         
-        <div class="mobile-nav-item" onclick="toggleMobilePanel('panel-products', this)">
+        <div class="mobile-nav-item" id="nav-products-mobile" onclick="toggleMobilePanel('panel-products', this)">
             Product Catalog <span class="mobile-nav-arrow"></span>
         </div>
         
-        <div class="mobile-nav-item" onclick="toggleMobilePanel('panel-custom', this)">
+        <div class="mobile-nav-item" id="nav-custom-mobile" onclick="toggleMobilePanel('panel-custom', this)">
             Custom Manufacturing <span class="mobile-nav-arrow"></span>
         </div>
         
@@ -301,14 +312,29 @@
       triggerElement.classList.add('open');
   }
 
-  // 3. 高亮逻辑
+  // 3. 高亮逻辑 (增强版)
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
+    // Home 高亮
     if (path === '/' || path === '/index.html') {
         document.getElementById('nav-home-desktop').classList.add('active');
         document.getElementById('nav-home-mobile').classList.add('active');
     }
+    
+    // Products 高亮 (只要网址里包含 /products/)
+    if (path.includes('/products/')) {
+        document.getElementById('nav-products-desktop').classList.add('active');
+        document.getElementById('nav-products-mobile').classList.add('active');
+    }
+
+    // Custom Capabilities 高亮 (只要网址里包含 /capabilities/)
+    if (path.includes('/capabilities/')) {
+        document.getElementById('nav-custom-desktop').classList.add('active');
+        document.getElementById('nav-custom-mobile').classList.add('active');
+    }
+
+    // Contact 高亮
     if (path.includes('/contact')) {
         document.getElementById('nav-contact-desktop').classList.add('active');
         document.getElementById('nav-contact-mobile').classList.add('active');
@@ -420,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidEfoy6gENCV31_z-khIpTp" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/about/index.html" data-id="cuidOa3ImWT3jD44t5GvAKuCQ" data-title="About Us" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
