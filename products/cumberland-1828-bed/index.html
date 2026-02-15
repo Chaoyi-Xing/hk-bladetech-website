@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   
-  <title>Herbold® Compatible SML 60/100 Stator Knife | HK BladeTech</title>
+  <title>Cumberland® Compatible Model 1828 Bed Knife | HK BladeTech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="description" content="Your trusted partner for Granulator and Shredder blades from Hong Kong.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Herbold® Compatible SML 60&#x2F;100 Stator Knife">
-<meta property="og:url" content="https://www.hk-bladetech.com/products/herbold-sml-60-100-stator/index.html">
+<meta property="og:title" content="Cumberland® Compatible Model 1828 Bed Knife">
+<meta property="og:url" content="https://www.hk-bladetech.com/products/cumberland-1828-bed/index.html">
 <meta property="og:site_name" content="HK BladeTech">
 <meta property="og:description" content="Your trusted partner for Granulator and Shredder blades from Hong Kong.">
 <meta property="og:locale" content="en_US">
@@ -363,17 +363,17 @@ html, body {
 /* ★★★ 1. 容器宽度与 List 页统一：1280px ★★★ */
 .pdp-wrapper { 
   width: 100% !important; 
-  max-width: 1280px; /* 从 1400px 改为 1280px */
+  max-width: 1280px; 
   margin: 0 auto 80px; 
-  padding: 0 20px;   /* 增加 Padding 以对齐列表页 */
+  padding: 0 20px; 
   box-sizing: border-box; 
 }
 
 /* ★★★ 2. 面包屑容器位置与 List 页统一 ★★★ */
 .page-intro-container { 
   width: 100%; 
-  max-width: 1280px; /* 从 1400px 改为 1280px */
-  margin: 15px auto 10px; /* 从 20px 改为 15px，与列表页完全一致 */
+  max-width: 1280px; 
+  margin: 15px auto 10px; 
   padding: 0 20px;
   box-sizing: border-box; 
 }
@@ -390,7 +390,7 @@ html, body {
 }
 .breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; }
 .breadcrumbs a:hover { color: #cc0000; }
-.breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; } /* 统一分隔符间距 */
+.breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
 .breadcrumbs .current { color: #222; font-weight: 700; }
 
 /* =========================================
@@ -414,15 +414,58 @@ html, body {
   display: flex; gap: 30px; margin-bottom: 30px; 
 }
 
-/* 图片 (40%) */
-.col-img { flex: 0 0 40%; min-width: 0; }
+/* ★★★ 图片区域 (升级版：支持相册) ★★★ */
+.col-img { flex: 0 0 45%; min-width: 0; }
+
 .main-image-box { 
-  width: 100%; border: 1px solid #eee; border-radius: 4px; background: #fff; 
-  padding: 0; box-sizing: border-box;
-  display: flex; align-items: center; justify-content: center;
-  aspect-ratio: 1/1; overflow: hidden;
+  width: 100%; 
+  aspect-ratio: 1/1; 
+  border: 1px solid #eee; 
+  border-radius: 4px; 
+  background: #fff; 
+  padding: 10px; 
+  box-sizing: border-box;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 15px; 
+  position: relative;
 }
-.main-image-box img { width: 100%; height: 100%; object-fit: contain; }
+
+.main-image-box img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+  transition: opacity 0.2s;
+}
+
+/* 缩略图样式 */
+.thumb-gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.thumb-item {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.2s;
+  padding: 3px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumb-item:hover { opacity: 1; border-color: #999; }
+.thumb-item.active { opacity: 1; border-color: #cc0000; box-shadow: 0 0 0 1px #cc0000; }
+.thumb-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
 /* 信息 (60%) */
 .col-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -445,8 +488,29 @@ html, body {
    ========================================= */
 
 .product-title { font-size: 28px; font-weight: 800; color: #111; line-height: 1.2; margin: 0; }
-.part-number-line { font-size: 18px; color: #222; font-weight: 700; margin-top: 5px; }
-.specs-pipe-line { font-size: 16px; color: #444; font-weight: 500; line-height: 1.5; }
+
+/* ★★★ 新增：垂直列表样式 (字体调大) ★★★ */
+.specs-list-vertical {
+  margin-top: 15px; /* 稍微加大间距 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* 加大行间距 */
+}
+.spec-item-row {
+  font-size: 18px; /* ★★★ 字体加大到 18px ★★★ */
+  color: #222;     /* 颜色加深，更清晰 */
+  font-weight: 600; /* 加粗 */
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+}
+/* 可选：红点修饰 */
+.spec-item-row:before {
+  content: "•";
+  margin-right: 8px;
+  color: #cc0000;
+  font-weight: bold;
+}
 
 .sku-stock-line {
   display: flex; align-items: center; font-size: 15px; font-weight: 700;
@@ -518,9 +582,29 @@ html, body {
 /* --- Details 内容样式 --- */
 .tab-header { margin-bottom: 20px; border-bottom: 2px solid #cc0000; display: inline-block; padding-bottom: 8px; }
 .tab-title { font-size: 20px; font-weight: 800; color: #333; text-transform: uppercase; }
-.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-.spec-table th { width: 25%; text-align: left; padding: 12px 10px; background: #f9f9f9; border-bottom: 1px solid #fff; color: #333; font-weight: 700; font-size: 16px; }
-.spec-table td { padding: 12px 15px; border-bottom: 1px solid #eee; color: #555; font-size: 16px; }
+
+/* 修复表格样式 */
+.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; table-layout: fixed; /* 固定布局，防止自动挤压 */ }
+.spec-table th { 
+  width: 35%; /* 给标题列固定宽度，防止换行 */
+  text-align: left; 
+  padding: 12px 10px; 
+  background: #f9f9f9; 
+  border-bottom: 1px solid #fff; 
+  color: #333; 
+  font-weight: 700; 
+  font-size: 16px;
+  white-space: nowrap; /* 强制不换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+.spec-table td { 
+  padding: 12px 15px; 
+  border-bottom: 1px solid #eee; 
+  color: #555; 
+  font-size: 16px; 
+  vertical-align: middle;
+}
 .long-desc-container { line-height: 1.8; color:#555; font-size: 16px; text-align: left; }
 
 /* 响应式 */
@@ -535,6 +619,9 @@ html, body {
   .product-top-overview { flex-direction: column; }
   .service-sidebar { display: block; }
   .service-item { flex-direction: row; border-right: none; border-bottom: 1px solid #eee; text-align: left; }
+  
+  /* 手机上允许表格换行，否则会显示不全 */
+  .spec-table th { white-space: normal; width: 45%; }
 }
 </style>
 
@@ -548,7 +635,7 @@ html, body {
     
     
     <span class="separator">&raquo;</span>
-    <span class="current">Herbold® Compatible SML 60/100 Stator Knife</span>
+    <span class="current">Cumberland® Compatible Model 1828 Bed Knife</span>
   </div>
 </div>
 
@@ -560,27 +647,60 @@ html, body {
       <div class="product-top-overview">
         <div class="col-img">
           <div class="main-image-box">
-            <img src="/images/products/image_067ea1.jpg" alt="Herbold® Compatible SML 60/100 Stator Knife">
+            <img id="mainImage" src="/images/products/cumberland-1828-bed/1.png" alt="Cumberland® Compatible Model 1828 Bed Knife">
           </div>
+
+          
+            <div class="thumb-gallery">
+              <div class="thumb-item active" onclick="switchImage(this, '/images/products/cumberland-1828-bed/1.png')">
+                <img src="/images/products/cumberland-1828-bed/1.png">
+              </div>
+              
+                <div class="thumb-item" onclick="switchImage(this, '/images/products/cumberland-1828-bed/2.png')">
+                  <img src="/images/products/cumberland-1828-bed/2.png">
+                </div>
+              
+                <div class="thumb-item" onclick="switchImage(this, '/images/products/cumberland-1828-bed/3.png')">
+                  <img src="/images/products/cumberland-1828-bed/3.png">
+                </div>
+              
+            </div>
+          
         </div>
         
         <div class="col-info">
-          <h1 class="product-title">Herbold® Compatible SML 60/100 Stator Knife</h1>
-          <div class="part-number-line">Part #: HER-SML-60-100</div>
-          <div class="specs-pipe-line">D2 Tool Steel &nbsp;|&nbsp; 58-60 HRc &nbsp;|&nbsp; Precision Ground</div>
+          <h1 class="product-title">Cumberland® Compatible Model 1828 Bed Knife</h1>
+          
+          <div class="specs-list-vertical">
+            
+              
+                <div class="spec-item-row">
+                  D2 Tool Steel 
+                </div>
+              
+                <div class="spec-item-row">
+                  55-57 HRc 
+                </div>
+              
+                <div class="spec-item-row">
+                  717.55 x 96.82 x 22.22 mm 
+                </div>
+              
+            
+          </div>
           
           <div class="sku-stock-line">
             <span class="stock-group">
               <svg class="stock-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-              In stock
+              In Stock
             </span>
             <span class="sku-group">
               <span class="sku-label">SKU</span>
-              <span class="sku-value">HER-SML-60-100</span>
+              <span class="sku-value">HK-CUM-1828-BED</span>
             </span>
           </div>
           
-          <span class="product-price">$245.50</span>
+          <span class="product-price">$194.67</span>
           
           <div class="action-area">
             <div class="qty-wrapper">
@@ -590,7 +710,7 @@ html, body {
             
             <div class="button-group">
               <a href="#" class="btn-primary" onclick="alert('Item added to cart'); return false;">ADD TO CART</a>
-              <a href="/contact?inquiry=HER-SML-60-100" class="btn-secondary">BUY NOW</a>
+              <a href="/contact?inquiry=HK-CUM-1828-BED" class="btn-secondary">BUY NOW</a>
             </div>
           </div>
         </div>
@@ -600,45 +720,124 @@ html, body {
         <div class="tab-header">
           <span class="tab-title">Details</span>
         </div>
+        
         <table class="spec-table">
           <tbody>
             
-              <tr>
-                <th>Length</th>
-                <td>600mm</td>
-              </tr>
-            
-              <tr>
-                <th>Width</th>
-                <td>100mm</td>
-              </tr>
-            
-              <tr>
-                <th>Thickness</th>
-                <td>22mm</td>
-              </tr>
-            
-              <tr>
-                <th>Holes</th>
-                <td>5 Counterbore</td>
-              </tr>
-            
-              <tr>
-                <th>Material</th>
-                <td>9CrSi</td>
-              </tr>
+              
+                <tr>
+                  <th>Length (in)</th>
+                  <td>28.25</td>
+                </tr>
+              
+                <tr>
+                  <th>Length (mm)</th>
+                  <td>717.55</td>
+                </tr>
+              
+                <tr>
+                  <th>Width (in)</th>
+                  <td>3.81</td>
+                </tr>
+              
+                <tr>
+                  <th>Width (mm)</th>
+                  <td>96.82</td>
+                </tr>
+              
+                <tr>
+                  <th>Thickness (in)</th>
+                  <td>0.88</td>
+                </tr>
+              
+                <tr>
+                  <th>Thickness (mm)</th>
+                  <td>22.22</td>
+                </tr>
+              
+                <tr>
+                  <th>Material</th>
+                  <td>D2 Tool Steel</td>
+                </tr>
+              
+                <tr>
+                  <th>Hardness Lower Limit (HRc)</th>
+                  <td>55</td>
+                </tr>
+              
+                <tr>
+                  <th>Hardness Upper Limit (HRc)</th>
+                  <td>57</td>
+                </tr>
+              
+                <tr>
+                  <th>OEM Model</th>
+                  <td>1828</td>
+                </tr>
+              
+                <tr>
+                  <th>Primary Bevel Angle (degrees)</th>
+                  <td>75</td>
+                </tr>
+              
+                <tr>
+                  <th>Threaded Holes</th>
+                  <td>3</td>
+                </tr>
+              
+                <tr>
+                  <th>Slots</th>
+                  <td>8</td>
+                </tr>
+              
+                <tr>
+                  <th>Slot Length (in)</th>
+                  <td>2.166</td>
+                </tr>
+              
+                <tr>
+                  <th>Slot Width (in)</th>
+                  <td>0.891</td>
+                </tr>
+              
+                <tr>
+                  <th>Bevel Style</th>
+                  <td>Single Bevel</td>
+                </tr>
+              
+                <tr>
+                  <th>Thread Pitch</th>
+                  <td>1/2-13 UNC</td>
+                </tr>
+              
+                <tr>
+                  <th>Set Quantity</th>
+                  <td>2</td>
+                </tr>
+              
+                <tr>
+                  <th>Quantity Sold By</th>
+                  <td>Each</td>
+                </tr>
+              
+                <tr>
+                  <th>Special Notes</th>
+                  <td>This item is subject to a Tariff charge due to its country of origin.</td>
+                </tr>
+              
             
           </tbody>
         </table>
+        
         <div class="long-desc-container">
-          <p>Heavy duty stator knife designed for Herbold SML series. Precision ground edge ensures clean cutting and reduced dust generation. Ideal for both wet and dry granulation applications.</p>
+          <p>Premium replacement bed knife for Cumberland Model 1828. Part #: HK-CUM-1828-BED.</p>
         </div>
       </div>
     </div>
 
     <div class="sidebar-col">
       <div class="service-sidebar">
-        <div class="service-item">
+         <div class="service-item">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
           <div class="service-text">
             <h4>Delivery Options</h4>
@@ -671,7 +870,23 @@ html, body {
 
   </div>
 
-</div></section>
+</div>
+
+<script>
+function switchImage(thumb, src) {
+  var mainImg = document.getElementById('mainImage');
+  mainImg.style.opacity = 0; 
+  
+  setTimeout(function(){
+    mainImg.src = src;
+    mainImg.style.opacity = 1; 
+  }, 150);
+
+  var thumbs = document.querySelectorAll('.thumb-item');
+  thumbs.forEach(function(t){ t.classList.remove('active'); });
+  thumb.classList.add('active');
+}
+</script></section>
         
           <aside id="sidebar">
   
