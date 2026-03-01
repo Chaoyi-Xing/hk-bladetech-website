@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="HK BladeTech">
 <meta property="og:description" content="&#x2F;* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;      1. 终极强杀 Hexo 主题自带容器的干扰      &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; *&#x2F;   html, body { background-color: #ffffff !important; }   #wrap, .outer, #">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-03-01T07:58:26.016Z">
-<meta property="article:modified_time" content="2026-03-01T07:58:26.016Z">
+<meta property="article:published_time" content="2026-03-01T09:27:40.005Z">
+<meta property="article:modified_time" content="2026-03-01T09:27:40.005Z">
 <meta property="article:author" content="HK BladeTech Team">
 <meta property="article:tag" content="Granulator blades, Shredder blades, Industrial knives, D2 steel">
 <meta name="twitter:card" content="summary">
@@ -350,7 +350,7 @@
         <section id="main"><article id="page-" class="h-entry article article-type-page" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/capabilities/blade-materials/index.html" class="article-date">
-  <time class="dt-published" datetime="2026-03-01T07:58:26.016Z" itemprop="datePublished">2026-03-01</time>
+  <time class="dt-published" datetime="2026-03-01T09:27:40.005Z" itemprop="datePublished">2026-03-01</time>
 </a>
     
   </div>
@@ -397,13 +397,27 @@
   }
   .breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; cursor: pointer; }
   .breadcrumbs a:hover { color: #cc0000; }
-  .breadcrumbs .current { color: #222; font-weight: 700; }
-  .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
+  
+  /* ★ 修复：强制使用加粗，并增加系统默认字体回退 ★ */
+  .breadcrumbs .current { 
+    color: #000000 !important; 
+    font-weight: bold !important; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  }
+  
+  /* ★ 修复：强制统一分隔符的字体和大小，防止不同页面渲染不一致 ★ */
+  .breadcrumbs .separator { 
+    margin: 0 10px; 
+    color: #ddd; 
+    font-size: 14px !important; 
+    font-family: 'Open Sans', sans-serif !important; 
+  }
 
   /* =========================================
      3. 核心内容样式
      ========================================= */
-  body { font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif; color: #333; line-height: 1.6; }
+  /* ★ 将 body 字体恢复与前两个页面一致 ★ */
+  body { font-family: 'Open Sans', sans-serif; color: #333; line-height: 1.6; }
 
   .guide-wrapper {
     max-width: 1280px; /* 对齐面包屑 */
@@ -603,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/capabilities/blade-materials/index.html" data-id="cuidY0uYT6z2Q_S-yYvkN0BQA" data-title="Blade Material Selection Guide" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/capabilities/blade-materials/index.html" data-id="cuidiRkvgenKvenKQDBW8gibt" data-title="Blade Material Selection Guide" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
