@@ -49,7 +49,7 @@
   .col-md-3, .col-lg-3 { display: none !important; }
 
   html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
-  #faq-section { scroll-margin-top: 80px; }
+  #faq-section, #custom-manufacturing { scroll-margin-top: 80px; }
   body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
@@ -80,19 +80,14 @@
   /* 电脑端导航 */
   .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
   
-  /* 普通导航项样式 */
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
   
-  /* 下拉触发器样式 */
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
   .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
   
-  /* ★★★ 关键修复：让下拉菜单的高亮状态也有下划线 ★★★ */
-  /* 普通导航 active */
   .nav-item:hover, .nav-item.active { color: #cc0000; }
   .nav-item:hover::after, .nav-item.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
   
-  /* 下拉导航 active */
   .dropdown-trigger:hover, .dropdown-trigger.active { color: #cc0000; }
   .dropdown-trigger:hover::after, .dropdown-trigger.active::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
 
@@ -100,7 +95,6 @@
   .dropdown-trigger:hover .arrow-desktop, .dropdown-trigger.active .arrow-desktop { border-color: #cc0000; }
   .dropdown-trigger:hover .arrow-desktop { transform: rotate(225deg) translate(-2px, -2px); }
   
-  /* 电脑端下拉内容 */
   .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
   .dropdown:hover .dropdown-content { display: block; }
   .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
@@ -111,84 +105,57 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式
+     3. 手机端样式 (已加入搜索栏)
      ========================================= */
   @media (max-width: 768px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    .header-top-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; min-height: 60px; box-sizing: border-box; }
+    
+    /* 核心修改：允许换行，加入 gap 控制间距 */
+    .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 12px; box-sizing: border-box; }
+    
+    .header-logo { order: 1; }
     .header-logo img { height: 28px; }
-    .header-search-wrapper, .mobile-toggle, .nav-menu-desktop { display: none !important; }
+    
+    /* 核心修改：仅隐藏桌面导航菜单，不再隐藏搜索栏 */
+    .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 联系方式 (右侧) */
-    .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; }
+    /* 联系方式 (排在第一行右侧) */
+    .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; order: 2; }
     .contact-icon { display: none !important; }
     .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
     .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
+
+    /* 核心修改：手机端搜索框样式，占据第二行 100% 宽度 */
+    .header-search-wrapper { display: block !important; width: 100%; order: 3; }
+    .header-search-input { padding: 10px 15px 10px 40px; font-size: 14px; }
+    .search-icon { left: 15px; width: 16px; }
 
     .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
     /* 横向滑动容器 */
     .mobile-scroll-container {
-        display: flex;
-        overflow-x: auto; 
-        white-space: nowrap; 
-        -webkit-overflow-scrolling: touch; 
-        padding: 0 15px; 
-        height: 44px;
-        align-items: center;
-        gap: 25px;
-        scrollbar-width: none; 
+        display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; 
+        padding: 0 15px; height: 44px; align-items: center; gap: 25px; scrollbar-width: none; 
     }
     .mobile-scroll-container::-webkit-scrollbar { display: none; }
 
-    .mobile-nav-item {
-        font-size: 14px; 
-        font-weight: 700;
-        color: #333;
-        flex-shrink: 0; 
-        display: flex; align-items: center; gap: 4px;
-        cursor: pointer;
-        height: 100%;
-    }
-    /* 手机端 active 状态 */
+    .mobile-nav-item { font-size: 14px; font-weight: 700; color: #333; flex-shrink: 0; display: flex; align-items: center; gap: 4px; cursor: pointer; height: 100%; text-decoration: none; }
     .mobile-nav-item.active { color: #cc0000; }
     
-    .mobile-nav-arrow {
-        border: solid #666; border-width: 0 1.5px 1.5px 0;
-        display: inline-block; padding: 2px; 
-        transform: rotate(45deg); margin-bottom: 2px;
-        transition: transform 0.2s;
-    }
+    .mobile-nav-arrow { border: solid #666; border-width: 0 1.5px 1.5px 0; display: inline-block; padding: 2px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.2s; }
     .mobile-nav-item.open .mobile-nav-arrow { transform: rotate(225deg); border-color: #cc0000; }
     .mobile-nav-item.open { color: #cc0000; }
 
     /* 下拉内容面板 */
-    .mobile-dropdown-panel-container {
-        display: block; width: 100%; background: #fff;
-        border-bottom: 1px solid #eee;
-    }
+    .mobile-dropdown-panel-container { display: block; width: 100%; background: #fff; border-bottom: 1px solid #eee; }
     
-    .mobile-dropdown-panel {
-        display: none; 
-        width: 100%;
-        animation: fadeIn 0.2s ease;
-    }
+    .mobile-dropdown-panel { display: none; width: 100%; animation: fadeIn 0.2s ease; }
     .mobile-dropdown-panel.show { display: block; }
-    
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .mobile-dropdown-link {
-        display: block;
-        padding: 15px 20px;
-        border-bottom: 1px solid #f0f0f0;
-        font-size: 14px; 
-        color: #000;
-        font-weight: 600;
-        background: #fff;
-        text-decoration: none;
-    }
+    .mobile-dropdown-link { display: block; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #000; font-weight: 600; background: #fff; text-decoration: none; }
     .mobile-dropdown-link:last-child { border-bottom: none; }
     .mobile-dropdown-link:active { background-color: #f5f5f5; color: #cc0000; }
   }
@@ -235,13 +202,7 @@
         </div>
       </div>
 
-      <div class="dropdown">
-        <a href="/capabilities/" class="dropdown-trigger" id="nav-custom-desktop">Custom Manufacturing <span class="arrow-desktop"></span></a>
-        <div class="dropdown-content">
-          <a href="/capabilities/measuring-guide/">View Measuring Guide</a>
-          <a href="/capabilities/blade-materials/">Compare Blade Materials</a>
-        </div>
-      </div>
+      <a href="/#custom-manufacturing" class="nav-item" id="nav-custom-desktop">Custom Manufacturing</a>
 
       <a href="/contact" class="nav-item" id="nav-contact-desktop">Contact</a>
       <a href="/#faq-section" class="nav-item">FAQs</a>
@@ -254,9 +215,7 @@
             Product Catalog <span class="mobile-nav-arrow"></span>
         </div>
         
-        <div class="mobile-nav-item" id="nav-custom-mobile" onclick="toggleMobilePanel('panel-custom', this)">
-            Custom Manufacturing <span class="mobile-nav-arrow"></span>
-        </div>
+        <a href="/#custom-manufacturing" class="mobile-nav-item" id="nav-custom-mobile">Custom Manufacturing</a>
         
         <a href="/contact" class="mobile-nav-item" id="nav-contact-mobile">Contact</a>
         <a href="/#faq-section" class="mobile-nav-item">FAQs</a>
@@ -269,12 +228,6 @@
             <a href="/products/?cat=circular" class="mobile-dropdown-link">Circular Knives</a>
             <a href="/products/?cat=corrugated" class="mobile-dropdown-link">Corrugated Knives</a>
             <a href="/products/?cat=all" class="mobile-dropdown-link" style="color:#cc0000;">View Full Catalog →</a>
-        </div>
-
-        <div id="panel-custom" class="mobile-dropdown-panel">
-            <a href="/capabilities/measuring-guide/" class="mobile-dropdown-link">View Measuring Guide</a>
-            <a href="/capabilities/blade-materials/" class="mobile-dropdown-link">Compare Blade Materials</a>
-            <a href="/contact" class="mobile-dropdown-link" style="color:#cc0000;">Get Custom Quote →</a>
         </div>
     </div>
 
@@ -296,20 +249,18 @@
     }
   });
 
-  // 2. 手机端下拉面板逻辑
+  // 2. 手机端下拉面板逻辑 
   window.toggleMobilePanel = function(panelId, triggerElement) {
       var allPanels = document.querySelectorAll('.mobile-dropdown-panel');
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
       var targetPanel = document.getElementById(panelId);
 
-      // 如果点的是已打开的，就关闭
       if (targetPanel.classList.contains('show')) {
           targetPanel.classList.remove('show');
           triggerElement.classList.remove('open');
           return;
       }
 
-      // 否则先关掉别的，再开这个
       allPanels.forEach(p => p.classList.remove('show'));
       allTriggers.forEach(t => t.classList.remove('open'));
 
@@ -317,29 +268,20 @@
       triggerElement.classList.add('open');
   }
 
-  // 3. 高亮逻辑 (增强版)
+  // 3. 高亮逻辑 
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
-    // Home 高亮
     if (path === '/' || path === '/index.html') {
         document.getElementById('nav-home-desktop').classList.add('active');
         document.getElementById('nav-home-mobile').classList.add('active');
     }
     
-    // Products 高亮 (只要网址里包含 /products/)
     if (path.includes('/products/')) {
         document.getElementById('nav-products-desktop').classList.add('active');
         document.getElementById('nav-products-mobile').classList.add('active');
     }
 
-    // Custom Capabilities 高亮 (只要网址里包含 /capabilities/)
-    if (path.includes('/capabilities/')) {
-        document.getElementById('nav-custom-desktop').classList.add('active');
-        document.getElementById('nav-custom-mobile').classList.add('active');
-    }
-
-    // Contact 高亮
     if (path.includes('/contact')) {
         document.getElementById('nav-contact-desktop').classList.add('active');
         document.getElementById('nav-contact-mobile').classList.add('active');
@@ -548,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/capabilities/index.html" data-id="cuidDdrzTw7_a_Kvz-zkvc8t2" data-title="Our Capabilities" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/capabilities/index.html" data-id="cuidCpD9VvGf9ul4y015uMgZZ" data-title="Our Capabilities" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
