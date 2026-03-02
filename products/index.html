@@ -331,7 +331,19 @@
         <section id="main"><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ... (样式部分：完全保持你之前的“原始版本”) ... */
+/* =========================================
+   1. 隐藏原主题的干扰元素 (解决黑色重叠区块)
+   ========================================= */
+#sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
+#banner, #header-title, #header-outer, .archive-year-wrap, .page-header, .article-header,
+.col-md-3, .col-lg-3 { display: none !important; }
+
+/* 彻底隐藏文章内部自带的头部和元数据 */
+.article-inner header, .article-meta { display: none !important; }
+
+/* =========================================
+   2. 全局基础重置
+   ========================================= */
 html, body {
   background-color: #ffffff !important;
   font-family: 'Open Sans', "Helvetica Neue", Arial, sans-serif !important;
@@ -349,212 +361,138 @@ html, body {
 }
 
 .page-intro-container {
-  width: 100%;
-  max-width: 1280px; 
-  margin: 15px auto 10px;
-  padding: 0 20px;
-  box-sizing: border-box;
+  width: 100%; max-width: 1280px; margin: 15px auto 10px; padding: 0 20px; box-sizing: border-box;
 }
 
 .breadcrumbs {
-  font-size: 13px;
-  color: #666;
-  font-weight: 400;
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 13px; color: #666; font-weight: 400; display: flex; align-items: center;
+  text-transform: uppercase; letter-spacing: 0.5px;
 }
 .breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; cursor: pointer; }
 .breadcrumbs a:hover { color: #cc0000; }
 .breadcrumbs .current { color: #222; font-weight: 700; }
 .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
 
+/* =========================================
+   3. 电脑端布局 (Catalog Container)
+   ========================================= */
 .catalog-container {
-  width: 100%; 
-  max-width: 1280px; 
-  margin: 0 auto 60px; 
-  display: flex;
-  gap: 25px; 
-  padding: 0 20px;
-  min-height: 600px;
-  align-items: flex-start;
-  box-sizing: border-box;
+  width: 100%; max-width: 1280px; margin: 0 auto 60px; display: flex;
+  gap: 25px; padding: 0 20px; min-height: 600px; align-items: flex-start; box-sizing: border-box;
 }
 
+/* 侧边栏 */
 .catalog-sidebar {
-  width: 230px; 
-  flex-shrink: 0;
-  background: #f9f9f9; 
-  border: 1px solid #e5e5e5; 
-  padding: 25px 20px; 
-  border-radius: 4px; 
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
+  width: 230px; flex-shrink: 0; background: #f9f9f9; border: 1px solid #e5e5e5; 
+  padding: 25px 20px; border-radius: 4px; position: -webkit-sticky; position: sticky; top: 20px;
 }
-
 .sidebar-header {
-  font-size: 15px; 
-  font-weight: 800;
-  color: #111;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #ddd; 
+  font-size: 15px; font-weight: 800; color: #111; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #ddd; 
 }
-
-/* ★★★ 新增：控制品牌区域显示/隐藏的类 ★★★ */
-.brand-section { display: none; } /* 默认隐藏所有品牌组 */
-.brand-section.active { display: block; } /* 激活时显示 */
+.brand-section { display: none; } 
+.brand-section.active { display: block; } 
 
 .category-nav { list-style: none; padding: 0; margin: 0 0 35px 0; }
 .category-nav li { margin-bottom: 0; }
-
 .category-nav a {
-  display: block; 
-  color: #444; 
-  text-decoration: none;
-  font-size: 15px; 
-  font-weight: 600; 
-  cursor: pointer;
-  line-height: 1.4; 
-  padding: 10px 0 10px 10px;
-  border-left: 3px solid transparent; 
-  transition: all 0.2s;
-  border-bottom: 1px solid #eee; 
+  display: block; color: #444; text-decoration: none; font-size: 15px; font-weight: 600; 
+  cursor: pointer; line-height: 1.4; padding: 10px 0 10px 10px;
+  border-left: 3px solid transparent; transition: all 0.2s; border-bottom: 1px solid #eee; 
 }
-
 .category-nav a:hover { color: #cc0000; background-color: #fff; border-left-color: #ccc; }
 .category-nav a.active { color: #cc0000; font-weight: 800; border-left: 3px solid #cc0000; background-color: #fff; border-bottom-color: transparent; }
 
+/* 主体内容区 */
 .catalog-main { flex: 1; min-width: 0; }
-
-.page-header-title {
-  font-size: 28px; 
-  font-weight: 800;
-  margin: 0 0 15px 0;
-  color: #111;
-  text-transform: uppercase;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-
-.header-meta-row {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee; 
-  gap: 20px;
-}
-
-.page-header-desc {
-  font-size: 14px; 
-  color: #666;
-  line-height: 1.6;
-  margin: 0; 
-  max-width: 75%; 
-}
-
-.view-toggle { 
-  display: flex; 
-  gap: 0; 
-  border: 1px solid #e0e0e0; 
-  border-radius: 2px; 
-  flex-shrink: 0; 
-  background: white;
-}
-.view-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: #aaa;
-  width: 32px;
-  height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
+.page-header-title { font-size: 28px; font-weight: 800; margin: 0 0 15px 0; color: #111; text-transform: uppercase; letter-spacing: -0.5px; line-height: 1.2; }
+.header-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; gap: 20px; }
+.page-header-desc { font-size: 14px; color: #666; line-height: 1.6; margin: 0; max-width: 75%; }
+.view-toggle { display: flex; gap: 0; border: 1px solid #e0e0e0; border-radius: 2px; flex-shrink: 0; background: white; }
+.view-btn { border: none; background: transparent; cursor: pointer; color: #aaa; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .view-btn:first-child { border-right: 1px solid #e0e0e0; }
 .view-btn:hover { color: #333; }
 .view-btn.active { background-color: #f5f5f5; color: #111; font-weight: bold; }
 .view-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
-/* Product Card Style */
+/* 列表模式 */
 .product-grid { display: grid; gap: 0; border-top: none; } 
-
-/* List View */
 .product-grid.list-mode .product-card {
-  display: flex; flex-direction: row; align-items: stretch; 
-  background: white; padding: 0; 
-  border: 1px solid #e5e5e5; border-radius: 4px;
-  margin-bottom: 20px; transition: all 0.2s;
-  text-decoration: none; position: relative;
-  height: 240px; overflow: hidden; 
+  display: flex; flex-direction: row; align-items: stretch; background: white; padding: 0; 
+  border: 1px solid #e5e5e5; border-radius: 4px; margin-bottom: 20px; transition: all 0.2s;
+  text-decoration: none; position: relative; height: 240px; overflow: hidden; 
 }
 .product-grid.list-mode .product-card:hover { border-color: #bbb; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .product-grid.list-mode .product-card.hidden { display: none !important; }
-
-.product-grid.list-mode .card-img-container {
-  width: 320px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  background: #fff; border-right: 1px solid #f5f5f5; padding: 0; 
-}
+.product-grid.list-mode .card-img-container { width: 320px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; border-right: 1px solid #f5f5f5; padding: 0; }
 .card-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.product-grid.list-mode .card-content-wrapper { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 25px 30px; }
 
-.product-grid.list-mode .card-content-wrapper {
-  flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 25px 30px; 
-}
-
-.card-title {
-  font-size: 19px; font-weight: 600; color: #333 !important; 
-  margin-bottom: 10px; text-decoration: none !important; line-height: 1.4;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-  transition: color 0.2s;
-}
+/* 卡片内部元素 */
+.card-title { font-size: 19px; font-weight: 600; color: #333 !important; margin-bottom: 10px; text-decoration: none !important; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s; }
 .product-card:hover .card-title { color: #cc0000 !important; }
-
 .card-part-no { font-size: 14px; color: #333; font-weight: 700; font-family: 'Open Sans', sans-serif; margin-bottom: 10px; display: block; }
 .card-part-no span { color: #888; font-weight: 400; margin-right: 5px; }
-
 .card-bottom-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .card-price { font-size: 28px; font-weight: 700; color: #cc0000; display: flex; align-items: center; }
 .price-currency { font-size: 13px; font-weight: 600; color: #777; margin-right: 5px; position: relative; top: 2px; }
-
-.card-btn {
-  background-color: #cc0000; color: #fff !important; border: 1px solid #cc0000;
-  border-radius: 3px; font-weight: 700; font-size: 14px; padding: 13px 30px; 
-  text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;
-  text-align: center; display: inline-block; line-height: 1;
-}
+.card-btn { background-color: #cc0000; color: #fff !important; border: 1px solid #cc0000; border-radius: 3px; font-weight: 700; font-size: 14px; padding: 13px 30px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; text-align: center; display: inline-block; line-height: 1; }
 .card-btn:hover { background-color: #990000; border-color: #990000; }
 
-/* Grid View */
+/* 网格模式 */
 .product-grid.grid-mode { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; border-top: none; }
-.product-grid.grid-mode .product-card { 
-  flex-direction: column; text-align: center; padding: 25px; 
-  height: auto; min-height: 400px; align-items: stretch;
-}
+.product-grid.grid-mode .product-card { flex-direction: column; text-align: center; padding: 25px; height: auto; min-height: 400px; align-items: stretch; }
 .product-grid.grid-mode .card-img-container { width: 100%; height: 200px; margin-bottom: 20px; border-right: none; padding: 0; }
 .product-grid.grid-mode .card-content-wrapper { padding: 0; flex-grow: 1; }
 .product-grid.grid-mode .card-bottom-row { flex-direction: column; gap: 15px; margin-top: 20px; }
 .product-grid.grid-mode .card-btn { width: 100%; box-sizing: border-box; }
 .product-grid.grid-mode .card-price { justify-content: center; }
 
-/* Mobile */
+/* =========================================
+   4. 手机端专属优化 (重点修复部分)
+   ========================================= */
 @media(max-width: 991px) {
-  .catalog-container { flex-direction: column; gap: 20px; }
-  .catalog-sidebar { width: 100%; position: static; margin-bottom: 20px; }
-  .header-meta-row { flex-direction: column-reverse; align-items: flex-start; gap: 10px; }
-  .page-header-desc { max-width: 100%; }
+  .catalog-container { flex-direction: column; gap: 15px; padding-top: 10px; }
+  
+  /* 侧边栏改为顶部区块 */
+  .catalog-sidebar { 
+      width: 100%; position: static; margin-bottom: 5px; 
+      padding: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+  }
+  
+  /* 调整标题样式 */
+  .sidebar-header { 
+      font-size: 12px; margin-top: 5px !important; margin-bottom: 8px; 
+      border-bottom: none; color: #888; padding-bottom: 0;
+  }
+  
+  /* ★ 核心：垂直列表改为横向滑动的“药丸”按钮 ★ */
+  .category-nav {
+      display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;
+      margin-bottom: 15px; padding-bottom: 5px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+  }
+  .category-nav::-webkit-scrollbar { display: none; }
+
+  .category-nav a {
+      display: inline-block; border-left: none !important; border-bottom: none !important;
+      padding: 8px 16px; background: #f0f0f0; border-radius: 20px; 
+      font-size: 13px; font-weight: 600; color: #555;
+  }
+  .category-nav a.active { background: #cc0000; color: #fff; font-weight: 700; }
+
+  /* 主体内容适配 */
+  .page-header-title { font-size: 24px; }
+  .header-meta-row { flex-direction: column-reverse; align-items: flex-start; gap: 15px; }
+  .page-header-desc { max-width: 100%; font-size: 13px; }
   .view-toggle { align-self: flex-end; }
+  
+  /* 手机端商品卡片 */
   .product-grid.list-mode .product-card { flex-direction: column; align-items: flex-start; padding: 0; height: auto; }
   .product-grid.list-mode .card-img-container { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid #f5f5f5; }
   .product-grid.list-mode .card-content-wrapper { width: 100%; padding: 20px; box-sizing: border-box; }
-  .card-bottom-row { justify-content: space-between; }
+  .card-bottom-row { justify-content: space-between; flex-direction: row; }
 }
-.article-inner header, .article-meta { display: none!important; }
 </style>
 
 <div class="page-intro-container">
@@ -567,1172 +505,1171 @@ html, body {
 
 <div class="catalog-container">
 
-<aside class="catalog-sidebar">
-  <div class="sidebar-header">Product Category</div>
-  <ul class="category-nav" id="cat-filters">
-    <li><a onclick="filterCat('all',this)" class="active">All Products</a></li>
-    <li><a onclick="filterCat('granulator',this)">Granulator Blades</a></li>
-    <li><a onclick="filterCat('shredder',this)">Shredder Blocks</a></li>
-    <li><a onclick="filterCat('circular',this)">Circular Slitter Knives</a></li>
-    <li><a onclick="filterCat('corrugated',this)">Corrugated Knives</a></li>
-  </ul>
-
-  <div id="brands-granulator" class="brand-section">
-    <div class="sidebar-header" style="margin-top:30px">Granulator Brands</div>
-    <ul class="category-nav brand-nav">
-      <li><a onclick="filterBrand('all',this)" class="active">All Brands</a></li>
-      <li><a onclick="filterBrand('cumberland',this)">Cumberland®</a></li>
-      <li><a onclick="filterBrand('nelmor',this)">Nelmor®</a></li>
-      <li><a onclick="filterBrand('rapid',this)">Rapid®</a></li>
-      <li><a onclick="filterBrand('conair',this)">Conair®</a></li>
-      <li><a onclick="filterBrand('ball-jewell',this)">Ball & Jewell®</a></li>
+  <aside class="catalog-sidebar">
+    <div class="sidebar-header">Product Category</div>
+    <ul class="category-nav" id="cat-filters">
+      <li><a onclick="filterCat('all',this)" class="active">All Products</a></li>
+      <li><a onclick="filterCat('granulator',this)">Granulator Blades</a></li>
+      <li><a onclick="filterCat('shredder',this)">Shredder Blocks</a></li>
+      <li><a onclick="filterCat('circular',this)">Circular Slitter Knives</a></li>
+      <li><a onclick="filterCat('corrugated',this)">Corrugated Knives</a></li>
     </ul>
-  </div>
 
-  <div id="brands-shredder" class="brand-section">
-    <div class="sidebar-header" style="margin-top:30px">Shredder Brands</div>
-    <ul class="category-nav brand-nav">
-      <li><a onclick="filterBrand('all',this)" class="active">All Brands</a></li>
-      <li><a onclick="filterBrand('vecoplan',this)">Vecoplan®</a></li>
-      <li><a onclick="filterBrand('weima',this)">Weima®</a></li>
-    </ul>
-  </div>
+    <div id="brands-granulator" class="brand-section">
+      <div class="sidebar-header" style="margin-top:20px">Granulator Brands</div>
+      <ul class="category-nav brand-nav">
+        <li><a onclick="filterBrand('all',this)" class="active">All Brands</a></li>
+        <li><a onclick="filterBrand('cumberland',this)">Cumberland®</a></li>
+        <li><a onclick="filterBrand('nelmor',this)">Nelmor®</a></li>
+        <li><a onclick="filterBrand('rapid',this)">Rapid®</a></li>
+        <li><a onclick="filterBrand('conair',this)">Conair®</a></li>
+        <li><a onclick="filterBrand('ball-jewell',this)">Ball & Jewell®</a></li>
+      </ul>
+    </div>
 
+    <div id="brands-shredder" class="brand-section">
+      <div class="sidebar-header" style="margin-top:20px">Shredder Brands</div>
+      <ul class="category-nav brand-nav">
+        <li><a onclick="filterBrand('all',this)" class="active">All Brands</a></li>
+        <li><a onclick="filterBrand('vecoplan',this)">Vecoplan®</a></li>
+        <li><a onclick="filterBrand('weima',this)">Weima®</a></li>
+      </ul>
+    </div>
   </aside>
 
-<main class="catalog-main">
+  <main class="catalog-main">
 
-  <h1 class="page-header-title" id="dynamic-title">Precision Industrial Blades</h1>
+    <h1 class="page-header-title" id="dynamic-title">Precision Industrial Blades</h1>
 
-  <div class="header-meta-row">
-    <div class="page-header-desc" id="dynamic-desc">
-      Factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.
+    <div class="header-meta-row">
+      <div class="page-header-desc" id="dynamic-desc">
+        Factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.
+      </div>
+      
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="setView('list')" title="List View">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+        <button class="view-btn" onclick="setView('grid')" title="Grid View">
+          <svg viewBox="0 0 24 24"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
+        </button>
+      </div>
     </div>
-    
-    <div class="view-toggle">
-      <button class="view-btn active" onclick="setView('list')" title="List View">
-        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-      </button>
-      <button class="view-btn" onclick="setView('grid')" title="Grid View">
-        <svg viewBox="0 0 24 24"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
-      </button>
+
+    <div class="product-grid list-mode" id="product-grid">
+
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1012-rotor/1.png" alt="Cumberland® Compatible Model 1012 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1012-rotor/" class="card-title">Cumberland® Compatible Model 1012 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1012-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $128.73
+              </div>
+              <a href="/products/cumberland-1012-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1012-bed/1.png" alt="Cumberland® Compatible Model 1012 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1012-bed/" class="card-title">Cumberland® Compatible Model 1012 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1012-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $108.97
+              </div>
+              <a href="/products/cumberland-1012-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1216-rotor/1.png" alt="Cumberland® Compatible Model 1216 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1216-rotor/" class="card-title">Cumberland® Compatible Model 1216 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1216-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $111.01
+              </div>
+              <a href="/products/cumberland-1216-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1216-bed/1.png" alt="Cumberland® Compatible Model 1216 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1216-bed/" class="card-title">Cumberland® Compatible Model 1216 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1216-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $102.35
+              </div>
+              <a href="/products/cumberland-1216-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1828-rotor/1.png" alt="Cumberland® Compatible Model 1828 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1828-rotor/" class="card-title">Cumberland® Compatible Model 1828 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1828-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $210.00
+              </div>
+              <a href="/products/cumberland-1828-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-1828-bed/1.png" alt="Cumberland® Compatible Model 1828 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-1828-bed/" class="card-title">Cumberland® Compatible Model 1828 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-1828-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $194.67
+              </div>
+              <a href="/products/cumberland-1828-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-50b-rotor/1.png" alt="Cumberland® Compatible Model 50B Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-50b-rotor/" class="card-title">Cumberland® Compatible Model 50B Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-50B-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $191.61
+              </div>
+              <a href="/products/cumberland-50b-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-50b-bed/1.png" alt="Cumberland® Compatible Model 50B Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-50b-bed/" class="card-title">Cumberland® Compatible Model 50B Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-50B-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $197.73
+              </div>
+              <a href="/products/cumberland-50b-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-56u-rotor-left/1.png" alt="Cumberland® Compatible Model 56U Left Hand Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-56u-rotor-left/" class="card-title">Cumberland® Compatible Model 56U Left Hand Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-56U-ROTOR-L
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $223.27
+              </div>
+              <a href="/products/cumberland-56u-rotor-left/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-56u-rotor-right/1.png" alt="Cumberland® Compatible Model 56U Right Hand Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-56u-rotor-right/" class="card-title">Cumberland® Compatible Model 56U Right Hand Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-56U-ROTOR-R
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $223.27
+              </div>
+              <a href="/products/cumberland-56u-rotor-right/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-56u-bed/1.png" alt="Cumberland® Compatible Model 56U Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-56u-bed/" class="card-title">Cumberland® Compatible Model 56U Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-56U-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $203.66
+              </div>
+              <a href="/products/cumberland-56u-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-x1400-rotor-left/1.png" alt="Cumberland® Compatible Model X1400 Left Hand Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-x1400-rotor-left/" class="card-title">Cumberland® Compatible Model X1400 Left Hand Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-X1400-ROTOR-L
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $189.75
+              </div>
+              <a href="/products/cumberland-x1400-rotor-left/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-x1400-rotor-right/1.png" alt="Cumberland® Compatible Model X1400 Right Hand Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-x1400-rotor-right/" class="card-title">Cumberland® Compatible Model X1400 Right Hand Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-X1400-ROTOR-R
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $189.75
+              </div>
+              <a href="/products/cumberland-x1400-rotor-right/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+          
+          <div class="card-img-container">
+            <img src="/images/products/cumberland-x1400-bed/1.png" alt="Cumberland® Compatible Model X1400 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/cumberland-x1400-bed/" class="card-title">Cumberland® Compatible Model X1400 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CUM-X1400-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $165.00
+              </div>
+              <a href="/products/cumberland-x1400-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+          
+          <div class="card-img-container">
+            <img src="/images/products/nelmor-g1012m1-rotor/1.png" alt="Nelmor® Compatible Model G1012M1 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/nelmor-g1012m1-rotor/" class="card-title">Nelmor® Compatible Model G1012M1 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-NEL-G1012M1-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $86.58
+              </div>
+              <a href="/products/nelmor-g1012m1-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+          
+          <div class="card-img-container">
+            <img src="/images/products/nelmor-g1012m1-bed/1.png" alt="Nelmor® Compatible Model G1012M1 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/nelmor-g1012m1-bed/" class="card-title">Nelmor® Compatible Model G1012M1 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-NEL-G1012M1-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $83.07
+              </div>
+              <a href="/products/nelmor-g1012m1-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+          
+          <div class="card-img-container">
+            <img src="/images/products/nelmor-g1215m1-rotor/1.png" alt="Nelmor® Compatible Model G1215M1 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/nelmor-g1215m1-rotor/" class="card-title">Nelmor® Compatible Model G1215M1 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-NEL-G1215M1-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $124.02
+              </div>
+              <a href="/products/nelmor-g1215m1-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+          
+          <div class="card-img-container">
+            <img src="/images/products/nelmor-g1215m1-bed/1.png" alt="Nelmor® Compatible Model G1215M1 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/nelmor-g1215m1-bed/" class="card-title">Nelmor® Compatible Model G1215M1 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-NEL-G1215M1-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $95.94
+              </div>
+              <a href="/products/nelmor-g1215m1-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-cdm2442-rotor/1.png" alt="Rapid® Compatible Model CDM2442 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-cdm2442-rotor/" class="card-title">Rapid® Compatible Model CDM2442 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-CDM2442-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $210.60
+              </div>
+              <a href="/products/rapid-cdm2442-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-cdm2442-bed/1.png" alt="Rapid® Compatible Model CDM2442 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-cdm2442-bed/" class="card-title">Rapid® Compatible Model CDM2442 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-CDM2442-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $380.25
+              </div>
+              <a href="/products/rapid-cdm2442-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-cdh2442-rotor/1.png" alt="Rapid® Compatible Model CDH2442 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-cdh2442-rotor/" class="card-title">Rapid® Compatible Model CDH2442 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-CDH2442-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $124.02
+              </div>
+              <a href="/products/rapid-cdh2442-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-cdh2442-bed/1.png" alt="Rapid® Compatible Model CDH 2442 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-cdh2442-bed/" class="card-title">Rapid® Compatible Model CDH 2442 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-CDH2442-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $380.25
+              </div>
+              <a href="/products/rapid-cdh2442-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-2036-rotor/1.png" alt="Rapid® Compatible Model 2036 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-2036-rotor/" class="card-title">Rapid® Compatible Model 2036 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-2036-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $93.55
+              </div>
+              <a href="/products/rapid-2036-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="rapid">
+          
+          <div class="card-img-container">
+            <img src="/images/products/rapid-2036-bed/1.png" alt="Rapid® Compatible Model 2036 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/rapid-2036-bed/" class="card-title">Rapid® Compatible Model 2036 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-RAPID-2036-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $90.38
+              </div>
+              <a href="/products/rapid-2036-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="conair">
+          
+          <div class="card-img-container">
+            <img src="/images/products/conair-hg1412-rotor/1.png" alt="Conair® Compatible Model HG1412 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/conair-hg1412-rotor/" class="card-title">Conair® Compatible Model HG1412 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CONAIR-HG1412-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $131.04
+              </div>
+              <a href="/products/conair-hg1412-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="conair">
+          
+          <div class="card-img-container">
+            <img src="/images/products/conair-hg1412-bed/1.png" alt="Conair® Compatible Model HG1412 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/conair-hg1412-bed/" class="card-title">Conair® Compatible Model HG1412 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CONAIR-HG1412-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $111.15
+              </div>
+              <a href="/products/conair-hg1412-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="conair">
+          
+          <div class="card-img-container">
+            <img src="/images/products/conair-tf1220-rotor/1.png" alt="Conair® Compatible Model TF1220 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/conair-tf1220-rotor/" class="card-title">Conair® Compatible Model TF1220 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CONAIR-TF1220-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $185.85
+              </div>
+              <a href="/products/conair-tf1220-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="conair">
+          
+          <div class="card-img-container">
+            <img src="/images/products/conair-tf1220-bed/1.png" alt="Conair® Compatible Model TF1220 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/conair-tf1220-bed/" class="card-title">Conair® Compatible Model TF1220 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-CONAIR-TF1220-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $131.04
+              </div>
+              <a href="/products/conair-tf1220-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+          
+          <div class="card-img-container">
+            <img src="/images/products/ball-jewell-mvp818-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/ball-jewell-mvp818-rotor/" class="card-title">Ball &amp; Jewell® Compatible Model MVP818 Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-BJ-MVP818-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $111.01
+              </div>
+              <a href="/products/ball-jewell-mvp818-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+          
+          <div class="card-img-container">
+            <img src="/images/products/ball-jewell-mvp818-bed/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/ball-jewell-mvp818-bed/" class="card-title">Ball &amp; Jewell® Compatible Model MVP818 Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-BJ-MVP818-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $107.25
+              </div>
+              <a href="/products/ball-jewell-mvp818-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+          
+          <div class="card-img-container">
+            <img src="/images/products/ball-jewell-cg1620sx-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Rotor Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/ball-jewell-cg1620sx-rotor/" class="card-title">Ball &amp; Jewell® Compatible Model CG1620SX Rotor Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-BJ-CG1620SX-ROTOR
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $190.84
+              </div>
+              <a href="/products/ball-jewell-cg1620sx-rotor/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+          
+          <div class="card-img-container">
+            <img src="/images/products/ball-jewell-cg1620sx-bed/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Bed Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/ball-jewell-cg1620sx-bed/" class="card-title">Ball &amp; Jewell® Compatible Model CG1620SX Bed Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-BJ-CG1620SX-BED
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $184.38
+              </div>
+              <a href="/products/ball-jewell-cg1620sx-bed/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-40mm-crown/1.png" alt="Vecoplan® Compatible 40mm Crown Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-40mm-crown-cutter/" class="card-title">Vecoplan® Compatible 40mm Crown Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-40MM-CROWN
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $7.34
+              </div>
+              <a href="/products/vecoplan-40mm-crown-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-60mm-crown/1.png" alt="Vecoplan® Compatible 60mm Crown Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-60mm-crown-cutter/" class="card-title">Vecoplan® Compatible 60mm Crown Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-60MM-CROWN
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $18.50
+              </div>
+              <a href="/products/vecoplan-60mm-crown-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-40mm-concave/1.png" alt="Vecoplan® Compatible 40mm Concave Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-40mm-concave-cutter/" class="card-title">Vecoplan® Compatible 40mm Concave Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-40MM-CONCAVE
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $9.50
+              </div>
+              <a href="/products/vecoplan-40mm-concave-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-60mm-concave/1.png" alt="Vecoplan® Compatible 60mm Concave Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-60mm-concave-cutter/" class="card-title">Vecoplan® Compatible 60mm Concave Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-60MM-CONCAVE
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $18.50
+              </div>
+              <a href="/products/vecoplan-60mm-concave-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-rg32-counter-left/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Left Hand Counter Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-rg32-counter-left/" class="card-title">Vecoplan® Compatible Model RG32/20SWU Left Hand Counter Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-RG32-COUNTER-L
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $292.50
+              </div>
+              <a href="/products/vecoplan-rg32-counter-left/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+          
+          <div class="card-img-container">
+            <img src="/images/products/vecoplan-rg32-counter-right/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Right Hand Counter Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/vecoplan-rg32-counter-right/" class="card-title">Vecoplan® Compatible Model RG32/20SWU Right Hand Counter Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-VEC-RG32-COUNTER-R
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $292.50
+              </div>
+              <a href="/products/vecoplan-rg32-counter-right/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="weima">
+          
+          <div class="card-img-container">
+            <img src="/images/products/weima-40mm-crown/1.png" alt="Weima® Compatible 40mm Crown Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/weima-40mm-crown-cutter/" class="card-title">Weima® Compatible 40mm Crown Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-WEIMA-40MM-CROWN
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $7.95
+              </div>
+              <a href="/products/weima-40mm-crown-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="weima">
+          
+          <div class="card-img-container">
+            <img src="/images/products/weima-40mm-concave/1.png" alt="Weima® Compatible 40mm Concave Cutter">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/weima-40mm-concave-cutter/" class="card-title">Weima® Compatible 40mm Concave Cutter</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-WEIMA-40MM-CONCAVE
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $9.14
+              </div>
+              <a href="/products/weima-40mm-concave-cutter/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+        
+        
+        <div class="product-card" data-cat="shredder" data-brand="weima">
+          
+          <div class="card-img-container">
+            <img src="/images/products/weima-wlk18/1.png" alt="Weima® Compatible Model WLK-18 Jumbo Counter Knife">
+          </div>
+          
+          <div class="card-content-wrapper">
+            <div class="card-top-section">
+              <a href="/products/weima-wlk18/" class="card-title">Weima® Compatible Model WLK-18 Jumbo Counter Knife</a>
+              <div class="card-part-no">
+                <span>Part #:</span>HK-WEIMA-WLK18
+              </div>
+            </div>
+
+            <div class="card-bottom-row">
+              <div class="card-price">
+                <span class="price-currency">USD</span>
+                $721.50
+              </div>
+              <a href="/products/weima-wlk18/" class="card-btn">View Details</a>
+            </div>
+          </div>
+          
+        </div>
+      
+
     </div>
-  </div>
 
-  <div class="product-grid list-mode" id="product-grid">
-
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1012-rotor/1.png" alt="Cumberland® Compatible Model 1012 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1012-rotor/" class="card-title">Cumberland® Compatible Model 1012 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1012-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $128.73
-            </div>
-            <a href="/products/cumberland-1012-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1012-bed/1.png" alt="Cumberland® Compatible Model 1012 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1012-bed/" class="card-title">Cumberland® Compatible Model 1012 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1012-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $108.97
-            </div>
-            <a href="/products/cumberland-1012-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1216-rotor/1.png" alt="Cumberland® Compatible Model 1216 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1216-rotor/" class="card-title">Cumberland® Compatible Model 1216 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1216-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $111.01
-            </div>
-            <a href="/products/cumberland-1216-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1216-bed/1.png" alt="Cumberland® Compatible Model 1216 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1216-bed/" class="card-title">Cumberland® Compatible Model 1216 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1216-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $102.35
-            </div>
-            <a href="/products/cumberland-1216-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1828-rotor/1.png" alt="Cumberland® Compatible Model 1828 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1828-rotor/" class="card-title">Cumberland® Compatible Model 1828 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1828-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $210.00
-            </div>
-            <a href="/products/cumberland-1828-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-1828-bed/1.png" alt="Cumberland® Compatible Model 1828 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-1828-bed/" class="card-title">Cumberland® Compatible Model 1828 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-1828-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $194.67
-            </div>
-            <a href="/products/cumberland-1828-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-50b-rotor/1.png" alt="Cumberland® Compatible Model 50B Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-50b-rotor/" class="card-title">Cumberland® Compatible Model 50B Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-50B-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $191.61
-            </div>
-            <a href="/products/cumberland-50b-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-50b-bed/1.png" alt="Cumberland® Compatible Model 50B Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-50b-bed/" class="card-title">Cumberland® Compatible Model 50B Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-50B-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $197.73
-            </div>
-            <a href="/products/cumberland-50b-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-56u-rotor-left/1.png" alt="Cumberland® Compatible Model 56U Left Hand Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-56u-rotor-left/" class="card-title">Cumberland® Compatible Model 56U Left Hand Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-56U-ROTOR-L
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $223.27
-            </div>
-            <a href="/products/cumberland-56u-rotor-left/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-56u-rotor-right/1.png" alt="Cumberland® Compatible Model 56U Right Hand Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-56u-rotor-right/" class="card-title">Cumberland® Compatible Model 56U Right Hand Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-56U-ROTOR-R
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $223.27
-            </div>
-            <a href="/products/cumberland-56u-rotor-right/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-56u-bed/1.png" alt="Cumberland® Compatible Model 56U Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-56u-bed/" class="card-title">Cumberland® Compatible Model 56U Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-56U-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $203.66
-            </div>
-            <a href="/products/cumberland-56u-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-x1400-rotor-left/1.png" alt="Cumberland® Compatible Model X1400 Left Hand Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-x1400-rotor-left/" class="card-title">Cumberland® Compatible Model X1400 Left Hand Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-X1400-ROTOR-L
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $189.75
-            </div>
-            <a href="/products/cumberland-x1400-rotor-left/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-x1400-rotor-right/1.png" alt="Cumberland® Compatible Model X1400 Right Hand Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-x1400-rotor-right/" class="card-title">Cumberland® Compatible Model X1400 Right Hand Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-X1400-ROTOR-R
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $189.75
-            </div>
-            <a href="/products/cumberland-x1400-rotor-right/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="cumberland">
-        
-        <div class="card-img-container">
-          <img src="/images/products/cumberland-x1400-bed/1.png" alt="Cumberland® Compatible Model X1400 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/cumberland-x1400-bed/" class="card-title">Cumberland® Compatible Model X1400 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CUM-X1400-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $165.00
-            </div>
-            <a href="/products/cumberland-x1400-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="nelmor">
-        
-        <div class="card-img-container">
-          <img src="/images/products/nelmor-g1012m1-rotor/1.png" alt="Nelmor® Compatible Model G1012M1 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/nelmor-g1012m1-rotor/" class="card-title">Nelmor® Compatible Model G1012M1 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-NEL-G1012M1-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $86.58
-            </div>
-            <a href="/products/nelmor-g1012m1-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="nelmor">
-        
-        <div class="card-img-container">
-          <img src="/images/products/nelmor-g1012m1-bed/1.png" alt="Nelmor® Compatible Model G1012M1 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/nelmor-g1012m1-bed/" class="card-title">Nelmor® Compatible Model G1012M1 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-NEL-G1012M1-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $83.07
-            </div>
-            <a href="/products/nelmor-g1012m1-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="nelmor">
-        
-        <div class="card-img-container">
-          <img src="/images/products/nelmor-g1215m1-rotor/1.png" alt="Nelmor® Compatible Model G1215M1 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/nelmor-g1215m1-rotor/" class="card-title">Nelmor® Compatible Model G1215M1 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-NEL-G1215M1-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $124.02
-            </div>
-            <a href="/products/nelmor-g1215m1-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="nelmor">
-        
-        <div class="card-img-container">
-          <img src="/images/products/nelmor-g1215m1-bed/1.png" alt="Nelmor® Compatible Model G1215M1 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/nelmor-g1215m1-bed/" class="card-title">Nelmor® Compatible Model G1215M1 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-NEL-G1215M1-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $95.94
-            </div>
-            <a href="/products/nelmor-g1215m1-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-cdm2442-rotor/1.png" alt="Rapid® Compatible Model CDM2442 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-cdm2442-rotor/" class="card-title">Rapid® Compatible Model CDM2442 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-CDM2442-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $210.60
-            </div>
-            <a href="/products/rapid-cdm2442-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-cdm2442-bed/1.png" alt="Rapid® Compatible Model CDM2442 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-cdm2442-bed/" class="card-title">Rapid® Compatible Model CDM2442 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-CDM2442-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $380.25
-            </div>
-            <a href="/products/rapid-cdm2442-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-cdh2442-rotor/1.png" alt="Rapid® Compatible Model CDH2442 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-cdh2442-rotor/" class="card-title">Rapid® Compatible Model CDH2442 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-CDH2442-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $124.02
-            </div>
-            <a href="/products/rapid-cdh2442-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-cdh2442-bed/1.png" alt="Rapid® Compatible Model CDH 2442 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-cdh2442-bed/" class="card-title">Rapid® Compatible Model CDH 2442 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-CDH2442-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $380.25
-            </div>
-            <a href="/products/rapid-cdh2442-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-2036-rotor/1.png" alt="Rapid® Compatible Model 2036 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-2036-rotor/" class="card-title">Rapid® Compatible Model 2036 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-2036-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $93.55
-            </div>
-            <a href="/products/rapid-2036-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="rapid">
-        
-        <div class="card-img-container">
-          <img src="/images/products/rapid-2036-bed/1.png" alt="Rapid® Compatible Model 2036 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/rapid-2036-bed/" class="card-title">Rapid® Compatible Model 2036 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-RAPID-2036-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $90.38
-            </div>
-            <a href="/products/rapid-2036-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="conair">
-        
-        <div class="card-img-container">
-          <img src="/images/products/conair-hg1412-rotor/1.png" alt="Conair® Compatible Model HG1412 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/conair-hg1412-rotor/" class="card-title">Conair® Compatible Model HG1412 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CONAIR-HG1412-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $131.04
-            </div>
-            <a href="/products/conair-hg1412-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="conair">
-        
-        <div class="card-img-container">
-          <img src="/images/products/conair-hg1412-bed/1.png" alt="Conair® Compatible Model HG1412 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/conair-hg1412-bed/" class="card-title">Conair® Compatible Model HG1412 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CONAIR-HG1412-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $111.15
-            </div>
-            <a href="/products/conair-hg1412-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="conair">
-        
-        <div class="card-img-container">
-          <img src="/images/products/conair-tf1220-rotor/1.png" alt="Conair® Compatible Model TF1220 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/conair-tf1220-rotor/" class="card-title">Conair® Compatible Model TF1220 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CONAIR-TF1220-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $185.85
-            </div>
-            <a href="/products/conair-tf1220-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="conair">
-        
-        <div class="card-img-container">
-          <img src="/images/products/conair-tf1220-bed/1.png" alt="Conair® Compatible Model TF1220 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/conair-tf1220-bed/" class="card-title">Conair® Compatible Model TF1220 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-CONAIR-TF1220-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $131.04
-            </div>
-            <a href="/products/conair-tf1220-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
-        
-        <div class="card-img-container">
-          <img src="/images/products/ball-jewell-mvp818-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/ball-jewell-mvp818-rotor/" class="card-title">Ball &amp; Jewell® Compatible Model MVP818 Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-BJ-MVP818-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $111.01
-            </div>
-            <a href="/products/ball-jewell-mvp818-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
-        
-        <div class="card-img-container">
-          <img src="/images/products/ball-jewell-mvp818-bed/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/ball-jewell-mvp818-bed/" class="card-title">Ball &amp; Jewell® Compatible Model MVP818 Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-BJ-MVP818-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $107.25
-            </div>
-            <a href="/products/ball-jewell-mvp818-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
-        
-        <div class="card-img-container">
-          <img src="/images/products/ball-jewell-cg1620sx-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Rotor Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/ball-jewell-cg1620sx-rotor/" class="card-title">Ball &amp; Jewell® Compatible Model CG1620SX Rotor Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-BJ-CG1620SX-ROTOR
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $190.84
-            </div>
-            <a href="/products/ball-jewell-cg1620sx-rotor/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
-        
-        <div class="card-img-container">
-          <img src="/images/products/ball-jewell-cg1620sx-bed/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Bed Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/ball-jewell-cg1620sx-bed/" class="card-title">Ball &amp; Jewell® Compatible Model CG1620SX Bed Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-BJ-CG1620SX-BED
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $184.38
-            </div>
-            <a href="/products/ball-jewell-cg1620sx-bed/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-40mm-crown/1.png" alt="Vecoplan® Compatible 40mm Crown Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-40mm-crown-cutter/" class="card-title">Vecoplan® Compatible 40mm Crown Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-40MM-CROWN
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $7.34
-            </div>
-            <a href="/products/vecoplan-40mm-crown-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-60mm-crown/1.png" alt="Vecoplan® Compatible 60mm Crown Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-60mm-crown-cutter/" class="card-title">Vecoplan® Compatible 60mm Crown Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-60MM-CROWN
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $18.50
-            </div>
-            <a href="/products/vecoplan-60mm-crown-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-40mm-concave/1.png" alt="Vecoplan® Compatible 40mm Concave Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-40mm-concave-cutter/" class="card-title">Vecoplan® Compatible 40mm Concave Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-40MM-CONCAVE
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $9.50
-            </div>
-            <a href="/products/vecoplan-40mm-concave-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-60mm-concave/1.png" alt="Vecoplan® Compatible 60mm Concave Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-60mm-concave-cutter/" class="card-title">Vecoplan® Compatible 60mm Concave Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-60MM-CONCAVE
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $18.50
-            </div>
-            <a href="/products/vecoplan-60mm-concave-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-rg32-counter-left/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Left Hand Counter Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-rg32-counter-left/" class="card-title">Vecoplan® Compatible Model RG32/20SWU Left Hand Counter Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-RG32-COUNTER-L
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $292.50
-            </div>
-            <a href="/products/vecoplan-rg32-counter-left/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="vecoplan">
-        
-        <div class="card-img-container">
-          <img src="/images/products/vecoplan-rg32-counter-right/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Right Hand Counter Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/vecoplan-rg32-counter-right/" class="card-title">Vecoplan® Compatible Model RG32/20SWU Right Hand Counter Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-VEC-RG32-COUNTER-R
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $292.50
-            </div>
-            <a href="/products/vecoplan-rg32-counter-right/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="weima">
-        
-        <div class="card-img-container">
-          <img src="/images/products/weima-40mm-crown/1.png" alt="Weima® Compatible 40mm Crown Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/weima-40mm-crown-cutter/" class="card-title">Weima® Compatible 40mm Crown Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-WEIMA-40MM-CROWN
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $7.95
-            </div>
-            <a href="/products/weima-40mm-crown-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="weima">
-        
-        <div class="card-img-container">
-          <img src="/images/products/weima-40mm-concave/1.png" alt="Weima® Compatible 40mm Concave Cutter">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/weima-40mm-concave-cutter/" class="card-title">Weima® Compatible 40mm Concave Cutter</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-WEIMA-40MM-CONCAVE
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $9.14
-            </div>
-            <a href="/products/weima-40mm-concave-cutter/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-      
-      
-      <div class="product-card" data-cat="shredder" data-brand="weima">
-        
-        <div class="card-img-container">
-          <img src="/images/products/weima-wlk18/1.png" alt="Weima® Compatible Model WLK-18 Jumbo Counter Knife">
-        </div>
-        
-        <div class="card-content-wrapper">
-          <div class="card-top-section">
-            <a href="/products/weima-wlk18/" class="card-title">Weima® Compatible Model WLK-18 Jumbo Counter Knife</a>
-            <div class="card-part-no">
-              <span>Part #:</span>HK-WEIMA-WLK18
-            </div>
-          </div>
-
-          <div class="card-bottom-row">
-            <div class="card-price">
-              <span class="price-currency">USD</span>
-              $721.50
-            </div>
-            <a href="/products/weima-wlk18/" class="card-btn">View Details</a>
-          </div>
-        </div>
-        
-      </div>
-    
-
-  </div>
-
-</main>
+  </main>
 </div>
 
 <script>
@@ -1745,17 +1682,13 @@ var catDescMap = {
 };
 
 var brandDescMap = {
-  // Granulator Brands
   'cumberland': 'Exact-fit replacement blades compatible with Cumberland® granulators.',
   'nelmor': 'Premium replacement knives for Nelmor® machinery.',
   'rapid': 'Durable blades compatible with Rapid® granulators.',
   'conair': 'High-quality knives for Conair® equipment.',
   'ball-jewell': 'Reliable replacement blades for Ball & Jewell® granulators.',
-  
-  // Shredder Brands
   'vecoplan': 'Robust shredding inserts compatible with Vecoplan® shredders.',
   'weima': 'Heavy-duty cutters tailored for Weima® shredding machines.',
-  
   'other': 'Custom-manufactured industrial knives tailored to your specific prints and samples.'
 };
 
@@ -1791,20 +1724,16 @@ function setView(mode){
 document.addEventListener('DOMContentLoaded', function(){
   var p = new URLSearchParams(window.location.search);
   var c = p.get('cat') || 'all'; 
-  
-  // 初始化
   filterCat(c); 
 });
 
 function filterCat(c, e) {
   currentCat = c;
-  currentBrand = 'all'; // 切换大类时，重置品牌选择
+  currentBrand = 'all'; 
 
-  // 1. 更新左侧高亮
   if(e) {
     updateActive('cat-filters', e);
   } else {
-    // 自动查找并高亮
     var links = document.querySelectorAll('#cat-filters a');
     for(var i=0; i<links.length; i++) {
         if(links[i].getAttribute('onclick').includes("'" + c + "'")) {
@@ -1815,27 +1744,18 @@ function filterCat(c, e) {
     }
   }
 
-  // 2. ★★★ 核心逻辑：控制品牌栏显示/隐藏 ★★★
-  // 先隐藏所有品牌栏
   document.querySelectorAll('.brand-section').forEach(function(el){
     el.classList.remove('active');
   });
 
-  // 根据当前分类，显示对应的品牌栏
   if(c === 'granulator') {
     document.getElementById('brands-granulator').classList.add('active');
   } else if (c === 'shredder') {
     document.getElementById('brands-shredder').classList.add('active');
   } else if (c === 'all') {
-    // 如果选 All Products，你可以决定显示什么。
-    // 方案A：什么都不显示，让用户先选大类（推荐）
-    // 方案B：显示所有（太乱，不推荐）
-    // 这里我们选择：暂时只显示最热门的 Granulator 品牌作为默认，或者完全隐藏。
-    // 为了清爽，这里我们选择：如果选 All，显示 Granulator 品牌（假设它是你的主打）
     document.getElementById('brands-granulator').classList.add('active');
   }
 
-  // 重置品牌栏的高亮到 "All Brands"
   var brandNavs = document.querySelectorAll('.brand-nav a');
   brandNavs.forEach(function(el){ el.classList.remove('active'); });
   document.querySelectorAll('.brand-nav a[onclick*="\'all\'"]').forEach(function(el){ el.classList.add('active'); });
@@ -1847,8 +1767,6 @@ function filterCat(c, e) {
 
 function filterBrand(b, e) {
   currentBrand = b;
-  // 这里的 e 可能来自不同的 ul，所以我们要找到当前显示的那个 ul
-  // 简单粗暴的方法：把所有 .brand-nav 下的 active 都去掉，再加给当前点击的
   var allBrandLinks = document.querySelectorAll('.brand-nav a');
   for(var i=0; i<allBrandLinks.length; i++){
     allBrandLinks[i].classList.remove('active');
@@ -1867,10 +1785,7 @@ function applyFilters() {
     var cc = card.getAttribute("data-cat");
     var cb = card.getAttribute("data-brand");
     
-    // 1. 分类匹配
     var matchCat = (currentCat == 'all' || cc == currentCat);
-    
-    // 2. 品牌匹配
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
     
     if(matchCat && matchBrand) {
@@ -1895,10 +1810,7 @@ function updateHeader() {
   var d = document.getElementById('dynamic-desc');
   
   var bText = "";
-  // 简单的品牌文案映射（首字母大写等）
   if(currentBrand !== 'all') {
-    // 这里简单处理，实际上可以用 brandMap 来获取更好看的名字
-    // 比如 Cumberland®
     var link = document.querySelector('.brand-nav a.active');
     if(link) bText = link.innerText; 
   }
@@ -2204,7 +2116,7 @@ function updateActive(containerId, element) {
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
         <div class="contact-text">
-          Unit 1202, 12/F, Seng Cheong Building, Queen's Road West, Hong Kong
+          Unit 2705, 27/F, Hysan Place, 500 Hennessy Road, Causeway Bay, Hong Kong
         </div>
       </div>
 
