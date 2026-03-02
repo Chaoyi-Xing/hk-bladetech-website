@@ -332,34 +332,62 @@
 
 <style>
 /* =========================================
-   1. 隐藏原主题的干扰元素 (解决黑色重叠区块)
+   1. 暴力隐藏原主题干扰元素 (核弹级清理，专治顽固黑块和残留文字)
    ========================================= */
-#sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar, .right-col, .left-col,
-#banner, #header-title, #header-outer, .archive-year-wrap, .page-header, .article-header,
-.col-md-3, .col-lg-3 { display: none !important; }
+/* 隐藏所有原主题的页头、导航、侧边栏、默认面包屑 */
+#sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar,
+.left-col, .right-col, .mid-col,
+#banner, #header, #header-row, #header-title, #header-outer, 
+#mobile-nav, .mobile-nav, #top-container,
+.archive-year-wrap, .page-header, #page-header, .page-title,
+.article-header, header.article-header, .article-meta, .article-nav,
+.col-md-3, .col-lg-3, .breadcrumb:not(.breadcrumbs) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
 /* 彻底隐藏文章内部自带的头部和元数据 */
 .article-inner header, .article-meta { display: none !important; }
 
 /* =========================================
-   2. 全局基础重置
+   2. 全局基础重置 & 清除顽固背景
    ========================================= */
 html, body {
+  background: #ffffff !important; /* 强制白底 */
   background-color: #ffffff !important;
   font-family: 'Open Sans', "Helvetica Neue", Arial, sans-serif !important;
   color: #333;
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow-x: hidden;
 }
 
-#wrap, .outer, #main, .inner {
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+/* 清除所有原生外层容器的黑色背景、阴影 */
+#wrap, .outer, #main, .inner, #content, .article, .article-inner, .article-entry {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
 }
 
+/* ★★★ 关键修复：干掉某些主题通过 ::before/::after 生成的半屏黑色背景块 ★★★ */
+#wrap::before, #wrap::after, .outer::before, .outer::after,
+#main::before, #main::after, body::before, body::after, html::before, html::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+/* =========================================
+   3. 电脑端布局 (Catalog Container)
+   ========================================= */
 .page-intro-container {
   width: 100%; max-width: 1280px; margin: 15px auto 10px; padding: 0 20px; box-sizing: border-box;
 }
@@ -373,9 +401,6 @@ html, body {
 .breadcrumbs .current { color: #222; font-weight: 700; }
 .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
 
-/* =========================================
-   3. 电脑端布局 (Catalog Container)
-   ========================================= */
 .catalog-container {
   width: 100%; max-width: 1280px; margin: 0 auto 60px; display: flex;
   gap: 25px; padding: 0 20px; min-height: 600px; align-items: flex-start; box-sizing: border-box;
@@ -449,7 +474,7 @@ html, body {
 .product-grid.grid-mode .card-price { justify-content: center; }
 
 /* =========================================
-   4. 手机端专属优化 (重点修复部分)
+   4. 手机端专属优化 (药丸按钮 & 布局适配)
    ========================================= */
 @media(max-width: 991px) {
   .catalog-container { flex-direction: column; gap: 15px; padding-top: 10px; }
@@ -466,7 +491,7 @@ html, body {
       border-bottom: none; color: #888; padding-bottom: 0;
   }
   
-  /* ★ 核心：垂直列表改为横向滑动的“药丸”按钮 ★ */
+  /* 横向滑动的“药丸”按钮 */
   .category-nav {
       display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;
       margin-bottom: 15px; padding-bottom: 5px;
