@@ -105,36 +105,34 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 (已加入搜索栏)
+     3. 手机端样式 (已调整平衡比例)
      ========================================= */
   @media (max-width: 768px) {
     .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
     
-    /* 核心修改：允许换行，加入 gap 控制间距 */
-    .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 12px; box-sizing: border-box; }
+    .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 15px; box-sizing: border-box; }
     
     .header-logo { order: 1; }
-    .header-logo img { height: 28px; }
+    /* ★ 修改：放大 Logo 高度 */
+    .header-logo img { height: 38px; }
     
-    /* 核心修改：仅隐藏桌面导航菜单，不再隐藏搜索栏 */
     .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
-    /* 联系方式 (排在第一行右侧) */
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; order: 2; }
     .contact-icon { display: none !important; }
-    .contact-text .email-link { font-size: 13px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
-    .contact-text .whatsapp-link { font-size: 13px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
+    /* ★ 修改：略微放大联系方式字号 */
+    .contact-text .email-link { font-size: 14.5px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
+    .contact-text .whatsapp-link { font-size: 14px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
-    /* 核心修改：手机端搜索框样式，占据第二行 100% 宽度 */
     .header-search-wrapper { display: block !important; width: 100%; order: 3; }
-    .header-search-input { padding: 10px 15px 10px 40px; font-size: 14px; }
+    /* ★ 修改：减少上下内边距 (padding 从 10px 降到 8px)，让搜索框更修长 */
+    .header-search-input { padding: 8px 15px 8px 40px; font-size: 14px; }
     .search-icon { left: 15px; width: 16px; }
 
     .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
     .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
-    /* 横向滑动容器 */
     .mobile-scroll-container {
         display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; 
         padding: 0 15px; height: 44px; align-items: center; gap: 25px; scrollbar-width: none; 
@@ -148,7 +146,6 @@
     .mobile-nav-item.open .mobile-nav-arrow { transform: rotate(225deg); border-color: #cc0000; }
     .mobile-nav-item.open { color: #cc0000; }
 
-    /* 下拉内容面板 */
     .mobile-dropdown-panel-container { display: block; width: 100%; background: #fff; border-bottom: 1px solid #eee; }
     
     .mobile-dropdown-panel { display: none; width: 100%; animation: fadeIn 0.2s ease; }
