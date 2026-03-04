@@ -380,11 +380,26 @@
       .category-desc { color: #666; font-size: 15px; font-weight: 500; line-height: 1.5; margin-bottom: 25px; flex-grow: 1; text-align: center; }
       .view-btn { color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #f0f0f0; transition: all 0.3s; }
       .category-card:hover .view-btn { border-bottom-color: #cc0000; }
+
+      /* =========================================
+         5.5 Industries We Serve (新增行业模块)
+         ========================================= */
+      .industry-section { background-color: #ffffff; width: 100%; padding: 80px 20px; box-sizing: border-box; } 
+      .industry-grid { max-width: 1350px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+      .industry-card { background: #f9f9f9; border-radius: 8px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: all 0.4s ease; border: 1px solid #eee; }
+      .industry-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #cc0000; }
+      .industry-img-box { width: 100%; height: 160px; overflow: hidden; background: #fff; }
+      .industry-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+      .industry-card:hover .industry-img-box img { transform: scale(1.08); }
+      .industry-content { padding: 25px 20px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+      .industry-content h3 { color: #111; margin: 0 0 10px 0; font-size: 1.4em; font-weight: 800; }
+      .industry-content p { color: #666; font-size: 15px; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+      .industry-link-text { color: #cc0000; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
     
       /* =========================================
          6. Custom Manufacturing & Actions (合并版)
          ========================================= */
-      .process-section { background: #ffffff; padding: 80px 20px; color: #333; }
+      .process-section { background: #f9f9f9; padding: 80px 20px; color: #333; } /* 稍微加了背景色以区分上方的白底 */
       .process-grid { display: flex; gap: 30px; justify-content: space-between; max-width: 1200px; margin: 60px auto 0; position: relative; }
       .process-grid::before { content: ''; position: absolute; top: 40px; left: 100px; right: 100px; height: 2px; background: #eee; z-index: 0; }
       .process-item { flex: 1; text-align: center; position: relative; z-index: 1; }
@@ -392,8 +407,7 @@
       .process-item h3 { font-size: 1.5em; font-weight: 800; color: #111; margin-bottom: 15px; }
       .process-item p { font-size: 16px; line-height: 1.6; color: #555; padding: 0 5px; }
       
-      /* 合并进来的行动按钮区域样式 */
-      .process-cta-wrapper { margin-top: 70px; padding-top: 60px; border-top: 1px solid #f0f0f0; text-align: center; }
+      .process-cta-wrapper { margin-top: 70px; padding-top: 60px; border-top: 1px solid #e0e0e0; text-align: center; }
       .process-cta-wrapper h3 { font-size: 2.2em; font-weight: 800; margin-bottom: 30px; color: #111; letter-spacing: -0.5px; }
       .banner-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: stretch; }
       .action-group { display: flex; flex-direction: column; align-items: center; width: auto; min-width: 260px; }
@@ -412,7 +426,7 @@
       /* =========================================
          7. Quality Control
          ========================================= */
-      .qc-section { padding: 80px 20px; background: #f9f9f9; } /* 稍微加了点背景色以区分上下白底 */
+      .qc-section { padding: 80px 20px; background: #ffffff; } 
       .qc-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
       .qc-card { text-align: left; }
       .qc-video-box { width: 100%; aspect-ratio: 4/3; background: #eee; border-radius: 6px; margin-bottom: 20px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #888; }
@@ -446,6 +460,7 @@
          ========================================= */
       @media (max-width: 1024px) {
         .category-grid { grid-template-columns: repeat(2, 1fr); }
+        .industry-grid { grid-template-columns: repeat(2, 1fr); } /* 新增的行业响应式 */
         .trust-label::before, .trust-label::after { display: none; }
       }
       @media (max-width: 768px) {
@@ -455,6 +470,7 @@
         .brand-name { font-size: 18px; width: 40%; text-align: center; }
         .story-container { flex-direction: column; gap: 40px; }
         .category-grid { grid-template-columns: 1fr; } 
+        .industry-grid { grid-template-columns: 1fr; } /* 新增的行业响应式 */
         .qc-grid { grid-template-columns: 1fr; } 
         .process-grid { flex-direction: column; gap: 40px; }
         .process-grid::before { display: none; }
@@ -562,6 +578,50 @@
     </div>
   </div>
 
+  <div class="industry-section">
+    <div class="section-intro">
+      <h2 class="section-title">Industries We Serve</h2>
+      <p class="section-subtitle-text">Precision-engineered cutting solutions optimized for your specific application.</p>
+    </div>
+    
+    <div class="industry-grid">
+      <a href="/industry-plastics/" class="industry-card">
+        <div class="industry-img-box"><img src="/images/ind-plastic.png" alt="Plastics Recycling Blades"></div>
+        <div class="industry-content">
+          <h3>Plastics Recycling</h3>
+          <p>High-wear granulator and pelletizer blades for PET, HDPE, and purgings.</p>
+          <span class="industry-link-text">Explore Solutions →</span>
+        </div>
+      </a>
+
+      <a href="/industry-shredding/" class="industry-card">
+        <div class="industry-img-box"><img src="/images/ind-shredder.png" alt="Industrial Shredding Knives"></div>
+        <div class="industry-content">
+          <h3>Industrial Shredding</h3>
+          <p>Tough shredder blocks and hooks for e-waste, tires, and wood processing.</p>
+          <span class="industry-link-text">Explore Solutions →</span>
+        </div>
+      </a>
+
+      <a href="/industry-film/" class="industry-card">
+        <div class="industry-img-box"><img src="/images/ind-film.png" alt="Film & Foil Converting Blades"></div>
+        <div class="industry-content">
+          <h3>Film & Foil Converting</h3>
+          <p>Razor-sharp slitter knives ensuring clean cuts on plastic films and textiles.</p>
+          <span class="industry-link-text">Explore Solutions →</span>
+        </div>
+      </a>
+
+      <a href="/industry-corrugated/" class="industry-card">
+        <div class="industry-img-box"><img src="/images/ind-corrugated.png" alt="Corrugated Board Knives"></div>
+        <div class="industry-content">
+          <h3>Corrugated Board</h3>
+          <p>Precision serrated cut-off knives and slotters for the paper packaging industry.</p>
+          <span class="industry-link-text">Explore Solutions →</span>
+        </div>
+      </a>
+    </div>
+  </div>
   <div class="process-section" id="custom-manufacturing">
     <div class="section-intro">
       <h2 class="section-title">Custom Manufacturing Made Simple</h2>
