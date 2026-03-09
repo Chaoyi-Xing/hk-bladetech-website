@@ -1958,6 +1958,7 @@ var catMap = {
 /* 状态变量 */
 var currentCat = 'all';
 var currentBrand = 'all';
+var currentSearch = ''; // 新增：保存当前的搜索词
 var itemsPerPage = 10;
 var currentPage = 1;
 var filteredCards = [];
@@ -1981,12 +1982,19 @@ function setView(mode){
 document.addEventListener('DOMContentLoaded', function(){
   var p = new URLSearchParams(window.location.search);
   var c = p.get('cat') || 'all'; 
+  
+  // 提取 URL 中的搜索词，并转为小写以实现不区分大小写搜索
+  currentSearch = (p.get('q') || '').toLowerCase().trim(); 
+  
   filterCat(c); 
 });
 
 function filterCat(c, e) {
   currentCat = c;
   currentBrand = 'all'; 
+  
+  // 如果是用户手动点击左侧分类，清空搜索词，恢复正常浏览状态
+  if(e) { currentSearch = ''; } 
 
   if(e) {
     updateActive('cat-filters', e);
@@ -2025,6 +2033,9 @@ function filterCat(c, e) {
 
 function filterBrand(b, e) {
   currentBrand = b;
+  // 手动点击品牌时，清空全局搜索词
+  if(e) { currentSearch = ''; }
+  
   var allBrandLinks = document.querySelectorAll('.brand-nav a');
   for(var i=0; i<allBrandLinks.length; i++){
     allBrandLinks[i].classList.remove('active');
@@ -2044,10 +2055,21 @@ function applyFilters() {
     var cc = card.getAttribute("data-cat");
     var cb = card.getAttribute("data-brand");
     
+    // 获取标题和SKU用于搜索匹配
+    var title = card.querySelector('.card-title').innerText.toLowerCase();
+    var sku = card.querySelector('.card-part-no').innerText.toLowerCase();
+    
     var matchCat = (currentCat == 'all' || cc == currentCat);
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
+    var matchSearch = true;
+
+    // 搜索逻辑：只要标题或 SKU 包含搜索词即可
+    if (currentSearch !== '') {
+      matchSearch = title.includes(currentSearch) || sku.includes(currentSearch);
+    }
     
-    if(matchCat && matchBrand) {
+    // 三个条件同时满足才显示
+    if(matchCat && matchBrand && matchSearch) {
       filteredCards.push(card);
     } else {
       card.classList.add("hidden"); 
@@ -2111,14 +2133,14 @@ function changePage(page) {
   currentPage = page;
   renderPage(currentPage);
   renderPaginationControls();
-  
-  // 翻页后平滑滚动回网格顶部
   document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function updateBreadcrumb(c) {
   var crumbSpan = document.getElementById('crumb-current');
-  if (catMap[c]) {
+  if (currentSearch) {
+    crumbSpan.innerText = "Search Results";
+  } else if (catMap[c]) {
     crumbSpan.innerText = catMap[c];
   } else {
     crumbSpan.innerText = "Product Catalog"; 
@@ -2129,6 +2151,13 @@ function updateHeader() {
   var t = document.getElementById('dynamic-title');
   var d = document.getElementById('dynamic-desc');
   
+  if (currentSearch) {
+      // 正在搜索时的头部标题和描述
+      t.innerText = 'Search Results for "' + currentSearch + '"';
+      d.innerText = 'Found ' + filteredCards.length + ' matching product(s).';
+      return; // 直接返回，不再走分类标题逻辑
+  }
+
   var bText = "";
   if(currentBrand !== 'all') {
     var link = document.querySelector('.brand-nav a.active');
