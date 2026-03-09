@@ -290,9 +290,8 @@
 
 <style>
 /* =========================================
-   1. 暴力隐藏原主题干扰元素 (核弹级清理，专治顽固黑块和残留文字)
+   1. 暴力隐藏原主题干扰元素
    ========================================= */
-/* 隐藏所有原主题的页头、导航、侧边栏、默认面包屑 */
 #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar,
 .left-col, .right-col, .mid-col,
 #banner, #header, #header-row, #header-title, #header-outer, 
@@ -307,14 +306,13 @@
   pointer-events: none !important;
 }
 
-/* 彻底隐藏文章内部自带的头部和元数据 */
 .article-inner header, .article-meta { display: none !important; }
 
 /* =========================================
    2. 全局基础重置 & 清除顽固背景
    ========================================= */
 html, body {
-  background: #ffffff !important; /* 强制白底 */
+  background: #ffffff !important; 
   background-color: #ffffff !important;
   font-family: 'Open Sans', "Helvetica Neue", Arial, sans-serif !important;
   color: #333;
@@ -323,7 +321,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* 清除所有原生外层容器的黑色背景、阴影 */
 #wrap, .outer, #main, .inner, #content, .article, .article-inner, .article-entry {
   background: transparent !important;
   background-color: transparent !important;
@@ -335,7 +332,6 @@ html, body {
   max-width: none !important;
 }
 
-/* ★★★ 关键修复：干掉某些主题通过 ::before/::after 生成的半屏黑色背景块 ★★★ */
 #wrap::before, #wrap::after, .outer::before, .outer::after,
 #main::before, #main::after, body::before, body::after, html::before, html::after {
   display: none !important;
@@ -398,6 +394,9 @@ html, body {
 .view-btn.active { background-color: #f5f5f5; color: #111; font-weight: bold; }
 .view-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
+/* 产品卡片通用及隐藏类 */
+.product-card.hidden { display: none !important; }
+
 /* 列表模式 */
 .product-grid { display: grid; gap: 0; border-top: none; } 
 .product-grid.list-mode .product-card {
@@ -406,7 +405,6 @@ html, body {
   text-decoration: none; position: relative; height: 240px; overflow: hidden; 
 }
 .product-grid.list-mode .product-card:hover { border-color: #bbb; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-.product-grid.list-mode .product-card.hidden { display: none !important; }
 .product-grid.list-mode .card-img-container { width: 320px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; border-right: 1px solid #f5f5f5; padding: 0; }
 .card-img-container img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .product-grid.list-mode .card-content-wrapper { flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 25px 30px; }
@@ -432,45 +430,32 @@ html, body {
 .product-grid.grid-mode .card-price { justify-content: center; }
 
 /* =========================================
-   4. 手机端专属优化 (药丸按钮 & 布局适配)
+   4. 分页组件 (Pagination)
+   ========================================= */
+.pagination-container { display: flex; justify-content: center; align-items: center; margin-top: 40px; gap: 8px; width: 100%; }
+.page-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid #e0e0e0; background-color: #fff; color: #333; font-size: 16px; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; font-family: 'Open Sans', sans-serif; }
+.page-btn:hover:not(:disabled) { border-color: #bbb; background-color: #f9f9f9; }
+.page-btn.active { border-color: #cc0000; color: #cc0000; font-weight: 700; }
+.page-btn:disabled { color: #ccc; border-color: #eee; cursor: not-allowed; }
+
+/* =========================================
+   5. 手机端专属优化
    ========================================= */
 @media(max-width: 991px) {
   .catalog-container { flex-direction: column; gap: 15px; padding-top: 10px; }
+  .catalog-sidebar { width: 100%; position: static; margin-bottom: 5px; padding: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .sidebar-header { font-size: 12px; margin-top: 5px !important; margin-bottom: 8px; border-bottom: none; color: #888; padding-bottom: 0; }
   
-  /* 侧边栏改为顶部区块 */
-  .catalog-sidebar { 
-      width: 100%; position: static; margin-bottom: 5px; 
-      padding: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
-  }
-  
-  /* 调整标题样式 */
-  .sidebar-header { 
-      font-size: 12px; margin-top: 5px !important; margin-bottom: 8px; 
-      border-bottom: none; color: #888; padding-bottom: 0;
-  }
-  
-  /* 横向滑动的“药丸”按钮 */
-  .category-nav {
-      display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;
-      margin-bottom: 15px; padding-bottom: 5px;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none; 
-  }
+  .category-nav { display: flex; overflow-x: auto; white-space: nowrap; gap: 10px; margin-bottom: 15px; padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .category-nav::-webkit-scrollbar { display: none; }
-
-  .category-nav a {
-      display: inline-block; border-left: none !important; border-bottom: none !important;
-      padding: 8px 16px; background: #f0f0f0; border-radius: 20px; 
-      font-size: 13px; font-weight: 600; color: #555;
-  }
+  .category-nav a { display: inline-block; border-left: none !important; border-bottom: none !important; padding: 8px 16px; background: #f0f0f0; border-radius: 20px; font-size: 13px; font-weight: 600; color: #555; }
   .category-nav a.active { background: #cc0000; color: #fff; font-weight: 700; }
 
-  /* 主体内容适配 */
   .page-header-title { font-size: 24px; }
   .header-meta-row { flex-direction: column-reverse; align-items: flex-start; gap: 15px; }
   .page-header-desc { max-width: 100%; font-size: 13px; }
   .view-toggle { align-self: flex-end; }
   
-  /* 手机端商品卡片 */
   .product-grid.list-mode .product-card { flex-direction: column; align-items: flex-start; padding: 0; height: auto; }
   .product-grid.list-mode .card-img-container { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid #f5f5f5; }
   .product-grid.list-mode .card-content-wrapper { width: 100%; padding: 20px; box-sizing: border-box; }
@@ -518,6 +503,16 @@ html, body {
         <li><a onclick="filterBrand('weima',this)">Weima®</a></li>
       </ul>
     </div>
+
+    <div id="brands-circular" class="brand-section">
+      <div class="sidebar-header" style="margin-top:20px">Circular Slitter Brands</div>
+      <ul class="category-nav brand-nav">
+        <li><a onclick="filterBrand('all',this)" class="active">All Brands</a></li>
+        <li><a onclick="filterBrand('multivac',this)">Multivac®</a></li>
+        <li><a onclick="filterBrand('tidland',this)">Maxcess Tidland®</a></li>
+        <li><a onclick="filterBrand('dusenbery',this)">Dusenbery®</a></li>
+      </ul>
+    </div>
   </aside>
 
   <main class="catalog-main">
@@ -544,7 +539,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1012-rotor/1.png" alt="Cumberland® Compatible Model 1012 Rotor Knife">
@@ -571,7 +566,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1012-bed/1.png" alt="Cumberland® Compatible Model 1012 Bed Knife">
@@ -598,7 +593,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1216-rotor/1.png" alt="Cumberland® Compatible Model 1216 Rotor Knife">
@@ -625,7 +620,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1216-bed/1.png" alt="Cumberland® Compatible Model 1216 Bed Knife">
@@ -652,7 +647,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1828-rotor/1.png" alt="Cumberland® Compatible Model 1828 Rotor Knife">
@@ -679,7 +674,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-1828-bed/1.png" alt="Cumberland® Compatible Model 1828 Bed Knife">
@@ -706,7 +701,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-50b-rotor/1.png" alt="Cumberland® Compatible Model 50B Rotor Knife">
@@ -733,7 +728,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-50b-bed/1.png" alt="Cumberland® Compatible Model 50B Bed Knife">
@@ -760,7 +755,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-56u-rotor-left/1.png" alt="Cumberland® Compatible Model 56U Left Hand Rotor Knife">
@@ -787,7 +782,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-56u-rotor-right/1.png" alt="Cumberland® Compatible Model 56U Right Hand Rotor Knife">
@@ -814,7 +809,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-56u-bed/1.png" alt="Cumberland® Compatible Model 56U Bed Knife">
@@ -841,7 +836,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-x1400-rotor-left/1.png" alt="Cumberland® Compatible Model X1400 Left Hand Rotor Knife">
@@ -868,7 +863,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-x1400-rotor-right/1.png" alt="Cumberland® Compatible Model X1400 Right Hand Rotor Knife">
@@ -895,7 +890,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="cumberland">
+        <div class="product-card hidden" data-cat="granulator" data-brand="cumberland">
           
           <div class="card-img-container">
             <img src="/images/products/cumberland-x1400-bed/1.png" alt="Cumberland® Compatible Model X1400 Bed Knife">
@@ -922,7 +917,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+        <div class="product-card hidden" data-cat="granulator" data-brand="nelmor">
           
           <div class="card-img-container">
             <img src="/images/products/nelmor-g1012m1-rotor/1.png" alt="Nelmor® Compatible Model G1012M1 Rotor Knife">
@@ -949,7 +944,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+        <div class="product-card hidden" data-cat="granulator" data-brand="nelmor">
           
           <div class="card-img-container">
             <img src="/images/products/nelmor-g1012m1-bed/1.png" alt="Nelmor® Compatible Model G1012M1 Bed Knife">
@@ -976,7 +971,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+        <div class="product-card hidden" data-cat="granulator" data-brand="nelmor">
           
           <div class="card-img-container">
             <img src="/images/products/nelmor-g1215m1-rotor/1.png" alt="Nelmor® Compatible Model G1215M1 Rotor Knife">
@@ -1003,7 +998,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="nelmor">
+        <div class="product-card hidden" data-cat="granulator" data-brand="nelmor">
           
           <div class="card-img-container">
             <img src="/images/products/nelmor-g1215m1-bed/1.png" alt="Nelmor® Compatible Model G1215M1 Bed Knife">
@@ -1030,7 +1025,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-cdm2442-rotor/1.png" alt="Rapid® Compatible Model CDM2442 Rotor Knife">
@@ -1057,7 +1052,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-cdm2442-bed/1.png" alt="Rapid® Compatible Model CDM2442 Bed Knife">
@@ -1084,7 +1079,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-cdh2442-rotor/1.png" alt="Rapid® Compatible Model CDH2442 Rotor Knife">
@@ -1111,7 +1106,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-cdh2442-bed/1.png" alt="Rapid® Compatible Model CDH 2442 Bed Knife">
@@ -1138,7 +1133,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-2036-rotor/1.png" alt="Rapid® Compatible Model 2036 Rotor Knife">
@@ -1165,7 +1160,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="rapid">
+        <div class="product-card hidden" data-cat="granulator" data-brand="rapid">
           
           <div class="card-img-container">
             <img src="/images/products/rapid-2036-bed/1.png" alt="Rapid® Compatible Model 2036 Bed Knife">
@@ -1192,7 +1187,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="conair">
+        <div class="product-card hidden" data-cat="granulator" data-brand="conair">
           
           <div class="card-img-container">
             <img src="/images/products/conair-hg1412-rotor/1.png" alt="Conair® Compatible Model HG1412 Rotor Knife">
@@ -1219,7 +1214,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="conair">
+        <div class="product-card hidden" data-cat="granulator" data-brand="conair">
           
           <div class="card-img-container">
             <img src="/images/products/conair-hg1412-bed/1.png" alt="Conair® Compatible Model HG1412 Bed Knife">
@@ -1246,7 +1241,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="conair">
+        <div class="product-card hidden" data-cat="granulator" data-brand="conair">
           
           <div class="card-img-container">
             <img src="/images/products/conair-tf1220-rotor/1.png" alt="Conair® Compatible Model TF1220 Rotor Knife">
@@ -1273,7 +1268,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="conair">
+        <div class="product-card hidden" data-cat="granulator" data-brand="conair">
           
           <div class="card-img-container">
             <img src="/images/products/conair-tf1220-bed/1.png" alt="Conair® Compatible Model TF1220 Bed Knife">
@@ -1300,7 +1295,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+        <div class="product-card hidden" data-cat="granulator" data-brand="ball-jewell">
           
           <div class="card-img-container">
             <img src="/images/products/ball-jewell-mvp818-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Rotor Knife">
@@ -1327,7 +1322,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+        <div class="product-card hidden" data-cat="granulator" data-brand="ball-jewell">
           
           <div class="card-img-container">
             <img src="/images/products/ball-jewell-mvp818-bed/1.png" alt="Ball &amp; Jewell® Compatible Model MVP818 Bed Knife">
@@ -1354,7 +1349,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+        <div class="product-card hidden" data-cat="granulator" data-brand="ball-jewell">
           
           <div class="card-img-container">
             <img src="/images/products/ball-jewell-cg1620sx-rotor/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Rotor Knife">
@@ -1381,7 +1376,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="granulator" data-brand="ball-jewell">
+        <div class="product-card hidden" data-cat="granulator" data-brand="ball-jewell">
           
           <div class="card-img-container">
             <img src="/images/products/ball-jewell-cg1620sx-bed/1.png" alt="Ball &amp; Jewell® Compatible Model CG1620SX Bed Knife">
@@ -1408,7 +1403,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-40mm-crown/1.png" alt="Vecoplan® Compatible 40mm Crown Cutter">
@@ -1435,7 +1430,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-60mm-crown/1.png" alt="Vecoplan® Compatible 60mm Crown Cutter">
@@ -1462,7 +1457,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-40mm-concave/1.png" alt="Vecoplan® Compatible 40mm Concave Cutter">
@@ -1489,7 +1484,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-60mm-concave/1.png" alt="Vecoplan® Compatible 60mm Concave Cutter">
@@ -1516,7 +1511,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-rg32-counter-left/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Left Hand Counter Knife">
@@ -1543,7 +1538,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="vecoplan">
+        <div class="product-card hidden" data-cat="shredder" data-brand="vecoplan">
           
           <div class="card-img-container">
             <img src="/images/products/vecoplan-rg32-counter-right/1.png" alt="Vecoplan® Compatible Model RG32/20SWU Right Hand Counter Knife">
@@ -1570,7 +1565,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="weima">
+        <div class="product-card hidden" data-cat="shredder" data-brand="weima">
           
           <div class="card-img-container">
             <img src="/images/products/weima-40mm-crown/1.png" alt="Weima® Compatible 40mm Crown Cutter">
@@ -1597,7 +1592,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="weima">
+        <div class="product-card hidden" data-cat="shredder" data-brand="weima">
           
           <div class="card-img-container">
             <img src="/images/products/weima-40mm-concave/1.png" alt="Weima® Compatible 40mm Concave Cutter">
@@ -1624,7 +1619,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="shredder" data-brand="weima">
+        <div class="product-card hidden" data-cat="shredder" data-brand="weima">
           
           <div class="card-img-container">
             <img src="/images/products/weima-wlk18/1.png" alt="Weima® Compatible Model WLK-18 Jumbo Counter Knife">
@@ -1651,7 +1646,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="multivac">
           
           <div class="card-img-container">
             <img src="/images/products/multivac-single-bevel-79915200900/1.png" alt="Multivac® Single Bevel Circular Packaging Knife - 79.915.2009.00">
@@ -1678,7 +1673,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="multivac">
           
           <div class="card-img-container">
             <img src="/images/products/multivac-double-bevel-79915200947/1.png" alt="Multivac® Double Bevel Circular Packaging Knife - 79.915.2009.47">
@@ -1705,7 +1700,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-i-flat-slitter/1.png" alt="Maxcess Tidland® Compatible Class I Flat Slitter, Double Bevel, 10/Box">
@@ -1732,7 +1727,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-i-dish-slitter/1.png" alt="Maxcess Tidland® Compatible Class I Dish, Single Bevel 60° - Steel, 10/Box">
@@ -1759,7 +1754,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-ii-dish-slitter-5box/1.png" alt="Maxcess Tidland® Compatible Class II 5.906 x 3.152 x 0.098 Dish Slitter - D2 Steel, 5/Box">
@@ -1786,7 +1781,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-ii-shear-slitter-10box/1.png" alt="Maxcess Tidland® Compatible Class II Shear Slitter Blade - D2 Steel, 10/Box">
@@ -1813,7 +1808,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-iii-dish-slitter-d2/1.png" alt="Maxcess Tidland® Compatible Class III Dish Shear Slitter Blade - D2">
@@ -1840,7 +1835,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="tidland">
           
           <div class="card-img-container">
             <img src="/images/products/tidland-class-iii-flat-slitter-m2/1.png" alt="Maxcess Tidland® Compatible Class III Flat Shear Slitter Blade - M2, 10/Box">
@@ -1867,7 +1862,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="dusenbery">
           
           <div class="card-img-container">
             <img src="/images/products/dusenbery-circular-slitter/1.png" alt="Dusenbery® Circular Slitter">
@@ -1894,7 +1889,7 @@ html, body {
       
         
         
-        <div class="product-card" data-cat="circular" data-brand="other">
+        <div class="product-card hidden" data-cat="circular" data-brand="dusenbery">
           
           <div class="card-img-container">
             <img src="/images/products/dusenbery-dish-slitter-10box/1.png" alt="Dusenbery Style 4.158 x 3.192 x 0.049 Dish Slitter - 52100 Steel, 10/Box">
@@ -1922,11 +1917,13 @@ html, body {
 
     </div>
 
+    <div class="pagination-container" id="pagination"></div>
+
   </main>
 </div>
 
 <script>
-/* 文案数据库 */
+/* 文案及分类配置 */
 var catDescMap = {
   'granulator': 'High-performance rotor and stator knives for plastic granulation. Compatible with Cumberland, Nelmor, Rapid, and more.',
   'shredder': 'Heavy-duty shredder blocks and cutters designed for high-impact recycling. Compatible with Vecoplan, Weima, and Zerma machines.',
@@ -1942,6 +1939,9 @@ var brandDescMap = {
   'ball-jewell': 'Reliable replacement blades for Ball & Jewell® granulators.',
   'vecoplan': 'Robust shredding inserts compatible with Vecoplan® shredders.',
   'weima': 'Heavy-duty cutters tailored for Weima® shredding machines.',
+  'multivac': 'High-quality circular packaging knives compatible with Multivac® systems.',
+  'tidland': 'Precision replacement slitter blades compatible with Maxcess Tidland® systems.',
+  'dusenbery': 'Durable circular slitters and dish blades compatible with Dusenbery® systems.',
   'other': 'Custom-manufactured industrial knives tailored to your specific prints and samples.'
 };
 
@@ -1955,8 +1955,12 @@ var catMap = {
   'corrugated': 'Corrugated Knives'
 };
 
+/* 状态变量 */
 var currentCat = 'all';
 var currentBrand = 'all';
+var itemsPerPage = 10;
+var currentPage = 1;
+var filteredCards = [];
 
 function setView(mode){
   var g = document.getElementById('product-grid');
@@ -1997,6 +2001,7 @@ function filterCat(c, e) {
     }
   }
 
+  // 重置品牌区域展示状态
   document.querySelectorAll('.brand-section').forEach(function(el){
     el.classList.remove('active');
   });
@@ -2005,8 +2010,8 @@ function filterCat(c, e) {
     document.getElementById('brands-granulator').classList.add('active');
   } else if (c === 'shredder') {
     document.getElementById('brands-shredder').classList.add('active');
-  } else if (c === 'all') {
-    document.getElementById('brands-granulator').classList.add('active');
+  } else if (c === 'circular') {
+    document.getElementById('brands-circular').classList.add('active');
   }
 
   var brandNavs = document.querySelectorAll('.brand-nav a');
@@ -2032,7 +2037,8 @@ function filterBrand(b, e) {
 
 function applyFilters() {
   var cards = document.getElementsByClassName("product-card");
-  
+  filteredCards = []; 
+
   for(var i=0; i<cards.length; i++) {
     var card = cards[i];
     var cc = card.getAttribute("data-cat");
@@ -2042,11 +2048,72 @@ function applyFilters() {
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
     
     if(matchCat && matchBrand) {
-      card.classList.remove("hidden");
+      filteredCards.push(card);
     } else {
-      card.classList.add("hidden");
+      card.classList.add("hidden"); 
     }
   }
+
+  currentPage = 1;
+  renderPage(currentPage);
+  renderPaginationControls();
+}
+
+function renderPage(page) {
+  for(var i=0; i<filteredCards.length; i++) {
+    filteredCards[i].classList.add("hidden");
+  }
+
+  var startIndex = (page - 1) * itemsPerPage;
+  var endIndex = Math.min(startIndex + itemsPerPage, filteredCards.length);
+
+  for(var j=startIndex; j<endIndex; j++) {
+    filteredCards[j].classList.remove("hidden");
+  }
+}
+
+function renderPaginationControls() {
+  var totalPages = Math.ceil(filteredCards.length / itemsPerPage);
+  var paginationDiv = document.getElementById("pagination");
+  paginationDiv.innerHTML = ""; 
+
+  if (totalPages <= 1) return; 
+
+  var prevBtn = document.createElement("button");
+  prevBtn.className = "page-btn";
+  prevBtn.innerHTML = "&lt;";
+  prevBtn.disabled = (currentPage === 1);
+  prevBtn.onclick = function() { changePage(currentPage - 1); };
+  paginationDiv.appendChild(prevBtn);
+
+  for (var i = 1; i <= totalPages; i++) {
+    var pageBtn = document.createElement("button");
+    pageBtn.className = "page-btn";
+    if (i === currentPage) pageBtn.classList.add("active");
+    pageBtn.innerText = i;
+    
+    (function(pageNum) {
+        pageBtn.onclick = function() { changePage(pageNum); };
+    })(i);
+    
+    paginationDiv.appendChild(pageBtn);
+  }
+
+  var nextBtn = document.createElement("button");
+  nextBtn.className = "page-btn";
+  nextBtn.innerHTML = "&gt;";
+  nextBtn.disabled = (currentPage === totalPages);
+  nextBtn.onclick = function() { changePage(currentPage + 1); };
+  paginationDiv.appendChild(nextBtn);
+}
+
+function changePage(page) {
+  currentPage = page;
+  renderPage(currentPage);
+  renderPaginationControls();
+  
+  // 翻页后平滑滚动回网格顶部
+  document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function updateBreadcrumb(c) {
