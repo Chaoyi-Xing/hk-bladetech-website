@@ -286,20 +286,63 @@
       <div class="outer">
         <section id="main"><style>
 /* =========================================
-   PDP 样式 (完全对齐 List 页版本)
+   1. 暴力隐藏原主题干扰元素 (核弹级清理，专治顽固黑块)
+   ========================================= */
+#sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar,
+.left-col, .right-col, .mid-col,
+#banner, #header-row, #header-title, #header-outer, 
+#mobile-nav, .mobile-nav, #top-container,
+.archive-year-wrap, .page-header, #page-header, .page-title,
+.article-header, header.article-header, .article-meta, .article-nav,
+.article-footer, .article-share-link, 
+.col-md-3, .col-lg-3, .breadcrumb:not(.breadcrumbs) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.article-inner header, .article-meta { display: none !important; }
+
+/* =========================================
+   2. 彻底重置容器 & 杀掉伪元素黑块 (核心修复)
    ========================================= */
 html, body { 
   margin: 0; padding: 0; width: 100%; 
   -webkit-text-size-adjust: 100%; 
-  background-color: #ffffff; color: #333; 
+  background: #ffffff !important; 
+  background-color: #ffffff !important; 
+  color: #333; 
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  overflow-x: hidden;
 }
 
-#wrap, .outer, #main, .inner { 
-  background-color: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; width: 100% !important; max-width: none !important; 
+#wrap, .outer, #main, .inner, .article, .article-inner, .article-entry, #content, .container { 
+  background: transparent !important; 
+  background-color: transparent !important; 
+  background-image: none !important; 
+  box-shadow: none !important; 
+  border: none !important; 
+  padding: 0 !important; 
+  margin: 0 !important; 
+  width: 100% !important; 
+  max-width: 100% !important; 
+  box-sizing: border-box !important;
 }
 
-/* ★★★ 1. 容器宽度与 List 页统一：1280px ★★★ */
+/* ★★★ 核心修复：干掉导致手机端半屏黑块的伪元素 ★★★ */
+#wrap::before, #wrap::after, .outer::before, .outer::after,
+#main::before, #main::after, body::before, body::after, html::before, html::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+/* =========================================
+   3. PDP 布局样式
+   ========================================= */
+/* 容器宽度与 List 页统一：1280px */
 .pdp-wrapper { 
   width: 100% !important; 
   max-width: 1280px; 
@@ -308,7 +351,6 @@ html, body {
   box-sizing: border-box; 
 }
 
-/* ★★★ 2. 面包屑容器位置与 List 页统一 ★★★ */
 .page-intro-container { 
   width: 100%; 
   max-width: 1280px; 
@@ -332,9 +374,7 @@ html, body {
 .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
 .breadcrumbs .current { color: #222; font-weight: 700; }
 
-/* =========================================
-   布局结构
-   ========================================= */
+/* 布局结构 */
 .product-layout-row {
   display: flex;
   gap: 40px; 
@@ -342,18 +382,18 @@ html, body {
   margin-bottom: 40px;
 }
 
-/* --- [A] 主内容区 (72%) --- */
+/* 主内容区 (72%) */
 .primary-content-col {
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; 
 }
 
-/* A1. 图文区域 */
+/* 图文区域 */
 .product-top-overview {
   display: flex; gap: 30px; margin-bottom: 30px; 
 }
 
-/* ★★★ 图片区域 (升级版：支持相册) ★★★ */
+/* 图片区域 */
 .col-img { flex: 0 0 45%; min-width: 0; }
 
 .main-image-box { 
@@ -379,7 +419,6 @@ html, body {
   transition: opacity 0.2s;
 }
 
-/* 缩略图样式 */
 .thumb-gallery {
   display: flex;
   gap: 10px;
@@ -406,10 +445,9 @@ html, body {
 .thumb-item.active { opacity: 1; border-color: #cc0000; box-shadow: 0 0 0 1px #cc0000; }
 .thumb-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-/* 信息 (60%) */
+/* 信息区 (60%) */
 .col-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
 
-/* A2. Details 区域 */
 .product-tabs-full {
   width: 100%;
   border-top: none; 
@@ -418,14 +456,11 @@ html, body {
   padding-left: 0;
 }
 
-/* --- [B] 右侧边栏 (28%) --- */
+/* 右侧边栏 (28%) */
 .sidebar-col { flex: 0 0 28%; min-width: 300px; }
 
 
-/* =========================================
-   组件样式
-   ========================================= */
-
+/* 组件样式 */
 .product-title { font-size: 28px; font-weight: 800; color: #111; line-height: 1.2; margin: 0; }
 
 .specs-list-vertical {
@@ -460,19 +495,16 @@ html, body {
 .sku-label { color: #222; margin-right: 5px; font-weight: 700; }
 .sku-value { color: #4a90e2; font-family: monospace; font-weight: 600; }
 
-/* =========================================
-   ★★★ 统一的操作/购买框 (Purchase Box) ★★★
-   把价格、数量、按钮打包在一个整体里
-   ========================================= */
+/* 操作/购买框 (Purchase Box) */
 .purchase-box {
-  margin-top: auto; /* 把整个框推到与左侧缩略图底部齐平 */
-  background-color: #fafafa; /* 高级灰底色 */
+  margin-top: auto; 
+  background-color: #fafafa; 
   border: 1px solid #eaeaea;
   border-radius: 6px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* 内部元素均匀间距，不再有突兀的断层 */
+  gap: 15px; 
 }
 
 .price-row { display: flex; align-items: baseline; gap: 10px; }
@@ -505,7 +537,7 @@ html, body {
 
 .btn-primary {
   display: flex; align-items: center; justify-content: center; width: 100%; 
-  padding: 14px 0; /* 加大按钮高度，质感更好 */
+  padding: 14px 0; 
   border-radius: 4px; text-decoration: none;
   font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
   transition: all 0.2s; box-sizing: border-box; cursor: pointer; 
@@ -527,7 +559,7 @@ html, body {
 }
 .btn-secondary:hover { background-color: #ffcccc; transform: translateY(-1px); }
 
-/* --- 右栏：服务承诺 (30%) --- */
+/* 右栏：服务承诺 (30%) */
 .service-sidebar {
   border: 1px solid #d0d0d0; border-radius: 4px; background: #fff;
   padding: 15px 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.02);
@@ -551,7 +583,7 @@ html, body {
 .service-item:hover .service-text h4 { color: #cc0000; }
 .service-item:hover .service-text p { color: #333; }
 
-/* --- Details 内容样式 --- */
+/* Details 内容样式 */
 .tab-header { margin-bottom: 20px; border-bottom: 2px solid #cc0000; display: inline-block; padding-bottom: 8px; }
 .tab-title { font-size: 20px; font-weight: 800; color: #333; text-transform: uppercase; }
 
