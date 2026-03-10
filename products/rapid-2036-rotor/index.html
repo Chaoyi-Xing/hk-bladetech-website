@@ -430,20 +430,19 @@ html, body {
 
 /* ★★★ 新增：垂直列表样式 (字体调大) ★★★ */
 .specs-list-vertical {
-  margin-top: 15px; /* 稍微加大间距 */
+  margin-top: 15px; 
   display: flex;
   flex-direction: column;
-  gap: 8px; /* 加大行间距 */
+  gap: 8px; 
 }
 .spec-item-row {
-  font-size: 18px; /* ★★★ 字体加大到 18px ★★★ */
-  color: #222;     /* 颜色加深，更清晰 */
-  font-weight: 600; /* 加粗 */
+  font-size: 18px; 
+  color: #222;     
+  font-weight: 600; 
   display: flex;
   align-items: center;
   line-height: 1.4;
 }
-/* 可选：红点修饰 */
 .spec-item-row:before {
   content: "•";
   margin-right: 8px;
@@ -464,8 +463,15 @@ html, body {
 
 .product-price { font-size: 34px; font-weight: 800; color: #cc0000; margin: 5px 0; }
 
-/* 操作区 */
-.action-area { margin-top: 5px; }
+/* =========================================
+   操作区布局优化
+   ========================================= */
+.action-area { 
+  margin-top: 5px; 
+  display: flex; 
+  flex-direction: column; 
+  flex-grow: 1; /* 占据信息区剩余的垂直空间 */
+}
 
 /* 数量输入框 */
 .qty-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
@@ -490,7 +496,14 @@ html, body {
 }
 
 /* 按钮组 */
-.button-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.button-group { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  width: 100%; 
+  margin-top: auto; /* 单独把按钮组推到底部 */
+}
+
 .btn-primary, .btn-secondary {
   display: flex; align-items: center; justify-content: center; width: 100%; 
   padding: 10px 0; border-radius: 3px; text-decoration: none;
@@ -507,25 +520,35 @@ html, body {
   border: 1px solid #d0d0d0; border-radius: 4px; background: #fff;
   padding: 15px 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.02);
 }
+
+/* 变成可点击链接后的样式 */
 .service-item {
   display: flex; flex-direction: column; align-items: flex-start;
   gap: 8px; padding: 28px 0; border-bottom: 1px dashed #d0d0d0;
+  text-decoration: none; 
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 .service-item:last-child { border-bottom: none; padding-bottom: 5px; }
 .service-item:first-child { padding-top: 5px; }
 
-.service-icon { width: 28px; height: 28px; flex-shrink: 0; color: #003366; stroke-width: 2px; }
-.service-text h4 { margin: 0 0 4px 0; font-size: 19px; font-weight: 900; color: #003366; text-transform: uppercase; letter-spacing: 0.5px; }
-.service-text p { margin: 0; font-size: 16px; color: #555; line-height: 1.3; font-weight: 500; }
+.service-icon { width: 28px; height: 28px; flex-shrink: 0; color: #003366; stroke-width: 2px; transition: all 0.2s; }
+.service-text h4 { margin: 0 0 4px 0; font-size: 19px; font-weight: 900; color: #003366; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+.service-text p { margin: 0; font-size: 16px; color: #555; line-height: 1.3; font-weight: 500; transition: all 0.2s; }
+
+/* 鼠标悬停互动效果 */
+.service-item:hover .service-icon { color: #cc0000; transform: translateY(-2px); }
+.service-item:hover .service-text h4 { color: #cc0000; }
+.service-item:hover .service-text p { color: #333; }
 
 /* --- Details 内容样式 --- */
 .tab-header { margin-bottom: 20px; border-bottom: 2px solid #cc0000; display: inline-block; padding-bottom: 8px; }
 .tab-title { font-size: 20px; font-weight: 800; color: #333; text-transform: uppercase; }
 
 /* 修复表格样式 */
-.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; table-layout: fixed; /* 固定布局，防止自动挤压 */ }
+.spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; table-layout: fixed; }
 .spec-table th { 
-  width: 35%; /* 给标题列固定宽度，防止换行 */
+  width: 35%; 
   text-align: left; 
   padding: 12px 10px; 
   background: #f9f9f9; 
@@ -533,7 +556,7 @@ html, body {
   color: #333; 
   font-weight: 700; 
   font-size: 16px;
-  white-space: nowrap; /* 强制不换行 */
+  white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis; 
 }
@@ -558,8 +581,6 @@ html, body {
   .product-top-overview { flex-direction: column; }
   .service-sidebar { display: block; }
   .service-item { flex-direction: row; border-right: none; border-bottom: 1px solid #eee; text-align: left; }
-  
-  /* 手机上允许表格换行，否则会显示不全 */
   .spec-table th { white-space: normal; width: 45%; }
 }
 </style>
@@ -644,8 +665,7 @@ html, body {
             </div>
             
             <div class="button-group">
-              <a href="#" class="btn-primary" onclick="alert('Item added to cart'); return false;">ADD TO CART</a>
-              <a href="/contact?inquiry=HK-RAPID-2036-ROTOR" class="btn-secondary">BUY NOW</a>
+              <a href="/contact?inquiry=HK-RAPID-2036-ROTOR" class="btn-primary">REQUEST A QUOTE</a>
             </div>
           </div>
         </div>
@@ -777,34 +797,39 @@ html, body {
 
     <div class="sidebar-col">
       <div class="service-sidebar">
-         <div class="service-item">
+        
+        <a href="/policies/shipping" class="service-item">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
           <div class="service-text">
             <h4>Delivery Options</h4>
             <p>Stock Items Ship Same Day*</p>
           </div>
-        </div>
-        <div class="service-item">
+        </a>
+        
+        <a href="/contact" class="service-item">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           <div class="service-text">
             <h4>Contact Us</h4>
             <p>Talk to an Expert</p>
           </div>
-        </div>
-        <div class="service-item">
+        </a>
+        
+        <a href="/policies/return" class="service-item">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
           <div class="service-text">
             <h4>Returns Policy</h4>
             <p>Purchase with Confidence</p>
           </div>
-        </div>
-        <div class="service-item">
+        </a>
+        
+        <a href="/policies/payment" class="service-item">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
           <div class="service-text">
             <h4>Payment Method</h4>
             <p>Secure Payment</p>
           </div>
-        </div>
+        </a>
+
       </div>
     </div>
 
