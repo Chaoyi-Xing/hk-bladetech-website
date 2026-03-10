@@ -428,7 +428,6 @@ html, body {
 
 .product-title { font-size: 28px; font-weight: 800; color: #111; line-height: 1.2; margin: 0; }
 
-/* ★★★ 新增：垂直列表样式 (字体调大) ★★★ */
 .specs-list-vertical {
   margin-top: 15px; 
   display: flex;
@@ -461,58 +460,71 @@ html, body {
 .sku-label { color: #222; margin-right: 5px; font-weight: 700; }
 .sku-value { color: #4a90e2; font-family: monospace; font-weight: 600; }
 
-.product-price { font-size: 34px; font-weight: 800; color: #cc0000; margin: 5px 0; }
-
 /* =========================================
-   操作区布局优化
+   ★★★ 统一的操作/购买框 (Purchase Box) ★★★
+   把价格、数量、按钮打包在一个整体里
    ========================================= */
-.action-area { 
-  margin-top: 5px; 
-  display: flex; 
-  flex-direction: column; 
-  flex-grow: 1; /* 占据信息区剩余的垂直空间 */
+.purchase-box {
+  margin-top: auto; /* 把整个框推到与左侧缩略图底部齐平 */
+  background-color: #fafafa; /* 高级灰底色 */
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 内部元素均匀间距，不再有突兀的断层 */
 }
 
-/* 数量输入框 */
-.qty-wrapper { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.qty-unit-label { font-size: 15px; font-weight: 800; color: #333; text-transform: uppercase; margin-right: 5px; }
+.price-row { display: flex; align-items: baseline; gap: 10px; }
+.product-price { font-size: 34px; font-weight: 800; color: #cc0000; margin: 0; line-height: 1; }
+
+.action-area { display: flex; flex-direction: column; gap: 15px; }
+
+.qty-wrapper { display: flex; align-items: center; gap: 10px; }
+.qty-unit-label { font-size: 14px; font-weight: 800; color: #555; text-transform: uppercase; }
 
 .qty-input { 
-  width: 55px; 
-  padding: 5px 0 5px 8px; 
-  text-align: left; 
+  width: 60px; 
+  padding: 8px 10px; 
+  text-align: center; 
   border: 1px solid #ccc; 
   border-radius: 4px; 
   font-weight: 700; 
   font-size: 15px; 
   color: #333;
+  box-sizing: border-box;
 }
 .qty-input::-webkit-inner-spin-button, 
 .qty-input::-webkit-outer-spin-button { 
-  -webkit-appearance: inner-spin-button !important; 
   opacity: 1 !important; 
   display: block !important;
   cursor: pointer;
 }
 
-/* 按钮组 */
-.button-group { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  width: 100%; 
-  margin-top: auto; /* 单独把按钮组推到底部 */
+.button-group { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+
+.btn-primary {
+  display: flex; align-items: center; justify-content: center; width: 100%; 
+  padding: 14px 0; /* 加大按钮高度，质感更好 */
+  border-radius: 4px; text-decoration: none;
+  font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+  transition: all 0.2s; box-sizing: border-box; cursor: pointer; 
+  background-color: #cc0000; color: white !important; border: none; 
+  box-shadow: 0 4px 6px rgba(204,0,0,0.2);
+}
+.btn-primary:hover { 
+  background-color: #b30000; 
+  transform: translateY(-1px); 
+  box-shadow: 0 6px 10px rgba(204,0,0,0.25);
 }
 
-.btn-primary, .btn-secondary {
+.btn-secondary {
   display: flex; align-items: center; justify-content: center; width: 100%; 
-  padding: 10px 0; border-radius: 3px; text-decoration: none;
-  font-size: 16px; font-weight: 800; text-transform: uppercase;
+  padding: 14px 0; border-radius: 4px; text-decoration: none;
+  font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
   transition: all 0.2s; box-sizing: border-box; cursor: pointer; 
+  background-color: #ffe6e6; color: #cc0000 !important; border: 2px solid #cc0000;
 }
-.btn-primary { background-color: #cc0000; color: white !important; border: 2px solid #cc0000; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
-.btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-1px); }
-.btn-secondary { background-color: #ffe6e6; color: #cc0000 !important; border: 2px solid #cc0000; }
 .btn-secondary:hover { background-color: #ffcccc; transform: translateY(-1px); }
 
 /* --- 右栏：服务承诺 (30%) --- */
@@ -521,7 +533,6 @@ html, body {
   padding: 15px 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.02);
 }
 
-/* 变成可点击链接后的样式 */
 .service-item {
   display: flex; flex-direction: column; align-items: flex-start;
   gap: 8px; padding: 28px 0; border-bottom: 1px dashed #d0d0d0;
@@ -536,7 +547,6 @@ html, body {
 .service-text h4 { margin: 0 0 4px 0; font-size: 19px; font-weight: 900; color: #003366; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
 .service-text p { margin: 0; font-size: 16px; color: #555; line-height: 1.3; font-weight: 500; transition: all 0.2s; }
 
-/* 鼠标悬停互动效果 */
 .service-item:hover .service-icon { color: #cc0000; transform: translateY(-2px); }
 .service-item:hover .service-text h4 { color: #cc0000; }
 .service-item:hover .service-text p { color: #333; }
@@ -545,7 +555,6 @@ html, body {
 .tab-header { margin-bottom: 20px; border-bottom: 2px solid #cc0000; display: inline-block; padding-bottom: 8px; }
 .tab-title { font-size: 20px; font-weight: 800; color: #333; text-transform: uppercase; }
 
-/* 修复表格样式 */
 .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; table-layout: fixed; }
 .spec-table th { 
   width: 35%; 
@@ -582,6 +591,7 @@ html, body {
   .service-sidebar { display: block; }
   .service-item { flex-direction: row; border-right: none; border-bottom: 1px solid #eee; text-align: left; }
   .spec-table th { white-space: normal; width: 45%; }
+  .purchase-box { margin-top: 20px; }
 }
 </style>
 
@@ -645,18 +655,23 @@ html, body {
             </span>
           </div>
           
-          <span class="product-price">$62.02</span>
-          
-          <div class="action-area">
-            <div class="qty-wrapper">
-              <span class="qty-unit-label">EACH</span>
-              <input type="number" class="qty-input" value="1" min="1">
+          <div class="purchase-box">
+            <div class="price-row">
+              <span class="product-price">$62.02</span>
             </div>
             
-            <div class="button-group">
-              <a href="/contact?inquiry=HK-NEL-G1215M1-ROTOR" class="btn-primary">REQUEST A QUOTE</a>
+            <div class="action-area">
+              <div class="qty-wrapper">
+                <span class="qty-unit-label">EACH</span>
+                <input type="number" class="qty-input" value="1" min="1">
+              </div>
+              
+              <div class="button-group">
+                <a href="/contact?inquiry=HK-NEL-G1215M1-ROTOR" class="btn-primary">REQUEST A QUOTE</a>
+              </div>
             </div>
           </div>
+          
         </div>
       </div>
       
