@@ -462,7 +462,7 @@
       .faq-answer li { font-size: 1.25em; margin-bottom: 10px; } 
     
       /* =========================================
-         9. 响应式优化
+         9. 响应式优化 (常规平板与手机)
          ========================================= */
       @media (max-width: 1024px) {
         .category-grid { grid-template-columns: repeat(2, 1fr); }
@@ -502,6 +502,16 @@
         .hero-section p { font-size: 13px; margin-bottom: 10px; max-width: 550px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .hero-btns { gap: 8px; flex-direction: row; }
         .btn-primary, .btn-white { padding: 6px 15px; font-size: 12px; width: auto; max-width: none; }
+      }
+
+      /* =========================================
+         10. 大屏幕优化 (仅针对宽度大于1600px的超大显示器)
+         ========================================= */
+      @media (min-width: 1600px) {
+        .hero-section {
+          height: 55vh; /* 增加大屏幕下的高度占比 */
+          min-height: 600px; /* 保证有一个健康的最小高度 */
+        }
       }
     </style>
 </head>
