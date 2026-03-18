@@ -2293,17 +2293,17 @@ function updateActive(containerId, element) {
   }
   
   .footer-col.brand-col {
-    flex: 1.2; 
-    max-width: 320px;
-    padding-right: 30px;
+    flex: 1.5; 
+    max-width: 400px; /* 稍微拉宽，容纳更多的标语内容 */
+    padding-right: 40px; /* 增加与右侧区域的间距 */
   }
 
   .footer-col.link-col {
-    flex: 0.8; 
+    flex: 0.7; 
   }
 
   .footer-col.contact-col {
-    flex: 1.5; 
+    flex: 1.3; 
   }
 
   /* =========================================
@@ -2320,11 +2320,14 @@ function updateActive(containerId, element) {
     display: block;
   }
   
+  /* ★ 视觉优化点：减小字号、调淡颜色、增加行高，提升排版呼吸感 ★ */
   .footer-slogan {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #555;
+    font-size: 14px; 
+    font-weight: 400; 
+    line-height: 1.7;
+    color: #333; 
     margin: 0;
+    text-align: left; 
   }
 
   /* =========================================
@@ -2457,7 +2460,7 @@ function updateActive(containerId, element) {
         <img src="/images/logo.png" alt="HK BladeTech">
       </a>
       <p class="footer-slogan">
-        As a leading <strong>Hong Kong industrial blade supplier</strong>, we specialize in engineering and manufacturing high-performance machine knives for all your specific applications.
+        As a leading <strong>Hong Kong industrial blade supplier</strong>, HK BladeTech is headquartered in Hong Kong, overseeing engineering design, quality assurance, and global logistics. Our direct manufacturing facility is located in mainland China, allowing us to combine premium industrial standards with highly competitive factory pricing.
       </p>
     </div>
 
