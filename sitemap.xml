@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hk-bladetech.com/policies/payment.html</loc>
+    
+    <lastmod>2026-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/policies/return.html</loc>
+    
+    <lastmod>2026-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/policies/privacy.html</loc>
+    
+    <lastmod>2026-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/policies/terms.html</loc>
+    
+    <lastmod>2026-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/policies/shipping.html</loc>
+    
+    <lastmod>2026-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hk-bladetech.com/contact/index.html</loc>
     
     <lastmod>2026-03-18</lastmod>
@@ -41,51 +86,6 @@
     <loc>https://www.hk-bladetech.com/industry-shredding/index.html</loc>
     
     <lastmod>2026-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/policies/payment.html</loc>
-    
-    <lastmod>2026-03-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/policies/privacy.html</loc>
-    
-    <lastmod>2026-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/policies/return.html</loc>
-    
-    <lastmod>2026-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/policies/terms.html</loc>
-    
-    <lastmod>2026-03-02</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/policies/shipping.html</loc>
-    
-    <lastmod>2026-03-02</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
