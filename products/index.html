@@ -519,11 +519,11 @@ html, body {
 
   <main class="catalog-main">
 
-    <h1 class="page-header-title" id="dynamic-title">Precision Industrial Blades</h1>
+    <h1 class="page-header-title" id="dynamic-title">HK Industrial Blades & Machine Knives Catalog</h1>
 
     <div class="header-meta-row">
       <div class="page-header-desc" id="dynamic-desc">
-        Factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.
+        As a premier Hong Kong industrial blade supplier, we manufacture factory-direct precision replacement blades for recycling, packaging, and converting industries. Premium D2 & Tungsten Carbide knives compatible with major machinery brands.
       </div>
       
       <div class="view-toggle">
@@ -1952,29 +1952,31 @@ html, body {
 </div>
 
 <script>
-/* 文案及分类配置 */
+/* =========================================
+   SEO 优化：在 JS 变量中注入带有 HK、材质和 aftermarket(平替) 的高转化词汇
+   ========================================= */
 var catDescMap = {
-  'granulator': 'High-performance rotor and stator knives for plastic granulation. Compatible with Cumberland, Nelmor, Rapid, and more.',
-  'shredder': 'Heavy-duty shredder blocks and cutters designed for high-impact recycling. Compatible with Vecoplan, Weima, and Zerma machines.',
-  'circular': 'Precision circular knives for paper, foil, and film converting. Razor-sharp edges ensuring clean cuts.',
-  'corrugated': 'Sharp, long-lasting corrugated cut-off knives. Carb-tipped and HSS options available.'
+  'granulator': 'Premium HK D2 & Carbide rotor and stator knives for plastic granulation. High-quality aftermarket replacements compatible with Cumberland, Nelmor, Rapid, and more.',
+  'shredder': 'Heavy-duty HK manufactured shredder blocks and cutters designed for high-impact recycling. Compatible with Vecoplan, Weima, and Zerma machines.',
+  'circular': 'Precision-engineered HK circular knives for paper, foil, and film converting. Razor-sharp edges ensuring clean cuts.',
+  'corrugated': 'Hong Kong manufactured corrugated cut-off knives with extended lifespan. Carb-tipped and HSS options available.'
 };
 
 var brandDescMap = {
-  'cumberland': 'Exact-fit replacement blades compatible with Cumberland® granulators.',
-  'nelmor': 'Premium replacement knives for Nelmor® machinery.',
-  'rapid': 'Durable blades compatible with Rapid® granulators.',
-  'conair': 'High-quality knives for Conair® equipment.',
-  'ball-jewell': 'Reliable replacement blades for Ball & Jewell® granulators.',
-  'vecoplan': 'Robust shredding inserts compatible with Vecoplan® shredders.',
-  'weima': 'Heavy-duty cutters tailored for Weima® shredding machines.',
-  'multivac': 'High-quality circular packaging knives compatible with Multivac® systems.',
+  'cumberland': 'High-performance HK aftermarket replacement blades compatible with Cumberland® granulators.',
+  'nelmor': 'Premium replacement machine knives engineered for Nelmor® machinery.',
+  'rapid': 'Durable HK manufactured blades compatible with Rapid® granulators.',
+  'conair': 'High-quality industrial knives for Conair® equipment.',
+  'ball-jewell': 'Reliable aftermarket replacement blades for Ball & Jewell® granulators.',
+  'vecoplan': 'Robust HK shredding inserts and blocks compatible with Vecoplan® shredders.',
+  'weima': 'Heavy-duty industrial cutters tailored for Weima® shredding machines.',
+  'multivac': 'Precision circular packaging knives manufactured for Multivac® systems.',
   'tidland': 'Precision replacement slitter blades compatible with Maxcess Tidland® systems.',
-  'dusenbery': 'Durable circular slitters and dish blades compatible with Dusenbery® systems.',
-  'other': 'Custom-manufactured industrial knives tailored to your specific prints and samples.'
+  'dusenbery': 'Durable circular slitters and dish blades compatible with Dusenbery® converting machines.',
+  'other': 'Custom-manufactured HK industrial knives tailored to your specific prints and samples.'
 };
 
-var defaultDesc = 'Factory-direct precision replacement blades. Choose a category to view compatible brands.';
+var defaultDesc = 'As a premier Hong Kong industrial blade supplier, we manufacture factory-direct precision replacement blades. Choose a category to view compatible brands.';
 
 var catMap = {
   'all': 'Product Catalog', 
@@ -1987,7 +1989,7 @@ var catMap = {
 /* 状态变量 */
 var currentCat = 'all';
 var currentBrand = 'all';
-var currentSearch = ''; // 新增：保存当前的搜索词
+var currentSearch = ''; 
 var itemsPerPage = 10;
 var currentPage = 1;
 var filteredCards = [];
@@ -2012,7 +2014,6 @@ document.addEventListener('DOMContentLoaded', function(){
   var p = new URLSearchParams(window.location.search);
   var c = p.get('cat') || 'all'; 
   
-  // 提取 URL 中的搜索词，并转为小写以实现不区分大小写搜索
   currentSearch = (p.get('q') || '').toLowerCase().trim(); 
   
   filterCat(c); 
@@ -2022,7 +2023,6 @@ function filterCat(c, e) {
   currentCat = c;
   currentBrand = 'all'; 
   
-  // 如果是用户手动点击左侧分类，清空搜索词，恢复正常浏览状态
   if(e) { currentSearch = ''; } 
 
   if(e) {
@@ -2038,7 +2038,6 @@ function filterCat(c, e) {
     }
   }
 
-  // 重置品牌区域展示状态
   document.querySelectorAll('.brand-section').forEach(function(el){
     el.classList.remove('active');
   });
@@ -2062,7 +2061,6 @@ function filterCat(c, e) {
 
 function filterBrand(b, e) {
   currentBrand = b;
-  // 手动点击品牌时，清空全局搜索词
   if(e) { currentSearch = ''; }
   
   var allBrandLinks = document.querySelectorAll('.brand-nav a');
@@ -2084,7 +2082,6 @@ function applyFilters() {
     var cc = card.getAttribute("data-cat");
     var cb = card.getAttribute("data-brand");
     
-    // 获取标题和SKU用于搜索匹配
     var title = card.querySelector('.card-title').innerText.toLowerCase();
     var sku = card.querySelector('.card-part-no').innerText.toLowerCase();
     
@@ -2092,12 +2089,10 @@ function applyFilters() {
     var matchBrand = (currentBrand == 'all' || cb == currentBrand);
     var matchSearch = true;
 
-    // 搜索逻辑：只要标题或 SKU 包含搜索词即可
     if (currentSearch !== '') {
       matchSearch = title.includes(currentSearch) || sku.includes(currentSearch);
     }
     
-    // 三个条件同时满足才显示
     if(matchCat && matchBrand && matchSearch) {
       filteredCards.push(card);
     } else {
@@ -2181,10 +2176,9 @@ function updateHeader() {
   var d = document.getElementById('dynamic-desc');
   
   if (currentSearch) {
-      // 正在搜索时的头部标题和描述
       t.innerText = 'Search Results for "' + currentSearch + '"';
       d.innerText = 'Found ' + filteredCards.length + ' matching product(s).';
-      return; // 直接返回，不再走分类标题逻辑
+      return; 
   }
 
   var bText = "";
@@ -2195,8 +2189,9 @@ function updateHeader() {
 
   var cText = catMap[currentCat] || '';
   
+  /* SEO 优化：确保默认界面的 H1 是带有核心关键词的 */
   if (currentCat == 'all' && currentBrand == 'all') {
-    t.innerText = "Precision Industrial Blades";
+    t.innerText = "HK Industrial Blades & Machine Knives Catalog";
   } else {
     var finalTitle = "";
     if (bText && bText !== 'All Brands') finalTitle += bText + " ";
@@ -2462,7 +2457,7 @@ function updateActive(containerId, element) {
         <img src="/images/logo.png" alt="HK BladeTech">
       </a>
       <p class="footer-slogan">
-        We specialize in engineering and manufacturing high-performance industrial blades and machine knives for all your specific applications.
+        As a leading <strong>Hong Kong industrial blade supplier</strong>, we specialize in engineering and manufacturing high-performance machine knives for all your specific applications.
       </p>
     </div>
 
@@ -2520,7 +2515,7 @@ function updateActive(containerId, element) {
   </div>
 
   <div class="footer-bottom-bar">
-    © 2026 HK BladeTech (also known as hk bladetech & hk-blade tech). All Rights Reserved. | Industrial Machine Knives Manufacturer
+    &copy; 2026 HK BladeTech. All Rights Reserved. | Premium HK Industrial Blade & Machine Knives Manufacturer
   </div>
 </footer>
     </div>
