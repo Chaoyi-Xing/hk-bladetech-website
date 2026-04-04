@@ -763,8 +763,8 @@ function switchImage(thumb, src) {
   
   .footer-col.brand-col {
     flex: 1.5; 
-    max-width: 400px; /* 稍微拉宽，容纳更多的标语内容 */
-    padding-right: 40px; /* 增加与右侧区域的间距 */
+    max-width: 400px; 
+    padding-right: 40px; 
   }
 
   .footer-col.link-col {
@@ -789,7 +789,6 @@ function switchImage(thumb, src) {
     display: block;
   }
   
-  /* ★ 视觉优化点：减小字号、调淡颜色、增加行高，提升排版呼吸感 ★ */
   .footer-slogan {
     font-size: 14px; 
     font-weight: 400; 
@@ -925,11 +924,13 @@ function switchImage(thumb, src) {
   <div class="footer-inner">
     
     <div class="footer-col brand-col">
-      <a href="/" class="footer-logo">
-        <img src="/images/logo.png" alt="HK BladeTech">
+      <!-- 隐形优化 1: 添加 title 并在 alt 中埋入多个变体词 -->
+      <a href="/" class="footer-logo" title="HK BladeTech (HK-BladeTech) Official Website">
+        <img src="/images/logo.png" alt="HK BladeTech | HK Blade Tech | HK-BladeTech">
       </a>
       <p class="footer-slogan">
-        As a leading <strong>Hong Kong industrial blade supplier</strong>, HK BladeTech is headquartered in Hong Kong, overseeing engineering design, quality assurance, and global logistics. Our direct manufacturing facility is located in mainland China, allowing us to combine premium industrial standards with highly competitive factory pricing.
+        <!-- 隐形优化 2: 正文中自然带出别名，增加可见文本权重 -->
+        As a leading <strong>Hong Kong industrial blade supplier</strong>, HK BladeTech (also known as <em>HK-BladeTech</em>) is headquartered in Hong Kong, overseeing engineering design, quality assurance, and global logistics. Our direct manufacturing facility is located in mainland China, allowing us to combine premium industrial standards with highly competitive factory pricing.
       </p>
     </div>
 
@@ -986,8 +987,9 @@ function switchImage(thumb, src) {
     </div>
   </div>
 
+  <!-- 隐形优化 3: 在底部版权信息处加入变体词 -->
   <div class="footer-bottom-bar">
-    &copy; 2026 HK BladeTech. All Rights Reserved. | Premium HK Industrial Blade & Machine Knives Manufacturer
+    &copy; 2026 HK BladeTech (HK Blade Tech). All Rights Reserved. | Premium HK Industrial Blade & Machine Knives Manufacturer
   </div>
 </footer>
     </div>

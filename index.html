@@ -291,8 +291,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>HK Industrial Blade Supplier & Machine Knives Manufacturer | HK BladeTech</title>
-    <meta name="description" content="Looking for a reliable Hong Kong industrial blade supplier? HK BladeTech is a direct manufacturer of high-performance machine knives, granulator blades, and custom cutting tools.">
+    <!-- 隐形优化 1: Title 加上了品牌词 -->
+    <title>HK BladeTech | HK Industrial Blade Supplier & Machine Knives Manufacturer</title>
+    <!-- 隐形优化 2: Description 中自然融入各种拼写，仅在 Google 搜索结果中显示 -->
+    <meta name="description" content="Looking for a reliable Hong Kong industrial blade supplier? HK BladeTech (also searched as HK Blade Tech or HK-BladeTech) is a direct manufacturer of high-performance machine knives.">
+    
+    <!-- 隐形优化 3: 核心杀手锏，给 Google 爬虫看的结构化数据，彻底解决别名搜索不到的问题 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "HK BladeTech",
+      "alternateName": ["HK-BladeTech", "HK Blade Tech", "HK Bladetech", "HK-Blade Tech"],
+      "url": "https://www.hk-bladetech.com/",
+      "description": "Premium Hong Kong industrial blade supplier and machine knives manufacturer."
+    }
+    </script>
+
     <style>
       /* =========================================
          0. 全局重置 (防止浏览器默认白边)
@@ -334,7 +349,6 @@
       
       .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
       
-      /* ★★★ 按钮样式修改：使用固定的 width 保证绝对同宽 ★★★ */
       .btn-primary { 
         display: inline-flex; align-items: center; justify-content: center; background-color: #cc0000; color: white !important; border: 2px solid #cc0000; border-radius: 4px; padding: 12px 20px; font-weight: 700; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 0.5px;
         width: 300px; text-align: center; box-sizing: border-box;
@@ -465,7 +479,7 @@
       .faq-answer li { font-size: 1.25em; margin-bottom: 10px; } 
     
       /* =========================================
-         9. 响应式优化 (常规平板与手机)
+         9. 响应式优化
          ========================================= */
       @media (max-width: 1024px) {
         .category-grid { grid-template-columns: repeat(2, 1fr); }
@@ -502,9 +516,6 @@
         .btn-primary, .btn-white { padding: 6px 15px; font-size: 12px; width: auto; max-width: none; }
       }
 
-      /* =========================================
-         10. 大屏幕优化 (仅针对宽度大于1600px的超大显示器)
-         ========================================= */
       @media (min-width: 1600px) {
         .hero-section { height: 45vh; min-height: 500px; }
       }
@@ -515,9 +526,11 @@
 <div class="home-wrapper">
 
   <div class="hero-section">
-    <img src="/images/home-hero-factory-bg.png" alt="Industrial Blade Manufacturing Factory" class="hero-bg-media">
+    <!-- 隐形优化 4: 利用 img 的 alt 属性埋设变体词 -->
+    <img src="/images/home-hero-factory-bg.png" alt="HK-BladeTech Industrial Blade Manufacturing Factory" class="hero-bg-media">
     <div class="hero-content-wrapper">
       <span class="hero-tagline">Engineered for Cumberland, Vecoplan, Rapid & More</span>
+      <!-- 恢复你原本大气的 H1 标题 -->
       <h1>Premium HK Industrial Blade Manufacturer.<br>Custom Engineered or Ready to Ship.</h1>
       <p>Whether you need standard replacement machine knives or specific custom <strong>Hong Kong industrial blades</strong>,<br>we deliver precision cutting tools directly from our manufacturing hub.</p>
       <div class="hero-btns">
@@ -542,13 +555,15 @@
   <div class="story-section">
       <div class="story-container">
           <div class="story-video-wrapper">
-              <img src="/images/factory-workshop-overview.png" alt="HK-BladeTech Factory Production Line" style="width:100%; height:100%; object-fit: cover;">
+              <!-- 隐形优化 5: 继续利用 alt 标签埋入带空格的变体 -->
+              <img src="/images/factory-workshop-overview.png" alt="HK Blade Tech Factory Production Line" style="width:100%; height:100%; object-fit: cover;">
           </div>
           <div class="story-content">
               <span class="story-subtitle">Who We Are</span>
               <h2 class="story-title">Your Direct Hong Kong Machine Knives Manufacturer.<br>Not Just a Supplier.</h2>
+              <!-- 将 often searched as 加回正文，增加可见文本的 SEO 权重 -->
               <p class="story-text">
-                  Welcome to <strong>HK BladeTech</strong>. If you are looking for a reliable, high-performance <strong>HK industrial blade</strong> for your manufacturing operations, you've come to the right place. We are a specialized <strong>Hong Kong industrial blade supplier</strong> and manufacturer of precision machine knives. Whether you require standard OEM replacements or custom-engineered solutions, we deliver cutting tools tailored to your production needs.
+                  Welcome to <strong>HK BladeTech</strong> (often searched as <em>HK-BladeTech</em> or <em>HK Blade Tech</em>). If you are looking for a reliable, high-performance <strong>HK industrial blade</strong> for your manufacturing operations, you've come to the right place. We are a specialized <strong>Hong Kong industrial blade supplier</strong> and manufacturer of precision machine knives. Whether you require standard OEM replacements or custom-engineered solutions, we deliver cutting tools tailored to your production needs.
                   <br><br>
                   By controlling every production step in-house—from raw material selection to final heat treatment—we ensure superior edge retention and durability.
               </p>
@@ -568,13 +583,13 @@
     </div>
     <div class="category-grid">
       <a href="/products/?cat=granulator" class="category-card">
-        <div class="img-wrapper"><img src="/images/cat-1.png" alt="Granulator Blades"></div>
+        <div class="img-wrapper"><img src="/images/cat-1.png" alt="HK-BladeTech Granulator Blades"></div>
         <h3>Granulator Blades</h3>
         <p class="category-desc">High-wear D2 & Carbide blades for plastic recycling.</p>
         <span class="view-btn">View Details</span>
       </a>
       <a href="/products/?cat=shredder" class="category-card">
-        <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blocks"></div>
+        <div class="img-wrapper"><img src="/images/cat-2.png" alt="Shredder Blocks by HK Blade Tech"></div>
         <h3>Shredder Blocks</h3>
         <p class="category-desc">Heavy-duty blocks for single & double shaft shredders.</p>
         <span class="view-btn">View Details</span>
@@ -869,8 +884,8 @@
   
   .footer-col.brand-col {
     flex: 1.5; 
-    max-width: 400px; /* 稍微拉宽，容纳更多的标语内容 */
-    padding-right: 40px; /* 增加与右侧区域的间距 */
+    max-width: 400px; 
+    padding-right: 40px; 
   }
 
   .footer-col.link-col {
@@ -895,7 +910,6 @@
     display: block;
   }
   
-  /* ★ 视觉优化点：减小字号、调淡颜色、增加行高，提升排版呼吸感 ★ */
   .footer-slogan {
     font-size: 14px; 
     font-weight: 400; 
@@ -1031,11 +1045,13 @@
   <div class="footer-inner">
     
     <div class="footer-col brand-col">
-      <a href="/" class="footer-logo">
-        <img src="/images/logo.png" alt="HK BladeTech">
+      <!-- 隐形优化 1: 添加 title 并在 alt 中埋入多个变体词 -->
+      <a href="/" class="footer-logo" title="HK BladeTech (HK-BladeTech) Official Website">
+        <img src="/images/logo.png" alt="HK BladeTech | HK Blade Tech | HK-BladeTech">
       </a>
       <p class="footer-slogan">
-        As a leading <strong>Hong Kong industrial blade supplier</strong>, HK BladeTech is headquartered in Hong Kong, overseeing engineering design, quality assurance, and global logistics. Our direct manufacturing facility is located in mainland China, allowing us to combine premium industrial standards with highly competitive factory pricing.
+        <!-- 隐形优化 2: 正文中自然带出别名，增加可见文本权重 -->
+        As a leading <strong>Hong Kong industrial blade supplier</strong>, HK BladeTech (also known as <em>HK-BladeTech</em>) is headquartered in Hong Kong, overseeing engineering design, quality assurance, and global logistics. Our direct manufacturing facility is located in mainland China, allowing us to combine premium industrial standards with highly competitive factory pricing.
       </p>
     </div>
 
@@ -1092,8 +1108,9 @@
     </div>
   </div>
 
+  <!-- 隐形优化 3: 在底部版权信息处加入变体词 -->
   <div class="footer-bottom-bar">
-    &copy; 2026 HK BladeTech. All Rights Reserved. | Premium HK Industrial Blade & Machine Knives Manufacturer
+    &copy; 2026 HK BladeTech (HK Blade Tech). All Rights Reserved. | Premium HK Industrial Blade & Machine Knives Manufacturer
   </div>
 </footer>
     </div>
