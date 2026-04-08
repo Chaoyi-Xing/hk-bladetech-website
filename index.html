@@ -372,7 +372,7 @@
       .brand-name:hover { color: #111; transform: scale(1.05); }
     
       /* =========================================
-         4. Story Section
+         4. Story Section & Link Styles
          ========================================= */
       .story-section { padding: 80px 20px; background: #fff; }
       .story-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 60px; }
@@ -384,6 +384,12 @@
       .story-check-list { list-style: none; padding: 0; margin: 0; }
       .story-check-item { display: flex; align-items: center; gap: 10px; font-weight: 600; color: #333; margin-bottom: 12px; font-size: 16px; }
       .check-icon { color: #cc0000; font-weight: 800; }
+      
+      /* 新增的内页跳转链接样式 */
+      .story-link-red { color: #111; text-decoration: underline; text-decoration-color: #cc0000; text-decoration-thickness: 2px; text-underline-offset: 4px; transition: color 0.3s ease; }
+      .story-link-red:hover { color: #cc0000; }
+      .faq-read-more { display: inline-block; margin-top: 15px; color: #cc0000; font-weight: 700; text-decoration: underline; font-size: 1.1em; transition: opacity 0.3s ease; }
+      .faq-read-more:hover { opacity: 0.8; }
     
       /* =========================================
          5. Product Categories
@@ -568,7 +574,8 @@
                   By controlling every production step in-house—from raw material selection to final heat treatment—we ensure superior edge retention and durability.
               </p>
               <ul class="story-check-list">
-                  <li class="story-check-item"><span class="check-icon">✓</span> Genuine D2 & Carbide Materials</li>
+                  <!-- 亮点 1：这里替换为了带下划线的材质页链接 -->
+                  <li class="story-check-item"><span class="check-icon">✓</span> <a href="/blade-materials/" class="story-link-red">Genuine D2 & Carbide Materials</a></li>
                   <li class="story-check-item"><span class="check-icon">✓</span> In-House Vacuum Heat Treatment</li>
                   <li class="story-check-item"><span class="check-icon">✓</span> Direct Technical & Engineering Support</li>
               </ul>
@@ -804,6 +811,8 @@
             <li style="margin-bottom: 12px;"><strong>Highly Abrasive (>30% GF, Carbon Fiber):</strong> Use <strong>Tungsten Carbide-Inlaid Blades</strong>. Drops cost-per-ton by <strong>>50%</strong>.</li>
             <li style="margin-bottom: 12px;"><strong>Film & Foil Slitting:</strong> Use <strong>High-Speed Steel (HSS) + DLC Coating</strong> to prevent static and material adhesion.</li>
         </ul>
+        <!-- 亮点 2：在材质 FAQ 底部加了非常抓眼的行动号召链接 -->
+        <a href="/blade-materials/" class="faq-read-more">Read our full guide on Industrial Blade Materials →</a>
       </div>
     </details>
   </div>
