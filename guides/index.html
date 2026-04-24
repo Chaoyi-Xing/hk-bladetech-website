@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Technical Guides & Insights | HK BladeTech</title>
+<style>
+  /* =========================================
+     1. 暴力隐藏原主题干扰元素 
+     ========================================= */
+  #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar,
+  .left-col, .right-col, .mid-col, #banner, #header, #header-row, #header-title, #header-outer, 
+  #mobile-nav, .mobile-nav, #top-container, .archive-year-wrap, .page-header, #page-header, .page-title,
+  .article-header, header.article-header, .article-meta, .article-nav, .article-footer, .article-share-link, 
+  .col-md-3, .col-lg-3, .breadcrumb:not(.breadcrumbs) { display: none !important; width: 0 !important; height: 0 !important; opacity: 0 !important; pointer-events: none !important; }
+  .article-inner header, .article-meta { display: none !important; }
+
+  /* =========================================
+     2. 彻底重置 Hexo 容器
+     ========================================= */
+  html, body { background: #fcfcfc !important; margin: 0 !important; padding: 0 !important; overflow-x: hidden; font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #333; line-height: 1.6; }
+  #wrap, .outer, #main, .inner, .article, .article-inner, .article-entry, #content, .container { background: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+
+  /* =========================================
+     3. 完整顶部导航栏样式 (与主页一致)
+     ========================================= */
+  a { text-decoration: none; }
+  .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; border-bottom: 1px solid #eee; }
+  .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
+  .header-bottom { background-color: #ffffff; height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; border-top: none; transition: all 0.3s ease; }
+  .header-bottom.is-fixed { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important; animation: slideDown 0.3s ease forwards; }
+  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  .header-top-container { width: 100%; max-width: 1150px; margin: 0 auto; padding: 15px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; box-sizing: border-box; }
+  .header-logo { display: flex; align-items: center; justify-self: end; }
+  .header-logo img { height: 55px; width: auto; }
+  .header-search-wrapper { width: 420px; position: relative; }
+  .header-search-input { width: 100%; box-sizing: border-box; padding: 12px 20px 12px 45px; background-color: #f4f4f4; border: 1px solid #eaeaea; border-radius: 50px; font-size: 15px; color: #333; outline: none; transition: all 0.3s; }
+  .header-search-input:focus { background-color: #fff; border-color: #cc0000; box-shadow: 0 0 0 3px rgba(204,0,0,0.1); }
+  .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 18px; color: #888; pointer-events: none; }
+  .header-contact-info { display: flex; align-items: center; gap: 12px; justify-self: start; text-align: left; }
+  .contact-icon svg { width: 40px; height: 40px; color: #cc0000 !important; stroke-width: 1.5; fill: none; }
+  .contact-text { display: flex; flex-direction: column; justify-content: center; }
+  .email-link { display: block; color: #cc0000 !important; font-size: 18px; font-weight: 700; text-decoration: underline !important; text-decoration-color: #cc0000 !important; line-height: 1.2; margin-bottom: 2px; }
+  .whatsapp-link { display: flex; align-items: center; gap: 5px; color: #222; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 2px; }
+  
+  .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
+  .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
+  .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
+  .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
+  .nav-item:hover, .nav-item.active { color: #cc0000; }
+  .nav-item:hover::after, .dropdown-trigger:hover::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
+  .dropdown-trigger:hover { color: #cc0000; }
+  .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
+  .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; }
+  .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
+  .dropdown:hover .dropdown-content { display: block; }
+  .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; text-align: left; transition: all 0.2s; }
+  .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
+
+  @media (max-width: 768px) {
+    .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
+    .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 15px; box-sizing: border-box; }
+    .header-logo { order: 1; }
+    .header-logo img { height: 38px; }
+    .nav-menu-desktop { display: none !important; }
+    .header-contact-info { flex-direction: column; align-items: flex-end; gap: 2px; order: 2; }
+    .contact-icon { display: none !important; }
+    .contact-text .email-link { font-size: 14.5px !important; text-decoration: none !important; }
+    .contact-text .whatsapp-link { font-size: 14px !important; }
+    .header-search-wrapper { width: 100%; order: 3; display: none; } /* Mobile search hide for simplicity */
+    .header-bottom { display: none; }
+  }
+
+  /* =========================================
+     4. 页面主体样式
+     ========================================= */
+  .page-intro-container { width: 100%; max-width: 1200px; margin: 30px auto 10px; padding: 0 20px; box-sizing: border-box; }
+  .breadcrumbs { font-size: 13px; color: #666; font-weight: 600; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+  .breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; }
+  .breadcrumbs a:hover { color: #cc0000; }
+  .breadcrumbs .current { color: #222; font-weight: 800; }
+  .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
+
+  .guides-header { max-width: 1200px; margin: 0 auto; padding: 20px 20px 50px; text-align: center; }
+  .guides-header h1 { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 15px; letter-spacing: -0.5px; }
+  .guides-header p { font-size: 1.3em; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+  /* 知识库网格布局 (不再是滑动，而是垂直平铺) */
+  .guides-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
+  
+  .guide-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease; border: 1px solid #e5e5e5; border-top: 4px solid #cc0000; display: flex; flex-direction: column; text-decoration: none; }
+  .guide-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
+  .guide-img-box { width: 100%; height: 220px; background: #eaeaea; overflow: hidden; }
+  .guide-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .guide-card:hover .guide-img-box img { transform: scale(1.05); }
+  .guide-content { padding: 30px 25px; display: flex; flex-direction: column; flex-grow: 1; }
+  .guide-meta { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; letter-spacing: 0.5px;} 
+  .guide-meta span.dot { color: #ccc; font-size: 10px; }
+  .guide-tag { color: #cc0000; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; display: inline-block;}
+  .guide-card h3 { font-size: 1.5em; font-weight: 800; color: #111; margin: 0 0 15px 0; line-height: 1.3; }
+  .guide-excerpt { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+  .guide-read-more { color: #111; font-weight: 800; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #cc0000; padding-bottom: 3px; align-self: flex-start; transition: color 0.3s; }
+  .guide-card:hover .guide-read-more { color: #cc0000; }
+
+  /* 底部 PDF 留资横幅 */
+  .pdf-banner { max-width: 1000px; margin: 0 auto 100px; background: #111; border-radius: 8px; padding: 50px 40px; text-align: center; color: #fff; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+  .pdf-banner h2 { font-size: 2.2em; font-weight: 800; margin: 0 0 15px 0; color: #fff; }
+  .pdf-banner p { font-size: 1.2em; color: #ddd; margin-bottom: 30px; line-height: 1.6; }
+  .btn-download { display: inline-block; background: #cc0000; color: #fff !important; padding: 15px 35px; border-radius: 4px; font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; transition: background 0.3s; }
+  .btn-download:hover { background: #a00000; }
+
+  @media (max-width: 1024px) {
+    .guides-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .guides-grid { grid-template-columns: 1fr; }
+    .pdf-banner { padding: 40px 20px; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="custom-header">
+  <div class="header-top" id="header-top">
+    <div class="header-top-container">
+      <a href="/" class="header-logo"><img src="/images/logo.png" alt="HK BladeTech Logo"></a>
+      <div class="header-contact-info">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        </div>
+        <div class="contact-text">
+          <a href="mailto:info@hk-bladetech.com" class="email-link">info@hk-bladetech.com</a>
+          <a href="https://wa.me/85259319285" class="whatsapp-link" target="_blank">+852 5931 9285</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom" id="header-bottom">
+    <nav class="nav-menu-desktop">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/products/?cat=all" class="nav-item">Product Catalog</a>
+      <a href="/#custom-manufacturing" class="nav-item">Custom Manufacturing</a>
+      <a href="/contact" class="nav-item">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div class="page-intro-container">
+  <div class="breadcrumbs">
+    <a href="/">Home</a>
+    <span class="separator">&raquo;</span>
+    <span class="current">Technical Guides</span>
+  </div>
+</div>
+
+<div class="guides-header">
+  <h1>Technical Guides & Insights</h1>
+  <p>Your definitive knowledge base for plastic recycling equipment. Expert advice on blade materials, advanced heat treatment, and maximizing your shredder's lifespan.</p>
+</div>
+
+<div class="guides-grid">
+  <a href="/how-to-choose-granulator-blade-material/" class="guide-card">
+    <div class="guide-img-box"><img src="/images/blog-material-choice.png" alt="D2 vs Tungsten Carbide"></div>
+    <div class="guide-content">
+      <div class="guide-meta"><span>Apr 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+      <span class="guide-tag">Material Guide</span>
+      <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
+      <p class="guide-excerpt">Why are your granulator blades dulling so fast? Learn how to choose the perfect steel based on our 4-Step Rule for plastic recycling.</p>
+      <span class="guide-read-more">Read Full Guide</span>
+    </div>
+  </a>
+
+  <a href="/heat-treatment-secret-for-shredder-blades/" class="guide-card">
+    <div class="guide-img-box"><img src="/images/blog-heat-treatment.png" alt="Heat Treatment"></div>
+    <div class="guide-content">
+      <div class="guide-meta"><span>Apr 20, 2026</span><span class="dot">•</span><span>4 min read</span></div>
+      <span class="guide-tag">Manufacturing</span>
+      <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
+      <p class="guide-excerpt">Discover why specifying D2 isn't enough. Learn how our advanced vacuum quenching and cryogenic treatment prevents blade chipping.</p>
+      <span class="guide-read-more">Read Full Guide</span>
+    </div>
+  </a>
+
+  <a href="/understanding-blade-hardness-hrc/" class="guide-card">
+    <div class="guide-img-box"><img src="/images/blog-hrc-testing.png" alt="HRC Hardness"></div>
+    <div class="guide-content">
+      <div class="guide-meta"><span>Apr 15, 2026</span><span class="dot">•</span><span>6 min read</span></div>
+      <span class="guide-tag">Quality Control</span>
+      <h3>Understanding HRC: What Blade Hardness Means for You</h3>
+      <p class="guide-excerpt">Is a harder shredder blade always better? Understand the trade-off between hardness and toughness, and the optimal HRC for recycling.</p>
+      <span class="guide-read-more">Read Full Guide</span>
+    </div>
+  </a>
+
+  <a href="/5-signs-to-replace-granulator-blades/" class="guide-card">
+    <div class="guide-img-box"><img src="/images/blog-blade-replacement.png" alt="Blade Replacement"></div>
+    <div class="guide-content">
+      <div class="guide-meta"><span>Apr 10, 2026</span><span class="dot">•</span><span>3 min read</span></div>
+      <span class="guide-tag">Maintenance</span>
+      <h3>5 Signs It's Time to Replace Your Granulator Blades</h3>
+      <p class="guide-excerpt">Are you risking severe rotor damage by running dull blades? Watch out for these 5 critical warning signs in your recycling plant.</p>
+      <span class="guide-read-more">Read Full Guide</span>
+    </div>
+  </a>
+</div>
+
+<div class="pdf-banner">
+  <h2>Want to Read Offline?</h2>
+  <p>We've compiled all our technical engineering guides and full product specifications into one comprehensive PDF. Stop searching and start optimizing your cutting operations today.</p>
+  <a href="/contact" class="btn-download">Request Full Catalog & PDF Guide</a>
+</div>
+
+<script>
+window.addEventListener('scroll', function() {
+  var topBar = document.getElementById('header-top');
+  var navBar = document.getElementById('header-bottom');
+  if (window.innerWidth > 768) {
+    if (window.scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
+    else { navBar.classList.remove('is-fixed'); }
+  }
+});
+</script>
+
+</body>
+</html>

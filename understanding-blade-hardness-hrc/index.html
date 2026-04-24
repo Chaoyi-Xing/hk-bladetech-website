@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Understanding HRC Hardness | HK BladeTech Guides</title>
+<style>
+  /* =========================================
+     1. 暴力隐藏原主题干扰元素 (核弹级清理)
+     ========================================= */
+  #sidebar, .sidebar, .widget-wrap, .widget, #right-sidebar,
+  .left-col, .right-col, .mid-col,
+  #banner, #header, #header-row, #header-title, #header-outer, 
+  #mobile-nav, .mobile-nav, #top-container,
+  .archive-year-wrap, .page-header, #page-header, .page-title,
+  .article-header, header.article-header, .article-meta, .article-nav,
+  .article-footer, .article-share-link, 
+  .col-md-3, .col-lg-3, .breadcrumb:not(.breadcrumbs) {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  .article-inner header, .article-meta { display: none !important; }
+
+  /* =========================================
+     2. 彻底重置 Hexo 容器
+     ========================================= */
+  html, body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  #wrap, .outer, #main, .inner, .article, .article-inner, .article-entry, #content, .container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* =========================================
+     3. 完整顶部导航栏样式 (与主页保持 100% 一致)
+     ========================================= */
+  a { text-decoration: none; }
+  .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
+  .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
+  .header-bottom { background-color: #ffffff; height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; border-top: none; transition: all 0.3s ease; border-bottom: 1px solid #eee; }
+  .header-bottom.is-fixed { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important; animation: slideDown 0.3s ease forwards; }
+  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  .header-top-container { width: 100%; max-width: 1150px; margin: 0 auto; padding: 15px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; box-sizing: border-box; }
+  .header-logo { display: flex; align-items: center; justify-self: end; }
+  .header-logo img { height: 55px; width: auto; }
+  .header-search-wrapper { width: 420px; position: relative; }
+  .header-search-input { width: 100%; box-sizing: border-box; padding: 12px 20px 12px 45px; background-color: #f4f4f4; border: 1px solid #eaeaea; border-radius: 50px; font-size: 15px; color: #333; outline: none; transition: all 0.3s; }
+  .header-search-input:focus { background-color: #fff; border-color: #cc0000; box-shadow: 0 0 0 3px rgba(204,0,0,0.1); }
+  .search-icon { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 18px; color: #888; pointer-events: none; }
+  .header-contact-info { display: flex; align-items: center; gap: 12px; justify-self: start; text-align: left; }
+  .contact-icon svg { width: 40px; height: 40px; color: #cc0000 !important; stroke-width: 1.5; fill: none; }
+  .contact-text { display: flex; flex-direction: column; justify-content: center; }
+  .email-link { display: block; color: #cc0000 !important; font-size: 18px; font-weight: 700; text-decoration: underline !important; text-decoration-color: #cc0000 !important; line-height: 1.2; margin-bottom: 2px; }
+  .whatsapp-link { display: flex; align-items: center; gap: 5px; color: #222; font-size: 16px; font-weight: 600; text-decoration: none; margin-top: 2px; }
+  
+  .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
+  .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
+  .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
+  .dropdown-trigger { display: flex; align-items: center; gap: 6px; color: #222; font-size: 17px; font-weight: 700; text-decoration: none; padding: 0; cursor: pointer; position: relative; height: 100%; }
+  .nav-item:hover, .nav-item.active { color: #cc0000; }
+  .nav-item:hover::after, .dropdown-trigger:hover::after { content: ''; position: absolute; bottom: 12px; left: 0; width: 100%; height: 2px; background-color: #cc0000; }
+  .dropdown-trigger:hover { color: #cc0000; }
+  .arrow-desktop { border: solid #222; border-width: 0 2px 2px 0; display: inline-block; padding: 2.5px; transform: rotate(45deg); margin-bottom: 2px; transition: transform 0.3s ease, border-color 0.2s; }
+  .dropdown-trigger:hover .arrow-desktop { border-color: #cc0000; }
+  .dropdown-content { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background-color: #fff; min-width: 260px; width: max-content; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-top: none; padding: 5px 0; z-index: 10001; border-radius: 4px; }
+  .dropdown:hover .dropdown-content { display: block; }
+  .dropdown-content a { color: #222; font-size: 16px; font-weight: 500; white-space: nowrap; padding: 12px 20px; display: block; border-bottom: 1px solid #eee; text-decoration: none; transition: all 0.2s; }
+  .dropdown-content a:hover { color: #cc0000; background-color: #f9f9f9; padding-left: 25px; }
+  .mobile-scroll-container, .mobile-dropdown-panel-container { display: none; }
+
+  @media (max-width: 768px) {
+    .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
+    .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 15px; }
+    .header-logo { order: 1; }
+    .header-logo img { height: 38px; }
+    .nav-menu-desktop { display: none !important; }
+    .header-contact-info { flex-direction: column; align-items: flex-end; gap: 2px; order: 2; }
+    .contact-icon { display: none !important; }
+    .contact-text .email-link { font-size: 14.5px !important; text-decoration: none !important; }
+    .contact-text .whatsapp-link { font-size: 14px !important; }
+    .header-search-wrapper { width: 100%; order: 3; }
+    .header-bottom { height: auto; padding: 0; position: static; }
+    .header-bottom.is-fixed { position: static !important; animation: none !important; }
+    .mobile-scroll-container { display: flex; overflow-x: auto; white-space: nowrap; padding: 0 15px; height: 44px; align-items: center; gap: 25px; }
+    .mobile-nav-item { font-size: 14px; font-weight: 700; color: #333; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .mobile-dropdown-panel-container { display: block; width: 100%; background: #fff; }
+    .mobile-dropdown-panel { display: none; }
+    .mobile-dropdown-panel.show { display: block; }
+    .mobile-dropdown-link { display: block; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #000; font-weight: 600; text-decoration: none; }
+  }
+
+  /* =========================================
+     4. 面包屑与文章排版 (Article Style)
+     ========================================= */
+  .page-intro-container { width: 100%; max-width: 1000px; margin: 30px auto 20px; padding: 0 20px; box-sizing: border-box; }
+  .breadcrumbs { font-size: 13px; color: #666; font-weight: 600; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 0.5px; }
+  .breadcrumbs a { color: #888; text-decoration: none; transition: color 0.2s; }
+  .breadcrumbs a:hover { color: #cc0000; }
+  .breadcrumbs .current { color: #222; font-weight: 800; }
+  .breadcrumbs .separator { margin: 0 10px; color: #ddd; font-size: 14px; }
+
+  .article-wrapper { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; background-color: #ffffff; }
+  .article-container { margin: 0 auto 100px auto; padding-top: 10px; color: #333; line-height: 1.8; font-size: 16.5px; }
+  .article-container h1 { font-size: 36px; font-weight: 800; margin: 0 0 20px 0; color: #111; line-height: 1.2; letter-spacing: -0.5px; }
+  .header-divider { border-bottom: 1px solid #eee; margin-bottom: 40px; padding-bottom: 25px; }
+  .header-divider p { margin: 0; font-size: 18px; color: #555; font-weight: 500; line-height: 1.6; }
+  .article-container h2 { font-size: 26px; font-weight: 800; color: #111; margin-top: 50px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+  .article-container h3 { font-size: 20px; font-weight: 700; color: #cc0000; margin-top: 35px; margin-bottom: 15px; }
+  .article-container p { margin-bottom: 20px; }
+  .article-container ul { margin-bottom: 25px; padding-left: 25px; }
+  .article-container li { margin-bottom: 10px; }
+  .article-container strong { color: #111; }
+
+  .contact-cta-box { margin-top: 50px; padding: 30px; background-color: #f9f9f9; border-left: 4px solid #cc0000; border-radius: 4px; }
+  .contact-cta-box h3 { margin-top: 0; color: #111; font-size: 22px; }
+  .contact-cta-box p { font-size: 16px; margin-bottom: 15px; }
+  .btn-red-outline { display: inline-block; margin-top: 10px; padding: 12px 25px; border: 2px solid #cc0000; color: #cc0000; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: all 0.3s; }
+  .btn-red-outline:hover { background-color: #cc0000; color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="custom-header">
+  <div class="header-top" id="header-top">
+    <div class="header-top-container">
+      <a href="/" class="header-logo"><img src="/images/logo.png" alt="HK BladeTech Logo"></a>
+      <div class="header-search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <form action="/products/" method="GET" style="margin:0; width:100%;">
+          <input type="hidden" name="cat" value="all">
+          <input type="text" name="q" class="header-search-input" placeholder="Search by product name or number...">
+        </form>
+      </div>
+      <div class="header-contact-info">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+        </div>
+        <div class="contact-text">
+          <a href="mailto:info@hk-bladetech.com" class="email-link">info@hk-bladetech.com</a>
+          <a href="https://wa.me/85259319285" class="whatsapp-link" target="_blank">+852 5931 9285</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-bottom" id="header-bottom">
+    <nav class="nav-menu-desktop">
+      <a href="/" class="nav-item">Home</a>
+      <div class="dropdown">
+        <a href="/products/?cat=all" class="dropdown-trigger">Product Catalog <span class="arrow-desktop"></span></a>
+        <div class="dropdown-content">
+          <a href="/products/?cat=granulator">Granulator Blades</a>
+          <a href="/products/?cat=shredder">Shredder Blocks</a>
+          <a href="/products/?cat=circular">Circular Knives</a>
+          <a href="/products/?cat=corrugated">Corrugated Knives</a>
+        </div>
+      </div>
+      <a href="/#custom-manufacturing" class="nav-item">Custom Manufacturing</a>
+      <a href="/contact" class="nav-item">Contact</a>
+      <a href="/#faq-section" class="nav-item">FAQs</a>
+    </nav>
+
+    <div class="mobile-scroll-container">
+      <a href="/" class="mobile-nav-item">Home</a>
+      <div class="mobile-nav-item" onclick="toggleMobilePanel('panel-products', this)">Product Catalog</div>
+      <a href="/#custom-manufacturing" class="mobile-nav-item">Custom Manufacturing</a>
+      <a href="/contact" class="mobile-nav-item">Contact</a>
+    </div>
+
+    <div class="mobile-dropdown-panel-container">
+      <div id="panel-products" class="mobile-dropdown-panel">
+        <a href="/products/?cat=granulator" class="mobile-dropdown-link">Granulator Blades</a>
+        <a href="/products/?cat=shredder" class="mobile-dropdown-link">Shredder Blocks</a>
+        <a href="/products/?cat=all" class="mobile-dropdown-link" style="color:#cc0000;">View Full Catalog →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-intro-container">
+  <div class="breadcrumbs">
+    <a href="/">Home</a>
+    <span class="separator">&raquo;</span>
+    <span class="current">Technical Guides</span>
+  </div>
+</div>
+
+<div class="article-wrapper">
+  <div class="article-container">
+    
+    <h1>Understanding Blade Hardness: What HRC Means for Your Plastic Recycling Machine</h1>
+    
+    <div class="header-divider">
+      <p>When shopping for replacement granulator blades or shredder knives, you will frequently see suppliers advertising terms like "Ultra-Hard" or "HRC 62+." It is easy to assume that when it comes to industrial cutting, harder is always better.</p>
+    </div>
+
+    <p>But in the world of plastic recycling, <strong>that assumption can cause catastrophic machine failure.</strong></p>
+    <p>To maximize the lifespan of your machine knives and prevent costly downtime, you need to understand the balance between steel mechanical properties. Here is HK BladeTech's practical guide to understanding blade hardness, yield strength, and why the "sweet spot" matters more than the highest number.</p>
+
+    <h2>What is Rockwell Hardness (HRC)?</h2>
+    <p>Hardness measures a material's resistance to surface indentation and wear. In the tooling industry, the most common standard is the <strong>Rockwell Hardness Scale (HRC)</strong>.</p>
+    <p>During an HRC test, a diamond cone is pressed into the steel under a specific heavy load (150kg). The depth of the indentation determines the HRC number. A higher number means the steel is harder.</p>
+    <ul>
+      <li><strong>Soft Steel (e.g., untreated carbon steel):</strong> Below HRC 45</li>
+      <li><strong>Standard Knives:</strong> HRC 50 - 55</li>
+      <li><strong>Premium Granulator Blades (D2/SKD-11):</strong> HRC 58 - 62</li>
+      <li><strong>Tungsten Carbide:</strong> HRC 70+ (often measured on a different scale like HRA)</li>
+    </ul>
+
+    <h2>The Golden Rule: Hardness vs. Toughness</h2>
+    <p>The biggest misconception in recycling operations is confusing <em>hardness</em> with <em>toughness</em>. These two properties are basically enemies: as you increase one, you sacrifice the other.</p>
+    <ul>
+      <li><strong>Hardness:</strong> Resists wear, friction, and abrasion. (Keeps the edge sharp).</li>
+      <li><strong>Toughness (Yield Strength):</strong> Resists impact, shock, and pulling forces. (Stops the blade from breaking).</li>
+    </ul>
+
+    <h3>The Danger of "Too Soft" (< HRC 56)</h3>
+    <p>If your blades are too soft, they possess high toughness but terrible wear resistance. When cutting abrasive plastics (like PET bottles or dirty agricultural films), the cutting edge will roll over and dull within days. You will spend a fortune on labor costs constantly stopping the machine to resharpen the knives.</p>
+
+    <h3>The Danger of "Too Hard" (> HRC 63)</h3>
+    <p>If a supplier heat-treats standard D2 steel past HRC 63 to claim it is "superior," the steel becomes brittle like glass. In a high-speed granulator, blades experience massive shock loads. If a brittle blade hits a thick lump of plastic or a rogue piece of tramp metal, <strong>the cutting edge will micro-chip or shatter completely</strong>, potentially destroying your entire rotor chamber.</p>
+
+    <h2>The HK BladeTech "Sweet Spot": HRC 58-62</h2>
+    <p>For standard plastic recycling applications (PE, PP, PET) using premium D2 or SKD-11 steel, the scientifically proven sweet spot is <strong>HRC 58 to 62</strong>.</p>
+    <p>At our manufacturing hub in Ma'anshan, we use advanced vacuum quenching and computerized tempering to lock our D2 blades strictly within this range.</p>
+    <ul>
+      <li><strong>At HRC 58-62</strong>, the blade is hard enough to maintain a razor-sharp edge for weeks or months of continuous shredding.</li>
+      <li><strong>At HRC 58-62</strong>, the blade retains enough internal <em>yield strength</em> and <em>tensile strength</em> to absorb the violent impacts of the cutting chamber without shattering.</li>
+    </ul>
+
+    <div class="contact-cta-box">
+      <h3>Verify, Don't Guess</h3>
+      <p>Never take a supplier's word for their blade's hardness. Every batch of industrial knives leaving the HK BladeTech facility undergoes strict Rockwell hardness testing to ensure it hits that perfect 58-62 range. Are you experiencing chipped edges or rapid dulling?</p>
+      <a href="/contact" class="btn-red-outline">Contact Us for Blade Analysis</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// 控制导航栏吸顶和手机端菜单的脚本
+window.addEventListener('scroll', function() {
+  var topBar = document.getElementById('header-top');
+  var navBar = document.getElementById('header-bottom');
+  if (window.innerWidth > 768) {
+    if (window.scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
+    else { navBar.classList.remove('is-fixed'); }
+  } else { navBar.classList.remove('is-fixed'); }
+});
+
+function toggleMobilePanel(panelId, triggerElement) {
+  var targetPanel = document.getElementById(panelId);
+  if (targetPanel.classList.contains('show')) { targetPanel.classList.remove('show'); } 
+  else { targetPanel.classList.add('show'); }
+}
+</script>
+
+</body>
+</html>

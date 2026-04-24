@@ -282,6 +282,51 @@
       @media (min-width: 1600px) {
         .hero-section { height: 45vh; min-height: 500px; }
       }
+
+      /* =========================================
+         6. 博客/文章 (Insights) 样式 - 横向滑动版 (增强编辑感)
+         ========================================= */
+      .blog-section { background: #f9f9f9; padding: 80px 20px; box-sizing: border-box; width: 100%; border-top: 1px solid #eee; }
+      .blog-grid { 
+        max-width: 1200px; margin: 0 auto; 
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
+        gap: 30px; padding-bottom: 25px; -webkit-overflow-scrolling: touch; 
+        scrollbar-width: thin; scrollbar-color: #cc0000 #eaeaea; 
+      }
+      .blog-grid::-webkit-scrollbar { height: 8px; }
+      .blog-grid::-webkit-scrollbar-track { background: #eaeaea; border-radius: 10px; }
+      .blog-grid::-webkit-scrollbar-thumb { background: #cc0000; border-radius: 10px; }
+      
+      .blog-card { 
+        flex: 0 0 340px; min-width: 320px; scroll-snap-align: start; 
+        background: #fff; border-radius: 6px; overflow: hidden; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        transition: transform 0.4s ease, box-shadow 0.4s ease; 
+        border: 1px solid #e5e5e5; border-top: 4px solid #cc0000; /* 增加顶部红线，强调文章属性 */
+        display: flex; flex-direction: column; text-decoration: none; 
+      }
+      .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
+      .blog-img-box { width: 100%; height: 200px; background: #eaeaea; overflow: hidden; }
+      .blog-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+      .blog-card:hover .blog-img-box img { transform: scale(1.05); }
+      
+      .blog-content { padding: 30px 25px; display: flex; flex-direction: column; flex-grow: 1; }
+      .blog-meta { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; letter-spacing: 0.5px;} /* 文章元数据 */
+      .blog-meta span.dot { color: #ccc; font-size: 10px; }
+      
+      .blog-tag { color: #cc0000; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; display: inline-block;}
+      .blog-card h3 { font-size: 1.4em; font-weight: 800; color: #111; margin: 0 0 15px 0; line-height: 1.3; }
+      .blog-excerpt { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+      .blog-read-more { color: #111; font-weight: 800; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #cc0000; padding-bottom: 3px; align-self: flex-start; transition: color 0.3s; }
+      .blog-card:hover .blog-read-more { color: #cc0000; }
+      
+      .blog-btn-wrapper { text-align: center; margin-top: 40px; }
+      .btn-view-all { display: inline-block; padding: 12px 30px; border: 2px solid #111; color: #111; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; transition: all 0.3s; text-decoration: none; }
+      .btn-view-all:hover { background: #111; color: #fff; }
+
+      @media (max-width: 768px) {
+        .blog-card { flex: 0 0 85%; min-width: 280px; } 
+      }
     </style>
 <meta name="generator" content="Hexo 8.1.1"></head>
 <body>
@@ -552,6 +597,71 @@
               <p>Anti-rust oil coating and vacuum sealing protect every blade. Shipped in reinforced plywood crates to withstand international transit and prevent edge damage.</p>
           </div>
       </div>
+  </div>
+
+  <div class="blog-section">
+    <div class="section-intro">
+      <h2 class="section-title">Technical Guides & Insights</h2>
+      <p class="section-subtitle-text">Expert advice on blade materials, heat treatment, and maximizing your shredder's lifespan.</p>
+    </div>
+    
+    <div class="blog-grid">
+      <a href="/how-to-choose-granulator-blade-material/" class="blog-card">
+        <div class="blog-img-box">
+          <img src="/images/blog-material-choice.png" alt="D2 vs Tungsten Carbide Blades">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>Apr 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+          <span class="blog-tag">Material Guide</span>
+          <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
+          <p class="blog-excerpt">Why are your granulator blades dulling so fast? Learn how to choose the perfect steel based on our 4-Step Rule for plastic recycling.</p>
+          <span class="blog-read-more">Read Full Guide</span>
+        </div>
+      </a>
+
+      <a href="/heat-treatment-secret-for-shredder-blades/" class="blog-card">
+        <div class="blog-img-box">
+          <img src="/images/blog-heat-treatment.png" alt="Vacuum Heat Treatment Process">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>Apr 20, 2026</span><span class="dot">•</span><span>4 min read</span></div>
+          <span class="blog-tag">Manufacturing</span>
+          <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
+          <p class="blog-excerpt">Discover why specifying D2 isn't enough. Learn how our advanced vacuum quenching and cryogenic treatment prevents blade chipping.</p>
+          <span class="blog-read-more">Read Full Guide</span>
+        </div>
+      </a>
+
+      <a href="/understanding-blade-hardness-hrc/" class="blog-card">
+        <div class="blog-img-box">
+          <img src="/images/blog-hrc-testing.png" alt="Rockwell Hardness HRC Testing">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>Apr 15, 2026</span><span class="dot">•</span><span>6 min read</span></div>
+          <span class="blog-tag">Quality Control</span>
+          <h3>Understanding HRC: What Blade Hardness Means for You</h3>
+          <p class="blog-excerpt">Is a harder shredder blade always better? Understand the trade-off between hardness and toughness, and the optimal HRC for recycling.</p>
+          <span class="blog-read-more">Read Full Guide</span>
+        </div>
+      </a>
+
+      <a href="/5-signs-to-replace-granulator-blades/" class="blog-card">
+        <div class="blog-img-box">
+          <img src="/images/blog-blade-replacement.png" alt="Blade Replacement Guide">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>Apr 10, 2026</span><span class="dot">•</span><span>3 min read</span></div>
+          <span class="blog-tag">Maintenance</span>
+          <h3>5 Signs It's Time to Replace Your Granulator Blades</h3>
+          <p class="blog-excerpt">Are you risking severe rotor damage by running dull blades? Watch out for these 5 critical warning signs in your recycling plant.</p>
+          <span class="blog-read-more">Read Full Guide</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="blog-btn-wrapper">
+      <a href="/guides/" class="btn-view-all">View All Technical Guides</a>
+    </div>
   </div>
 
   <div class="faq-section" id="faq-section">
