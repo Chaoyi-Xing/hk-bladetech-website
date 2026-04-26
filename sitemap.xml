@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hk-bladetech.com/blade-materials/index.html</loc>
+    
+    <lastmod>2026-04-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hk-bladetech.com/guides/index.html</loc>
     
     <lastmod>2026-04-24</lastmod>
@@ -41,15 +50,6 @@
     <loc>https://www.hk-bladetech.com/how-to-choose-granulator-blade-material/index.html</loc>
     
     <lastmod>2026-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/blade-materials/index.html</loc>
-    
-    <lastmod>2026-04-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,7 +166,7 @@
 
   <url>
     <loc>https://www.hk-bladetech.com/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
