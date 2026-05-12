@@ -54,8 +54,10 @@
   #banner, #header-title, #footer, #header-outer, .archive-year-wrap,
   .col-md-3, .col-lg-3 { display: none !important; }
 
-  html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
-  #faq-section, #custom-manufacturing { scroll-margin-top: 80px; }
+  /* 【重要修改】将 overflow-x: hidden 改为 clip，这样既能防止横向晃动，又不会导致 sticky 吸顶失效 */
+  html, body { width: 100%; max-width: 100%; overflow-x: clip !important; margin: 0; padding: 0; background-color: #ffffff; scroll-behavior: smooth; }
+  
+  #faq-section, #custom-manufacturing { scroll-margin-top: 130px; } /* 增加了锚点偏移，防止吸顶头部挡住标题 */
   body { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
   .outer, #main, #content, .main-inner, .container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
   .custom-header, .home-wrapper, body { font-family: "Roboto", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif; color: #333; line-height: 1.6; box-sizing: border-box; }
@@ -64,11 +66,11 @@
   /* =========================================
      2. 电脑端样式 ( > 768px )
      ========================================= */
-  .custom-header { width: 100%; background: #fff; z-index: 999999; position: relative; }
+  /* 【重要修改】让整个 header 全局吸顶，并添加一点阴影提升层次感 */
+  .custom-header { width: 100%; background: #fff; z-index: 999999; position: sticky; top: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+  
   .header-top { background-color: #ffffff; padding: 0; position: relative; width: 100%; border-bottom: 1px solid #f9f9f9; box-sizing: border-box; }
   .header-bottom { background-color: #ffffff; height: 50px; width: 100%; display: flex; align-items: center; justify-content: center; border-top: none; transition: all 0.3s ease; }
-  .header-bottom.is-fixed { position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; z-index: 999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important; animation: slideDown 0.3s ease forwards; }
-  @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
   .header-top-container { width: 100%; max-width: 1150px; margin: 0 auto; padding: 15px 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; box-sizing: border-box; }
   .header-logo { display: flex; align-items: center; justify-self: end; }
@@ -85,7 +87,6 @@
 
   /* 电脑端导航 */
   .nav-menu-desktop { display: flex; align-items: center; gap: 45px; height: 100%; }
-  
   .nav-item { color: #222; font-size: 17px; font-weight: 700; text-decoration: none; height: 100%; display: flex; align-items: center; padding: 0; position: relative; transition: color 0.2s; }
   
   .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
@@ -111,33 +112,28 @@
   .mobile-toggle { display: none; }
 
   /* =========================================
-     3. 手机端样式 (已调整平衡比例)
+     3. 手机端样式
      ========================================= */
   @media (max-width: 768px) {
-    .custom-header { position: sticky; top: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; }
+    .custom-header { display: block; }
     .header-top { border-bottom: 1px solid #f0f0f0; height: auto; background: #fff; }
-    
     .header-top-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 12px 15px; gap: 15px; box-sizing: border-box; }
     
     .header-logo { order: 1; }
-    /* ★ 修改：放大 Logo 高度 */
     .header-logo img { height: 38px; }
     
     .mobile-toggle, .nav-menu-desktop { display: none !important; }
 
     .header-contact-info { display: flex !important; flex-direction: column; align-items: flex-end; gap: 2px; order: 2; }
     .contact-icon { display: none !important; }
-    /* ★ 修改：略微放大联系方式字号 */
     .contact-text .email-link { font-size: 14.5px !important; margin-bottom: 0; text-decoration: none !important; line-height: 1.2; }
     .contact-text .whatsapp-link { font-size: 14px !important; margin-top: 0; justify-content: flex-end; line-height: 1.2; }
 
     .header-search-wrapper { display: block !important; width: 100%; order: 3; }
-    /* ★ 修改：减少上下内边距 (padding 从 10px 降到 8px)，让搜索框更修长 */
     .header-search-input { padding: 8px 15px 8px 40px; font-size: 14px; }
     .search-icon { left: 15px; width: 16px; }
 
     .header-bottom { display: block; height: auto; width: 100%; background: #ffffff; position: static; padding: 0; border-bottom: 1px solid #eee; }
-    .header-bottom.is-fixed { position: static !important; animation: none !important; }
 
     .mobile-scroll-container {
         display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; 
@@ -168,7 +164,7 @@
   
   <div class="header-top" id="header-top">
     <div class="header-top-container">
-      <a href="/" class="header-logo"><img src="/images/logo.png" alt="HK BladeTech"></a>
+      <a href="/" class="header-logo"><img src="/images/logo.png" alt="HK Blade Tech"></a>
       
       <div class="header-search-wrapper">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -238,21 +234,9 @@
 </div>
 
 <script>
-  // 1. 电脑端吸顶
-  window.addEventListener('scroll', function() {
-    var topBar = document.getElementById('header-top');
-    var navBar = document.getElementById('header-bottom');
-    var scrollY = window.scrollY;
-    
-    if (window.innerWidth > 768) {
-        if (scrollY > topBar.offsetHeight) { navBar.classList.add('is-fixed'); } 
-        else { navBar.classList.remove('is-fixed'); }
-    } else { 
-        navBar.classList.remove('is-fixed'); 
-    }
-  });
+  /* 【重要修改】已经删除了旧的复杂吸顶监听逻辑，全部交给 CSS 原生处理，性能更好、不抖动 */
 
-  // 2. 手机端下拉面板逻辑 
+  // 1. 手机端下拉面板逻辑 
   window.toggleMobilePanel = function(panelId, triggerElement) {
       var allPanels = document.querySelectorAll('.mobile-dropdown-panel');
       var allTriggers = document.querySelectorAll('.mobile-nav-item');
@@ -271,7 +255,7 @@
       triggerElement.classList.add('open');
   }
 
-  // 3. 高亮逻辑 
+  // 2. 高亮逻辑 
   document.addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     
@@ -438,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.hk-bladetech.com/industry-plastics/index.html" data-id="cuid8bByDP3lsEDu4EhXo2CK3" data-title="HK Plastics Recycling Blades &amp; Granulator Knives Manufacturer" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://www.hk-bladetech.com/industry-plastics/index.html" data-id="cuidPxpewwvLtRLNyqu7_a9RL" data-title="HK Plastics Recycling Blades &amp; Granulator Knives Manufacturer" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
