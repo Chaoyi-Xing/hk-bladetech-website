@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+    
+    <!-- 引入 Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <script type="application/ld+json">
     {
@@ -71,18 +74,41 @@
       .mobile-scroll-container, .mobile-dropdown-panel-container { display: none; }
 
       /* =========================================
-         2. Hero Section
+         2. Hero Section (动态文字 + 左对齐极致版)
          ========================================= */
-      .hero-section { position: relative; height: 40vh; min-height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; color: white; overflow: hidden; background-color: #1a1a1a; box-sizing: border-box; width: 100%; }
-      .hero-bg-media { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; object-fit: cover; opacity: 0.8; pointer-events: none; }
-      .hero-content-wrapper { position: relative; z-index: 2; max-width: 1000px; }
-      .hero-tagline { display: inline-block; background: #cc0000; color: white; padding: 4px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-bottom: 20px; border-radius: 2px; }
-      .hero-section h1 { font-weight: 800; font-size: 3em; margin-bottom: 15px; line-height: 1.1; text-shadow: 0 2px 20px rgba(0,0,0,0.9); }
-      .hero-section p { font-size: 1.3em; font-weight: 500; margin-bottom: 30px; color: #f0f0f0; text-shadow: 0 2px 10px rgba(0,0,0,0.9); max-width: 900px; margin-left: auto; margin-right: auto; }
-      .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-      .btn-primary { display: inline-flex; align-items: center; justify-content: center; background-color: #cc0000; color: white !important; border: 2px solid #cc0000; border-radius: 4px; padding: 12px 20px; font-weight: 700; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-transform: uppercase; letter-spacing: 0.5px; width: 300px; text-align: center; box-sizing: border-box; }
+      .hero-section { position: relative; height: 50vh; min-height: 500px; width: 100%; background-color: #1a1a1a; }
+      .hero-swiper { width: 100%; height: 100%; }
+      
+      .swiper-slide { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 20px 8%; text-align: left; box-sizing: border-box; overflow: hidden; background-color: #1a1a1a; }
+      
+      .hero-bg-media { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; z-index: 0; pointer-events: none; }
+      
+      .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 80%); z-index: 1; pointer-events: none; }
+
+      .custom-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 50%; color: #ffffff; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+      .custom-nav-btn:hover { background-color: #cc0000; border-color: #cc0000; color: white; transform: translateY(-50%) scale(1.1); box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4); }
+      .custom-nav-btn::after { font-size: 18px; font-weight: 800; font-family: swiper-icons; }
+      .custom-nav-prev { left: 2%; }
+      .custom-nav-next { right: 2%; }
+
+      .custom-pagination { position: absolute; bottom: 30px; left: 0; width: 100%; text-align: center; z-index: 10; }
+      .custom-pagination .swiper-pagination-bullet { width: 12px; height: 12px; background: #ffffff; opacity: 0.5; margin: 0 6px; transition: all 0.3s ease; border-radius: 50%; display: inline-block; cursor: pointer; }
+      .custom-pagination .swiper-pagination-bullet-active { opacity: 1; background: #cc0000; box-shadow: 0 0 0 4px rgba(204, 0, 0, 0.3); }
+
+      .hero-content-wrapper { position: relative; z-index: 2; max-width: 600px; pointer-events: auto; color: white; }
+      .hero-tagline { display: inline-block; background: #cc0000; color: white; padding: 4px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-bottom: 20px; border-radius: 2px; }
+      
+      .hero-content-wrapper h1 { font-weight: 800; font-size: 2.6em; margin-bottom: 15px; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.9); }
+      
+      /* 添加了一个只在电脑端生效的换行类，手机端会自然折行 */
+      .hero-content-wrapper p { font-size: 1.1em; font-weight: 500; margin-bottom: 30px; color: #f0f0f0; text-shadow: 0 2px 10px rgba(0,0,0,0.9); line-height: 1.6; }
+      .desktop-br { display: block; }
+      
+      .hero-btns { display: flex; justify-content: flex-start; gap: 15px; flex-wrap: wrap; }
+      .btn-primary, .btn-white { width: auto; min-width: 240px; padding: 12px 20px; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; box-sizing: border-box; transition: all 0.3s; border-radius: 4px;}
+      .btn-primary { background-color: #cc0000; color: white !important; border: 2px solid #cc0000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
       .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-2px); }
-      .btn-white { display: inline-flex; align-items: center; justify-content: center; background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; border-radius: 4px; padding: 12px 20px; font-weight: 700; font-size: 16px; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 300px; text-align: center; box-sizing: border-box; }
+      .btn-white { background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
       .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
     
       /* =========================================
@@ -252,10 +278,22 @@
         .mobile-dropdown-link:last-child { border-bottom: none; }
         .mobile-dropdown-link:active { background-color: #f5f5f5; color: #cc0000; }
 
-        .hero-section { height: auto; min-height: 300px; padding: 70px 20px; }
-        .hero-section h1 { font-size: 2.2em; }
-        .hero-btns { flex-direction: column; align-items: center; width: 100%; }
+        .custom-nav-btn { display: none; }
+        .custom-pagination { bottom: 15px; }
+
+        .swiper-slide { align-items: center; text-align: center; padding: 70px 20px; }
+        .hero-overlay { background: rgba(0,0,0,0.5); } 
+        .hero-btns { justify-content: center; }
+
+        .hero-content-wrapper { max-width: 100%; }
+        .hero-content-wrapper h1 { font-size: 2em; }
+        
+        /* 手机端隐藏显式换行符，让浏览器自然流式折行 */
+        .desktop-br { display: inline; content: " "; }
+        .desktop-br::before { content: " "; }
+
         .btn-primary, .btn-white { width: 100%; max-width: 320px; }
+
         .trust-logos { gap: 30px; flex-direction: column; }
         .brand-name { font-size: 18px; width: 40%; text-align: center; }
         .story-container { flex-direction: column; gap: 40px; }
@@ -271,20 +309,23 @@
       }
       @media (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
         .hero-section { width: 100vw; height: 100vh; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 0; min-height: auto; border-radius: 0; }
-        .hero-bg-media { width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; object-fit: cover; opacity: 0.85; }
-        .hero-content-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-left: env(safe-area-inset-left, 20px); padding-right: env(safe-area-inset-right, 20px); box-sizing: border-box; }
+        .hero-bg-media { width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; object-fit: cover; opacity: 1; }
+        .hero-overlay { background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%); }
+        .hero-content-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-left: calc(env(safe-area-inset-left, 20px) + 5%); padding-right: env(safe-area-inset-right, 20px); box-sizing: border-box; }
         .hero-tagline { margin-bottom: 5px; font-size: 10px; }
-        .hero-section h1 { font-size: 1.5em; margin-bottom: 5px; line-height: 1.1; }
-        .hero-section p { font-size: 13px; margin-bottom: 10px; max-width: 550px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .hero-btns { gap: 8px; flex-direction: row; }
-        .btn-primary, .btn-white { padding: 6px 15px; font-size: 12px; width: auto; max-width: none; }
+        .hero-content-wrapper h1 { font-size: 1.5em; margin-bottom: 5px; line-height: 1.1; }
+        .hero-content-wrapper p { font-size: 13px; margin-bottom: 10px; max-width: 550px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .desktop-br { display: inline; }
+        .desktop-br::before { content: " "; }
+        .hero-btns { gap: 8px; flex-direction: row; justify-content: flex-start; }
+        .btn-primary, .btn-white { padding: 6px 15px; font-size: 12px; width: auto; max-width: none; min-width: 0; }
       }
       @media (min-width: 1600px) {
         .hero-section { height: 45vh; min-height: 500px; }
       }
 
       /* =========================================
-         6. 博客/文章 (Insights) 样式 - 横向滑动版 (增强编辑感)
+         6. 博客/文章 (Insights) 样式
          ========================================= */
       .blog-section { background: #f9f9f9; padding: 80px 20px; box-sizing: border-box; width: 100%; border-top: 1px solid #eee; }
       .blog-grid { 
@@ -302,7 +343,7 @@
         background: #fff; border-radius: 6px; overflow: hidden; 
         box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
         transition: transform 0.4s ease, box-shadow 0.4s ease; 
-        border: 1px solid #e5e5e5; border-top: 4px solid #cc0000; /* 增加顶部红线，强调文章属性 */
+        border: 1px solid #e5e5e5; border-top: 4px solid #cc0000; 
         display: flex; flex-direction: column; text-decoration: none; 
       }
       .blog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
@@ -311,7 +352,7 @@
       .blog-card:hover .blog-img-box img { transform: scale(1.05); }
       
       .blog-content { padding: 30px 25px; display: flex; flex-direction: column; flex-grow: 1; }
-      .blog-meta { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; letter-spacing: 0.5px;} /* 文章元数据 */
+      .blog-meta { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; letter-spacing: 0.5px;}
       .blog-meta span.dot { color: #ccc; font-size: 10px; }
       
       .blog-tag { color: #cc0000; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; display: inline-block;}
@@ -392,17 +433,72 @@
 </div>
 
 <div class="home-wrapper">
+  
   <div class="hero-section">
-    <img src="/images/home-hero-factory-bg.png" alt="HK Blade Tech Industrial Blade Factory" class="hero-bg-media">
-    <div class="hero-content-wrapper">
-      <span class="hero-tagline">Engineered for Cumberland, Vecoplan, Rapid & More</span>
-      <h1>HK Blade Tech: Premium Industrial Blade Manufacturer.<br>Custom Engineered or Ready to Ship.</h1>
-      <p>Whether you need standard replacement machine knives or custom engineered solutions,<br>we deliver precision cutting tools directly from our manufacturing hub.</p>
-      <div class="hero-btns">
-        <a href="/products/?cat=all" class="btn-primary">View Product Catalog</a>
-        <a href="/contact" class="btn-white">Request Custom Quote</a>
+    <!-- 背景轮播图区域 -->
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        
+        <!-- =======================
+             第一页：综合展示 (Mix)
+             ======================= -->
+        <div class="swiper-slide">
+          <img src="/images/home-hero-factory-bg.png" alt="HK Blade Tech Industrial Blade Factory" class="hero-bg-media">
+          <div class="hero-overlay"></div>
+          <div class="hero-content-wrapper">
+            <span class="hero-tagline">Engineered for Cumberland, Vecoplan & More</span>
+            <h1>Premium Industrial<br>Blade Manufacturer.</h1>
+            <p>Precision cutting tools directly from our manufacturing hub.<br class="desktop-br">Standard replacements or custom engineered to your exact specifications.</p>
+            <div class="hero-btns">
+              <a href="/products/?cat=all" class="btn-primary">View Product Catalog</a>
+              <a href="/contact" class="btn-white">Request Custom Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- =======================
+             第二页：粉碎机 & 撕碎机刀片
+             ======================= -->
+        <div class="swiper-slide">
+          <img src="/images/home-hero-factory-bg2.png" alt="Granulator and Shredder Blades" class="hero-bg-media">
+          <div class="hero-overlay"></div>
+          <div class="hero-content-wrapper">
+            <span class="hero-tagline">Plastics Recycling & Reduction</span>
+            <h1>High-Wear Granulator<br>& Shredder Blades.</h1>
+            <p>Forged with genuine D2 and Tungsten Carbide for maximum<br class="desktop-br">edge retention in the most demanding recycling applications.</p>
+            <div class="hero-btns">
+              <a href="/products/?cat=granulator" class="btn-primary">View Granulator Blades</a>
+              <a href="/contact" class="btn-white">Request Custom Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- =======================
+             第三页：圆刀 & 瓦楞纸刀片
+             ======================= -->
+        <div class="swiper-slide">
+          <img src="/images/home-hero-factory-bg3.png" alt="Circular and Corrugated Knives" class="hero-bg-media">
+          <div class="hero-overlay"></div>
+          <div class="hero-content-wrapper">
+            <span class="hero-tagline">Converting & Packaging</span>
+            <h1>Circular Slitters &<br>Corrugated Knives.</h1>
+            <p>Micron-level precision grinding ensuring clean, burr-free cuts<br class="desktop-br">on film, foil, paper, and corrugated board production lines.</p>
+            <div class="hero-btns">
+              <a href="/products/?cat=circular" class="btn-primary">View Circular Knives</a>
+              <a href="/contact" class="btn-white">Request Custom Quote</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <!-- 移出滑动层的左右控制箭头 (Z-index: 10) -->
+    <div class="custom-nav-btn custom-nav-prev"></div>
+    <div class="custom-nav-btn custom-nav-next"></div>
+    
+    <!-- 移出滑动层的底部分页圆点 (Z-index: 10) -->
+    <div class="custom-pagination"></div>
   </div>
 
   <div class="trust-bar">
@@ -790,7 +886,29 @@
   <div class="footer-bottom-bar">&copy; 2026 HK Blade Tech. All Rights Reserved. | Premium HK Industrial Blade Manufacturer</div>
 </footer>
 
+<!-- 引入 Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
 <script>
+// 初始化 Hero 轮播图，绑定新的独立按钮
+document.addEventListener('DOMContentLoaded', function() {
+  const heroSwiper = new Swiper('.hero-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.custom-pagination', // 绑定外部圆点
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.custom-nav-next', // 绑定外部右箭头
+      prevEl: '.custom-nav-prev', // 绑定外部左箭头
+    },
+  });
+});
+
 // 1. 电脑端吸顶
 window.addEventListener('scroll', function() {
   var topBar = document.getElementById('header-top');
