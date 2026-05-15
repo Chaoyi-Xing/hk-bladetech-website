@@ -74,7 +74,7 @@
       .mobile-scroll-container, .mobile-dropdown-panel-container { display: none; }
 
       /* =========================================
-         2. Hero Section (明亮金属质感优化版)
+         2. Hero Section (动态文字 + 左对齐极致版)
          ========================================= */
       .hero-section { position: relative; height: 48vh; min-height: 480px; width: 100%; background-color: #1a1a1a; }
       .hero-swiper { width: 100%; height: 100%; }
@@ -83,8 +83,7 @@
       
       .hero-bg-media { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; z-index: 0; pointer-events: none; }
       
-      /* 核心修改 1：极大削弱遮罩，还给图片明亮感 */
-      .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%); z-index: 1; pointer-events: none; }
+      .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 80%); z-index: 1; pointer-events: none; }
 
       .custom-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.6); border-radius: 50%; color: #ffffff; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
       .custom-nav-btn:hover { background-color: #cc0000; border-color: #cc0000; color: white; transform: translateY(-50%) scale(1.1); box-shadow: 0 4px 15px rgba(204, 0, 0, 0.4); }
@@ -97,20 +96,19 @@
       .custom-pagination .swiper-pagination-bullet-active { opacity: 1; background: #cc0000; box-shadow: 0 0 0 4px rgba(204, 0, 0, 0.3); }
 
       .hero-content-wrapper { position: relative; z-index: 2; max-width: 600px; pointer-events: auto; color: white; }
+      .hero-tagline { display: inline-block; background: #cc0000; color: white; padding: 4px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-bottom: 20px; border-radius: 2px; }
       
-      /* 核心修改 2：增强文字投影，使文字在明亮背景上依然清晰可读 */
-      .hero-tagline { display: inline-block; background: #cc0000; color: white; padding: 4px 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; margin-bottom: 20px; border-radius: 2px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+      .hero-content-wrapper h1 { font-weight: 800; font-size: 2.6em; margin-bottom: 15px; line-height: 1.15; text-shadow: 0 2px 20px rgba(0,0,0,0.9); }
       
-      .hero-content-wrapper h1 { font-weight: 800; font-size: 2.6em; margin-bottom: 15px; line-height: 1.15; text-shadow: 0 4px 15px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.9); }
-      
-      .hero-content-wrapper p { font-size: 1.1em; font-weight: 500; margin-bottom: 30px; color: #fdfdfd; text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.9); line-height: 1.6; }
+      /* 添加了一个只在电脑端生效的换行类，手机端会自然折行 */
+      .hero-content-wrapper p { font-size: 1.1em; font-weight: 500; margin-bottom: 30px; color: #f0f0f0; text-shadow: 0 2px 10px rgba(0,0,0,0.9); line-height: 1.6; }
       .desktop-br { display: block; }
       
       .hero-btns { display: flex; justify-content: flex-start; gap: 15px; flex-wrap: wrap; }
       .btn-primary, .btn-white { width: auto; min-width: 240px; padding: 12px 20px; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; box-sizing: border-box; transition: all 0.3s; border-radius: 4px;}
-      .btn-primary { background-color: #cc0000; color: white !important; border: 2px solid #cc0000; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+      .btn-primary { background-color: #cc0000; color: white !important; border: 2px solid #cc0000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
       .btn-primary:hover { background-color: #a00000; border-color: #a00000; transform: translateY(-2px); }
-      .btn-white { background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+      .btn-white { background-color: #ffffff; color: #cc0000 !important; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
       .btn-white:hover { background-color: #f0f0f0; color: #a00000 !important; transform: translateY(-2px); }
     
       /* =========================================
@@ -284,7 +282,7 @@
         .custom-pagination { bottom: 15px; }
 
         .swiper-slide { align-items: center; text-align: center; padding: 70px 20px; }
-        .hero-overlay { background: rgba(0,0,0,0.35); } /* 手机端也使用更亮的半透明遮罩 */
+        .hero-overlay { background: rgba(0,0,0,0.5); } 
         .hero-btns { justify-content: center; }
 
         .hero-content-wrapper { max-width: 100%; }
@@ -312,7 +310,7 @@
       @media (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
         .hero-section { width: 100vw; height: 100vh; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 0; min-height: auto; border-radius: 0; }
         .hero-bg-media { width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; object-fit: cover; opacity: 1; }
-        .hero-overlay { background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%); }
+        .hero-overlay { background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%); }
         .hero-content-wrapper { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-left: calc(env(safe-area-inset-left, 20px) + 5%); padding-right: env(safe-area-inset-right, 20px); box-sizing: border-box; }
         .hero-tagline { margin-bottom: 5px; font-size: 10px; }
         .hero-content-wrapper h1 { font-size: 1.5em; margin-bottom: 5px; line-height: 1.1; }
@@ -462,8 +460,7 @@
              第二页：粉碎机 & 撕碎机刀片
              ======================= -->
         <div class="swiper-slide">
-          <!-- 核心修改：加入了 object-position: bottom center; 让图片从底部开始对齐 -->
-          <img src="/images/home-hero-factory-bg2.png" alt="Granulator and Shredder Blades" class="hero-bg-media" style="object-position: bottom center;">
+          <img src="/images/home-hero-factory-bg2.png" alt="Granulator and Shredder Blades" class="hero-bg-media">
           <div class="hero-overlay"></div>
           <div class="hero-content-wrapper">
             <span class="hero-tagline">Plastics Recycling & Reduction</span>
@@ -480,8 +477,7 @@
              第三页：圆刀 & 瓦楞纸刀片
              ======================= -->
         <div class="swiper-slide">
-          <!-- 核心修改：加入了 style="object-position: top center;" 适配宽屏显示 -->
-          <img src="/images/home-hero-factory-bg3.png" alt="Circular and Corrugated Knives" class="hero-bg-media" style="object-position: top center;">
+          <img src="/images/home-hero-factory-bg3.png" alt="Circular and Corrugated Knives" class="hero-bg-media">
           <div class="hero-overlay"></div>
           <div class="hero-content-wrapper">
             <span class="hero-tagline">Converting & Packaging</span>
