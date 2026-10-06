@@ -49,6 +49,9 @@ body:has(.customer-page) #sidebar { display: none; }
 .customer-project-section p { margin: 0 0 14px; color: #555; font-size: 16px; line-height: 1.75; }
 .customer-project-media { margin: 0; overflow: hidden; border: 1px solid #eee; border-radius: 8px; background: #f7f7f7; box-shadow: 0 6px 20px rgba(0,0,0,.055); }
 .customer-project-media img, .customer-project-media video { display: block; width: 100%; max-height: 490px; object-fit: contain; background: #f1f1f1; }
+.customer-project-dimensions { grid-template-columns: minmax(0, min(300px, 33%)) minmax(0, min(520px, 58%)); justify-content: center; gap: min(80px, 7.5%); }
+.customer-project-dimensions .customer-project-media { width: 100%; max-width: 300px; justify-self: center; }
+.customer-project-dimensions .customer-project-media video { height: auto; max-height: none; aspect-ratio: 9 / 16; }
 .customer-project-section#finished-cutter-inserts .customer-project-media img { height: auto; max-height: none; object-fit: cover; }
 .customer-project-media figcaption { padding: 11px 16px; color: #666; font-size: 13px; line-height: 1.5; }
 .customer-project-hardness-intro { max-width: 780px; margin: 0 auto 34px; text-align: center; }
@@ -71,6 +74,7 @@ body:has(.customer-page) #sidebar { display: none; }
   .customer-project-hero { gap: 25px; padding-bottom: 45px; }
   .customer-project-section { padding-top: 52px; padding-bottom: 52px; }
   .customer-project-section-grid { gap: 28px; }
+  .customer-project-dimensions { grid-template-columns: 1fr; }
   .customer-project-section-alt .customer-project-media { order: 2; }
   .customer-project-section-alt .customer-project-section-copy { order: 1; }
   .customer-project-cta { margin: 0 24px 60px; }
