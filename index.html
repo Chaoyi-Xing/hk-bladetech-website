@@ -8,16 +8,21 @@
   
   <title>Granulator, Shredder &amp; Slitter Blades — Factory-Direct | HK BladeTech (HK-Blade Tech)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link rel="canonical" href="https://www.hk-bladetech.com/">
   <meta name="description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Granulator, Shredder &amp; Slitter Blades — Factory-Direct">
-<meta property="og:url" content="https://www.hk-bladetech.com/index.html">
+<meta property="og:url" content="https://www.hk-bladetech.com/">
 <meta property="og:site_name" content="HK BladeTech (HK-Blade Tech)">
 <meta property="og:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.hk-bladetech.com/images/home-hero-factory-bg2.webp">
 <meta property="article:author" content="HK BladeTech Team">
 <meta property="article:tag" content="hk bladetech, hk blade tech, hk-blade tech, hk-bladetech, Granulator blades, Shredder blades, Industrial knives, D2 steel">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hk-bladetech.com/images/home-hero-factory-bg2.webp">
+  <meta name="twitter:title" content="Granulator, Shredder &amp; Slitter Blades — Factory-Direct">
+  <meta name="twitter:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
   
     <link rel="alternate" href="/atom.xml" title="HK BladeTech (HK-Blade Tech)" type="application/atom+xml">
   
@@ -29,6 +34,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   
+  
     
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
@@ -37,6 +43,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
 <meta name="generator" content="Hexo 8.1.1"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -1264,6 +1271,24 @@
     border-top: 1px solid #ececec;
   }
 
+  /* Compact customer project feature */
+  .project-feature-section { background: #f7f7f7; padding: 68px 20px; }
+  .project-feature-section .section-intro { margin-bottom: 32px; }
+  .project-feature-card {
+    display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    max-width: 1040px; margin: 0 auto; overflow: hidden;
+    border: 1px solid #e3e3e3; border-top: 4px solid #cc0000;
+    border-radius: 9px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,.045);
+  }
+  .project-feature-image { height: 270px; overflow: hidden; background: #eee; }
+  .project-feature-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+  .project-feature-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 30px 36px; }
+  .project-feature-location { color: #cc0000; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+  .project-feature-copy h3 { margin: 8px 0 10px; color: #111; font-size: 26px; line-height: 1.25; font-weight: 800; }
+  .project-feature-copy p { margin: 0 0 18px; color: #555; font-size: 16px; line-height: 1.6; }
+  .project-feature-link { display: inline-flex; align-items: center; min-height: 42px; padding: 10px 20px; border-radius: 4px; background: #cc0000; color: #fff !important; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
+  .project-feature-link:hover { background: #b30000; }
+
   .blog-grid {
     display: grid;
     max-width: 1200px;
@@ -1547,6 +1572,11 @@
   }
 
   @media (max-width: 768px) {
+    .project-feature-card { grid-template-columns: 1fr; max-width: 560px; }
+    .project-feature-image { height: 240px; }
+    .project-feature-copy { padding: 25px; }
+    .project-feature-copy h3 { font-size: 23px; }
+    .project-feature-section { padding: 60px 20px; }
     .hero-section,
     .hero-swiper,
     .hero-swiper .swiper-wrapper,
@@ -2033,6 +2063,24 @@
       </div>
   </div>
 
+  <section class="project-feature-section" aria-labelledby="project-feature-heading">
+    <div class="section-intro">
+      <h2 class="section-title" id="project-feature-heading">Real Customer Project</h2>
+      <p class="section-subtitle-text">See a custom cutter insert batch and the inspection work behind it.</p>
+    </div>
+    <div class="project-feature-card">
+      <a class="project-feature-image" href="/customer-projects/european-shredder-cutter-inserts/" aria-label="View the European customer project">
+        <img src="/images/customer-projects/european-shredder-cutter-inserts/finished-batch-overhead.jpg" alt="Overhead view of finished cutter inserts in their wooden crate" loading="lazy" decoding="async">
+      </a>
+      <div class="project-feature-copy">
+        <span class="project-feature-location">European Customer</span>
+        <h3>Custom Shredder Cutter Inserts</h3>
+        <p>Custom D2 cutter inserts with a TiN coating, inspected for dimensions and hardness before packing.</p>
+        <a class="project-feature-link" href="/customer-projects/european-shredder-cutter-inserts/">View Project</a>
+      </div>
+    </div>
+  </section>
+
   <div class="blog-section">
     <div class="section-intro">
       <h2 class="section-title">Technical Guides & Insights</h2>
@@ -2449,6 +2497,7 @@
       <ul class="footer-list">
         <li><a href="/">Home</a></li>
         <li><a href="/products/?cat=all">Product Catalog</a></li>
+        <li><a href="/customer-projects/">Customer Projects</a></li>
         <li><a href="/#custom-manufacturing">Custom Manufacturing</a></li>
         <li><a href="/#faq-section">FAQs</a></li>
       </ul>
@@ -2511,6 +2560,7 @@
     &copy; 2026 HK BladeTech (HK Blade Tech). All Rights Reserved. | Factory-Direct Industrial Blades &amp; Machine Knives
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
