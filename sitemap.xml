@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.hk-bladetech.com/guides/</loc>
-    
-    <lastmod>2026-10-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.hk-bladetech.com/5-signs-to-replace-granulator-blades/</loc>
     
     <lastmod>2026-10-09</lastmod>
@@ -21,6 +12,15 @@
   
   <url>
     <loc>https://www.hk-bladetech.com/understanding-blade-hardness-hrc/</loc>
+    
+    <lastmod>2026-10-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/guides/</loc>
     
     <lastmod>2026-10-09</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/industry-film/</loc>
+    <loc>https://www.hk-bladetech.com/industry-corrugated/</loc>
     
     <lastmod>2026-10-06</lastmod>
     
@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/industry-corrugated/</loc>
+    <loc>https://www.hk-bladetech.com/industry-film/</loc>
     
     <lastmod>2026-10-06</lastmod>
     
