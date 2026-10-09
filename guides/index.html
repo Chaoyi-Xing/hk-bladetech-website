@@ -97,22 +97,7 @@
   .guides-header h1 { font-size: 3em; font-weight: 800; color: #111; margin-bottom: 15px; letter-spacing: -0.5px; }
   .guides-header p { font-size: 1.3em; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
-  /* 知识库网格布局 (不再是滑动，而是垂直平铺) */
-  .guides-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
-  
-  .guide-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.4s ease, box-shadow 0.4s ease; border: 1px solid #e5e5e5; border-top: 4px solid #cc0000; display: flex; flex-direction: column; text-decoration: none; }
-  .guide-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #cc0000; }
-  .guide-img-box { width: 100%; height: 220px; background: #eaeaea; overflow: hidden; }
-  .guide-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-  .guide-card:hover .guide-img-box img { transform: scale(1.05); }
-  .guide-content { padding: 30px 25px; display: flex; flex-direction: column; flex-grow: 1; }
-  .guide-meta { font-size: 13px; color: #888; margin-bottom: 12px; font-weight: 500; display: flex; gap: 8px; align-items: center; letter-spacing: 0.5px;} 
-  .guide-meta span.dot { color: #ccc; font-size: 10px; }
-  .guide-tag { color: #cc0000; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; display: inline-block;}
-  .guide-card h3 { font-size: 1.5em; font-weight: 800; color: #111; margin: 0 0 15px 0; line-height: 1.3; }
-  .guide-excerpt { color: #666; font-size: 15px; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
-  .guide-read-more { color: #111; font-weight: 800; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #cc0000; padding-bottom: 3px; align-self: flex-start; transition: color 0.3s; }
-  .guide-card:hover .guide-read-more { color: #cc0000; }
+  .blog-grid.guides-grid { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
 
   /* 底部 PDF 留资横幅 */
   .pdf-banner { max-width: 1000px; margin: 0 auto 100px; background: #111; border-radius: 8px; padding: 50px 40px; text-align: center; color: #fff; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
@@ -121,15 +106,12 @@
   .btn-download { display: inline-block; background: #cc0000; color: #fff !important; padding: 15px 35px; border-radius: 4px; font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; transition: background 0.3s; }
   .btn-download:hover { background: #a00000; }
 
-  @media (max-width: 1024px) {
-    .guides-grid { grid-template-columns: repeat(2, 1fr); }
-  }
   @media (max-width: 768px) {
-    .guides-grid { grid-template-columns: 1fr; }
     .pdf-banner { padding: 40px 20px; border-radius: 0; }
   }
 </style>
-</head>
+<link rel="stylesheet" href="/css/guide-cards.css">
+<meta name="generator" content="Hexo 8.1.1"></head>
 <body>
 
 <div class="custom-header">
@@ -170,72 +152,92 @@
   <p>Your definitive knowledge base for plastic recycling equipment. Expert advice on blade materials, advanced heat treatment, and maximizing your shredder's lifespan.</p>
 </div>
 
-<div class="guides-grid">
-  <a href="/cumberland-vs-rapid-granulator-blades/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/products/cumberland-1012-rotor/1.webp" alt="Cumberland vs Rapid blades"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>Jun 16, 2026</span><span class="dot">•</span><span>6 min read</span></div>
-      <span class="guide-tag">Compatibility</span>
-      <h3>Cumberland vs. Rapid Granulator Blades</h3>
-      <p class="guide-excerpt">Their knives are not interchangeable. The key differences in rotor style, bolt pattern and bevel, and how to order the right drop-in replacement.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+<div class="blog-grid guides-grid">
+  
+    <a href="/cumberland-vs-rapid-granulator-blades/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/cumberland-vs-rapid.webp" alt="Cumberland and Rapid granulator blade compatibility guide cover" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Jul 16, 2026</span><span class="dot">•</span><span>6 min read</span></div>
+    <span class="blog-tag">Compatibility</span>
+    <h3>Cumberland vs. Rapid Granulator Blades: Compatibility Guide</h3>
+    <p class="blog-excerpt">Their knives are not interchangeable. Learn the key differences in rotor style, bolt pattern and bevel, and how to order the right drop-in replacement.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-  <a href="/how-to-measure-granulator-blade-replacement/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/products/rapid-2036-rotor/1.webp" alt="How to measure a granulator blade"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>May 19, 2026</span><span class="dot">•</span><span>5 min read</span></div>
-      <span class="guide-tag">Sizing Guide</span>
-      <h3>How to Measure a Granulator Blade for a Correct Replacement</h3>
-      <p class="guide-excerpt">The 5 dimensions that decide whether your new blade drops in or sits in a drawer: length, width, thickness, bolt pattern and bevel.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+  
+    <a href="/how-to-measure-granulator-blade-replacement/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/measure-granulator-blade.webp" alt="Technical illustration showing granulator blade measurements" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Jun 19, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+    <span class="blog-tag">Sizing Guide</span>
+    <h3>How to Measure a Granulator Blade for a Correct Replacement</h3>
+    <p class="blog-excerpt">The 5 dimensions that decide whether your new blade drops in or sits in a drawer: length, width, thickness, bolt pattern and bevel.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-  <a href="/heat-treatment-secret-for-shredder-blades/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/blog-heat-treatment.webp" alt="Heat Treatment"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>Apr 21, 2026</span><span class="dot">•</span><span>4 min read</span></div>
-      <span class="guide-tag">Manufacturing</span>
-      <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
-      <p class="guide-excerpt">Discover why specifying D2 isn't enough. Learn how our advanced vacuum quenching and cryogenic treatment prevents blade chipping.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+  
+    <a href="/heat-treatment-secret-for-shredder-blades/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/blade-heat-treatment.webp" alt="Heat treatment cover for longer-lasting industrial blades" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>May 21, 2026</span><span class="dot">•</span><span>4 min read</span></div>
+    <span class="blog-tag">Manufacturing</span>
+    <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
+    <p class="blog-excerpt">Learn why steel grade alone is not enough, and how controlled heat treatment influences hardness, toughness and service life.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-  <a href="/how-to-choose-granulator-blade-material/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/blog-material-choice.webp" alt="D2 vs Tungsten Carbide"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>Mar 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
-      <span class="guide-tag">Material Guide</span>
-      <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
-      <p class="guide-excerpt">Why are your granulator blades dulling so fast? Learn how to choose the perfect steel based on our 4-Step Rule for plastic recycling.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+  
+    <a href="/how-to-choose-granulator-blade-material/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/d2-vs-carbide.webp" alt="D2 steel and tungsten carbide blade material comparison cover" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Apr 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+    <span class="blog-tag">Material Guide</span>
+    <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
+    <p class="blog-excerpt">Compare D2 and carbide options by feed material, contamination level, impact load and target service life.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-  <a href="/understanding-blade-hardness-hrc/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/blog-hrc-testing.webp" alt="HRC Hardness"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>Feb 25, 2026</span><span class="dot">•</span><span>6 min read</span></div>
-      <span class="guide-tag">Quality Control</span>
-      <h3>Understanding HRC: What Blade Hardness Means for You</h3>
-      <p class="guide-excerpt">Is a harder shredder blade always better? Understand the trade-off between hardness and toughness, and the optimal HRC for recycling.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+  
+    <a href="/understanding-blade-hardness-hrc/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/quality_control/qc-hardness-testing.webp" alt="Hardness testing of an industrial blade" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Feb 25, 2026</span><span class="dot">•</span><span>6 min read</span></div>
+    <span class="blog-tag">Quality Control</span>
+    <h3>Understanding HRC: What Blade Hardness Means for You</h3>
+    <p class="blog-excerpt">Is a harder shredder blade always better? Understand the trade-off between hardness and toughness, and the optimal HRC for recycling.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-  <a href="/5-signs-to-replace-granulator-blades/" class="guide-card">
-    <div class="guide-img-box"><img src="/images/blog-blade-replacement.webp" alt="Blade Replacement"></div>
-    <div class="guide-content">
-      <div class="guide-meta"><span>Jan 28, 2026</span><span class="dot">•</span><span>3 min read</span></div>
-      <span class="guide-tag">Maintenance</span>
-      <h3>5 Signs It's Time to Replace Your Granulator Blades</h3>
-      <p class="guide-excerpt">Are you risking severe rotor damage by running dull blades? Watch out for these 5 critical warning signs in your recycling plant.</p>
-      <span class="guide-read-more">Read Full Guide</span>
-    </div>
-  </a>
+  
+    <a href="/5-signs-to-replace-granulator-blades/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/products/rapid-2036-rotor/1.webp" alt="Replacement granulator rotor blade" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Jan 28, 2026</span><span class="dot">•</span><span>3 min read</span></div>
+    <span class="blog-tag">Maintenance</span>
+    <h3>5 Signs It&#39;s Time to Replace Your Granulator Blades</h3>
+    <p class="blog-excerpt">Are you risking severe rotor damage by running dull blades? Watch out for these 5 critical warning signs in your recycling plant.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
+
+  
 </div>
 
 <div class="pdf-banner">

@@ -280,6 +280,7 @@
         <section id="main">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<link rel="stylesheet" href="/css/guide-cards.css">
 
 <script type="application/ld+json">
 {
@@ -1123,7 +1124,7 @@
 
   .story-stats {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
     padding: 20px;
     background: #fff;
@@ -1288,115 +1289,6 @@
   .project-feature-copy p { margin: 0 0 18px; color: #555; font-size: 16px; line-height: 1.6; }
   .project-feature-link { display: inline-flex; align-items: center; min-height: 42px; padding: 10px 20px; border-radius: 4px; background: #cc0000; color: #fff !important; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; }
   .project-feature-link:hover { background: #b30000; }
-
-  .blog-grid {
-    display: grid;
-    max-width: 1200px;
-    margin: 0 auto;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
-  }
-
-  .blog-card {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid #e3e3e3;
-    border-top: 4px solid #cc0000;
-    border-radius: 9px;
-    background: #fff;
-    color: inherit;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.045);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-
-  .blog-card:hover {
-    border-color: #cc0000;
-    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.09);
-    transform: translateY(-6px);
-  }
-
-  .blog-img-box {
-    width: 100%;
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    background: #eaeaea;
-  }
-
-  .blog-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .blog-card:hover .blog-img-box img {
-    transform: scale(1.04);
-  }
-
-  .blog-content {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    padding: 25px;
-  }
-
-  .blog-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-    color: #8a8a8a;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.25px;
-  }
-
-  .blog-meta .dot {
-    color: #c7c7c7;
-  }
-
-  .blog-tag {
-    display: inline-block;
-    margin-bottom: 9px;
-    color: #cc0000;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .blog-card h3 {
-    margin: 0 0 13px;
-    color: #111;
-    font-size: 23px;
-    font-weight: 800;
-    line-height: 1.32;
-  }
-
-  .blog-excerpt {
-    flex-grow: 1;
-    margin: 0 0 22px;
-    color: #666;
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .blog-read-more {
-    align-self: flex-start;
-    padding-bottom: 3px;
-    border-bottom: 2px solid #cc0000;
-    color: #111;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.65px;
-    text-transform: uppercase;
-  }
-
-  .blog-card:hover .blog-read-more {
-    color: #cc0000;
-  }
 
   .blog-btn-wrapper {
     margin-top: 38px;
@@ -1696,10 +1588,6 @@
       max-width: 360px;
     }
 
-    .blog-grid {
-      grid-template-columns: 1fr;
-    }
-
     .faq-item summary {
       padding: 18px 19px;
       font-size: 18px;
@@ -1748,13 +1636,6 @@
       font-size: 11px;
     }
 
-    .blog-content {
-      padding: 22px 20px;
-    }
-
-    .blog-card h3 {
-      font-size: 21px;
-    }
   }
 
   @media (max-width: 520px) {
@@ -2009,10 +1890,6 @@
 
               <div class="story-stats" aria-label="HK Blade Tech manufacturing highlights">
                   <div class="story-stat">
-                      <strong>Since 2000</strong>
-                      <span>Manufacturing experience</span>
-                  </div>
-                  <div class="story-stat">
                       <strong>OEM</strong>
                       <span>Replacement &amp; custom blades</span>
                   </div>
@@ -2084,61 +1961,67 @@
   <div class="blog-section">
     <div class="section-intro">
       <h2 class="section-title">Technical Guides & Insights</h2>
-      <p class="section-subtitle-text">Expert advice on blade materials, heat treatment, and maximizing your shredder's lifespan.</p>
+      <p class="section-subtitle-text">Practical guides to industrial blade selection, materials, compatibility, maintenance, and replacement.</p>
     </div>
     
     <div class="blog-grid">
-      <a href="/cumberland-vs-rapid-granulator-blades/" class="blog-card">
-        <div class="blog-img-box">
-          <img src="/images/blog/cumberland-vs-rapid.webp" alt="Cumberland vs Rapid granulator blades" loading="lazy" decoding="async">
-        </div>
-        <div class="blog-content">
-          <div class="blog-meta"><span>Jul 16, 2026</span><span class="dot">•</span><span>6 min read</span></div>
-          <span class="blog-tag">Compatibility</span>
-          <h3>Cumberland vs. Rapid Granulator Blades: Compatibility Guide</h3>
-          <p class="blog-excerpt">Their knives are not interchangeable. Learn the key differences in rotor style, bolt pattern and bevel, and how to order the right drop-in replacement.</p>
-          <span class="blog-read-more">Read Full Guide</span>
-        </div>
-      </a>
+      
+        <a href="/cumberland-vs-rapid-granulator-blades/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/cumberland-vs-rapid.webp" alt="Cumberland and Rapid granulator blade compatibility guide cover" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Jul 16, 2026</span><span class="dot">•</span><span>6 min read</span></div>
+    <span class="blog-tag">Compatibility</span>
+    <h3>Cumberland vs. Rapid Granulator Blades: Compatibility Guide</h3>
+    <p class="blog-excerpt">Their knives are not interchangeable. Learn the key differences in rotor style, bolt pattern and bevel, and how to order the right drop-in replacement.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-      <a href="/how-to-measure-granulator-blade-replacement/" class="blog-card">
-        <div class="blog-img-box">
-          <img src="/images/blog/measure-granulator-blade.webp" alt="How to measure a granulator blade" loading="lazy" decoding="async">
-        </div>
-        <div class="blog-content">
-          <div class="blog-meta"><span>Jun 19, 2026</span><span class="dot">•</span><span>5 min read</span></div>
-          <span class="blog-tag">Sizing Guide</span>
-          <h3>How to Measure a Granulator Blade for a Correct Replacement</h3>
-          <p class="blog-excerpt">The 5 dimensions that decide whether your new blade drops in or sits in a drawer: length, width, thickness, bolt pattern and bevel.</p>
-          <span class="blog-read-more">Read Full Guide</span>
-        </div>
-      </a>
+      
+        <a href="/how-to-measure-granulator-blade-replacement/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/measure-granulator-blade.webp" alt="Technical illustration showing granulator blade measurements" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Jun 19, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+    <span class="blog-tag">Sizing Guide</span>
+    <h3>How to Measure a Granulator Blade for a Correct Replacement</h3>
+    <p class="blog-excerpt">The 5 dimensions that decide whether your new blade drops in or sits in a drawer: length, width, thickness, bolt pattern and bevel.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-      <a href="/heat-treatment-secret-for-shredder-blades/" class="blog-card">
-        <div class="blog-img-box">
-          <img src="/images/blog/blade-heat-treatment.webp" alt="Controlled heat treatment process for industrial blades" loading="lazy" decoding="async">
-        </div>
-        <div class="blog-content">
-          <div class="blog-meta"><span>May 21, 2026</span><span class="dot">•</span><span>4 min read</span></div>
-          <span class="blog-tag">Manufacturing</span>
-          <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
-          <p class="blog-excerpt">Learn why steel grade alone is not enough, and how controlled heat treatment influences hardness, toughness and service life.</p>
-          <span class="blog-read-more">Read Full Guide</span>
-        </div>
-      </a>
+      
+        <a href="/heat-treatment-secret-for-shredder-blades/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/blade-heat-treatment.webp" alt="Heat treatment cover for longer-lasting industrial blades" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>May 21, 2026</span><span class="dot">•</span><span>4 min read</span></div>
+    <span class="blog-tag">Manufacturing</span>
+    <h3>Beyond the Steel: The Secret to Longer-Lasting Blades</h3>
+    <p class="blog-excerpt">Learn why steel grade alone is not enough, and how controlled heat treatment influences hardness, toughness and service life.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
 
-      <a href="/how-to-choose-granulator-blade-material/" class="blog-card">
-        <div class="blog-img-box">
-          <img src="/images/blog/d2-vs-carbide.webp" alt="D2 vs Tungsten Carbide Blades" loading="lazy" decoding="async">
-        </div>
-        <div class="blog-content">
-          <div class="blog-meta"><span>Apr 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
-          <span class="blog-tag">Material Guide</span>
-          <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
-          <p class="blog-excerpt">Compare D2 and carbide options by feed material, contamination level, impact load and target service life.</p>
-          <span class="blog-read-more">Read Full Guide</span>
-        </div>
-      </a>
+      
+        <a href="/how-to-choose-granulator-blade-material/" class="blog-card">
+  <div class="blog-img-box">
+    <img src="/images/blog/d2-vs-carbide.webp" alt="D2 steel and tungsten carbide blade material comparison cover" loading="lazy" decoding="async">
+  </div>
+  <div class="blog-content">
+    <div class="blog-meta"><span>Apr 24, 2026</span><span class="dot">•</span><span>5 min read</span></div>
+    <span class="blog-tag">Material Guide</span>
+    <h3>D2 vs. Tungsten Carbide: How to Choose the Right Blade</h3>
+    <p class="blog-excerpt">Compare D2 and carbide options by feed material, contamination level, impact load and target service life.</p>
+    <span class="blog-read-more">Read Full Guide</span>
+  </div>
+</a>
+
+      
     </div>
 
     <div class="blog-btn-wrapper">
