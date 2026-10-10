@@ -128,13 +128,6 @@
   .mat-title { font-size: 2.2em; font-weight: 800; margin-top: 0; margin-bottom: 15px; color: #111; padding-right: 140px; line-height: 1.2; letter-spacing: -0.5px; }
   .mat-desc { font-size: 17px; color: #555; margin-bottom: 35px; min-height: 50px; line-height: 1.6; font-weight: 500; }
 
-  .perf-section { margin-bottom: 35px; }
-  .perf-row { display: flex; align-items: center; margin-bottom: 18px; }
-  .perf-row:last-child { margin-bottom: 0; }
-  .perf-label { width: 160px; font-size: 14px; font-weight: 800; color: #111; text-transform: uppercase; letter-spacing: 0.5px; }
-  .perf-track { flex-grow: 1; height: 10px; background: #eee; border-radius: 5px; overflow: hidden; position: relative; }
-  .perf-fill { height: 100%; border-radius: 5px; background: #cc0000; }
-
   .mat-details { border-top: 2px solid #eee; padding-top: 25px; }
   .detail-row { margin-bottom: 12px; font-size: 16px; line-height: 1.6; display: flex; align-items: flex-start; }
   .detail-label { font-weight: 800; color: #111; min-width: 105px; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; padding-top: 2px; }
@@ -259,63 +252,47 @@
 <div class="guide-wrapper">
   <div class="guide-header">
     <h1>Engineering Material Guide</h1>
-    <p>Choosing the right alloy is a critical balance between <strong>Wear Resistance</strong>, <strong>Impact Toughness</strong>, and <strong>Cost</strong>. Use our technical guide to specify your next set of knives.</p>
+    <p>Blade material selection balances <strong>wear resistance</strong>, <strong>impact toughness</strong>, edge geometry and cost. Use the machine specification or approved drawing alongside your feedstock and operating conditions.</p>
   </div>
 
   <div class="materials-grid">
     <div class="mat-card">
       <span class="mat-badge">General Purpose</span>
       <h3 class="mat-title">Standard Tool Steel</h3>
-      <p class="mat-desc">An economical base option. It offers high shock absorption preventing cracks, making it forgiving for basic applications, though it requires more frequent sharpening.</p>
-      <div class="perf-section">
-        <div class="perf-row"><span class="perf-label">Wear Resistance</span><div class="perf-track"><div class="perf-fill" style="width: 30%;"></div></div></div>
-        <div class="perf-row"><span class="perf-label">Impact Toughness</span><div class="perf-track"><div class="perf-fill" style="width: 90%;"></div></div></div>
-      </div>
+      <p class="mat-desc">A specified lower-alloy tool steel can be economical for less abrasive work. Toughness, wear resistance and resharpening limits depend on the grade, heat treatment and edge design.</p>
       <div class="mat-details">
-        <div class="detail-row"><span class="detail-label">Best For: </span><span class="detail-content">Soft wood, Dry paper, Light biomass.</span></div>
-        <div class="detail-row"><span class="detail-label">Advantage: </span><span class="detail-content">Lowest initial cost, very easy to resharpen in-house.</span></div>
+        <div class="detail-row"><span class="detail-label">Consider For: </span><span class="detail-content">Lower-abrasion duties after checking the machine specification.</span></div>
+        <div class="detail-row"><span class="detail-label">Check: </span><span class="detail-content">Actual grade, heat treatment and allowable regrind limits.</span></div>
       </div>
     </div>
 
     <div class="mat-card">
       <span class="mat-badge">High Impact / Tough</span>
       <h3 class="mat-title">Low Alloy Steel (9CrSi)</h3>
-      <p class="mat-desc">A highly reliable workhorse. By incorporating Chromium and Silicon, it bridges the gap perfectly—offering fantastic resilience against chipping when cutting unpredictable materials.</p>
-      <div class="perf-section">
-        <div class="perf-row"><span class="perf-label">Wear Resistance</span><div class="perf-track"><div class="perf-fill" style="width: 55%;"></div></div></div>
-        <div class="perf-row"><span class="perf-label">Impact Toughness</span><div class="perf-track"><div class="perf-fill" style="width: 85%;"></div></div></div>
-      </div>
+      <p class="mat-desc">9CrSi is a low-alloy tool steel option. Its resistance to chipping and wear depends on heat treatment, edge support and the actual material being cut.</p>
       <div class="mat-details">
-        <div class="detail-row"><span class="detail-label">Best For: </span><span class="detail-content">Rubber, Tires, Copper cables, Impure plastic bales.</span></div>
-        <div class="detail-row"><span class="detail-label">Advantage: </span><span class="detail-content">Excellent resistance to chipping; great cost-performance.</span></div>
+        <div class="detail-row"><span class="detail-label">Consider For: </span><span class="detail-content">Applications where the approved blade specification calls for 9CrSi.</span></div>
+        <div class="detail-row"><span class="detail-label">Check: </span><span class="detail-content">Impact loading, contamination and edge geometry.</span></div>
       </div>
     </div>
 
     <div class="mat-card">
       <span class="mat-badge">High Wear Resistance</span>
       <h3 class="mat-title">High Chrome (D2 / SKD-11)</h3>
-      <p class="mat-desc">The premium standard for clean plastic recycling. Vacuum heat-treated to HRC 58-60 to deliver exceptional long-term edge retention and clean cuts without melting plastics.</p>
-      <div class="perf-section">
-        <div class="perf-row"><span class="perf-label">Wear Resistance</span><div class="perf-track"><div class="perf-fill" style="width: 85%;"></div></div></div>
-        <div class="perf-row"><span class="perf-label">Impact Toughness</span><div class="perf-track"><div class="perf-fill" style="width: 50%;"></div></div></div>
-      </div>
+      <p class="mat-desc">D2 / SKD11 is a high-carbon, high-chromium cold-work tool steel used where abrasive wear matters. Hardness and bevel design must suit the machine duty; impact and contamination can raise chipping risk.</p>
       <div class="mat-details">
-        <div class="detail-row"><span class="detail-label">Best For: </span><span class="detail-content">PET bottles, PE/PP films, Clean plastic lumps & crates.</span></div>
-        <div class="detail-row"><span class="detail-label">Advantage: </span><span class="detail-content">Holds a sharp edge much longer in abrasive plastic processing.</span></div>
+        <div class="detail-row"><span class="detail-label">Consider For: </span><span class="detail-content">Granulator knives when the drawing and feedstock support D2.</span></div>
+        <div class="detail-row"><span class="detail-label">Check: </span><span class="detail-content">Specified hardness, bevel, impact risk and sharpening limits.</span></div>
       </div>
     </div>
 
     <div class="mat-card">
       <span class="mat-badge">Abrasive Cutting</span>
       <h3 class="mat-title">Tungsten Carbide Inlaid</h3>
-      <p class="mat-desc">Engineered for the most brutal environments. Features brazed solid carbide cutting edges. Lifespan outlasts standard alloy steel by up to 10-20x in highly abrasive setups.</p>
-      <div class="perf-section">
-        <div class="perf-row"><span class="perf-label">Wear Resistance</span><div class="perf-track"><div class="perf-fill" style="width: 100%;"></div></div></div>
-        <div class="perf-row"><span class="perf-label">Impact Toughness</span><div class="perf-track"><div class="perf-fill" style="width: 25%;"></div></div></div>
-      </div>
+      <p class="mat-desc">Cemented tungsten carbide can offer a wear-resistant edge in suitable abrasive duties. Solid, inlaid and tipped constructions differ; grade, edge support, bonding and impact loading all affect the result.</p>
       <div class="mat-details">
-        <div class="detail-row"><span class="detail-label">Best For: </span><span class="detail-content">Glass-fiber filled plastics (GF/CF), E-waste shredding.</span></div>
-        <div class="detail-row"><span class="detail-label">Advantage: </span><span class="detail-content">Drastically reduces machine downtime and blade changeouts.</span></div>
+        <div class="detail-row"><span class="detail-label">Consider For: </span><span class="detail-content">Abrasive feedstock after reviewing the machine and impact risk.</span></div>
+        <div class="detail-row"><span class="detail-label">Check: </span><span class="detail-content">Carbide grade, construction, edge support and repair options.</span></div>
       </div>
     </div>
   </div>
@@ -326,77 +303,78 @@
       <div class="step-card">
         <div class="step-circle">1</div>
         <h4 class="step-title">Abrasiveness</h4>
-        <p class="step-text">Processing materials with glass fiber or sand requires high-hardness alloys like <strong>D2</strong> or <strong>Carbide</strong> to prevent rapid dulling.</p>
+        <p class="step-text">Glass fiber, sand and other abrasive contaminants can increase edge wear. Compare suitable tool steels and carbide constructions after checking impact loading.</p>
       </div>
       <div class="step-card">
         <div class="step-circle">2</div>
         <h4 class="step-title">Impact Risk</h4>
-        <p class="step-text">If your feed stream contains unexpected metal (bolts, thick wire), overly hard blades will shatter. Choose tough <strong>9CrSi Alloy</strong> instead.</p>
+        <p class="step-text">Hard inclusions or unexpected metal can chip a cutting edge. Review contamination controls, edge support and the specified material before changing grades.</p>
       </div>
       <div class="step-card">
         <div class="step-circle">3</div>
         <h4 class="step-title">Operating Temp</h4>
-        <p class="step-text">High-speed continuous cutting generates intense friction. For hot applications without coolant, heat-resistant steel is required.</p>
+        <p class="step-text">Cutting speed, friction, cooling and edge finish can affect blade temperature. Review these factors before considering high-speed steel (HSS) or another grade.</p>
       </div>
       <div class="step-card">
         <div class="step-circle">4</div>
         <h4 class="step-title">Total Cost</h4>
-        <p class="step-text">Match the blade cost to your production scale. Don't buy Carbide for low-volume runs, but don't use Carbon steel for 24/7 lines.</p>
+        <p class="step-text">Compare purchase cost with sharpening, changeovers, scrap and downtime under your operating conditions. Carbide is not an automatic upgrade.</p>
       </div>
     </div>
   </div>
 
   <div class="table-section">
-    <h2>Material Specifications & Cost Indicator</h2>
+    <h2>Material Selection Comparison</h2>
     <div class="comp-table-wrapper">
       <table class="comp-table">
         <thead>
           <tr>
             <th>Material Grade</th>
-            <th>Tested Hardness</th>
-            <th>Primary Characteristic</th>
-            <th>Cost Multiplier</th>
-            <th>Est. Price (Standard 300mm)</th>
+            <th>Hardness Specification</th>
+            <th>General Characteristic</th>
+            <th>Selection Check</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>Carbon Tool Steel</strong></td>
-            <td>HRC 52 - 56</td>
-            <td>High Shock Resistance</td>
-            <td>1.0x (Base)</td>
-            <td>$15 - $30 / pc</td>
+            <td>Specify grade and HRC target on the approved drawing</td>
+            <td>Properties vary widely by grade and heat treatment</td>
+            <td>Confirm wear, impact and regrind requirements</td>
           </tr>
           <tr>
             <td><strong>Low Alloy (9CrSi)</strong></td>
-            <td>HRC 54 - 58</td>
-            <td>Excellent Toughness</td>
-            <td>1.5x</td>
-            <td>$25 - $45 / pc</td>
+            <td>Specify heat-treated HRC target for the application</td>
+            <td>Low-alloy tool steel with grade-dependent wear and toughness</td>
+            <td>Confirm edge geometry and feedstock contamination</td>
           </tr>
           <tr>
             <td><strong>Premium D2 / SKD-11</strong></td>
-            <td>HRC 58 - 62</td>
-            <td>High Wear Resistance</td>
-            <td>2.5x - 3.0x</td>
-            <td>$50 - $80 / pc</td>
+            <td>Specify HRC target on the approved drawing</td>
+            <td>Good abrasive-wear resistance; impact can cause chipping</td>
+            <td>Review bevel, impact risk and sharpening limits</td>
+          </tr>
+          <tr>
+            <td><strong>High-Speed Steel (HSS)</strong></td>
+            <td>Specify grade and hardness for the duty</td>
+            <td>Selected grades retain cutting hardness at elevated temperature</td>
+            <td>Review speed, heat, geometry and the actual HSS grade</td>
           </tr>
           <tr>
             <td><strong>Tungsten Carbide Inlaid</strong></td>
-            <td>HRC 85 - 92</td>
-            <td>Extreme Edge Life</td>
-            <td>8.0x - 12.0x</td>
-            <td>$200+ / pc</td>
+            <td>Specify grade using Vickers (HV) or Rockwell A (HRA), as applicable; do not use an assumed HRC equivalent</td>
+            <td>Wear-resistant edge; chipping risk varies by grade and design</td>
+            <td>Confirm solid, inlaid or tipped construction and edge support</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size: 14px; color: #666; text-align: right; margin-top: 12px; font-weight: 500;">* Prices are estimates based on a standard 300mm flat granulator blade. Actual pricing depends on thickness, bevel complexity, and order volume.</p>
+    <p style="font-size: 14px; color: #666; text-align: right; margin-top: 12px; font-weight: 500;">General guidance only. Hardness, material availability and blade construction must be confirmed for the specific drawing and application. Quotation depends on the approved specification and quantity.</p>
   </div>
 
   <div class="bottom-cta">
-    <h2>Need a Professional Engineering Recommendation?</h2>
-    <p>Tell us your machine model and the material you are processing. We will recommend the optimal blade alloy.</p>
+    <h2>Need Help Comparing Blade Materials?</h2>
+    <p>Send your machine model, drawing or part number, feedstock and operating conditions so suitable material options can be reviewed.</p>
     <a href="/contact" class="btn-cta">Request Technical Quote</a>
   </div>
 </div>
