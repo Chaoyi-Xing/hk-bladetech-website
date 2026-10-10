@@ -143,6 +143,7 @@
   .btn-red-outline { display: inline-block; margin-top: 10px; padding: 12px 25px; border: 2px solid #cc0000; color: #cc0000; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: all 0.3s; }
   .btn-red-outline:hover { background-color: #cc0000; color: #fff; }
 </style>
+<link rel="stylesheet" href="/css/technical-guide-article.css">
 </head>
 <body>
 
@@ -213,40 +214,103 @@
 
 <div class="article-wrapper">
   <div class="article-container">
-    
+
     <h1>Understanding Blade Hardness: What HRC Means for Your Plastic Recycling Machine</h1>
 
     <div class="header-divider">
-      <p>Replacement granulator blades and shredder knives are often advertised by their HRC number. Hardness is useful, but it cannot tell you by itself whether a blade will resist chipping, hold an edge or suit your feedstock.</p>
+      <p>An HRC value appears on many replacement granulator and shredder knife specifications. It is useful—but it is not a complete measure of quality, expected service life or toughness. Two blades with similar HRC readings can behave very differently because their steel, microstructure, edge geometry and operating conditions differ.</p>
     </div>
 
-    <p>The material grade, heat treatment, edge geometry, knife clearance and operating conditions must be considered together. A high hardness number should be read alongside the machine's approved blade specification.</p>
-
-    <h2>What is Rockwell Hardness (HRC)?</h2>
-    <p>HRC is the Rockwell C hardness scale used for many hardened steels. A diamond cone is first seated under a 10 kgf preliminary force, then loaded to 150 kgf total. The remaining increase in indentation depth after the main force is removed determines the HRC result. A higher reading generally means greater resistance to indentation under that test. It is not a direct measurement of blade wear life.</p>
-    <p>Hardness values are meaningful only with the correct test scale, suitable sample condition and specified test location. Cemented tungsten carbide is commonly reported on other scales, such as Rockwell A or Vickers; do not assign it a universal HRC value or compare numbers across scales without an appropriate method.</p>
-
-    <h2>Hardness, Toughness and Strength Are Different</h2>
-    <ul>
-      <li><strong>Hardness</strong> describes resistance to indentation. It can influence edge wear, but microstructure, abrasive particles and edge geometry also matter.</li>
-      <li><strong>Toughness</strong> describes a material's ability to absorb energy before fracture. It is not the same as yield strength.</li>
-      <li><strong>Yield strength</strong> concerns the onset of permanent deformation; <strong>tensile strength</strong> describes resistance to tensile loading. An HRC reading does not measure either property directly.</li>
-    </ul>
-    <p>Hardness and toughness often involve a trade-off for a given steel and heat treatment, but they are not simple opposites with one universal optimum.</p>
-
-    <h2>When the Edge Wears or Chips</h2>
-    <p>Rapid dulling can relate to abrasive feedstock, unsuitable steel or hardness, incorrect clearance, or a worn edge. Chipping can relate to impact, tramp material, edge support, geometry or heat treatment. Inspect the knife and machine before concluding that the HRC value alone is the cause. Our <a href="/5-signs-to-replace-granulator-blades/">maintenance guide</a> covers warning signs and inspection.</p>
-
-    <h2>How to Select a D2 Hardness Target</h2>
-    <p>Ranges such as HRC 58&ndash;62 are sometimes quoted for D2 knives, but they are not a scientifically proven target for every granulator blade. The correct value depends on the steel specification, hardening and tempering schedule, section size, edge geometry, feedstock and impact loading. Use the OEM specification or approved drawing and agree on the test method and location before ordering.</p>
-    <p>A hardness result can help confirm that a specified process produced the intended condition. It cannot guarantee service life or replace checks for dimensions, cracks and edge quality. For more on process choices, read our <a href="/heat-treatment-secret-for-shredder-blades/">heat-treatment guide</a> or compare <a href="/how-to-choose-granulator-blade-material/">D2 and carbide options</a>.</p>
-
+    <p>This guide explains <strong>what Rockwell C hardness actually measures</strong>, how to interpret a specified range and what to check before ordering industrial knives.</p>
+    <h2>What is Rockwell C hardness?</h2>
+    <p>Rockwell C (<strong>HRC</strong>) is an indentation hardness scale commonly used for hardened steels. In the standard Rockwell C test, a diamond-cone indenter is subjected to a 10 kgf preliminary test force and a 150 kgf total test force. The hardness number is derived from the permanent change in indentation depth under the prescribed test cycle.</p>
+    <p>A higher HRC reading generally indicates greater resistance to this <strong>specific indentation test</strong>. It does not directly measure abrasive wear rate, tensile strength, fracture toughness or hours of blade service.</p>
+    <p>A useful hardness report therefore needs more than a single number: the <strong>scale</strong>, specified target or range, suitable test surface and location, applicable test method, and part or sample identification.</p>
+    <h2>Hardness, toughness and strength are not interchangeable</h2>
+    <p class="guide-table-hint">Swipe to view all columns &rarr;</p>
+    <div class="guide-table-scroll" role="region" aria-label="Technical guide table 1" tabindex="0">
+    <table>
+    <thead>
+    <tr>
+    <th>Property</th>
+    <th>Plain-language meaning</th>
+    <th>Does an HRC number measure it?</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+    <td>Hardness</td>
+    <td>Resistance to a defined indentation test</td>
+    <td><strong>Yes</strong>, on the HRC scale for suitable materials</td>
+    </tr>
+    <tr>
+    <td>Toughness</td>
+    <td>Ability to absorb energy and resist fracture under loading</td>
+    <td><strong>No</strong></td>
+    </tr>
+    <tr>
+    <td>Yield strength</td>
+    <td>Stress at the onset of significant permanent deformation</td>
+    <td><strong>No</strong></td>
+    </tr>
+    <tr>
+    <td>Tensile strength</td>
+    <td>Resistance to tensile loading before failure</td>
+    <td><strong>No</strong></td>
+    </tr>
+    <tr>
+    <td>Wear resistance</td>
+    <td>Behaviour under a specific wear mechanism and duty</td>
+    <td><strong>Not directly</strong></td>
+    </tr>
+    </tbody></table>
+    </div>
+    <p>For a given steel, pushing toward a higher hardness condition may reduce the tolerance for certain types of impact or edge chipping. The relationship is not a universal one-for-one trade-off, because microstructure, tempering treatment and edge design also matter.</p>
+    <h2>Why a higher HRC is not always better for a granulator</h2>
+    <p>Consider two operating conditions:</p>
+    <p><strong>Relatively consistent, abrasive feedstock.</strong> Wear resistance may be an important priority, and hardness is one selection variable. Abrasives, fillers and edge design must still be considered.</p>
+    <p><strong>Feedstock containing occasional hard contaminants.</strong> Impact and edge chipping may dominate. Choosing the highest possible HRC without addressing contaminants, clearance or edge support can make the outcome worse.</p>
+    <p>In both cases, the acceptable hardness must be judged against the <strong>OEM specification or approved blade drawing</strong> and the actual material/heat-treatment capability.</p>
+    <h2>What about D2 hardness ranges?</h2>
+    <p>AISI D2 and related cold-work tool-steel products are often specified at relatively high hardness. You may see illustrative ranges such as <strong>58–62 HRC</strong> in industry literature, but that is <strong>not a universal target</strong> for every granulator or shredder knife. The right range depends on the steel grade, blade section, heat-treatment schedule, bevel, duty and the machine manufacturer&#39;s requirements.</p>
+    <p>Never revise a specified hardness merely because another website lists a higher value. If a supplier proposes a different range, ask for the technical rationale and the effect on the approved part specification.</p>
+    <h2>Can tungsten carbide be compared using HRC?</h2>
+    <p>Not straightforwardly. Cemented carbides are commonly characterised using hardness methods such as <strong>Vickers (HV)</strong> or <strong>Rockwell A (HRA)</strong>, selected for the material and test requirements. An HRC value quoted for a hardened steel should not be compared directly with an HRA or HV value as though they were the same scale.</p>
+    <p>Material grade and carbide binder also influence cutting behaviour. For context, read our <a href="/how-to-choose-granulator-blade-material/">D2 versus tungsten carbide guide</a>.</p>
+    <h2>When the blade dulls or chips, what should you inspect?</h2>
+    <p class="guide-table-hint">Swipe to view all columns &rarr;</p>
+    <div class="guide-table-scroll" role="region" aria-label="Technical guide table 2" tabindex="0">
+    <table>
+    <thead>
+    <tr>
+    <th>Symptom</th>
+    <th>Relevant checks</th>
+    </tr>
+    </thead>
+    <tbody><tr>
+    <td>Rapid uniform dulling</td>
+    <td>Abrasiveness, filler content, clearance, steel grade and edge condition</td>
+    </tr>
+    <tr>
+    <td>Localised chips</td>
+    <td>Tramp metal, impact, bevel geometry, knife support and condition</td>
+    </tr>
+    <tr>
+    <td>Uneven wear</td>
+    <td>Rotor/bed alignment, mounting, feeding pattern and clearance</td>
+    </tr>
+    <tr>
+    <td>Disappointing service life despite correct HRC</td>
+    <td>Material microstructure, installation, feedstock and maintenance history</td>
+    </tr>
+    </tbody></table>
+    </div>
+    <p>HRC can help check whether a heat-treated steel part meets a <strong>specified condition</strong>, but cannot establish why a machine is underperforming by itself. See the <a href="/heat-treatment-secret-for-shredder-blades/">heat-treatment guide</a> and <a href="/5-signs-to-replace-granulator-blades/">five maintenance warning signs</a> for further checks.</p>
+    <h2>What to ask for when specifying hardness</h2>
+    <p>Before placing an order, agree on the material grade, target hardness or allowable range (if applicable), reference drawing, required test method and location, and whether a material or inspection record is needed. Not every blade geometry provides a suitable direct test surface; the inspection approach should be agreed in advance.</p>
+    <p>Avoid quoting only “maximum HRC” on the enquiry. The real objective is a knife suitable for its machine and operating conditions.</p>
     <div class="contact-cta-box">
-      <h3>Verify the Blade Specification</h3>
-      <p>Send the machine model, blade drawing or part number, feed material and any required hardness range or inspection criteria. We can review the details before a replacement is specified.</p>
-      <a href="/contact" class="btn-red-outline">Contact Us</a>
+    <p><strong><a href="/contact/">Send the part number, drawing and hardness requirements for review</a></strong>. We can discuss the requested specification without promising that a single hardness number guarantees blade life.</p>
     </div>
-
   </div>
 </div>
 
