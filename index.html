@@ -9,12 +9,12 @@
   <title>Granulator, Shredder &amp; Slitter Blades — Factory-Direct | HK BladeTech (HK-Blade Tech)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <link rel="canonical" href="https://www.hk-bladetech.com/">
-  <meta name="description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
+  <meta name="description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, Anhui Province, China; supported from Hong Kong.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Granulator, Shredder &amp; Slitter Blades — Factory-Direct">
 <meta property="og:url" content="https://www.hk-bladetech.com/">
 <meta property="og:site_name" content="HK BladeTech (HK-Blade Tech)">
-<meta property="og:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
+<meta property="og:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, Anhui Province, China; supported from Hong Kong.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://www.hk-bladetech.com/images/home-hero-factory-bg2.webp">
 <meta property="article:author" content="HK BladeTech Team">
@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://www.hk-bladetech.com/images/home-hero-factory-bg2.webp">
   <meta name="twitter:title" content="Granulator, Shredder &amp; Slitter Blades — Factory-Direct">
-  <meta name="twitter:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, China, with sales, quality coordination and English-speaking support from Hong Kong.">
+  <meta name="twitter:description" content="Drop-in replacement blades for Cumberland, Rapid, Vecoplan, Weima and more. Manufactured in Ma&#39;anshan, Anhui Province, China; supported from Hong Kong.">
   
     <link rel="alternate" href="/atom.xml" title="HK BladeTech (HK-Blade Tech)" type="application/atom+xml">
   
@@ -289,7 +289,7 @@
   "name": "HK Blade Tech",
   "alternateName": ["HK-BladeTech", "HK Bladetech", "香港刀锋科技有限公司"],
   "url": "https://www.hk-bladetech.com/",
-  "description": "Factory-direct industrial machine knives manufactured in Ma'anshan, China, with sales, quality coordination and export support handled from Hong Kong."
+  "description": "Factory-direct industrial machine knives manufactured in Ma'anshan, Anhui Province, China, with sales, quality coordination and export support handled from Hong Kong."
 }
 </script>
 
@@ -715,6 +715,56 @@
   }
 
   /* Product categories */
+  .unified-section .section-intro {
+    margin-bottom: 24px;
+  }
+
+  .catalog-pdf-action {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 32px;
+  }
+
+  .catalog-pdf-download {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 22px;
+    border: 1px solid #d00000;
+    border-radius: 4px;
+    background: #d00000;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: .5px;
+    text-align: center;
+    transition: background-color .2s, border-color .2s;
+  }
+
+  .catalog-pdf-download svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .catalog-pdf-download:hover {
+    border-color: #a50000;
+    background: #a50000;
+  }
+
+  .catalog-pdf-download:focus-visible {
+    outline: 3px solid rgba(208, 0, 0, .3);
+    outline-offset: 3px;
+  }
+
   .category-grid,
   .industry-grid {
     display: grid;
@@ -1045,124 +1095,25 @@
   }
 
   /* About */
+  .story-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .qc-section {
+    padding-top: 48px;
+  }
+
   .story-container {
-    display: grid;
-    max-width: 1240px;
-    align-items: center;
-    gap: 64px;
+    max-width: 1020px;
     margin: 0 auto;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
-  }
-
-  .story-visual-wrapper {
-    width: 100%;
-    overflow: hidden;
-    border: 1px solid #e7e7e7;
-    border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 20px 46px rgba(0, 0, 0, 0.13);
-  }
-
-  .story-media {
-    position: relative;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-    background: #111;
-    color: #fff;
-  }
-
-  .story-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .story-media::after {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.03) 22%,
-      rgba(0, 0, 0, 0.12) 48%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
-    content: "";
-  }
-
-  .story-media-copy {
-    position: absolute;
-    right: 32px;
-    bottom: 31px;
-    left: 32px;
-    z-index: 3;
-    color: #fff;
-    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.7);
-  }
-
-  .story-media-eyebrow {
-    display: block;
-    margin-bottom: 10px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 850;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-  }
-
-  .story-media-copy strong {
-    display: block;
-    max-width: 520px;
-    color: #fff;
-    font-size: clamp(31px, 3.1vw, 46px);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.7px;
-  }
-
-  .story-stats {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    padding: 20px;
-    background: #fff;
-  }
-
-  .story-stat {
-    display: flex;
-    min-height: 112px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 12px;
-    border: 1px solid #e6e6e6;
-    border-radius: 8px;
-    background: #f8f8f8;
     text-align: center;
-  }
-
-  .story-stat strong {
-    display: block;
-    margin-bottom: 5px;
-    color: #111;
-    font-size: 24px;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.4px;
-  }
-
-  .story-stat span {
-    color: #777;
-    font-size: 13px;
-    line-height: 1.35;
   }
 
   .story-subtitle {
     display: block;
-    margin-bottom: 10px;
-    color: #cc0000;
+    margin-bottom: 8px;
+    color: #d00000;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 1.2px;
@@ -1170,7 +1121,8 @@
   }
 
   .story-title {
-    margin: 0 0 20px;
+    max-width: 900px;
+    margin: 0 auto 12px;
     color: #111;
     font-size: clamp(32px, 3.1vw, 43px);
     font-weight: 800;
@@ -1179,45 +1131,43 @@
   }
 
   .story-text {
-    margin: 0 0 28px;
+    max-width: 770px;
+    margin: 0 auto;
     color: #555;
     font-size: 17px;
-    line-height: 1.75;
+    line-height: 1.65;
   }
 
-  .story-check-list {
+  .story-locations {
+    display: grid;
+    width: 100%;
+    max-width: 720px;
+    margin: 24px auto 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .story-location {
+    min-width: 0;
+    padding: 2px 24px;
+  }
+
+  .story-location + .story-location {
+    border-left: 1px solid #dedede;
+  }
+
+  .story-location h3 {
+    margin: 0 0 3px;
+    color: #22262b;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .story-location p {
     margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .story-check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 12px;
-    color: #333;
-    font-size: 16px;
-    font-weight: 650;
+    color: #686d73;
+    font-size: 14px;
     line-height: 1.5;
-  }
-
-  .check-icon {
-    flex: 0 0 auto;
-    color: #cc0000;
-    font-weight: 900;
-  }
-
-  .story-link-red {
-    color: #222;
-    text-decoration: underline !important;
-    text-decoration-color: #cc0000 !important;
-    text-decoration-thickness: 2px !important;
-    text-underline-offset: 4px;
-  }
-
-  .story-link-red:hover {
-    color: #cc0000;
   }
 
   /* Quality control */
@@ -1273,8 +1223,8 @@
   }
 
   /* Compact customer project feature */
-  .project-feature-section { background: #f7f7f7; padding: 68px 20px; }
-  .project-feature-section .section-intro { margin-bottom: 32px; }
+  .project-feature-section { background: #f7f7f7; padding: 48px 20px; }
+  .project-feature-section .section-intro { margin-bottom: 24px; }
   .project-feature-card {
     display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
     max-width: 1040px; margin: 0 auto; overflow: hidden;
@@ -1442,16 +1392,6 @@
   }
 
   @media (max-width: 900px) {
-    .story-container {
-      grid-template-columns: 1fr;
-      gap: 38px;
-    }
-
-    .story-visual-wrapper {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
     .qc-grid {
       grid-template-columns: 1fr;
       gap: 36px;
@@ -1464,11 +1404,19 @@
   }
 
   @media (max-width: 768px) {
+    .catalog-pdf-action {
+      margin-bottom: 26px;
+    }
+
+    .catalog-pdf-download {
+      width: min(100%, 340px);
+    }
+
     .project-feature-card { grid-template-columns: 1fr; max-width: 560px; }
     .project-feature-image { height: 240px; }
     .project-feature-copy { padding: 25px; }
     .project-feature-copy h3 { font-size: 23px; }
-    .project-feature-section { padding: 60px 20px; }
+    .project-feature-section { padding: 44px 20px; }
     .hero-section,
     .hero-swiper,
     .hero-swiper .swiper-wrapper,
@@ -1555,6 +1503,30 @@
       padding-bottom: 64px;
     }
 
+    .story-section {
+      padding-top: 48px;
+      padding-bottom: 40px;
+    }
+
+    .qc-section {
+      padding-top: 40px;
+    }
+
+    .story-locations {
+      max-width: 420px;
+      margin-top: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    .story-location {
+      padding: 12px;
+    }
+
+    .story-location + .story-location {
+      border-top: 1px solid #dedede;
+      border-left: 0;
+    }
+
     .section-title,
     .faq-header h2 {
       font-size: 34px;
@@ -1604,36 +1576,13 @@
       grid-template-columns: 1fr;
     }
 
+    .story-section {
+      padding-top: 40px;
+      padding-bottom: 36px;
+    }
+
     .story-title {
       font-size: 31px;
-    }
-
-    .story-media-copy {
-      right: 22px;
-      bottom: 23px;
-      left: 22px;
-    }
-
-    .story-media-copy strong {
-      font-size: 29px;
-    }
-
-    .story-stats {
-      gap: 8px;
-      padding: 12px;
-    }
-
-    .story-stat {
-      min-height: 96px;
-      padding: 12px 7px;
-    }
-
-    .story-stat strong {
-      font-size: 19px;
-    }
-
-    .story-stat span {
-      font-size: 11px;
     }
 
   }
@@ -1721,7 +1670,7 @@
 
   <div class="value-strip" aria-label="Manufacturing and service advantages">
     <div class="value-strip-inner">
-      <div class="value-item"><strong>Factory Direct Supply</strong><span>Manufacturing in Ma'anshan</span></div>
+      <div class="value-item"><strong>Factory Direct Supply</strong><span>Manufacturing in Ma'anshan, Anhui Province, China</span></div>
       <div class="value-item"><strong>OEM Replacement</strong><span>Compatible with major brands</span></div>
       <div class="value-item"><strong>Quality Inspection</strong><span>Material &amp; dimension checked</span></div>
       <div class="value-item"><strong>Global Export</strong><span>Hong Kong support</span></div>
@@ -1745,6 +1694,12 @@
     <div class="section-intro">
       <h2 class="section-title">High-Performance Blade Catalog</h2>
       <p class="section-subtitle-text">Replacement models for common machines, plus custom designs manufactured to your exact specifications.</p>
+    </div>
+    <div class="catalog-pdf-action">
+      <a class="catalog-pdf-download" href="/downloads/hk-bladetech-product-catalog-2026.pdf" download="hk-bladetech-product-catalog-2026.pdf">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+        <span>DOWNLOAD PDF CATALOG</span>
+      </a>
     </div>
     <div class="category-grid">
       <a href="/products/?cat=granulator" class="category-card">
@@ -1877,44 +1832,41 @@
     </div>
   </div>
 
-  <div class="story-section" id="about-us">
-      <div class="story-container">
-          <div class="story-visual-wrapper">
-              <div class="story-media">
-                  <img src="/images/home/about-blade-manufacturing.webp" width="1200" height="900" loading="lazy" decoding="async" alt="Industrial blade manufacturing workshop">
-                  <span class="story-media-copy" aria-hidden="true">
-                      <span class="story-media-eyebrow">HK Blade Tech</span>
-                      <strong>Industrial Blades Built for Real Production.</strong>
-                  </span>
-              </div>
+  <section class="project-feature-section" aria-labelledby="project-feature-heading">
+    <div class="section-intro">
+      <h2 class="section-title" id="project-feature-heading">From Specification to Finished Blades</h2>
+      <p class="section-subtitle-text">A closer look at custom cutter inserts and the inspection work behind the finished batch.</p>
+    </div>
+    <div class="project-feature-card">
+      <a class="project-feature-image" href="/customer-projects/european-shredder-cutter-inserts/" aria-label="View the European customer project">
+        <img src="/images/customer-projects/european-shredder-cutter-inserts/finished-batch-overhead.jpg" alt="Overhead view of finished cutter inserts in their wooden crate" loading="lazy" decoding="async">
+      </a>
+      <div class="project-feature-copy">
+        <span class="project-feature-location">FEATURED PROJECT &middot; EUROPE</span>
+        <h3>Custom Shredder Cutter Inserts</h3>
+        <p>Custom D2 cutter inserts with TiN coating, inspected for dimensions and hardness before packing.</p>
+        <a class="project-feature-link" href="/customer-projects/european-shredder-cutter-inserts/">VIEW PROJECT DETAILS</a>
+      </div>
+    </div>
+  </section>
 
-              <div class="story-stats" aria-label="HK Blade Tech manufacturing highlights">
-                  <div class="story-stat">
-                      <strong>OEM</strong>
-                      <span>Replacement &amp; custom blades</span>
-                  </div>
-                  <div class="story-stat">
-                      <strong>Global</strong>
-                      <span>Export and logistics support</span>
-                  </div>
+  <section class="story-section" id="about-us" aria-labelledby="who-we-are-heading">
+      <div class="story-container">
+          <span class="story-subtitle">WHO WE ARE</span>
+          <h2 class="story-title" id="who-we-are-heading">China-Made Blades. Hong Kong Service &amp; Accountability.</h2>
+          <p class="story-text">Replacement industrial machine knives and custom cutting solutions, with manufacturing in Ma'anshan, Anhui Province, China and international customer support from Hong Kong.</p>
+          <div class="story-locations">
+              <div class="story-location">
+                  <h3>Ma'anshan, Anhui Province, China</h3>
+                  <p>Manufacturing &amp; Production</p>
               </div>
-          </div>
-          <div class="story-content">
-              <span class="story-subtitle">Who We Are</span>
-              <h2 class="story-title">China-Made Blades. Hong Kong Service &amp; Accountability.</h2>
-              <p class="story-text">
-                  <strong>HK Blade Tech</strong> combines manufacturing in <strong>Ma'anshan, China</strong> with sales, quality coordination and export support in <strong>Hong Kong</strong>. We supply OEM-equivalent replacement knives and custom blades matched to your machine, material and operating conditions.
-                  <br><br>
-                  Before shipment, specifications are checked against the approved drawing, including material, dimensions, hardness and cutting-edge geometry. Overseas buyers receive one English-speaking contact from enquiry through delivery.
-              </p>
-              <ul class="story-check-list">
-                  <li class="story-check-item"><span class="check-icon">✓</span> <a href="/blade-materials/" class="story-link-red">D2, HSS and Carbide Material Options</a></li>
-                  <li class="story-check-item"><span class="check-icon">✓</span> Controlled Heat Treatment and Precision Grinding</li>
-                  <li class="story-check-item"><span class="check-icon">✓</span> Dimensional Inspection Before Shipment</li>
-              </ul>
+              <div class="story-location">
+                  <h3>Hong Kong</h3>
+                  <p>Customer Service &amp; Export Coordination</p>
+              </div>
           </div>
       </div>
-  </div>
+  </section>
 
   <div class="qc-section">
       <div class="section-intro">
@@ -1940,24 +1892,6 @@
       </div>
   </div>
 
-  <section class="project-feature-section" aria-labelledby="project-feature-heading">
-    <div class="section-intro">
-      <h2 class="section-title" id="project-feature-heading">Real Customer Project</h2>
-      <p class="section-subtitle-text">See a custom cutter insert batch and the inspection work behind it.</p>
-    </div>
-    <div class="project-feature-card">
-      <a class="project-feature-image" href="/customer-projects/european-shredder-cutter-inserts/" aria-label="View the European customer project">
-        <img src="/images/customer-projects/european-shredder-cutter-inserts/finished-batch-overhead.jpg" alt="Overhead view of finished cutter inserts in their wooden crate" loading="lazy" decoding="async">
-      </a>
-      <div class="project-feature-copy">
-        <span class="project-feature-location">European Customer</span>
-        <h3>Custom Shredder Cutter Inserts</h3>
-        <p>Custom D2 cutter inserts with a TiN coating, inspected for dimensions and hardness before packing.</p>
-        <a class="project-feature-link" href="/customer-projects/european-shredder-cutter-inserts/">View Project</a>
-      </div>
-    </div>
-  </section>
-
   <div class="blog-section">
     <div class="section-intro">
       <h2 class="section-title">Technical Guides & Insights</h2>
@@ -1974,7 +1908,7 @@
     <div class="blog-meta"><span>Jul 16, 2026</span><span class="dot">•</span><span>6 min read</span></div>
     <span class="blog-tag">Compatibility</span>
     <h3>Cumberland vs. Rapid Granulator Blades: Compatibility Guide</h3>
-    <p class="blog-excerpt">Their knives are not interchangeable. Learn the key differences in rotor style, bolt pattern and bevel, and how to order the right drop-in replacement.</p>
+    <p class="blog-excerpt">Compare Cumberland and Rapid knife fit by machine model, dimensions, mounting pattern and bevel before ordering a replacement.</p>
     <span class="blog-read-more">Read Full Guide</span>
   </div>
 </a>
@@ -1988,7 +1922,7 @@
     <div class="blog-meta"><span>Jun 19, 2026</span><span class="dot">•</span><span>5 min read</span></div>
     <span class="blog-tag">Sizing Guide</span>
     <h3>How to Measure a Granulator Blade for a Correct Replacement</h3>
-    <p class="blog-excerpt">The 5 dimensions that decide whether your new blade drops in or sits in a drawer: length, width, thickness, bolt pattern and bevel.</p>
+    <p class="blog-excerpt">Five fit checks: length, width, thickness, mounting-hole details and bevel orientation.</p>
     <span class="blog-read-more">Read Full Guide</span>
   </div>
 </a>
@@ -2133,44 +2067,6 @@
   });
 </script>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/12/09/home/">Welcome to HK BladeTech</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
       </div>
       <style>
   /* =========================================
@@ -2330,6 +2226,14 @@
     color: #cc0000;
   }
 
+  .footer-location-lines span {
+    display: block;
+  }
+
+  .footer-location-lines span + span {
+    margin-top: 5px;
+  }
+
   /* =========================================
      底部纯版权条
      ========================================= */
@@ -2371,7 +2275,7 @@
         <img src="/images/logo.webp" alt="HK BladeTech | HK Blade Tech | HK-BladeTech">
       </a>
       <p class="footer-slogan">
-        HK BladeTech (also written <em>HK-BladeTech</em>) is a <strong>factory-direct supplier of industrial machine knives</strong>. Our blades are manufactured at our factory in Ma'anshan, China, while sales, quality control and English-speaking support are handled from Hong Kong — factory pricing with a contact who actually answers.
+        HK BladeTech (also written <em>HK-BladeTech</em>) is a <strong>factory-direct supplier of industrial machine knives</strong>. Sales, quality coordination and English-speaking support for international buyers are handled from Hong Kong.
       </p>
     </div>
 
@@ -2403,8 +2307,9 @@
         <div class="contact-icon-box">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
-        <div class="contact-text">
-          Hong Kong&nbsp;&middot;&nbsp;Factory in Ma'anshan, China
+        <div class="contact-text footer-location-lines">
+          <span>Manufacturing: Ma'anshan, Anhui Province, China</span>
+          <span>International Sales &amp; Support: Hong Kong</span>
         </div>
       </div>
 
@@ -2454,8 +2359,6 @@
     <a href="/industries" class="mobile-nav-link">Industries</a>
   
     <a href="/services" class="mobile-nav-link">Services</a>
-  
-    <a href="/about" class="mobile-nav-link">About Us</a>
   
     <a href="/contact" class="mobile-nav-link">Contact</a>
   

@@ -383,6 +383,16 @@ html, body {
 .view-btn.active { background-color: #f5f5f5; color: #111; font-weight: bold; }
 .view-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
+.catalog-actions { display: flex; margin: 0 0 26px; }
+.catalog-actions a {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+  padding: 11px 20px; border: 1px solid #d00000; border-radius: 3px;
+  font-size: 13px; font-weight: 700; line-height: 1.2; letter-spacing: .4px;
+  text-align: center; text-decoration: none; text-transform: uppercase; transition: background-color .2s, color .2s;
+}
+.catalog-actions .catalog-download { background: #d00000; color: #fff; }
+.catalog-actions .catalog-download:hover, .catalog-actions .catalog-download:focus-visible { background: #a50000; border-color: #a50000; color: #fff; }
+
 /* 产品卡片通用及隐藏类 */
 .product-card.hidden { display: none !important; }
 
@@ -432,7 +442,8 @@ html, body {
    ========================================= */
 @media(max-width: 991px) {
   .catalog-container { flex-direction: column; gap: 15px; padding-top: 10px; }
-  .catalog-sidebar { width: 100%; position: static; margin-bottom: 5px; padding: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .catalog-sidebar, .catalog-main { width: 100%; box-sizing: border-box; }
+  .catalog-sidebar { position: static; margin-bottom: 5px; padding: 15px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .sidebar-header { font-size: 12px; margin-top: 5px !important; margin-bottom: 8px; border-bottom: none; color: #888; padding-bottom: 0; }
   
   .category-nav { display: flex; overflow-x: auto; white-space: nowrap; gap: 10px; margin-bottom: 15px; padding-bottom: 5px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -444,6 +455,8 @@ html, body {
   .header-meta-row { flex-direction: column-reverse; align-items: flex-start; gap: 15px; }
   .page-header-desc { max-width: 100%; font-size: 13px; }
   .view-toggle { align-self: flex-end; }
+  .catalog-actions { margin-bottom: 22px; }
+  .catalog-actions a { flex: 1 1 200px; }
   
   .product-grid.list-mode .product-card { flex-direction: column; align-items: flex-start; padding: 0; height: auto; }
   .product-grid.list-mode .card-img-container { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid #f5f5f5; }
@@ -521,6 +534,10 @@ html, body {
           <svg viewBox="0 0 24 24"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
         </button>
       </div>
+    </div>
+
+    <div class="catalog-actions">
+      <a class="catalog-download" href="/downloads/hk-bladetech-product-catalog-2026.pdf" download="hk-bladetech-product-catalog-2026.pdf">Download PDF Catalog</a>
     </div>
 
     <div class="product-grid list-mode" id="product-grid">
@@ -2208,45 +2225,8 @@ function updateActive(containerId, element) {
   }
   element.classList.add('active');
 }
-</script></section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/12/09/home/">Welcome to HK BladeTech</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
+</script>
+</section>
       </div>
       <style>
   /* =========================================
@@ -2406,6 +2386,14 @@ function updateActive(containerId, element) {
     color: #cc0000;
   }
 
+  .footer-location-lines span {
+    display: block;
+  }
+
+  .footer-location-lines span + span {
+    margin-top: 5px;
+  }
+
   /* =========================================
      底部纯版权条
      ========================================= */
@@ -2447,7 +2435,7 @@ function updateActive(containerId, element) {
         <img src="/images/logo.webp" alt="HK BladeTech | HK Blade Tech | HK-BladeTech">
       </a>
       <p class="footer-slogan">
-        HK BladeTech (also written <em>HK-BladeTech</em>) is a <strong>factory-direct supplier of industrial machine knives</strong>. Our blades are manufactured at our factory in Ma'anshan, China, while sales, quality control and English-speaking support are handled from Hong Kong — factory pricing with a contact who actually answers.
+        HK BladeTech (also written <em>HK-BladeTech</em>) is a <strong>factory-direct supplier of industrial machine knives</strong>. Sales, quality coordination and English-speaking support for international buyers are handled from Hong Kong.
       </p>
     </div>
 
@@ -2479,8 +2467,9 @@ function updateActive(containerId, element) {
         <div class="contact-icon-box">
           <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         </div>
-        <div class="contact-text">
-          Hong Kong&nbsp;&middot;&nbsp;Factory in Ma'anshan, China
+        <div class="contact-text footer-location-lines">
+          <span>Manufacturing: Ma'anshan, Anhui Province, China</span>
+          <span>International Sales &amp; Support: Hong Kong</span>
         </div>
       </div>
 
@@ -2530,8 +2519,6 @@ function updateActive(containerId, element) {
     <a href="/industries" class="mobile-nav-link">Industries</a>
   
     <a href="/services" class="mobile-nav-link">Services</a>
-  
-    <a href="/about" class="mobile-nav-link">About Us</a>
   
     <a href="/contact" class="mobile-nav-link">Contact</a>
   
