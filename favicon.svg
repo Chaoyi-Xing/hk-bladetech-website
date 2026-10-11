@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="#fff"/>
+  <g transform="translate(32 32) scale(0.82) translate(-32 -32)">
+    <g transform="translate(6.14 6.35) scale(0.05591)">
+      <path fill="#141b2e" d="M388 70 570 848H69Z"/>
+      <path fill="#141b2e" d="M625 70H856L720 445Z"/>
+      <path fill="#c40203" d="M388 70H625L823 848H570Z"/>
+    </g>
+  </g>
+</svg>
