@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.hk-bladetech.com/contact/</loc>
+    
+    <lastmod>2026-10-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.hk-bladetech.com/customer-projects/european-shredder-cutter-inserts/</loc>
+    
+    <lastmod>2026-10-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.hk-bladetech.com/corrugated-board-slitter-slotter-cut-off-knives/</loc>
     
     <lastmod>2026-10-11</lastmod>
@@ -11,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/heat-treatment-secret-for-shredder-blades/</loc>
+    <loc>https://www.hk-bladetech.com/how-to-measure-granulator-blade-replacement/</loc>
     
     <lastmod>2026-10-11</lastmod>
     
@@ -20,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/how-to-measure-granulator-blade-replacement/</loc>
+    <loc>https://www.hk-bladetech.com/heat-treatment-secret-for-shredder-blades/</loc>
     
     <lastmod>2026-10-11</lastmod>
     
@@ -56,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/how-to-choose-granulator-blade-material/</loc>
+    <loc>https://www.hk-bladetech.com/blade-materials/</loc>
     
     <lastmod>2026-10-11</lastmod>
     
@@ -65,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://www.hk-bladetech.com/blade-materials/</loc>
+    <loc>https://www.hk-bladetech.com/how-to-choose-granulator-blade-material/</loc>
     
     <lastmod>2026-10-11</lastmod>
     
@@ -111,15 +129,6 @@
   
   <url>
     <loc>https://www.hk-bladetech.com/policies/shipping.html</loc>
-    
-    <lastmod>2026-10-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/contact/</loc>
     
     <lastmod>2026-10-10</lastmod>
     
@@ -176,15 +185,6 @@
     <loc>https://www.hk-bladetech.com/guides/</loc>
     
     <lastmod>2026-10-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.hk-bladetech.com/customer-projects/european-shredder-cutter-inserts/</loc>
-    
-    <lastmod>2026-10-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
